@@ -1,0 +1,44 @@
+.ibtno{
+    border-radius: 20px;
+    border: 1px solid #36bcfa;
+    background-color: #36bcfa;
+    color:white;
+    font-size:13px;
+    font-weight: bold;
+    padding: 35px 35px;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+button:active{
+    padding: 40px 40px;
+}
+
+
+
+input{
+    background-color: #eee;
+    border:none;
+    text-align: center;
+    padding: 12px 15px ;
+    margin: 20px 0px;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.container{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 16px 48px rgb(73, 168, 247);
+    overflow: hidden;
+    position: relative;
+    width: 720px;
+    max-width: 100%;
+    min-height: 480px;
+}
