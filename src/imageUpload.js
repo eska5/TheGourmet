@@ -53,7 +53,8 @@
                 {previewUrl && <img src={previewUrl} alt="preview"/>}
                 {!previewUrl && (
                   <div className="center">
-                  <Button className="image-upload-button" type="button" onClick={pickedImageHandler}>+</Button>
+                  <Button className="image-upload-button" type="button" onClick={pickedImageHandler}>
+                    &#128247;</Button>
                   </div>
                 )}
   
@@ -62,7 +63,7 @@
               <div>
                   {previewUrl && (
                     <div className="center">
-                    <Button className="image-upload-button2" type="button" onClick={pickedImageHandler}>
+                    <Button className="image-edit-button" type="button" onClick={pickedImageHandler}>
                       <MdModeEdit className="icon"></MdModeEdit>
                     </Button>
                     </div>

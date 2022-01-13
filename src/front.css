@@ -1,44 +1,108 @@
-.ibtno{
+.sendbutton{
     border-radius: 20px;
-    border: 1px solid #36bcfa;
-    background-color: #36bcfa;
-    color:white;
-    font-size:13px;
-    font-weight: bold;
-    padding: 35px 35px;
+    border: 1px solid #eee;
+    background-color: #eee;
+    color:black;
+    box-shadow: 2px 2px 15px black;
+    font-size:30px;
+    font-family: "Book Antiqua";
+    padding: 20px 40px;
     letter-spacing: 1px;
     position: absolute;
-    top: 30%;
+    top: 85%;
     left: 50%;
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
 }
-button:active{
-    padding: 40px 40px;
+.sendbutton:active{
+    padding: 30px 50px;
+    color:#eee;
+    background-color: black;
+    border: 1px solid black;
+}
+body
+{
+    background-color: #eee;
+}
+.sendInfo
+{
+    color: rgb(0, 216, 0);
+    font-size:20px;
+    font-family: "Book Antiqua";
+    text-align: center;
+    margin-top: 150%;
+}
+.title
+{
+    color: black;
+    font-size: 260%;
+    font-family: "Book Antiqua";
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 0px;
 }
 
-
-
-input{
-    background-color: #eee;
+.food-name-bar{
+    background-color: whitesmoke;
+    color: black;
     border:none;
+    font-size: 23px;
     text-align: center;
-    padding: 12px 15px ;
-    margin: 20px 0px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 15px black;
+    padding: 10px 10px ;
+    margin: 40px 0px;
     position: absolute;
     top: 8%;
     left: 50%;
+    /*skalowanie*/
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
 }
-
+::placeholder
+{
+    font-family: "Book Antiqua";
+    font-style: italic;
+}
 .container{
-    background-color: #ffffff;
+    background-color: #f7b42c;
+    background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 74%);
+    box-shadow: -10px -5px 20px #fc575e,5px 10px 20px #f7b42c;
     border-radius: 10px;
-    box-shadow: 0 16px 48px rgb(73, 168, 247);
     overflow: hidden;
     position: relative;
-    width: 720px;
+    width: 920px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 750px;
+}
+
+@media (max-height: 670px) {
+    .container
+    {
+        min-height: 550px;
+    }
+    .sendInfo
+    {
+        margin-top: 115%;
+    }
+}
+@media (max-height: 820px) and (min-height: 670px) {
+    .container
+    {
+        min-height: 680px;
+    }
+    .sendInfo
+    {
+        margin-top: 145%;
+    }
+}
+@media (min-height: 850px) {
+    .container
+    {
+        min-height: 850px;
+    }
+    .sendInfo
+    {
+        margin-top: 135%;
+    }
 }

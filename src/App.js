@@ -1,64 +1,42 @@
 import {
   Box,
-  Text,
-  HStack,
-  Heading,
-  Switch,
-  useColorMode,
   VStack,
-  Row,
 } from "native-base";
 import React,{useState,useEffect,useRef} from "react";
 import "./imageUpload.css";
 import ImageUpload from "./imageUpload";
 import "./front.css";
-import { Col, Container } from "react-bootstrap";
+
+var myTimeout = 0;
+function showSendInfo() {
+  document.getElementById("sendInfo").innerHTML = "Zdjęcie pomyślnie wysłane";
+  myTimeout = setTimeout(hideSendInfo, 2000);
+}
+function hideSendInfo() {
+  document.getElementById("sendInfo").innerHTML = "";
+  clearTimeout(myTimeout);
+}
 
 //main function called App
-
 function App() {
-  const { colorMode } = useColorMode();
-  function ToggleDarkMode() {
-    const { colorMode, toggleColorMode } = useColorMode();
-    return (
-      <HStack space={2}>
-        <Text>Dark</Text>
-        <Switch
-          isChecked={colorMode === "light" ? true : false}
-          onToggle={toggleColorMode}
-          accessibilityLabel={
-            colorMode === "light" ? "switch to dark mode" : "switch to light mode"
-          }
-        />
-        <Text>Light</Text>
-      </HStack>
-    );
-  }
-
   return (
     <Box
-      bg={colorMode === "light" ? "coolGray.50" : "coolGray.900"}
       minHeight="100vh"
       justifyContent="center"
       px={4}
-    >
+    > 
+      <h1 class="title">GOURMET</h1>
       <VStack space={5} alignItems="center">
-        <Heading size="lg" textAlign="center">The Gourmet - aplikacja mobilna rozpoznająca potrawy</Heading>
           <div className="container" id="container">
-            <div className="registration-container">
               <form action="#">
-                <input type="text" placeholder="foodName" name="foodName"></input>
-                <button className="ibtno"> wyślij </button>
+                <input class="food-name-bar" type="text" placeholder="Nazwij swoje jedzenie" name="foodName"></input>
+                <button className="sendbutton" onClick={showSendInfo}> wyślij </button>
+                    <p class="sendInfo" id="sendInfo"></p>
                     <ImageUpload/>
               </form>
-            </div>
           </div>
-
-         
-        
-        <ToggleDarkMode />
       </VStack>
-    </Box>
+    </Box>  
   );
 }
 
