@@ -1,5 +1,6 @@
 import {React, useState, useEffect, useRef} from 'react'
 import { MainContainer,InputBar,Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
+import './helper.css';
 
 const MainSection = () => { 
     const [name, setName] = useState("");
@@ -41,15 +42,18 @@ const MainSection = () => {
 
     return (
         <>
+        <form action="../../post" method="post" className="form">
         <input ref = {filePickerRef} style = {{display:"none"}} type = "file" accept=".jpg,.png,.jpeg" onChange={ImageHandler}/>
         <MainContainer>
             <InputBar type="text" placeholder='Nazwij swoje jedzenie' value={name} onChange={(e) => setName(e.target.value)}/>
             <MainContent>
                 <MainButtonWrapper>
-                    <Button to='send' onMouseEnter={onHover} onMouseLeave={onHover}>
-                        Wyślij
-                    </Button>
+                <button class="sumbitbutton" type="submit">Wyślij</button>
+                    {/* <Button type="button" onMouseEnter={onHover} onMouseLeave={onHover}>
+                        Wyślij TO CHYBA MOŻNA NAPRAWIĆ SPRAWIAJĄC ŻE CUSTOMOWY BUTTON MOŻE BYĆ DZIAŁAJĄCYM SUBMITEM!
+                    </Button> */}
                 </MainButtonWrapper>
+                
             </MainContent>            
             <ImageUploadContent>
                 <ImageButtonWrapper>
@@ -68,7 +72,7 @@ const MainSection = () => {
             </ImageUploadContent>
             <FooterWrapper>Jakub Sachajko & Łukasz Niedźwiadek © 2022</FooterWrapper>               
         </MainContainer>
-           
+        </form>
         </>
     )
 }
