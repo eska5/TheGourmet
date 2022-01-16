@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.c71ae075.css","mappings":"AAAA,EAKE,wBAAyB,CAJzB,qBAAsB,CAGtB,2CAA+C,CAF/C,QAAS,CACT,SAGF","sources":["App.css"],"sourcesContent":["* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Encode Sans Expanded', sans-serif;\n  background-color: #070E08;\n}\n"],"names":[],"sourceRoot":""}
