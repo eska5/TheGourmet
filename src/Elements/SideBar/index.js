@@ -18,9 +18,7 @@ const SideBar = ({isOpen, toggle}) => {
                 <SideButton>
                     <SideBarRoute to="/button">Click me</SideBarRoute>
                 </SideButton>
-            </SideBarWrapper>
-              
-              
+            </SideBarWrapper>  
           </SideBarCointainer>  
         </>
     )

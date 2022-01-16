@@ -1,15 +1,20 @@
 import styled from 'styled-components'
-import { MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md'
 import { Link as LinkS } from 'react-scroll'
 
 export const MainContainer = styled.div`
     background: #070E08;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding: 0 30px;
     /* height: 1000px; wersja dla wielu sekcji*/
-    height: 750px;
+    height: 850px;
     position: relative;
     z-index: 1;
 
@@ -24,7 +29,6 @@ export const Background = styled.div`
     bottom: 0;
     left: 0;
     overflow: hidden;
-    /* background-color: #020202; */
 `;
 
 export const VideoBackground = styled.video`
@@ -32,18 +36,25 @@ export const VideoBackground = styled.video`
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
-    /* background: #030303; */
 `;
 
 export const MainContent = styled.div`
     z-index: 3;
     max-width: 1200px;
-    margin-bottom: -500px;
+    top: 550px;
+    margin-top: 100px;
     position: absolute;
     padding: 8px 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items:center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align:center;
+        -ms-flex-align:center;
+            align-items:center;
 `;
 
 export const ImageUploadContent = styled.div`
@@ -64,7 +75,6 @@ export const InputBar = styled.input`
     background: white;
     z-index: -1;
     position:relative;
-    /* left: 20%; */
     resize: horizontal;
     top: -35%;
     width: 330px;
@@ -87,21 +97,16 @@ export const InputBar = styled.input`
 export const MainButtonWrapper = styled.div`
     margin-top: 32px;
     /* margin-left: -60%; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-export const ArrowForward = styled(MdArrowForward)`
-    margin-left: 8px;
-    font-size: 20px;
-    background: #010606;
-
-    Button:hover{
-        background: #01bf71;
-    }
-    
-    
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 `;
 
 export const Button = styled(LinkS)`
@@ -137,18 +142,14 @@ export const ImageUploadWrapper = styled.div`
 
 export const ImageButtonWrapper = styled.div`
     margin-top: 32px;
-    /* top: 10%; */
-    /* margin-left: -60%; */
     display: flex;
     flex-direction: column;
     align-items: center;    
-
 `;
-
 
 export const ImagePreview = styled.div`
     width:16rem;
-    height:14rem;
+    height:16rem;
     display: flex;
     justify-content: center;
     align-items: center;
