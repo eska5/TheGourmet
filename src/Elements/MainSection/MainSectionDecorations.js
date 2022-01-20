@@ -68,8 +68,6 @@ export const ImageUploadContent = styled.div`
     align-items:center;
 `;
 
-
-
 export const InputBar = styled.input`
     background-color: white;
     background: white;
@@ -79,7 +77,7 @@ export const InputBar = styled.input`
     top: -35%;
     width: 330px;
     height: 42px;
-    border-radius: 20px;
+    border-radius: 15px;
     border-color: white;
     text-align: center;
     font-size:1.3rem;
@@ -87,11 +85,11 @@ export const InputBar = styled.input`
 
     &:active{
         width:auto;
-        border-radius: 20px;
+        border-radius: 15px;
     }
     &:focus{
-        min-width: 270px;
-        border-radius: 20px;
+        min-width: 330px;
+        border-radius: 15px;
     }
 `;
 export const MainButtonWrapper = styled.div`
