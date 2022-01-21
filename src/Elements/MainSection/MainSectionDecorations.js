@@ -83,14 +83,14 @@ export const InputBar = styled.input`
     font-size:1.3rem;
     text-decoration: none;
 
-    &:active{
+    /* &:active{
         width:auto;
         border-radius: 15px;
     }
     &:focus{
         min-width: 330px;
         border-radius: 15px;
-    }
+    } */
 `;
 export const MainButtonWrapper = styled.div`
     margin-top: 32px;

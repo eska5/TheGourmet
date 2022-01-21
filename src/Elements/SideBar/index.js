@@ -10,10 +10,8 @@ const SideBar = ({isOpen, toggle}) => {
             </Icon>
             <SideBarWrapper>
                 <SideBarMenu>
-                    <SideBarLink to="subpage1" onClick={toggle}>Subpage1 </SideBarLink>
-                    <SideBarLink to="subpage2" onClick={toggle}>Subpage2</SideBarLink>
-                    <SideBarLink to="subpage3" onClick={toggle}>Subpage3</SideBarLink>
-                    <SideBarLink to="subpage4" onClick={toggle}>Subpage4</SideBarLink>
+                    <SideBarLink to='/' activeStyle onClick={toggle}>Dodaj potrawę </SideBarLink>
+                    <SideBarLink to="/identifier" activeStyle onClick={toggle}>Rozpoznaj potrawę</SideBarLink>
                 </SideBarMenu>
                 <SideButton>
                     <SideBarRoute to="/button">Click me</SideBarRoute>

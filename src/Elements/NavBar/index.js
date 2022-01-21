@@ -4,6 +4,7 @@ import {Nav,NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, Na
 
 
 const NavBar = ( {toggle} ) => {
+
     return (
         <>
             <Nav>
@@ -14,10 +15,10 @@ const NavBar = ( {toggle} ) => {
                     </MobileIcon>
                     <NavMenu>
                         <NavItem>
-                            <NavLinks to="subpage1">Subpage1</NavLinks>
+                            <NavLinks to='/' activeStyle>Dodaj potrawę</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="subpage2">Subpage2</NavLinks>
+                            <NavLinks to="/identifier" activeStyle>Rozpoznaj potrawę</NavLinks>
                         </NavItem>
                     </NavMenu>
                     <NavButton>
