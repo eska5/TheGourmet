@@ -1,0 +1,39 @@
+.suggestion-item
+  {
+    background-color: white;
+    width: 320px;
+    height: 38px;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    text-decoration: none;
+  }
+  .suggestion-item:hover {
+    background-color: #01bf71;
+    color: #fff;
+    cursor: pointer;
+  }
+  .firstLetter{
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-decoration: none;
+    background-color: #fff;
+  }
+  .suggestion-item:hover .firstLetter{
+    background-color: #01bf71;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .suggestion-item {
+      height: 60px;
+      font-size: 1.6rem;
+    }
+    .firstLetter{
+      font-size: 1.6rem;
+    }
+  }

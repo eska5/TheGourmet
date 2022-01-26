@@ -17,7 +17,6 @@ export const MainContainer = styled.div`
     height: 850px;
     position: relative;
     z-index: 1;
-
 `;
 
 export const Background = styled.div`
@@ -58,9 +57,9 @@ export const MainContent = styled.div`
 `;
 
 export const ImageUploadContent = styled.div`
-    z-index: 1;
+    z-index: 3;
     max-width: 1200px;
-    height: 420px;
+    height: 360px;
     position: absolute;
     padding: 8px 24px;
     display: flex;
@@ -92,8 +91,44 @@ export const InputBar = styled.input`
         border-radius: 15px;
     } */
 `;
+
+export const InputWrapper = styled.div`
+    z-index: 3;
+    top: 50px;
+    margin-bottom: 100px;
+    position: absolute;
+    padding: 8px 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align:center;
+        -ms-flex-align:center;
+            align-items:center;
+`;
+
+export const SuggestionList = styled.ul`
+    z-index: 3;
+    border-color: black;
+    width: 330px;
+    top:50px;
+    bottom: 0;
+    max-height: 133px;
+    margin-top: 10px;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 133px;
+    overflow:hidden; 
+    overflow-y:auto;
+`;
+
 export const MainButtonWrapper = styled.div`
-    margin-top: 32px;
+    margin-top: -30px;
     /* margin-left: -60%; */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -155,7 +190,7 @@ export const ImagePreview = styled.div`
     margin-bottom: 1rem;
     clip-path: circle(50% at 50% 50%);
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
