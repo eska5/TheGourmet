@@ -57,7 +57,7 @@ export const MainContent = styled.div`
 `;
 
 export const ImageUploadContent = styled.div`
-    z-index: 3;
+    z-index: 2;
     max-width: 1200px;
     height: 360px;
     position: absolute;
