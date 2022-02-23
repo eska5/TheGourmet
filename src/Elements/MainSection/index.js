@@ -4,7 +4,7 @@ import '../Styles/suggestions.css'
 const MainSection = () => { 
 
     const inputBarRef = useRef();
-    const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew", "mak","marcepan","mąka","mus owocowy","mango"];
+    const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
@@ -19,11 +19,16 @@ const MainSection = () => {
     };
     useEffect(() => {
         window.addEventListener('click', (event) => {
-            var container = document.getElementsByClassName('suggestion-list');
+            // var container = document.getElementByClassName('suggestion-list');
+            var container = document.getElementById('suggestionbox');
             var tmp = document.getElementsByClassName('suggestion-item');
-            if (!container.contains(event.target) && tmp.length !== 0) {
-                clearSuggestions();
+            if(container !== null)
+            {
+                if (!container.contains(event.target) && tmp.length !== 0) {
+                    clearSuggestions();
+                }
             }
+            
         });
       }, []);
 
@@ -49,42 +54,54 @@ const MainSection = () => {
             alert('Podano następującą potrawę: ' + foodname);
         }
       }
-    function clearSuggestions(chosenFood) {
+    function clearSuggestions() {
         var x = document.getElementsByClassName("suggestion-item");
         var y = document.getElementsByClassName("suggestion-list");
         // y[0].parentNode.removeChild(y[0]);
         var n = x.length;
+        var y = document.getElementsByClassName("suggestion-list");
         for (var i = 0; i < n; i++) {
             x[0].parentNode.removeChild(x[0]);
         }
         if(y.length !== 0)
         {
-             y[0].parentNode.removeChild(y[0]);
+            y[0].parentNode.removeChild(y[0]);
         }
+        
     }
 
     function handleChange(event) {
         clearSuggestions();
-        var a,b;
-        a = document.createElement("ul");
-        a.setAttribute("class", "suggestion-list");
-        document.getElementById("inputwrapper").appendChild(a);
+        var b,a; 
         var inputValue = document.getElementById("foodinput").value;
-        for (var i = 0; i < foodNames.length; i++)
+        if(inputValue !== '')
         {
-            if(foodNames[i].substring(0,inputValue.length).toUpperCase() === inputValue.toUpperCase() && inputValue !== '')
+            a = document.createElement("ul")
+            a.setAttribute("class", "suggestion-list");
+            a.setAttribute("id", "suggestionbox");
+            document.getElementById('inputwrapper').appendChild(a);
+            var actualHeight = 0;
+            for (var i = 0; i < foodNames.length; i++)
             {
-                b = document.createElement("li")
-                b.innerHTML="<span class='firstLetter'>" + foodNames[i].substring(0,inputValue.length) + "</span>";
-                b.innerHTML += foodNames[i].substring(inputValue.length,foodNames[i].length);
-                b.innerHTML += "<input type='hidden' value='" + foodNames[i] + "'>";
-                b.setAttribute("class", "suggestion-item");
-                b.addEventListener("click", function(e) {
-                    document.getElementById('foodinput').value = this.getElementsByTagName("input")[0].value;
-                    setFoodName(event.target.value);
-                    clearSuggestions();
-                });
-                a.appendChild(b);
+                if(foodNames[i].substring(0,inputValue.length).toUpperCase() === inputValue.toUpperCase() && inputValue !== '')
+                {
+                    b = document.createElement("li");
+                    if(actualHeight < 250)
+                    {
+                        actualHeight += 43;
+                    }
+                    a.style.setProperty('--height',actualHeight+'px')
+                    b.innerHTML="<span class='firstLetter'>" + foodNames[i].substring(0,inputValue.length) + "</span>";
+                    b.innerHTML += foodNames[i].substring(inputValue.length,foodNames[i].length);
+                    b.innerHTML += "<input type='hidden' value='" + foodNames[i] + "'>";
+                    b.setAttribute("class", "suggestion-item");
+                    b.addEventListener("click", function(e) {
+                        document.getElementById('foodinput').value = this.getElementsByTagName("input")[0].value;
+                        setFoodName(event.target.value);
+                        clearSuggestions();
+                    });
+                    a.appendChild(b);
+                }
             }
         }
         setFoodName(event.target.value); //jeśli się stanie zdarzenie(OnChange), wez element który je spowodował(target) i jego wartość(value)

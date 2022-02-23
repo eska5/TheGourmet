@@ -1,17 +1,20 @@
+:root {
+  --height: 100px;
+}
 .suggestion-list
 {
-    z-index: 3;
+    z-index: 4;
     border-color: black;
     width: 330px;
     top:50px;
     bottom: 0;
-    max-height: 260px;
+    /* max-height: 280px; */
     margin-top: 10px;
     position: absolute;
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: 260px;
+    height: var(--height);
     overflow:hidden; 
     overflow-y:auto;
 }
@@ -50,9 +53,9 @@
   @media only screen and (max-width: 768px) {
     .suggestion-item {
       height: 38px;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
     }
     .firstLetter{
-      font-size: 1.6rem;
+      font-size: 1.3rem;
     }
   }
