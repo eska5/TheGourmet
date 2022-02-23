@@ -57,7 +57,7 @@ export const MainContent = styled.div`
 `;
 
 export const ImageUploadContent = styled.div`
-    z-index: 3;
+    z-index: 2;
     max-width: 1200px;
     height: 360px;
     position: absolute;
@@ -116,13 +116,13 @@ export const SuggestionList = styled.ul`
     width: 330px;
     top:50px;
     bottom: 0;
-    max-height: 133px;
+    max-height: 260px;
     margin-top: 10px;
     position: absolute;
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: 133px;
+    height: 260px;
     overflow:hidden; 
     overflow-y:auto;
 `;
@@ -174,6 +174,7 @@ export const ImageUploadWrapper = styled.div`
 `;
 
 export const ImageButtonWrapper = styled.div`
+    z-index: 2;
     margin-top: 32px;
     display: flex;
     flex-direction: column;

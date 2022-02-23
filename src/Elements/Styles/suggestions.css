@@ -1,3 +1,21 @@
+.suggestion-list
+{
+    z-index: 3;
+    border-color: black;
+    width: 330px;
+    top:50px;
+    bottom: 0;
+    max-height: 260px;
+    margin-top: 10px;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 260px;
+    overflow:hidden; 
+    overflow-y:auto;
+}
+
 .suggestion-item
   {
     background-color: white;
@@ -10,6 +28,7 @@
     align-items: center;
     font-size: 1.3rem;
     text-decoration: none;
+    z-index: 99;
   }
   .suggestion-item:hover {
     background-color: #01bf71;
@@ -30,7 +49,7 @@
 
   @media only screen and (max-width: 768px) {
     .suggestion-item {
-      height: 60px;
+      height: 38px;
       font-size: 1.6rem;
     }
     .firstLetter{

@@ -4,7 +4,7 @@ import '../Styles/suggestions.css'
 const MainSection = () => { 
 
     const inputBarRef = useRef();
-    const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha"];
+    const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew", "mak","marcepan","mąka","mus owocowy","mango"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
@@ -19,7 +19,7 @@ const MainSection = () => {
     };
     useEffect(() => {
         window.addEventListener('click', (event) => {
-            var container = document.getElementById('suggestionbox');
+            var container = document.getElementsByClassName('suggestion-list');
             var tmp = document.getElementsByClassName('suggestion-item');
             if (!container.contains(event.target) && tmp.length !== 0) {
                 clearSuggestions();
@@ -51,15 +51,24 @@ const MainSection = () => {
       }
     function clearSuggestions(chosenFood) {
         var x = document.getElementsByClassName("suggestion-item");
+        var y = document.getElementsByClassName("suggestion-list");
+        // y[0].parentNode.removeChild(y[0]);
         var n = x.length;
         for (var i = 0; i < n; i++) {
             x[0].parentNode.removeChild(x[0]);
+        }
+        if(y.length !== 0)
+        {
+             y[0].parentNode.removeChild(y[0]);
         }
     }
 
     function handleChange(event) {
         clearSuggestions();
-        var b; 
+        var a,b;
+        a = document.createElement("ul");
+        a.setAttribute("class", "suggestion-list");
+        document.getElementById("inputwrapper").appendChild(a);
         var inputValue = document.getElementById("foodinput").value;
         for (var i = 0; i < foodNames.length; i++)
         {
@@ -75,7 +84,7 @@ const MainSection = () => {
                     setFoodName(event.target.value);
                     clearSuggestions();
                 });
-                document.getElementById("suggestionbox").appendChild(b);
+                a.appendChild(b);
             }
         }
         setFoodName(event.target.value); //jeśli się stanie zdarzenie(OnChange), wez element który je spowodował(target) i jego wartość(value)
@@ -100,7 +109,7 @@ const MainSection = () => {
             {/* obniżyć przycisk wybierz zdjęcie, na urządzeniach mobilnych zmiejszyć imagepreview */}
             {/* <Autocomplete suggestions={["Oranges", "Orangutan", "Apples", "Banana", "Kiwi", "Mango"]}/> */}
             <InputWrapper id="inputwrapper">
-                <SuggestionList id="suggestionbox"/>
+                {/* <SuggestionList id="suggestionbox"/> */}
                 <InputBar id="foodinput" ref={inputBarRef} value={foodname} type="text" placeholder='Nazwij swoje jedzenie' onChange={handleChange}/>
             </InputWrapper>
             
