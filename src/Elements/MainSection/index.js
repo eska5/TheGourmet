@@ -1,14 +1,15 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { MainContainer,InputBar,SuggestionList, InputWrapper, Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
 import '../Styles/suggestions.css'
+import {sendToServer,convertToDataURLviaCanvas} from '../../Functions/upload'
 const MainSection = () => { 
-
     const inputBarRef = useRef();
     const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
     const [foodname,setFoodName] = useState("");
+    const [foodimage,setFoodImage] = useState("");
     const onHover = () => {
       setHover(!hover)
     }
@@ -43,7 +44,7 @@ const MainSection = () => {
     function pickedImageHandler() {
       filePickerRef.current.click(); //wywolanie klikniecia inputu, ktory jest niewidzialny
     }
-
+    
     function handleSubmit() {
         if (foodname === "")
         {
@@ -51,13 +52,13 @@ const MainSection = () => {
         }
         else
         {
+            conv
+            sendToServer(foodname,foodimage);
             alert('Podano następującą potrawę: ' + foodname);
         }
       }
     function clearSuggestions() {
         var x = document.getElementsByClassName("suggestion-item");
-        var y = document.getElementsByClassName("suggestion-list");
-        // y[0].parentNode.removeChild(y[0]);
         var n = x.length;
         var y = document.getElementsByClassName("suggestion-list");
         for (var i = 0; i < n; i++) {
@@ -106,20 +107,6 @@ const MainSection = () => {
         }
         setFoodName(event.target.value); //jeśli się stanie zdarzenie(OnChange), wez element który je spowodował(target) i jego wartość(value)
     }
-    // function handleClick(event){
-    //     var b; 
-    //     for (var i = 0; i < foodNames.length; i++){
-    //         b = document.createElement("li")
-    //         b.innerHTML=foodNames[i];
-    //         b.setAttribute("class", "suggestion-item");
-    //         b.addEventListener("click", function(e) {
-    //             document.getElementById('foodinput').value = this.getElementsByTagName("input")[0].value;
-    //             setFoodName(event.target.value);
-    //             clearSuggestions();
-    //         });
-    //         document.getElementById("suggestionbox").appendChild(b);
-    //     }
-    // }
     return (
         <>
         <MainContainer>
