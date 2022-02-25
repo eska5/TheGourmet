@@ -14,9 +14,9 @@ const SideBar = ({isOpen, toggle}) => {
                     <SideBarLink to="/identifier" activeStyle onClick={toggle}>Rozpoznaj potrawę</SideBarLink>
                 </SideBarMenu>
                 <SideButton>
-                    <SideBarRoute to="/button">Click me</SideBarRoute>
+                    <SideBarRoute to="/info">Informacja</SideBarRoute>
                 </SideButton>
-            </SideBarWrapper>  
+            </SideBarWrapper>
           </SideBarCointainer>  
         </>
     )
