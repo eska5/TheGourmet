@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
-import { MainContainer,InputBar,SuggestionList, InputWrapper, Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
+import { MainContainer,InputBar, InputWrapper, Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
 import '../Styles/suggestions.css'
-import {sendToServer,convertToDataURLviaCanvas} from '../../Functions/upload'
+import {sendToServer} from '../../Functions/upload'
 const MainSection = () => { 
     const inputBarRef = useRef();
     const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
@@ -13,14 +13,8 @@ const MainSection = () => {
     const onHover = () => {
       setHover(!hover)
     }
-    const [open, toggleOpen] = React.useState(false);
-
-    const handleClose = () => {
-        toggleOpen(false);
-    };
     useEffect(() => {
         window.addEventListener('click', (event) => {
-            // var container = document.getElementByClassName('suggestion-list');
             var container = document.getElementById('suggestionbox');
             var tmp = document.getElementsByClassName('suggestion-item');
             if(container !== null)
@@ -32,12 +26,21 @@ const MainSection = () => {
             
         });
       }, []);
-
     function ImageHandler(event) {
       if(event.target.files && event.target.files.length===1 )
       {
-          setPreviewUrl(URL.createObjectURL(event.target.files[0]));
-          document.getElementById("imgbtn").innerText = "Edytuj zdjęcie";
+          
+        var file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+          setFoodImage(base64String);
+        };
+        reader.readAsDataURL(file);
+
+
+        setPreviewUrl(URL.createObjectURL(event.target.files[0]));
+        document.getElementById("imgbtn").innerText = "Edytuj zdjęcie";
       }
     }
 
@@ -50,11 +53,14 @@ const MainSection = () => {
         {
             alert('Nie wprowadzono żadnej nazwy!');
         }
+        if (foodimage === "")
+        {
+            alert('Nie wybrano zdjęcia!');
+        }
         else
         {
-            conv
-            sendToServer(foodname,foodimage);
             alert('Podano następującą potrawę: ' + foodname);
+            sendToServer(foodname,foodimage);
         }
       }
     function clearSuggestions() {
