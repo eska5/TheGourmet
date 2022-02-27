@@ -35,6 +35,7 @@ const MainSection = () => {
         reader.onloadend = () => {
           const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
           setFoodImage(base64String);
+          //setFoodImage(file);
         };
         reader.readAsDataURL(file);
 
