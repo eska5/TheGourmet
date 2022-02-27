@@ -1,10 +1,10 @@
 export const sendToServer = (foodname,foodimage) => {
     const backend = 'http://localhost:8080'
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", backend + '/api/', true);
+    xhttp.open("POST", backend + '/api/meals', true);
     const request = {
-        'name': foodname,
-        'img': foodimage,
+        'mealName': foodname,
+        'mealPhoto': foodimage,
     };
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(request));
