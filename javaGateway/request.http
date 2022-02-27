@@ -1,0 +1,84 @@
+GET http://localhost:8082/api/schools/1234
+
+
+### 
+GET http://localhost:8082/api/schools
+
+
+### 
+GET http://localhost:8082/api/schools/Politechnika_Gdanska
+
+
+###
+GET http://localhost:8080/api/students
+
+###
+GET http://localhost:8080/api/students/3
+
+###
+POST http://localhost:8080/api/students
+Content-Type: application/json
+
+{
+  "name": "Jan",
+  "surname": "Nowak",
+  "email": "janNowak@wp.pl",
+  "attended_school": "Politechnika_Gdanska"
+}
+
+###
+POST http://localhost:8080/api/schools
+Content-Type: application/json
+
+{
+  "school_name": "Universytet_Gdanski",
+  "country": "Poland",
+  "year_of_foundation": 1922
+}
+
+###
+GET http://localhost:8080/api/schools/Universytet_Gdanski
+
+###
+GET http://localhost:8080/api/students/7
+
+
+###
+
+DELETE http://localhost:8080/api/students/1
+
+###
+GET http://localhost:8080/api/students
+
+###
+
+DELETE http://localhost:8080/api/schools/University_of_Oxford
+
+###
+GET http://localhost:8080/api/schools
+
+###
+
+PUT http://localhost:8080/api/students/3
+Content-Type: application/json
+
+{
+  "name": "Bartek",
+  "surname": "Nowak"
+}
+
+###
+GET http://localhost:8080/api/students
+
+###
+
+PUT http://localhost:8080/api/schools/Politechnika_Gdanska
+Content-Type: application/json
+
+{
+  "year_of_foundation": 150,
+  "country": "Great_Britain"
+}
+
+###
+GET http://localhost:8080/api/schools/Politechnika_Gdanska
