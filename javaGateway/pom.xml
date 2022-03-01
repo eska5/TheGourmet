@@ -14,7 +14,8 @@
 	<name>179976Lab</name>
 	<description>Spring Boot</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>17</java.version>
+		<start-class>com.xxx.yyy.MainClass</start-class>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -74,6 +75,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${project.parent.version}</version>
 				<configuration>
+					<fork>true</fork>
+					<mainClass>${start-class}</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.project.lombok</groupId>
@@ -81,6 +84,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
