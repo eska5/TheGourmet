@@ -1,5 +1,5 @@
 export const sendToServer = (foodname,foodimage) => {
-    const backend = 'http://localhost:8080'
+    const backend = 'http://localhost'
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", backend + '/api/meals', true);
     const request = {
