@@ -5,39 +5,21 @@ services:
     image: nginx:latest
     container_name: gourmet-react
     volumes:
-    #- ./build:/usr/share/nginx/html
-    - ./build:/etc/nginx/html
-    - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./build:/usr/share/nginx/html
     ports:
-      - "8080:80"
+    - "3000:80"
     environment:
     - NGINX_HOST=foobar.com
     - NGINX_PORT=80
     depends_on:
-      - gateway
       - backend
-  gateway:
-    build: Gateway
-    container_name: gourmet-gateway
-    restart: on-failure
-    depends_on:
-      - backend
-    ports:
-      - "3001:3001"
-    expose:
-      - 3001
-    #environment:
-    #- meals_url=http://meals
-    #- gateway_url=gateway
   backend:
     container_name: gourmet-meals
-    build: Backend
+    build: api
     restart: on-failure
+    volumes:
+    - ./data/meals.txt:/code/meals.txt
     ports:
-      - "8081:8081"
-    expose:
-      - 8081
-    #environment:
-    #  - meals_url=http://meals/api
+      - "5000:5000"
 
 
