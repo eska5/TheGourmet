@@ -18,7 +18,7 @@ services:
     build: api
     restart: on-failure
     volumes:
-    - ./data/meals.txt:/code/meals.txt
+    - ./data:/code/data
     ports:
       - "5000:5000"
 
