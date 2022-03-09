@@ -4,12 +4,13 @@ import '../Styles/suggestions.css'
 import {sendToServer} from '../../Functions/upload'
 const MainSection = () => { 
     const inputBarRef = useRef();
-    const foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
+    var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
     const [foodname,setFoodName] = useState("");
     const [foodimage,setFoodImage] = useState("");
+    //const [foodNames,setFoodNames] = useState("");
     const onHover = () => {
       setHover(!hover)
     }
@@ -61,7 +62,8 @@ const MainSection = () => {
         else
         {
             alert('Podano następującą potrawę: ' + foodname);
-            sendToServer(foodname,foodimage);
+            foodNames = sendToServer(foodname,foodimage);
+            //setFoodNames(mealNames)
         }
       }
     function clearSuggestions() {

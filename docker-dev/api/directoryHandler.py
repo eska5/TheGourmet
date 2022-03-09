@@ -1,5 +1,6 @@
 import os
 import base64
+import json
 from PIL import Image
 from io import BytesIO
 
@@ -33,6 +34,16 @@ def SaveAndDecodeMessage(title:str,codedPhoto:str):
     with open ("data/"+title + "/number.txt","w") as file:
         file.write(str(numberOfPhotos))
     file.close()
+
+
+def mealsList():
+    with open("data/meals.txt","r") as file:
+        Lines = file.readlines()
+        newLines = [x[:-1] for x in Lines] #comprehension pogU
+        mealsJson = json.dumps(newLines)
+    return mealsJson
+
+
 
     
 
