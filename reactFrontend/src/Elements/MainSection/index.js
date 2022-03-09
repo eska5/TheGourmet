@@ -4,13 +4,13 @@ import '../Styles/suggestions.css'
 import {sendToServer} from '../../Functions/upload'
 const MainSection = () => { 
     const inputBarRef = useRef();
-    var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
+    //var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
     const [foodname,setFoodName] = useState("");
     const [foodimage,setFoodImage] = useState("");
-    //const [foodNames,setFoodNames] = useState("");
+    const [foodNames,setFoodNames] = useState("");
     const onHover = () => {
       setHover(!hover)
     }
@@ -62,10 +62,31 @@ const MainSection = () => {
         else
         {
             alert('Podano następującą potrawę: ' + foodname);
-            foodNames = sendToServer(foodname,foodimage);
-            //setFoodNames(mealNames)
+            //var tmp = sendToServer(foodname,foodimage);
+            handleRequest(foodname,foodimage)
+            //setFoodNames(tmp)
         }
       }
+    function handleRequest(foodname,foodimage)
+    {
+        const backend = 'http://localhost:5000'
+        const xhttp = new XMLHttpRequest();
+        var res;
+        xhttp.open("POST", backend + '/meals', true);
+        const request = {
+            'mealName': foodname,
+            'mealPhoto': foodimage,
+        };
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState === 4) {
+            res = JSON.parse(xhttp.response)
+            console.log(res)
+            setFoodNames(res)
+            }
+        }
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(request));
+    }
     function clearSuggestions() {
         var x = document.getElementsByClassName("suggestion-item");
         var n = x.length;
