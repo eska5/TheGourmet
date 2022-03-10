@@ -69,7 +69,7 @@ const MainSection = () => {
             //setFoodNames(tmp)
         }
       }
-    function getSuggestions()
+    window.onload = function getSuggestions()
     {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", backendURL + '/suggestions', false ); // false for synchronous request
@@ -112,7 +112,7 @@ const MainSection = () => {
 
     function handleChange(event) {
         clearSuggestions();
-        getSuggestions();
+        //getSuggestions();
         var b,a; 
         var inputValue = document.getElementById("foodinput").value;
         if(inputValue !== '')
