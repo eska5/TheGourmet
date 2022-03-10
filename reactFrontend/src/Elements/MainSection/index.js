@@ -3,6 +3,8 @@ import { MainContainer,InputBar, InputWrapper, Button,MainButtonWrapper,ImagePre
 import '../Styles/suggestions.css'
 import {sendToServer} from '../../Functions/upload'
 const MainSection = () => { 
+    //const backendURL =  'http://localhost:5000';
+    const backendURL = 'https://gourmet.hopto.org:5000'
     const inputBarRef = useRef();
     //var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
@@ -67,12 +69,19 @@ const MainSection = () => {
             //setFoodNames(tmp)
         }
       }
+    function getSuggestions()
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", backendURL + '/suggestions', false ); // false for synchronous request
+        xmlHttp.send( null );
+        var sug = JSON.parse(xmlHttp.response);
+        setFoodNames(sug)
+    }
     function handleRequest(foodname,foodimage)
     {
-        const backend = 'http://localhost:5000'
         const xhttp = new XMLHttpRequest();
         var res;
-        xhttp.open("POST", backend + '/meals', true);
+        xhttp.open("POST", backendURL + '/meals', true);
         const request = {
             'mealName': foodname,
             'mealPhoto': foodimage,
@@ -103,6 +112,7 @@ const MainSection = () => {
 
     function handleChange(event) {
         clearSuggestions();
+        getSuggestions();
         var b,a; 
         var inputValue = document.getElementById("foodinput").value;
         if(inputValue !== '')

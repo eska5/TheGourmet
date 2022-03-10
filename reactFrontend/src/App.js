@@ -18,6 +18,7 @@ function App() {
   return (
     <Router>
       <Helmet><title>Gourmet FoodApp</title></Helmet>
+      <Helmet><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/></Helmet>
       <SideBar isOpen={isOpen} toggle={toggleSideBar}/>
       <NavBar toggle={toggleSideBar}/>
       <Routes>
