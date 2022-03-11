@@ -1,10 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { MainContainer,InputBar, InputWrapper, Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
 import '../Styles/suggestions.css'
-import {sendToServer} from '../../Functions/upload'
 const MainSection = () => { 
-    //const backendURL =  'http://localhost:5000';
-    const backendURL = 'https://gourmet.hopto.org:5000'
+    const backendURL =  'http://localhost:5000';
+    //const backendURL = 'https://gourmet.hopto.org:5000'
     const inputBarRef = useRef();
     //var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
@@ -64,9 +63,7 @@ const MainSection = () => {
         else
         {
             alert('Podano następującą potrawę: ' + foodname);
-            //var tmp = sendToServer(foodname,foodimage);
             handleRequest(foodname,foodimage)
-            //setFoodNames(tmp)
         }
       }
     window.onload = function getSuggestions()
@@ -90,6 +87,7 @@ const MainSection = () => {
             if (xhttp.readyState === 4) {
             res = JSON.parse(xhttp.response)
             console.log(res)
+            alert(foodname + ' został pomyślnie zapisany');
             setFoodNames(res)
             }
         }
