@@ -30,9 +30,9 @@ def SaveAndDecodeMessage(title:str,codedPhoto:str):
     imageRgb.save("data/"+ title +"/"+numberOfPhotos+".jpg")
     img = Image.open("data/"+ title +"/"+numberOfPhotos+".jpg")
     width,height = img.size
-    while width>1000:
-        while height>1000:
-            img = img.resize((width/2,height/2),Image.ANTIALIAS)
+    if width>1000:
+        if height>1000:
+            img = img.resize((int(width/2),int(height/2)),Image.ANTIALIAS)
             width,height = img.size
             img.save("data/"+ title +"/"+numberOfPhotos+".jpg")
     img.close()
