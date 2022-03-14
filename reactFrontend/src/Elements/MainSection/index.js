@@ -1,11 +1,11 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { MainContainer,InputBar, InputWrapper, Button,MainButtonWrapper,ImagePreview, MainContent,FooterWrapper,ImageUploadContent,ImageButtonWrapper} from './MainSectionDecorations'
 import '../Styles/suggestions.css'
+import Resizer from "react-image-file-resizer";
 const MainSection = () => { 
     const backendURL =  'http://localhost:5000';
     //const backendURL = 'https://gourmet.hopto.org:5000'
     const inputBarRef = useRef();
-    //var foodNames = ["kotlet","buraczki","mizeria","arbuz","mleko","melon","maliny","maczek","marucha","marchew","mango","mus owocowy","marmolada","margaryna","marcepan"];
     const [hover, setHover] = useState(false)
     const [previewUrl,setPreviewUrl] = useState(null);
     const filePickerRef = useRef();
@@ -31,17 +31,22 @@ const MainSection = () => {
     function ImageHandler(event) {
       if(event.target.files && event.target.files.length===1 )
       {
-          
         var file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-          setFoodImage(base64String);
-          //setFoodImage(file);
-        };
-        reader.readAsDataURL(file);
-
-
+        Resizer.imageFileResizer(
+            file,
+            400,
+            400,
+            "JPEG",
+            100,
+            0,
+            (uri) => {
+              const base64String = uri.replace("data:", "").replace(/^.+,/, "");
+              setFoodImage(base64String);
+            },
+            "base64",
+            300,
+            300
+          ); 
         setPreviewUrl(URL.createObjectURL(event.target.files[0]));
         document.getElementById("imgbtn").innerText = "Edytuj zdjęcie";
       }
