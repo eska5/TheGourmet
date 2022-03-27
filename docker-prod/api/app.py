@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, request
 from flask_cors import CORS, cross_origin
 import directoryHandler as dirHandler
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
