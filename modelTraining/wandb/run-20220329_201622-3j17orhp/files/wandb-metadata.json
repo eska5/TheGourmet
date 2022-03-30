@@ -1,0 +1,22 @@
+{
+    "os": "Windows-10-10.0.19044-SP0",
+    "python": "3.9.6",
+    "heartbeatAt": "2022-03-29T18:16:25.937712",
+    "startedAt": "2022-03-29T18:16:22.393704",
+    "docker": null,
+    "cpu_count": 20,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "d:\\Politechnika\\The Gourmet\\Development\\modelTraining\\network.py",
+    "codePath": "modelTraining\\network.py",
+    "git": {
+        "remote": "https://github.com/eska5/TheGourmet.git",
+        "commit": "cc3afb05d73ce95adaff13e776b14ebf6e575eee"
+    },
+    "email": "37691734+SunBear1@users.noreply.github.com",
+    "root": "D:/Politechnika/The Gourmet/Development",
+    "host": "LUKASZ",
+    "username": "LocalAdmin",
+    "executable": "C:\\Users\\LocalAdmin\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+}

@@ -1,0 +1,6 @@
+
+Num GPUs Available:  0
+Traceback (most recent call last):
+  File "d:\Politechnika\The Gourmet\Development\modelTraining\network.py", line 16, in <module>
+    tf.config.set_soft_device_placement(enabled)
+NameError: name 'enabled' is not defined

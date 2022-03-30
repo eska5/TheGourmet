@@ -1,0 +1,36 @@
+2022-03-27 17:23:51,858 INFO    MainThread:7624 [internal.py:wandb_internal():92] W&B internal server running at pid: 7624, started at: 2022-03-27 17:23:51.858441
+2022-03-27 17:23:51,863 INFO    WriterThread:7624 [datastore.py:open_for_write():77] open: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\run-260hg5gt.wandb
+2022-03-27 17:23:51,866 DEBUG   SenderThread:7624 [sender.py:send():235] send: header
+2022-03-27 17:23:51,866 DEBUG   SenderThread:7624 [sender.py:send():235] send: run
+2022-03-27 17:23:52,162 DEBUG   HandlerThread:7624 [handler.py:handle_request():141] handle_request: check_version
+2022-03-27 17:23:52,166 INFO    SenderThread:7624 [dir_watcher.py:__init__():169] watching files in: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files
+2022-03-27 17:23:52,167 INFO    SenderThread:7624 [sender.py:_start_run_threads():812] run started: 260hg5gt with start time 1648394630
+2022-03-27 17:23:52,167 DEBUG   SenderThread:7624 [sender.py:send():235] send: summary
+2022-03-27 17:23:52,167 INFO    SenderThread:7624 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 17:23:52,168 DEBUG   SenderThread:7624 [sender.py:send_request():249] send_request: check_version
+2022-03-27 17:23:52,399 DEBUG   HandlerThread:7624 [handler.py:handle_request():141] handle_request: run_start
+2022-03-27 17:23:53,171 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\wandb-summary.json
+2022-03-27 17:23:55,795 DEBUG   HandlerThread:7624 [meta.py:__init__():37] meta init
+2022-03-27 17:23:55,796 DEBUG   HandlerThread:7624 [meta.py:__init__():51] meta init done
+2022-03-27 17:23:55,796 DEBUG   HandlerThread:7624 [meta.py:probe():211] probe
+2022-03-27 17:23:55,820 DEBUG   HandlerThread:7624 [meta.py:_setup_git():201] setup git
+2022-03-27 17:23:55,878 DEBUG   HandlerThread:7624 [meta.py:_setup_git():208] setup git done
+2022-03-27 17:23:55,878 DEBUG   HandlerThread:7624 [meta.py:_save_pip():55] save pip
+2022-03-27 17:23:55,879 DEBUG   HandlerThread:7624 [meta.py:_save_pip():69] save pip done
+2022-03-27 17:23:55,879 DEBUG   HandlerThread:7624 [meta.py:probe():249] probe done
+2022-03-27 17:23:55,885 DEBUG   SenderThread:7624 [sender.py:send():235] send: files
+2022-03-27 17:23:55,885 INFO    SenderThread:7624 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-27 17:23:55,897 DEBUG   HandlerThread:7624 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 17:23:55,898 DEBUG   SenderThread:7624 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 17:23:56,182 DEBUG   SenderThread:7624 [sender.py:send():235] send: telemetry
+2022-03-27 17:23:56,185 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\requirements.txt
+2022-03-27 17:23:56,186 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\wandb-metadata.json
+2022-03-27 17:23:56,187 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\output.log
+2022-03-27 17:23:56,670 INFO    Thread-23 :7624 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmpjt987rjkwandb\1oxciz30-wandb-metadata.json
+2022-03-27 17:23:58,188 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\output.log
+2022-03-27 17:24:11,187 DEBUG   HandlerThread:7624 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 17:24:11,188 DEBUG   SenderThread:7624 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 17:24:23,206 INFO    Thread-17 :7624 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_172350-260hg5gt\files\config.yaml
+2022-03-27 17:24:24,206 DEBUG   SenderThread:7624 [sender.py:send():235] send: stats
+2022-03-27 17:24:26,462 DEBUG   HandlerThread:7624 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 17:24:26,462 DEBUG   SenderThread:7624 [sender.py:send_request():249] send_request: stop_status
