@@ -1,0 +1,32 @@
+
+Num GPUs Available:  0
+-- Training set --
+Number of pictures: 70700
+Number of different labels: 101
+-- Test set --
+Number of pictures: 20200
+Number of different labels: 101
+-- Validation set --
+Number of pictures: 10100
+Number of different labels: 101
+Labels: ['beignets' 'omelette' 'panna_cotta' 'french_toast' 'ceviche'
+ 'strawberry_shortcake' 'fried_rice' 'seaweed_salad' 'pancakes'
+ 'pork_chop' 'frozen_yogurt' 'peking_duck' 'pizza' 'bibimbap'
+ 'macaroni_and_cheese' 'hummus' 'tacos' 'steak' 'chocolate_mousse'
+ 'takoyaki' 'donuts' 'beef_tartare' 'baby_back_ribs' 'breakfast_burrito'
+ 'risotto' 'french_onion_soup' 'gnocchi' 'caesar_salad' 'cannoli'
+ 'miso_soup' 'ravioli' 'cheesecake' 'bread_pudding' 'nachos' 'hot_dog'
+ 'croque_madame' 'clam_chowder' 'greek_salad' 'chicken_quesadilla'
+ 'garlic_bread' 'caprese_salad' 'foie_gras' 'pulled_pork_sandwich'
+ 'oysters' 'prime_rib' 'waffles' 'cheese_plate' 'poutine' 'chocolate_cake'
+ 'grilled_salmon' 'edamame' 'pho' 'gyoza' 'samosa' 'ice_cream' 'tiramisu'
+ 'carrot_cake' 'onion_rings' 'pad_thai' 'grilled_cheese_sandwich'
+ 'macarons' 'baklava' 'creme_brulee' 'hot_and_sour_soup' 'filet_mignon'
+ 'ramen' 'beet_salad' 'cup_cakes' 'chicken_curry' 'scallops' 'falafel'
+ 'spring_rolls' 'sushi' 'paella' 'chicken_wings' 'spaghetti_bolognese'
+ 'dumplings' 'huevos_rancheros' 'club_sandwich' 'beef_carpaccio'
+ 'lobster_roll_sandwich' 'fried_calamari' 'guacamole' 'apple_pie'
+ 'fish_and_chips' 'red_velvet_cake' 'lasagna' 'hamburger' 'deviled_eggs'
+ 'eggs_benedict' 'sashimi' 'spaghetti_carbonara' 'mussels' 'escargots'
+ 'churros' 'crab_cakes' 'shrimp_and_grits' 'french_fries' 'bruschetta'
+ 'lobster_bisque' 'tuna_tartare']

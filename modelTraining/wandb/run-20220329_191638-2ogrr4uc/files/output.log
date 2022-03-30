@@ -1,0 +1,10 @@
+Num GPUs Available:  0
+-- Training set --
+Number of pictures: 2855
+Number of different labels: 36
+Labels: ['soy beans' 'chilli pepper' 'beetroot' 'tomato' 'banana' 'raddish'
+ 'cucumber' 'kiwi' 'watermelon' 'pear' 'pineapple' 'bell pepper' 'grapes'
+ 'capsicum' 'paprika' 'pomegranate' 'corn' 'spinach' 'carrot'
+ 'sweetpotato' 'cauliflower' 'eggplant' 'mango' 'lemon' 'lettuce' 'onion'
+ 'turnip' 'jalepeno' 'apple' 'potato' 'ginger' 'sweetcorn' 'cabbage'
+ 'peas' 'garlic' 'orange']

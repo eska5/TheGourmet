@@ -1,0 +1,641 @@
+2022-03-27 15:04:25,860 INFO    MainThread:35784 [internal.py:wandb_internal():92] W&B internal server running at pid: 35784, started at: 2022-03-27 15:04:25.859011
+2022-03-27 15:04:25,861 INFO    WriterThread:35784 [datastore.py:open_for_write():77] open: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\run-3emr4mbv.wandb
+2022-03-27 15:04:25,863 DEBUG   SenderThread:35784 [sender.py:send():235] send: header
+2022-03-27 15:04:25,863 DEBUG   SenderThread:35784 [sender.py:send():235] send: run
+2022-03-27 15:04:26,137 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: check_version
+2022-03-27 15:04:26,137 INFO    SenderThread:35784 [dir_watcher.py:__init__():169] watching files in: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files
+2022-03-27 15:04:26,138 INFO    SenderThread:35784 [sender.py:_start_run_threads():812] run started: 3emr4mbv with start time 1648386265
+2022-03-27 15:04:26,138 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:04:26,138 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:04:26,138 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: check_version
+2022-03-27 15:04:26,352 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: run_start
+2022-03-27 15:04:27,138 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:04:28,492 DEBUG   HandlerThread:35784 [meta.py:__init__():37] meta init
+2022-03-27 15:04:28,497 DEBUG   HandlerThread:35784 [meta.py:__init__():51] meta init done
+2022-03-27 15:04:28,497 DEBUG   HandlerThread:35784 [meta.py:probe():211] probe
+2022-03-27 15:04:28,508 DEBUG   HandlerThread:35784 [meta.py:_setup_git():201] setup git
+2022-03-27 15:04:28,564 DEBUG   HandlerThread:35784 [meta.py:_setup_git():208] setup git done
+2022-03-27 15:04:28,564 DEBUG   HandlerThread:35784 [meta.py:_save_pip():55] save pip
+2022-03-27 15:04:28,564 DEBUG   HandlerThread:35784 [meta.py:_save_pip():69] save pip done
+2022-03-27 15:04:28,564 DEBUG   HandlerThread:35784 [meta.py:probe():249] probe done
+2022-03-27 15:04:28,567 DEBUG   SenderThread:35784 [sender.py:send():235] send: files
+2022-03-27 15:04:28,567 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-27 15:04:28,574 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:04:28,574 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:04:29,139 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-metadata.json
+2022-03-27 15:04:29,139 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\requirements.txt
+2022-03-27 15:04:29,140 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:29,256 INFO    Thread-17 :35784 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmp0qiknl7iwandb\z2a7ml0e-wandb-metadata.json
+2022-03-27 15:04:29,491 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: get_summary
+2022-03-27 15:04:31,063 DEBUG   SenderThread:35784 [sender.py:send():235] send: telemetry
+2022-03-27 15:04:31,064 DEBUG   SenderThread:35784 [sender.py:send():235] send: telemetry
+2022-03-27 15:04:31,064 DEBUG   SenderThread:35784 [sender.py:send():235] send: telemetry
+2022-03-27 15:04:31,064 DEBUG   SenderThread:35784 [sender.py:send():235] send: files
+2022-03-27 15:04:31,064 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file model-best.h5 with policy live
+2022-03-27 15:04:31,140 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:32,903 DEBUG   SenderThread:35784 [sender.py:send():235] send: files
+2022-03-27 15:04:32,903 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file media\graph\graph_summary_8bb0e78ceac02fa5ba8c.graph.json with policy now
+2022-03-27 15:04:32,904 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:04:32,904 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:04:33,145 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:04:33,146 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\media\graph\graph_summary_8bb0e78ceac02fa5ba8c.graph.json
+2022-03-27 15:04:33,146 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\media
+2022-03-27 15:04:33,146 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\media\graph
+2022-03-27 15:04:33,661 INFO    Thread-18 :35784 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmp0qiknl7iwandb\3nsjtbj5-media/graph/graph_summary_8bb0e78ceac02fa5ba8c.graph.json
+2022-03-27 15:04:35,146 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:37,149 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:39,156 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:41,162 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:43,164 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:45,167 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:46,065 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:04:46,065 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:04:47,179 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:49,188 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:51,207 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:53,216 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:55,222 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:57,224 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\config.yaml
+2022-03-27 15:04:57,225 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:04:57,478 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:04:59,247 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:01,234 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:01,350 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:05:01,350 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:05:03,237 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:05,240 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:07,270 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:09,274 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:11,288 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:13,293 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:15,294 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:16,621 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:05:16,621 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:05:17,296 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:19,298 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:21,300 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:23,310 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:25,315 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:27,318 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:28,733 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:05:29,321 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:31,323 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:31,892 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:05:31,893 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:05:33,325 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:35,327 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:37,339 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:39,342 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:41,345 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:43,352 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:45,357 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:47,162 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:05:47,162 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:05:47,364 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:49,370 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:51,378 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:53,382 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:05:55,384 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:00,005 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:06:02,455 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:06:02,455 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:06:05,054 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:06:05,054 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:06:05,055 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:06:05,055 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:06:05,056 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:06:05,060 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:06:05,060 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:06:05,072 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:06:05,072 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:06:05,436 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:06:05,436 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:06:07,439 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:09,441 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:11,474 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:13,488 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:15,491 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:17,497 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:17,720 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:06:17,720 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:06:19,162 INFO    Thread-19 :35784 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmp0qiknl7iwandb\2ir46dmw-model-best.h5
+2022-03-27 15:06:19,517 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:21,539 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:23,554 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:25,556 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:27,561 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:29,568 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:31,311 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:06:31,572 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:33,351 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:06:33,352 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:06:33,575 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:35,578 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:37,594 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:39,599 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:41,601 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:43,603 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:45,612 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:47,639 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:48,633 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:06:48,638 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:06:49,654 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:51,675 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:53,686 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:55,688 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:57,694 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:06:59,701 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:01,705 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:02,725 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:07:03,740 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:03,926 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:07:03,927 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:07:05,746 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:07,751 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:09,756 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:11,759 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:13,763 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:15,774 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:17,794 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:19,209 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:07:19,210 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:07:19,809 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:21,812 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:23,827 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:25,828 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:27,840 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:29,842 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:31,870 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:33,880 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:34,008 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:07:34,484 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:07:34,484 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:07:35,882 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:46,274 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:07:46,275 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:07:46,276 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:07:46,276 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:07:46,276 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:07:46,281 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:07:46,281 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:07:46,286 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:07:46,286 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:07:46,937 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:07:46,937 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:07:47,938 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:49,752 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:07:49,752 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:07:49,940 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:51,942 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:53,945 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:55,950 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:57,952 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:07:59,985 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:01,989 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:03,991 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:05,032 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:08:05,033 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:08:05,333 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:08:05,996 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:08,013 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:10,029 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:12,044 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:14,049 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:16,051 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:18,086 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:20,121 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:20,334 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:08:20,334 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:08:22,132 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:24,144 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:26,159 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:28,173 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:30,181 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:32,183 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:34,187 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:35,621 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:08:35,622 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:08:36,190 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:36,506 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:08:38,217 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:40,218 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:42,220 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:44,222 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:46,224 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:48,229 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:50,237 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:50,905 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:08:50,905 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:08:52,239 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:54,270 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:56,283 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:08:58,287 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:00,291 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:02,296 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:04,298 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:06,180 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:09:06,180 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:09:06,309 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:07,753 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:09:08,311 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:10,328 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:12,334 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:14,337 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:16,339 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:21,465 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:09:21,465 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:09:25,276 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:09:25,280 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:09:25,281 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:09:25,281 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:09:25,282 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:09:25,285 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:09:25,285 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:09:25,291 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:09:25,291 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:09:25,355 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:09:25,356 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:09:26,356 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:09:28,361 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:30,363 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:32,376 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:34,381 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:36,384 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:36,727 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:09:36,728 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:09:38,394 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:38,930 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:09:40,396 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:42,401 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:44,410 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:46,414 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:48,417 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:50,425 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:51,996 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:09:51,997 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:09:52,432 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:54,447 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:56,453 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:09:58,476 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:00,496 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:01,497 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:03,500 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:05,502 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:07,273 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:10:07,274 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:10:07,503 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:10,259 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:10:10,511 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:11,512 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:14,520 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:15,523 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:17,526 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:19,530 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:21,535 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:22,594 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:10:22,594 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:10:23,536 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:25,548 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:27,551 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:29,554 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:32,564 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:33,587 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:36,601 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:37,866 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:10:37,866 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:10:38,607 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:39,608 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:41,471 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:10:41,612 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:43,623 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:45,662 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:47,665 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:49,673 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:10:53,152 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:10:53,152 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:11:00,275 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:11:00,280 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:11:00,281 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:11:00,281 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:11:00,282 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:11:00,285 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:11:00,285 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:11:00,291 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:11:00,291 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:11:00,699 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:11:00,699 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:11:01,700 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:03,720 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:05,717 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:07,730 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:08,491 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:11:08,492 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:11:09,734 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:11,737 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:12,697 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:11:13,765 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:15,772 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:17,776 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:19,783 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:21,808 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:23,778 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:11:23,778 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:11:23,817 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:25,826 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:27,830 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:29,832 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:31,836 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:33,839 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:35,843 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:37,850 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:39,113 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:11:39,114 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:11:39,852 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:41,863 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:43,868 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:43,953 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:11:45,875 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:47,878 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:49,899 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:51,906 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:53,910 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:54,387 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:11:54,388 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:11:55,913 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:57,916 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:11:59,917 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:01,920 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:03,925 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:05,965 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:07,967 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:09,757 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:12:09,759 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:12:09,975 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:11,998 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:13,996 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:15,205 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:12:16,005 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:18,016 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:20,019 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:22,020 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:24,039 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:25,028 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:12:25,028 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:12:26,045 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:36,243 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:12:36,252 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:12:36,252 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:12:36,253 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:12:36,253 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:12:36,264 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:12:36,264 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:12:36,275 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:12:36,275 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:12:37,150 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:12:37,150 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:12:38,169 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:40,174 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:40,307 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:12:40,307 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:12:42,181 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:44,183 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:46,195 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:46,428 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:12:48,197 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:50,207 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:52,227 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:54,229 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:55,583 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:12:55,584 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:12:56,242 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:12:58,262 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:00,263 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:02,275 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:04,281 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:06,284 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:08,333 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:10,447 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:11,307 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:13:11,308 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:13:12,462 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:14,476 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:16,509 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:17,830 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:13:18,518 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:20,520 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:22,522 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:24,525 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:26,543 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:26,652 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:13:26,652 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:13:28,551 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:30,566 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:32,560 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:34,592 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:36,594 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:38,613 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:40,620 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:41,924 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:13:41,924 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:13:42,626 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:44,635 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:46,642 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:48,646 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:49,326 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:13:50,653 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:52,662 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:54,663 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:56,665 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:13:57,195 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:13:57,195 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:13:58,674 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:00,692 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:02,725 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:04,735 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:06,737 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:08,743 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:10,754 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:12,473 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:14:12,473 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:14:20,600 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:14:21,710 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:14:21,715 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:14:21,716 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:14:21,716 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:14:21,717 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:14:21,717 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:14:21,717 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:14:21,718 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:14:21,718 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:14:21,840 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:14:21,841 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:14:22,841 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:14:24,848 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:26,931 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:27,734 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:14:27,734 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:14:28,968 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:31,020 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:33,034 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:35,072 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:37,071 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:39,076 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:41,109 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:43,015 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:14:43,015 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:14:43,126 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:45,129 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:47,143 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:49,146 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:51,160 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:51,925 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:14:53,166 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:55,195 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:57,205 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:14:58,300 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:14:58,300 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:14:59,234 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:00,300 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:02,301 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:04,313 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:06,315 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:08,362 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:10,369 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:12,410 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:13,632 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:15:13,632 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:15:14,414 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:16,415 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:18,423 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:20,429 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:22,434 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:23,449 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:15:24,458 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:26,468 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:28,470 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:28,962 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:15:28,962 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:15:30,481 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:32,500 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:34,504 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:36,507 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:38,509 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:40,514 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:42,515 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:44,276 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:15:44,276 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:15:44,546 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:46,554 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:48,598 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:50,593 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:52,596 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:54,613 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:54,691 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:15:56,625 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:58,627 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:15:59,549 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:15:59,550 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:16:10,306 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:16:10,315 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:16:10,317 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:16:10,317 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:16:10,318 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:16:10,320 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:16:10,320 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:16:10,326 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:16:10,327 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:16:10,662 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\model-best.h5
+2022-03-27 15:16:10,662 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:16:12,667 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:14,675 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:14,821 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:16:14,821 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:16:16,676 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:18,678 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:20,680 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:22,685 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:24,687 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:26,120 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:16:26,699 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:28,707 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:30,103 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:16:30,103 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:16:30,730 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:32,746 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:34,747 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:36,751 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:38,753 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:40,754 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:42,758 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:44,761 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:45,376 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:16:45,377 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:16:46,767 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:48,774 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:50,781 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:52,787 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:54,790 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:56,794 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:16:57,358 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:16:58,796 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:00,647 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:17:00,647 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:17:00,803 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:02,816 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:04,823 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:06,830 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:08,844 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:10,848 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:12,850 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:14,852 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:15,926 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:17:15,926 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:17:16,854 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:18,862 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:20,865 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:22,867 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:24,893 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:26,906 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:28,798 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:17:28,914 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:30,916 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:31,350 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:17:31,350 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:17:32,918 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:34,935 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:36,942 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:38,947 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:40,956 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:46,633 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:17:46,633 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:17:50,332 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:17:50,332 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 15:17:50,332 DEBUG   SenderThread:35784 [sender.py:send():235] send: history
+2022-03-27 15:17:50,333 DEBUG   SenderThread:35784 [sender.py:send():235] send: summary
+2022-03-27 15:17:50,333 INFO    SenderThread:35784 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 15:17:51,028 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\wandb-summary.json
+2022-03-27 15:17:51,029 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:53,028 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:55,034 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:57,054 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:17:59,052 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:00,147 DEBUG   SenderThread:35784 [sender.py:send():235] send: stats
+2022-03-27 15:18:01,056 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:01,905 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:18:01,906 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:18:03,063 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:05,064 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:07,080 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:09,098 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:11,101 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:13,107 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:15,120 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:17,126 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:17,184 DEBUG   HandlerThread:35784 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 15:18:17,186 DEBUG   SenderThread:35784 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 15:18:19,143 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:21,159 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:23,161 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:25,165 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:27,169 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log
+2022-03-27 15:18:29,172 INFO    Thread-11 :35784 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_150425-3emr4mbv\files\output.log

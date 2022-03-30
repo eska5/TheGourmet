@@ -1,0 +1,79 @@
+Num GPUs Available:  0
+-- Training set --
+Number of pictures: 2855
+Number of different labels: 36
+Labels: ['spinach' 'potato' 'jalepeno' 'kiwi' 'cauliflower' 'pear' 'pineapple'
+ 'eggplant' 'pomegranate' 'grapes' 'mango' 'apple' 'corn' 'bell pepper'
+ 'carrot' 'turnip' 'cabbage' 'cucumber' 'beetroot' 'raddish' 'capsicum'
+ 'paprika' 'lettuce' 'tomato' 'sweetpotato' 'soy beans' 'sweetcorn' 'peas'
+ 'watermelon' 'garlic' 'banana' 'orange' 'lemon' 'chilli pepper' 'onion'
+ 'ginger']
+Found 2855 validated image filenames belonging to 36 classes.
+Found 340 validated image filenames belonging to 36 classes.
+Found 340 validated image filenames belonging to 36 classes.
+Epoch 1/15
+WARNING:tensorflow:`input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+90/90 [==============================] - 98s 1s/step - loss: 2.0974 - accuracy: 0.4855 - val_loss: 0.6573 - val_accuracy: 0.8353 - _timestamp: 1648382593.0000 - _runtime: 102.0000
+Epoch 2/15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

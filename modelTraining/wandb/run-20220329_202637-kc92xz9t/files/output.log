@@ -1,0 +1,117 @@
+Num GPUs Available:  0
+-- Training set --
+Number of pictures: 70700
+Number of different labels: 101
+-- Test set --
+Number of pictures: 20200
+Number of different labels: 101
+-- Validation set --
+Number of pictures: 10100
+Number of different labels: 101
+Labels: ['onion_rings' 'gnocchi' 'paella' 'takoyaki' 'chicken_curry' 'waffles'
+ 'baklava' 'greek_salad' 'fish_and_chips' 'hamburger' 'huevos_rancheros'
+ 'fried_calamari' 'eggs_benedict' 'beef_carpaccio' 'ramen' 'miso_soup'
+ 'hummus' 'pad_thai' 'pulled_pork_sandwich' 'caesar_salad' 'guacamole'
+ 'escargots' 'churros' 'french_fries' 'donuts' 'pork_chop' 'apple_pie'
+ 'lobster_bisque' 'poutine' 'grilled_cheese_sandwich' 'ravioli' 'gyoza'
+ 'garlic_bread' 'samosa' 'peking_duck' 'macaroni_and_cheese' 'hot_dog'
+ 'chocolate_mousse' 'crab_cakes' 'baby_back_ribs' 'frozen_yogurt'
+ 'foie_gras' 'fried_rice' 'carrot_cake' 'shrimp_and_grits' 'ceviche'
+ 'club_sandwich' 'cheesecake' 'deviled_eggs' 'spring_rolls' 'sushi' 'pho'
+ 'beignets' 'bibimbap' 'tuna_tartare' 'nachos' 'spaghetti_carbonara'
+ 'creme_brulee' 'tacos' 'hot_and_sour_soup' 'steak' 'strawberry_shortcake'
+ 'dumplings' 'panna_cotta' 'pizza' 'macarons' 'scallops'
+ 'chicken_quesadilla' 'falafel' 'oysters' 'sashimi' 'seaweed_salad'
+ 'mussels' 'pancakes' 'cheese_plate' 'risotto' 'edamame' 'filet_mignon'
+ 'tiramisu' 'caprese_salad' 'clam_chowder' 'lasagna' 'beef_tartare'
+ 'french_toast' 'chocolate_cake' 'beet_salad' 'chicken_wings' 'prime_rib'
+ 'omelette' 'bruschetta' 'cannoli' 'breakfast_burrito' 'red_velvet_cake'
+ 'cup_cakes' 'grilled_salmon' 'bread_pudding' 'lobster_roll_sandwich'
+ 'croque_madame' 'ice_cream' 'french_onion_soup' 'spaghetti_bolognese']
+Found 70700 validated image filenames belonging to 101 classes.
+Found 10100 validated image filenames belonging to 101 classes.
+Found 20200 validated image filenames belonging to 101 classes.
+WARNING:tensorflow:`input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+Epoch 1/10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

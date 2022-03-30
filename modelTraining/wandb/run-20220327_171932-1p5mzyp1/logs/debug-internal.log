@@ -1,0 +1,148 @@
+2022-03-27 17:19:33,694 INFO    MainThread:34624 [internal.py:wandb_internal():92] W&B internal server running at pid: 34624, started at: 2022-03-27 17:19:33.694057
+2022-03-27 17:19:33,696 INFO    WriterThread:34624 [datastore.py:open_for_write():77] open: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\run-1p5mzyp1.wandb
+2022-03-27 17:19:33,698 DEBUG   SenderThread:34624 [sender.py:send():235] send: header
+2022-03-27 17:19:33,698 DEBUG   SenderThread:34624 [sender.py:send():235] send: run
+2022-03-27 17:19:33,974 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: check_version
+2022-03-27 17:19:33,975 INFO    SenderThread:34624 [dir_watcher.py:__init__():169] watching files in: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files
+2022-03-27 17:19:33,975 INFO    SenderThread:34624 [sender.py:_start_run_threads():812] run started: 1p5mzyp1 with start time 1648394373
+2022-03-27 17:19:33,975 DEBUG   SenderThread:34624 [sender.py:send():235] send: summary
+2022-03-27 17:19:33,975 INFO    SenderThread:34624 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 17:19:33,976 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: check_version
+2022-03-27 17:19:34,192 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: run_start
+2022-03-27 17:19:34,976 INFO    Thread-11 :34624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-summary.json
+2022-03-27 17:19:36,221 DEBUG   HandlerThread:34624 [meta.py:__init__():37] meta init
+2022-03-27 17:19:36,236 DEBUG   HandlerThread:34624 [meta.py:__init__():51] meta init done
+2022-03-27 17:19:36,237 DEBUG   HandlerThread:34624 [meta.py:probe():211] probe
+2022-03-27 17:19:36,250 DEBUG   HandlerThread:34624 [meta.py:_setup_git():201] setup git
+2022-03-27 17:19:36,309 DEBUG   HandlerThread:34624 [meta.py:_setup_git():208] setup git done
+2022-03-27 17:19:36,309 DEBUG   HandlerThread:34624 [meta.py:_save_pip():55] save pip
+2022-03-27 17:19:36,310 DEBUG   HandlerThread:34624 [meta.py:_save_pip():69] save pip done
+2022-03-27 17:19:36,310 DEBUG   HandlerThread:34624 [meta.py:probe():249] probe done
+2022-03-27 17:19:36,313 DEBUG   SenderThread:34624 [sender.py:send():235] send: files
+2022-03-27 17:19:36,313 INFO    SenderThread:34624 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-27 17:19:36,320 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-27 17:19:36,320 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: stop_status
+2022-03-27 17:19:36,338 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-27 17:19:36,549 DEBUG   SenderThread:34624 [sender.py:send():235] send: telemetry
+2022-03-27 17:19:36,549 DEBUG   SenderThread:34624 [sender.py:send():235] send: telemetry
+2022-03-27 17:19:36,977 INFO    Thread-11 :34624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\requirements.txt
+2022-03-27 17:19:36,977 INFO    Thread-11 :34624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-metadata.json
+2022-03-27 17:19:36,978 INFO    Thread-11 :34624 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\output.log
+2022-03-27 17:19:36,991 INFO    Thread-17 :34624 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmp2qk8q47twandb\2r2hcs65-wandb-metadata.json
+2022-03-27 17:19:37,326 DEBUG   SenderThread:34624 [sender.py:send():235] send: exit
+2022-03-27 17:19:37,326 INFO    SenderThread:34624 [sender.py:send_exit():371] handling exit code: 1
+2022-03-27 17:19:37,326 INFO    SenderThread:34624 [sender.py:send_exit():373] handling runtime: 3
+2022-03-27 17:19:37,327 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:37,327 INFO    SenderThread:34624 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 17:19:37,327 INFO    SenderThread:34624 [sender.py:send_exit():379] send defer
+2022-03-27 17:19:37,327 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:37,327 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,327 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 0
+2022-03-27 17:19:37,328 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,328 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 0
+2022-03-27 17:19:37,328 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 1
+2022-03-27 17:19:37,328 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,328 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 1
+2022-03-27 17:19:37,357 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,357 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 1
+2022-03-27 17:19:37,357 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 2
+2022-03-27 17:19:37,357 DEBUG   SenderThread:34624 [sender.py:send():235] send: stats
+2022-03-27 17:19:37,357 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,357 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 2
+2022-03-27 17:19:37,357 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,357 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 2
+2022-03-27 17:19:37,358 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 3
+2022-03-27 17:19:37,358 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,358 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 3
+2022-03-27 17:19:37,358 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,358 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 3
+2022-03-27 17:19:37,358 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 4
+2022-03-27 17:19:37,358 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,358 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 4
+2022-03-27 17:19:37,358 DEBUG   SenderThread:34624 [sender.py:send():235] send: summary
+2022-03-27 17:19:37,359 INFO    SenderThread:34624 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-27 17:19:37,359 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,359 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 4
+2022-03-27 17:19:37,359 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 5
+2022-03-27 17:19:37,359 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,359 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 5
+2022-03-27 17:19:37,359 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,359 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 5
+2022-03-27 17:19:37,429 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:37,642 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 6
+2022-03-27 17:19:37,642 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:37,642 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,642 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 6
+2022-03-27 17:19:37,643 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,643 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 6
+2022-03-27 17:19:37,643 INFO    SenderThread:34624 [dir_watcher.py:finish():283] shutting down directory watcher
+2022-03-27 17:19:37,743 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:37,978 INFO    SenderThread:34624 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\config.yaml
+2022-03-27 17:19:37,979 INFO    SenderThread:34624 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\output.log
+2022-03-27 17:19:37,979 INFO    SenderThread:34624 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-summary.json
+2022-03-27 17:19:37,979 INFO    SenderThread:34624 [dir_watcher.py:finish():313] scan: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files
+2022-03-27 17:19:37,979 INFO    SenderThread:34624 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\config.yaml config.yaml
+2022-03-27 17:19:37,979 INFO    SenderThread:34624 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\output.log output.log
+2022-03-27 17:19:37,980 INFO    SenderThread:34624 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\requirements.txt requirements.txt
+2022-03-27 17:19:37,982 INFO    SenderThread:34624 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-metadata.json wandb-metadata.json
+2022-03-27 17:19:37,982 INFO    SenderThread:34624 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-summary.json wandb-summary.json
+2022-03-27 17:19:37,985 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 7
+2022-03-27 17:19:37,986 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:37,986 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:37,986 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 7
+2022-03-27 17:19:37,986 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:37,986 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 7
+2022-03-27 17:19:37,986 INFO    SenderThread:34624 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-27 17:19:38,087 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,087 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,188 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,188 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,289 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,289 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,390 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,390 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,491 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,491 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,592 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,592 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,654 INFO    Thread-19 :34624 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\output.log
+2022-03-27 17:19:38,664 INFO    Thread-21 :34624 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\wandb-summary.json
+2022-03-27 17:19:38,693 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,693 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,726 INFO    Thread-18 :34624 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\config.yaml
+2022-03-27 17:19:38,738 INFO    Thread-20 :34624 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\files\requirements.txt
+2022-03-27 17:19:38,794 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,794 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,895 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:38,895 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:38,939 INFO    Thread-10 :34624 [sender.py:transition_state():392] send defer: 8
+2022-03-27 17:19:38,939 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:38,939 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 8
+2022-03-27 17:19:38,939 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:38,940 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 8
+2022-03-27 17:19:38,996 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:39,246 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 9
+2022-03-27 17:19:39,246 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:39,247 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:39,247 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 9
+2022-03-27 17:19:39,247 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:39,247 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 9
+2022-03-27 17:19:39,247 INFO    SenderThread:34624 [sender.py:transition_state():392] send defer: 10
+2022-03-27 17:19:39,247 DEBUG   SenderThread:34624 [sender.py:send():235] send: final
+2022-03-27 17:19:39,248 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: defer
+2022-03-27 17:19:39,248 INFO    HandlerThread:34624 [handler.py:handle_request_defer():164] handle defer: 10
+2022-03-27 17:19:39,248 DEBUG   SenderThread:34624 [sender.py:send():235] send: footer
+2022-03-27 17:19:39,248 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: defer
+2022-03-27 17:19:39,248 INFO    SenderThread:34624 [sender.py:send_request_defer():388] handle sender defer: 10
+2022-03-27 17:19:39,347 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-27 17:19:39,347 DEBUG   SenderThread:34624 [sender.py:send_request():249] send_request: poll_exit
+2022-03-27 17:19:39,347 INFO    SenderThread:34624 [file_pusher.py:join():150] waiting for file pusher
+2022-03-27 17:19:39,930 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: sampled_history
+2022-03-27 17:19:39,930 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: get_summary
+2022-03-27 17:19:39,931 DEBUG   HandlerThread:34624 [handler.py:handle_request():141] handle_request: shutdown
+2022-03-27 17:19:39,931 INFO    HandlerThread:34624 [handler.py:finish():778] shutting down handler
+2022-03-27 17:19:40,249 INFO    WriterThread:34624 [datastore.py:close():281] close: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220327_171932-1p5mzyp1\run-1p5mzyp1.wandb
+2022-03-27 17:19:40,829 INFO    SenderThread:34624 [sender.py:finish():1078] shutting down sender
+2022-03-27 17:19:40,829 INFO    SenderThread:34624 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-27 17:19:40,829 INFO    SenderThread:34624 [file_pusher.py:join():150] waiting for file pusher
+2022-03-27 17:19:40,830 INFO    MainThread:34624 [internal.py:handle_exit():82] Internal process exited
