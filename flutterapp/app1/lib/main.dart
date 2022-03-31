@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  
   static const String _title = 'Flutter Code Sample';
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: _title,
       home: MyStatelessWidget(),
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
     );
   }
 }
@@ -100,11 +105,31 @@ class UploadRoute extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pop(context);
+            //Navigator.pop(context);
+            _getFromGallery();
           },
-          child: const Text('Go back!'),
+          child: const Text('Wybierz zdjęcie z galerii'),
         ),
       ),
+    //   : Container( //TO DO
+    //           child: Image.file(
+    //             imageFile,
+    //             fit: BoxFit.cover,
+    //           ),
+    //         )));
+    // );
+  }
+
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
     );
+    // if (pickedFile != null) { // TO DO
+    //   setState(() {
+    //     imageFile = File(pickedFile.path);
+    //   });
+    // }
   }
 }
