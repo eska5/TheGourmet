@@ -2,29 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:ui';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-bool smallSreen()
-    {
-      var pixelRatio = window.devicePixelRatio;
-      //Size in physical pixels
-      var physicalScreenSize = window.physicalSize;
-      var physicalWidth = physicalScreenSize.width;
-      var physicalHeight = physicalScreenSize.height;
+bool smallSreen() {
+  var pixelRatio = window.devicePixelRatio;
+  //Size in physical pixels
+  var physicalScreenSize = window.physicalSize;
+  var physicalWidth = physicalScreenSize.width;
+  var physicalHeight = physicalScreenSize.height;
 
-      //Size in logical pixels
-      var logicalScreenSize = window.physicalSize / pixelRatio;
-      var logicalWidth = logicalScreenSize.width;
-      var logicalHeight = logicalScreenSize.height;
+  //Size in logical pixels
+  var logicalScreenSize = window.physicalSize / pixelRatio;
+  var logicalWidth = logicalScreenSize.width;
+  var logicalHeight = logicalScreenSize.height;
 
-      if (physicalWidth < 720){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
+  if (logicalWidth < 390) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
   static const String _title = 'Flutter Code Sample';
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return MaterialApp(
       title: _title,
       theme: ThemeData(
@@ -109,60 +113,58 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: smallSreen() ? BottomNavigationBar(
-        backgroundColor: Colors.indigo,
-        items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-          backgroundColor: Colors.indigo,
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.calculate_rounded),
-          label: 'Rozpoznaj potrawę',
-          backgroundColor: Colors.indigo,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add_photo_alternate_rounded),
-          label: 'Dodaj potrawę',
-          backgroundColor: Colors.indigo,
-        )
-        ],
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.indigo[50],
-        onTap: _onItemTapped,
-      ) 
-      :
-      BottomNavigationBar(
-        backgroundColor: Colors.indigo,
-        items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-          backgroundColor: Colors.indigo,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.calculate_rounded),
-          label: 'Rozpoznaj potrawę',
-          backgroundColor: Colors.indigo,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add_photo_alternate_rounded),
-          label: 'Dodaj potrawę',
-          backgroundColor: Colors.indigo,
-        )
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.indigo[50],
-        onTap: _onItemTapped,
-      )
-    );
+        bottomNavigationBar: smallSreen()
+            ? BottomNavigationBar(
+                backgroundColor: Colors.indigo,
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                    backgroundColor: Colors.indigo,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calculate_rounded),
+                    label: 'Rozpoznaj potrawę',
+                    backgroundColor: Colors.indigo,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.add_photo_alternate_rounded),
+                    label: 'Dodaj potrawę',
+                    backgroundColor: Colors.indigo,
+                  )
+                ],
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                currentIndex: _selectedIndex,
+                selectedItemColor: Colors.indigo[50],
+                onTap: _onItemTapped,
+              )
+            : BottomNavigationBar(
+                backgroundColor: Colors.indigo,
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                    backgroundColor: Colors.indigo,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calculate_rounded),
+                    label: 'Rozpoznaj potrawę',
+                    backgroundColor: Colors.indigo,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.add_photo_alternate_rounded),
+                    label: 'Dodaj potrawę',
+                    backgroundColor: Colors.indigo,
+                  )
+                ],
+                currentIndex: _selectedIndex,
+                selectedItemColor: Colors.indigo[50],
+                onTap: _onItemTapped,
+              ));
   }
 }
