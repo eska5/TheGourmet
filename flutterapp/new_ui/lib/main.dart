@@ -45,7 +45,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
-    const Classify(),
+    ClassifyImage(),
     AddImage(),
   ];
 
