@@ -4,6 +4,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'dart:ui';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:new_ui/components/button.dart';
+import 'package:new_ui/functions/func.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -18,7 +19,7 @@ class Home extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 30,
+            height: smallSreen() ? 5 : 30,
           ),
           Text('Gourmet',
               style: GoogleFonts.caveat(

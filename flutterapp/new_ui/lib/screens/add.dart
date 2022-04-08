@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/suggestions.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:new_ui/functions/func.dart';
 
 class AddImage extends StatefulWidget {
   AddImage({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class _AddImageState extends State<AddImage> {
       child: Column(
         children: [
           SizedBox(
-            height: 80,
+            height: smallSreen() ? 35 : 80,
           ),
           image != null
               ? ClipRRect(
