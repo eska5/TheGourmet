@@ -6,8 +6,8 @@ Widget UploadImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 225, // <-- Your width
-      height: 55, // <-- Your height
+      width: 235, // <-- Your width
+      height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.indigo,
@@ -36,8 +36,8 @@ Widget TakeImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 225, // <-- Your width
-      height: 55, // <-- Your height
+      width: 235, // <-- Your width
+      height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.indigo,
@@ -66,8 +66,8 @@ Widget ClassifyImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 225, // <-- Your width
-      height: 55, // <-- Your height
+      width: 235, // <-- Your width
+      height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.indigo,
@@ -96,8 +96,8 @@ Widget SubmitImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 225, // <-- Your width
-      height: 55, // <-- Your height
+      width: 235, // <-- Your width
+      height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.indigo,

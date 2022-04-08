@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 9,
+            height: 30,
           ),
           Text('Gourmet',
               style: GoogleFonts.caveat(

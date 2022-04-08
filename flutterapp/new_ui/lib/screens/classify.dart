@@ -76,7 +76,7 @@ class _AddImageState extends State<ClassifyImage> {
       child: Column(
         children: [
           SizedBox(
-            height: 45,
+            height: 80,
           ),
           image != null
               ? ClipRRect(
@@ -90,7 +90,7 @@ class _AddImageState extends State<ClassifyImage> {
                 )
               : Image.asset('assets/diet.png', width: 200, height: 200),
           SizedBox(
-            height: 40,
+            height: 55,
           ),
           Text(modelOutput,
               style: GoogleFonts.comfortaa(

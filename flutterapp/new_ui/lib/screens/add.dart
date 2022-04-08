@@ -72,7 +72,7 @@ class _AddImageState extends State<AddImage> {
       child: Column(
         children: [
           SizedBox(
-            height: 45,
+            height: 80,
           ),
           image != null
               ? ClipRRect(
@@ -86,7 +86,7 @@ class _AddImageState extends State<AddImage> {
                 )
               : Image.asset('assets/dish.png', width: 200, height: 200),
           SizedBox(
-            height: 12,
+            height: 10,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
