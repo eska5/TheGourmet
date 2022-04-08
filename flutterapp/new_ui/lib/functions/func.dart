@@ -5,7 +5,7 @@ bool smallSreen() {
   var logicalScreenSize = window.physicalSize / pixelRatio;
   var logicalWidth = logicalScreenSize.width;
 
-  if (logicalWidth < 380) {
+  if (logicalWidth < 370) {
     return true;
   } else {
     return false;
