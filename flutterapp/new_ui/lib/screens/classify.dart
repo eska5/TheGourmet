@@ -19,7 +19,7 @@ class ClassifyImage extends StatefulWidget {
 class _AddImageState extends State<ClassifyImage> {
   File? image;
   TextEditingController inputText = new TextEditingController();
-  TextEditingController recognizedMeal = new TextEditingController();
+  TextEditingController recognizedMeal = new TextEditingController(text :"Tutaj pojawi się wynik");
   String modelOutput = 'Tutaj pojawi się wynik';
 
   Future pickImage(ImageSource source) async {
@@ -57,7 +57,10 @@ class _AddImageState extends State<ClassifyImage> {
 
       print(responseBody);
       //recognizedMeal.text = json.decode(response.body);
-      modelOutput = json.decode(response.body);
+      //modelOutput = json.decode(response.body);
+      setState(() {
+        modelOutput = json.decode(response.body);
+      });
       print(statusCode);
       print("OK");
     } on PlatformException catch (e) {
