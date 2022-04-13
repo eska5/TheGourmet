@@ -10,7 +10,7 @@ import 'package:new_ui/components/suggestions.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:new_ui/functions/func.dart';
 
-String domain = "http://10.0.2.2:5000"; //REMEMBER TO CHANGE ME!
+String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class ClassifyImage extends StatefulWidget {
   ClassifyImage({Key? key}) : super(key: key);
