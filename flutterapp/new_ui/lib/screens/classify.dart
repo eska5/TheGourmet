@@ -10,6 +10,8 @@ import 'package:new_ui/components/suggestions.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:new_ui/functions/func.dart';
 
+String domain = "http://10.0.2.2:5000"; //REMEMBER TO CHANGE ME!
+
 class ClassifyImage extends StatefulWidget {
   ClassifyImage({Key? key}) : super(key: key);
 
@@ -39,7 +41,7 @@ class _AddImageState extends State<ClassifyImage> {
 
   Future categorizeThePhoto() async {
     try {
-      final uri = Uri.parse("https://gourmet.hopto.org:5000/classify");
+      final uri = Uri.parse(domain + "/classify");
       final headers = {'Content-Type': 'application/json'};
       final bytes = File(image!.path).readAsBytesSync();
       String base64Image = base64Encode(bytes);
