@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,37 +12,36 @@ import 'package:new_ui/functions/func.dart';
 String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class LoaderDialog {
-
-  static Future<void> showLoadingDialog(BuildContext context, GlobalKey key) async {
+  static Future<void> showLoadingDialog(
+      BuildContext context, GlobalKey key) async {
     var wid = MediaQuery.of(context).size.width / 2;
     return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 10 , right: 10),
-            child: Dialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Dialog(
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(70))
-              ),
+                  borderRadius: BorderRadius.all(Radius.circular(70))),
               key: key,
               backgroundColor: Colors.indigo[50],
               child: Container(
                 width: 150.0,
                 height: 250.0,
-                child:  Image.asset(
+                child: Image.asset(
                   'assets/plate.gif',
                   fit: BoxFit.cover,
                   width: 250,
                   height: 250,
                 ),
-              )
-            ),
-          );
-        },
+              )),
+        );
+      },
     );
   }
 }
+
 class ClassifyImage extends StatefulWidget {
   ClassifyImage({Key? key}) : super(key: key);
 
@@ -53,15 +53,15 @@ class _AddImageState extends State<ClassifyImage> {
   File? image;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
-  new TextEditingController(text: "Tutaj pojawi się wynik");
+      new TextEditingController(text: "Tutaj pojawi się wynik");
   String modelOutput = 'Tutaj pojawi się wynik';
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
   Future pickImage(ImageSource source) async {
     try {
-      final image =
-          await ImagePicker().pickImage(source: source, imageQuality: 10);
+      final image = await ImagePicker()
+          .pickImage(source: source, maxWidth: 400, maxHeight: 400);
       if (image == null) return;
 
       final imageTemporary = File(image.path);
@@ -99,10 +99,14 @@ class _AddImageState extends State<ClassifyImage> {
         Navigator.pop(context, _LoaderDialog.currentContext);
         modelOutput = json.decode(response.body);
       });
-      print(statusCode);
-      print("OK");
+      if (kDebugMode) {
+        print(statusCode);
+        print("OK");
+      }
     } on PlatformException catch (e) {
-      print('Failed to send to server: $e');
+      if (kDebugMode) {
+        print('Failed to send to server: $e');
+      }
     }
   }
 

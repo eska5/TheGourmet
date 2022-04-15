@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:new_ui/components/button.dart';
 
+import '../functions/func.dart';
+
+String domain = getDomain(0);
+
 class Suggestions {
   String suggest = "";
 
@@ -22,7 +26,7 @@ class Suggestions {
 class SuggestionsApi {
   static Future<List<Suggestions>> getSuggestionsSuggestions(
       String query) async {
-    final url = Uri.parse('https://gourmet.hopto.org:5000/suggestions');
+    final url = Uri.parse(domain + '/suggestions');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

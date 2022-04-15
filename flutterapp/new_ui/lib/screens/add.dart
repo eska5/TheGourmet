@@ -10,6 +10,8 @@ import 'package:new_ui/components/suggestions.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:new_ui/functions/func.dart';
 
+String domain = getDomain(0);
+
 class AddImage extends StatefulWidget {
   AddImage({Key? key}) : super(key: key);
 
@@ -24,8 +26,8 @@ class _AddImageState extends State<AddImage> {
 
   Future pickImage(ImageSource source) async {
     try {
-      final image =
-          await ImagePicker().pickImage(source: source, imageQuality: 10);
+      final image = await ImagePicker()
+          .pickImage(source: source, maxWidth: 400, maxHeight: 400);
       if (image == null) return;
 
       final imageTemporary = File(image.path);
@@ -37,7 +39,7 @@ class _AddImageState extends State<AddImage> {
 
   Future sendToServer() async {
     try {
-      final uri = Uri.parse("https://gourmet.hopto.org:5000/meals");
+      final uri = Uri.parse(domain + "/meals");
       final headers = {'Content-Type': 'application/json'};
       final bytes = File(image!.path).readAsBytesSync();
       String base64Image = base64Encode(bytes);
@@ -156,8 +158,8 @@ class _AddImageState extends State<AddImage> {
           SubmitImageButton(
               title: "Wyślij potrawę",
               icon: Icons.send_rounded,
-              onClicked: () => pickImage(ImageSource.camera)),
-          SizedBox(
+              onClicked: () => sendToServer()),
+          const SizedBox(
             height: 25,
           ),
         ],
