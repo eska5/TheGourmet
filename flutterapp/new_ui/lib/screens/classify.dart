@@ -6,12 +6,38 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:new_ui/components/button.dart';
-import 'package:new_ui/components/suggestions.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:new_ui/functions/func.dart';
 
 String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
+class LoaderDialog {
+
+  static Future<void> showLoadingDialog(BuildContext context, GlobalKey key) async {
+    var wid = MediaQuery.of(context).size.width / 2;
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 40 , right: 40),
+            child: Dialog(
+              key: key,
+              backgroundColor: Colors.white,
+              child: Container(
+                width: 300.0,
+                height: 300.0,
+                child:  Image.asset(
+                  'assets/diet.png',
+                  height: 300,
+                  width: 300,
+                ),
+              )
+            ),
+          );
+        },
+    );
+  }
+}
 class ClassifyImage extends StatefulWidget {
   ClassifyImage({Key? key}) : super(key: key);
 
@@ -23,8 +49,10 @@ class _AddImageState extends State<ClassifyImage> {
   File? image;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
-      new TextEditingController(text: "Tutaj pojawi się wynik");
+  new TextEditingController(text: "Tutaj pojawi się wynik");
   String modelOutput = 'Tutaj pojawi się wynik';
+  // ignore: non_constant_identifier_names
+  final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
   Future pickImage(ImageSource source) async {
     try {
@@ -48,6 +76,7 @@ class _AddImageState extends State<ClassifyImage> {
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
+      LoaderDialog.showLoadingDialog(context, _LoaderDialog);
 
       var response = await http.post(
         uri,
@@ -63,6 +92,7 @@ class _AddImageState extends State<ClassifyImage> {
       //recognizedMeal.text = json.decode(response.body);
       //modelOutput = json.decode(response.body);
       setState(() {
+        Navigator.pop(context, _LoaderDialog.currentContext);
         modelOutput = json.decode(response.body);
       });
       print(statusCode);
