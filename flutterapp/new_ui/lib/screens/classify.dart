@@ -19,17 +19,21 @@ class LoaderDialog {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Padding(
-            padding: const EdgeInsets.only(left: 40 , right: 40),
+            padding: const EdgeInsets.only(left: 10 , right: 10),
             child: Dialog(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(70))
+              ),
               key: key,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.indigo[50],
               child: Container(
-                width: 300.0,
-                height: 300.0,
+                width: 150.0,
+                height: 250.0,
                 child:  Image.asset(
-                  'assets/diet.png',
-                  height: 300,
-                  width: 300,
+                  'assets/plate.gif',
+                  fit: BoxFit.cover,
+                  width: 250,
+                  height: 250,
                 ),
               )
             ),
