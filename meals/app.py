@@ -1,5 +1,6 @@
-from flask import Flask, redirect, url_for, request
-from flask_cors import CORS, cross_origin
+from flask import Flask, request
+from flask_cors import CORS
+
 import directoryHandler as dirHandler
 
 domain = "https://gourmet.hopto.org"

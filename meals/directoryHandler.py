@@ -1,11 +1,12 @@
-import os
 import base64
 import json
-from PIL import Image
+import os
 from io import BytesIO
-import tensorflow
+
 import cv2
 import numpy as np
+import tensorflow
+from PIL import Image
 
 
 def SaveAndDecodeMessage(title: str, codedPhoto: str):
@@ -31,15 +32,6 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert('RGB')
     imageRgb.save("data/" + title + "/" + numberOfPhotos + ".jpg")
-    # img = Image.open("data/"+ title +"/"+numberOfPhotos+".jpg")
-    # width,height = img.size
-    # if width>1000:
-    #    if height>1000:
-    #        img = img.resize((int(width/2),int(height/2)),Image.ANTIALIAS)
-    #        width,height = img.size
-    #        img.save("data/"+ title +"/"+numberOfPhotos+".jpg")
-    # img.close()
-
     numberOfPhotos = int(numberOfPhotos) + 1
     # change the number of files in number.txt
     with open("data/" + title + "/number.txt", "w") as file:
