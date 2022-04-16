@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  web:
+    image: nginx:latest
+    container_name: gourmet-react
+    volumes:
+    - ./build:/usr/share/nginx/html
+    - ./conf.d:/etc/nginx/conf.d/
+    ports:
+    - "80:80"
+    depends_on:
+      - flask
+  flask:
+    container_name: gourmet-meals
+    build: ./api
+    restart: on-failure
+    volumes:
+    - ./data:/code/data
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+
+

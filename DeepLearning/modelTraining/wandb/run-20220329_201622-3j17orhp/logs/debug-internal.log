@@ -1,0 +1,156 @@
+2022-03-29 20:16:23,166 INFO    MainThread:18548 [internal.py:wandb_internal():92] W&B internal server running at pid: 18548, started at: 2022-03-29 20:16:23.165719
+2022-03-29 20:16:23,167 INFO    WriterThread:18548 [datastore.py:open_for_write():77] open: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\run-3j17orhp.wandb
+2022-03-29 20:16:23,169 DEBUG   SenderThread:18548 [sender.py:send():235] send: header
+2022-03-29 20:16:23,169 DEBUG   SenderThread:18548 [sender.py:send():235] send: run
+2022-03-29 20:16:23,474 INFO    SenderThread:18548 [dir_watcher.py:__init__():169] watching files in: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files
+2022-03-29 20:16:23,474 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: check_version
+2022-03-29 20:16:23,475 INFO    SenderThread:18548 [sender.py:_start_run_threads():812] run started: 3j17orhp with start time 1648577782
+2022-03-29 20:16:23,475 DEBUG   SenderThread:18548 [sender.py:send():235] send: summary
+2022-03-29 20:16:23,475 INFO    SenderThread:18548 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-29 20:16:23,475 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: check_version
+2022-03-29 20:16:23,758 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: run_start
+2022-03-29 20:16:24,476 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-summary.json
+2022-03-29 20:16:25,932 DEBUG   HandlerThread:18548 [meta.py:__init__():37] meta init
+2022-03-29 20:16:25,937 DEBUG   HandlerThread:18548 [meta.py:__init__():51] meta init done
+2022-03-29 20:16:25,937 DEBUG   HandlerThread:18548 [meta.py:probe():211] probe
+2022-03-29 20:16:25,947 DEBUG   HandlerThread:18548 [meta.py:_setup_git():201] setup git
+2022-03-29 20:16:26,002 DEBUG   HandlerThread:18548 [meta.py:_setup_git():208] setup git done
+2022-03-29 20:16:26,003 DEBUG   HandlerThread:18548 [meta.py:_save_pip():55] save pip
+2022-03-29 20:16:26,003 DEBUG   HandlerThread:18548 [meta.py:_save_pip():69] save pip done
+2022-03-29 20:16:26,003 DEBUG   HandlerThread:18548 [meta.py:probe():249] probe done
+2022-03-29 20:16:26,006 DEBUG   SenderThread:18548 [sender.py:send():235] send: files
+2022-03-29 20:16:26,006 INFO    SenderThread:18548 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-29 20:16:26,012 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-29 20:16:26,012 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: stop_status
+2022-03-29 20:16:26,281 DEBUG   SenderThread:18548 [sender.py:send():235] send: telemetry
+2022-03-29 20:16:26,508 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\requirements.txt
+2022-03-29 20:16:26,508 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log
+2022-03-29 20:16:26,508 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-metadata.json
+2022-03-29 20:16:27,523 INFO    Thread-17 :18548 [upload_job.py:push():137] Uploaded file C:\Users\LOCALA~1\AppData\Local\Temp\tmpa42xl9p8wandb\33162vyi-wandb-metadata.json
+2022-03-29 20:16:28,509 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log
+2022-03-29 20:16:29,995 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-29 20:16:29,995 DEBUG   SenderThread:18548 [sender.py:send():235] send: telemetry
+2022-03-29 20:16:30,511 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log
+2022-03-29 20:16:30,603 DEBUG   SenderThread:18548 [sender.py:send():235] send: exit
+2022-03-29 20:16:30,604 INFO    SenderThread:18548 [sender.py:send_exit():371] handling exit code: 1
+2022-03-29 20:16:30,604 INFO    SenderThread:18548 [sender.py:send_exit():373] handling runtime: 6
+2022-03-29 20:16:30,605 INFO    SenderThread:18548 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-29 20:16:30,605 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:30,605 INFO    SenderThread:18548 [sender.py:send_exit():379] send defer
+2022-03-29 20:16:30,605 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:30,605 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,606 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 0
+2022-03-29 20:16:30,606 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,606 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 0
+2022-03-29 20:16:30,606 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 1
+2022-03-29 20:16:30,606 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,606 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 1
+2022-03-29 20:16:30,711 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,711 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 1
+2022-03-29 20:16:30,711 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 2
+2022-03-29 20:16:30,712 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:30,712 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:30,712 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,712 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 2
+2022-03-29 20:16:30,712 DEBUG   SenderThread:18548 [sender.py:send():235] send: stats
+2022-03-29 20:16:30,713 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,713 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 2
+2022-03-29 20:16:30,713 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 3
+2022-03-29 20:16:30,713 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,713 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 3
+2022-03-29 20:16:30,713 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,713 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 3
+2022-03-29 20:16:30,713 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 4
+2022-03-29 20:16:30,713 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,713 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 4
+2022-03-29 20:16:30,714 DEBUG   SenderThread:18548 [sender.py:send():235] send: summary
+2022-03-29 20:16:30,714 INFO    SenderThread:18548 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-29 20:16:30,714 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,714 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 4
+2022-03-29 20:16:30,714 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 5
+2022-03-29 20:16:30,714 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:30,715 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 5
+2022-03-29 20:16:30,715 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:30,715 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 5
+2022-03-29 20:16:30,813 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,028 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 6
+2022-03-29 20:16:31,028 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:31,029 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:31,029 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 6
+2022-03-29 20:16:31,029 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:31,029 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 6
+2022-03-29 20:16:31,029 INFO    SenderThread:18548 [dir_watcher.py:finish():283] shutting down directory watcher
+2022-03-29 20:16:31,130 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,511 INFO    Thread-11 :18548 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log
+2022-03-29 20:16:31,512 INFO    SenderThread:18548 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-summary.json
+2022-03-29 20:16:31,512 INFO    SenderThread:18548 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\config.yaml
+2022-03-29 20:16:31,513 INFO    SenderThread:18548 [dir_watcher.py:finish():313] scan: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files
+2022-03-29 20:16:31,513 INFO    SenderThread:18548 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\config.yaml config.yaml
+2022-03-29 20:16:31,513 INFO    SenderThread:18548 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log output.log
+2022-03-29 20:16:31,513 INFO    SenderThread:18548 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\requirements.txt requirements.txt
+2022-03-29 20:16:31,515 INFO    SenderThread:18548 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-metadata.json wandb-metadata.json
+2022-03-29 20:16:31,515 INFO    SenderThread:18548 [dir_watcher.py:finish():327] scan save: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-summary.json wandb-summary.json
+2022-03-29 20:16:31,516 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 7
+2022-03-29 20:16:31,516 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:31,518 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:31,518 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 7
+2022-03-29 20:16:31,521 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:31,521 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 7
+2022-03-29 20:16:31,522 INFO    SenderThread:18548 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-29 20:16:31,617 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,617 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:31,719 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,719 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:31,821 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,821 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:31,922 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:31,922 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,024 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,024 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,126 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,126 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,228 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,228 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,329 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,329 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,359 INFO    Thread-21 :18548 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\wandb-summary.json
+2022-03-29 20:16:32,389 INFO    Thread-20 :18548 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\requirements.txt
+2022-03-29 20:16:32,391 INFO    Thread-19 :18548 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\output.log
+2022-03-29 20:16:32,430 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,430 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,447 INFO    Thread-18 :18548 [upload_job.py:push():137] Uploaded file D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\files\config.yaml
+2022-03-29 20:16:32,532 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,532 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,634 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,634 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:32,649 INFO    Thread-10 :18548 [sender.py:transition_state():392] send defer: 8
+2022-03-29 20:16:32,649 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:32,649 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 8
+2022-03-29 20:16:32,649 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:32,649 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 8
+2022-03-29 20:16:32,735 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:32,999 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 9
+2022-03-29 20:16:33,000 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:33,000 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:33,000 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 9
+2022-03-29 20:16:33,000 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:33,000 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 9
+2022-03-29 20:16:33,000 INFO    SenderThread:18548 [sender.py:transition_state():392] send defer: 10
+2022-03-29 20:16:33,001 DEBUG   SenderThread:18548 [sender.py:send():235] send: final
+2022-03-29 20:16:33,001 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: defer
+2022-03-29 20:16:33,001 DEBUG   SenderThread:18548 [sender.py:send():235] send: footer
+2022-03-29 20:16:33,001 INFO    HandlerThread:18548 [handler.py:handle_request_defer():164] handle defer: 10
+2022-03-29 20:16:33,001 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: defer
+2022-03-29 20:16:33,001 INFO    SenderThread:18548 [sender.py:send_request_defer():388] handle sender defer: 10
+2022-03-29 20:16:33,102 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-29 20:16:33,102 DEBUG   SenderThread:18548 [sender.py:send_request():249] send_request: poll_exit
+2022-03-29 20:16:33,102 INFO    SenderThread:18548 [file_pusher.py:join():150] waiting for file pusher
+2022-03-29 20:16:34,482 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: sampled_history
+2022-03-29 20:16:34,483 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: get_summary
+2022-03-29 20:16:34,483 DEBUG   HandlerThread:18548 [handler.py:handle_request():141] handle_request: shutdown
+2022-03-29 20:16:34,483 INFO    HandlerThread:18548 [handler.py:finish():778] shutting down handler
+2022-03-29 20:16:35,003 INFO    WriterThread:18548 [datastore.py:close():281] close: D:\Politechnika\The Gourmet\Development\modelTraining\wandb\run-20220329_201622-3j17orhp\run-3j17orhp.wandb
+2022-03-29 20:16:35,380 INFO    SenderThread:18548 [sender.py:finish():1078] shutting down sender
+2022-03-29 20:16:35,380 INFO    SenderThread:18548 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-29 20:16:35,380 INFO    SenderThread:18548 [file_pusher.py:join():150] waiting for file pusher
+2022-03-29 20:16:35,382 INFO    MainThread:18548 [internal.py:handle_exit():82] Internal process exited

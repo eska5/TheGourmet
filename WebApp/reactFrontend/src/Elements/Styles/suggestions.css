@@ -1,0 +1,61 @@
+:root {
+  --height: 100px;
+}
+.suggestion-list
+{
+    z-index: 4;
+    border-color: black;
+    width: 330px;
+    top:50px;
+    bottom: 0;
+    /* max-height: 280px; */
+    margin-top: 10px;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: var(--height);
+    overflow:hidden; 
+    overflow-y:auto;
+}
+
+.suggestion-item
+  {
+    background-color: white;
+    width: 320px;
+    height: 38px;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    text-decoration: none;
+    z-index: 99;
+  }
+  .suggestion-item:hover {
+    background-color: #01bf71;
+    color: #fff;
+    cursor: pointer;
+  }
+  .firstLetter{
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-decoration: none;
+    background-color: #fff;
+  }
+  .suggestion-item:hover .firstLetter{
+    background-color: #01bf71;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .suggestion-item {
+      height: 38px;
+      font-size: 1.3rem;
+    }
+    .firstLetter{
+      font-size: 1.3rem;
+    }
+  }

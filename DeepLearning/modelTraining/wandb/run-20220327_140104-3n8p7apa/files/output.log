@@ -1,0 +1,41 @@
+Num GPUs Available:  0
+-- Training set --
+Number of pictures: 2855
+Number of different labels: 36
+Labels: ['corn' 'garlic' 'pomegranate' 'tomato' 'beetroot' 'raddish'
+ 'chilli pepper' 'jalepeno' 'mango' 'watermelon' 'ginger' 'eggplant'
+ 'soy beans' 'sweetpotato' 'carrot' 'sweetcorn' 'orange' 'apple'
+ 'cucumber' 'cauliflower' 'banana' 'paprika' 'potato' 'grapes' 'spinach'
+ 'lettuce' 'peas' 'pear' 'capsicum' 'pineapple' 'cabbage' 'kiwi' 'lemon'
+ 'turnip' 'onion' 'bell pepper']
+Found 2855 validated image filenames belonging to 36 classes.
+Found 340 validated image filenames belonging to 36 classes.
+Found 340 validated image filenames belonging to 36 classes.
+Epoch 1/15
+WARNING:tensorflow:`input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+
+ 4/90 [>.............................] - ETA: 1:17 - loss: 3.5812 - accuracy: 0.0391
+Traceback (most recent call last):
+  File "d:\Politechnika\The Gourmet\Development\modelTraining\network.py", line 140, in <module>
+    history = model.fit(
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\integration\keras\keras.py", line 168, in new_v2
+    return old_v2(*args, **kwargs)
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\keras\utils\traceback_utils.py", line 64, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\keras\engine\training.py", line 1384, in fit
+    tmp_logs = self.train_function(iterator)
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\def_function.py", line 915, in __call__
+    result = self._call(*args, **kwds)
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\def_function.py", line 947, in _call
+    return self._stateless_fn(*args, **kwds)  # pylint: disable=not-callable
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\function.py", line 2956, in __call__
+    return graph_function._call_flat(
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\function.py", line 1853, in _call_flat
+    return self._build_call_outputs(self._inference_function.call(
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\function.py", line 499, in call
+    outputs = execute.execute(
+  File "C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\lib\site-packages\tensorflow\python\eager\execute.py", line 54, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+KeyboardInterrupt
