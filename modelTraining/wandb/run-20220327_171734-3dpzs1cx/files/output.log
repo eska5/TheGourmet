@@ -1,6 +1,0 @@
-
-Num GPUs Available:  0
-Traceback (most recent call last):
-  File "d:\Politechnika\The Gourmet\Development\modelTraining\network.py", line 15, in <module>
-    tf.config.threading.set_inter_op_parallelism_threads()
-TypeError: set_inter_op_parallelism_threads() missing 1 required positional argument: 'num_threads'
