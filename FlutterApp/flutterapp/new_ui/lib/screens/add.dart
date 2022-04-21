@@ -4,14 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 
-String domain = getDomain(0);
-//String domain = "192.168.1.54:5000";
+String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class AddImage extends StatefulWidget {
   AddImage({Key? key}) : super(key: key);
@@ -64,6 +63,10 @@ class _AddImageState extends State<AddImage> {
 
   Future sendToServer() async {
     try {
+      final ioc = HttpClient();
+      ioc.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      final http = IOClient(ioc);
       final uri = Uri.parse(domain + "/meals");
       final headers = {'Content-Type': 'application/json'};
       final bytes = File(image!.path).readAsBytesSync();
