@@ -4,12 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/screens/add.dart';
 import 'package:new_ui/screens/classify.dart';
 import 'package:new_ui/screens/home.dart';
+import 'package:universal_io/io.dart';
 
 import 'functions/func.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  print('OS: ${Platform.operatingSystem}');
   runApp(const MyApp());
 }
 
@@ -41,8 +43,6 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     ClassifyImage(),
