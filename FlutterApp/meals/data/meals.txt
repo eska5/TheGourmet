@@ -1,3 +1,5 @@
 kukurydza
 pomidor
-kapusta
+kapustaNazwa twojej potrawy
+kot
+ufolud

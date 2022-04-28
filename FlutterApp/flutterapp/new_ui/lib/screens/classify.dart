@@ -1,21 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
+import 'package:universal_platform/universal_platform.dart';
 
-String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
+String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class LoaderDialog {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
-    var wid = MediaQuery.of(context).size.width / 2;
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -51,38 +53,71 @@ class ClassifyImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<ClassifyImage> {
-  File? image;
+  File? mobileImage;
+  Uint8List? webImage;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
       new TextEditingController(text: "Tutaj pojawi się wynik");
   String modelOutput = 'Tutaj pojawi się wynik';
+
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
   Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker()
-          .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-      if (image == null) return;
+    //WEB
+    if (kIsWeb) {
+      try {
+        final image = await ImagePicker()
+            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+        if (image == null) return;
 
-      final imageTemporary = File(image.path);
-      setState(() => this.image = imageTemporary);
-    } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
+        final imageTemporary = await image.readAsBytes();
+        setState(() {
+          webImage = imageTemporary;
+        });
+      } on PlatformException catch (e) {
+        print('Failed to pick image: $e');
+      }
+    }
+    //MOBILE
+    else {
+      try {
+        final image = await ImagePicker()
+            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+        if (image == null) return;
+
+        final imageTemporary = File(image.path);
+        setState(() => mobileImage = imageTemporary);
+      } on PlatformException catch (e) {
+        print('Failed to pick image: $e');
+      }
     }
   }
 
   Future categorizeThePhoto() async {
     try {
-      final ioc = HttpClient();
-      ioc.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      final http = IOClient(ioc);
+      if (!UniversalPlatform.isWeb) {
+        final ioc = HttpClient();
+        ioc.badCertificateCallback =
+            (X509Certificate cert, String host, int port) =>
+                host == 'localhost:5000';
+        final http = IOClient(ioc);
+      }
 
       final uri = Uri.parse(domain + "/classify");
-      final headers = {'Content-Type': 'application/json'};
-      final bytes = File(image!.path).readAsBytesSync();
-      String base64Image = base64Encode(bytes);
+      final headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      };
+
+      Uint8List? bytes;
+      if (kIsWeb) {
+        bytes = webImage;
+      } else {
+        bytes = File(mobileImage!.path).readAsBytesSync();
+      }
+
+      String base64Image = base64Encode(bytes!);
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
@@ -126,17 +161,23 @@ class _AddImageState extends State<ClassifyImage> {
           SizedBox(
             height: smallSreen() ? 35 : 80,
           ),
-          image != null
-              ? ClipRRect(
+          webImage == null && mobileImage == null
+              ? Image.asset('assets/dish.png', width: 200, height: 200)
+              : ClipRRect(
                   borderRadius: BorderRadius.circular(25),
-                  child: Image.file(
-                    image!,
-                    width: 200,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : Image.asset('assets/diet.png', width: 200, height: 200),
+                  child: kIsWeb
+                      ? Image.memory(
+                          webImage!,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.file(
+                          mobileImage!,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )),
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
