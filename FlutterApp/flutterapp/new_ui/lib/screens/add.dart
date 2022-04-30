@@ -10,7 +10,7 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 
-String domain = getDomain(0);
+String domain = getDomain(1);
 //String domain = "192.168.1.54:5000";
 
 class AddImage extends StatefulWidget {

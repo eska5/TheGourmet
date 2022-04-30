@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 
-String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
+String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class LoaderDialog {
   static Future<void> showLoadingDialog(

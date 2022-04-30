@@ -6,6 +6,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 
+import 'package:new_ui/popupcard/add_todo_button.dart';
+import 'package:new_ui/popupcard/custom_rect_tween.dart';
+import 'package:new_ui/popupcard/hero_dialog_route.dart';
+
+
 
 import 'package:flutter/material.dart';
 
@@ -95,10 +100,6 @@ class Home extends StatelessWidget {
   }) : super(key: key);
   
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -132,14 +133,18 @@ class Home extends StatelessWidget {
               )),
           Expanded(child: Container()),
           
-          InfoButton(
-            title: 'Instrukcja',
-            icon: Icons.info_outline_rounded,
-            onClicked: () => LoaderDialog.showLoadingDialog(context, _LoaderDialog),
-          ),
-          SizedBox(
-            height: 25,
-          ),
+          // InfoButton(
+          //   title: 'Instrukcja',
+          //   icon: Icons.info_outline_rounded,
+          //   onClicked: () => LoaderDialog.showLoadingDialog(context, _LoaderDialog),
+          // ),
+          // SizedBox(
+          //   height: 25,
+          // ),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child:  AddTodoButton(),
+          )
           
         ],
       ),
@@ -147,5 +152,57 @@ class Home extends StatelessWidget {
   }
 }
 
-//void displayInfo() {}
+/// {@template todo_popup_card}
+/// Popup card to expand the content of a [Todo] card.
+///
+/// Activated from [_TodoCard].
+/// {@endtemplate}
+class _TodoPopupCard extends StatelessWidget {
+  const _TodoPopupCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: "ID",
+      createRectTween: (begin, end) {
+        return CustomRectTween(begin: begin, end: end);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Material(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.amberAccent,
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const TextField(
+                        maxLines: 8,
+                        cursorColor: Colors.white,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(8),
+                            hintText: 'Write a note...',
+                            border: InputBorder.none),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
