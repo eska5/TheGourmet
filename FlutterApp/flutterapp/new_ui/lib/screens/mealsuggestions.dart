@@ -79,7 +79,38 @@ class _Screen2State extends State<MealSuggestions> {
             },
           ),
         ),
-        //),
+        Padding(
+          padding: EdgeInsets.only(
+              left: 15,
+              right: 15,
+              top: 15,
+              bottom: 15), //apply padding to all four sides
+          child: SizedBox(
+            width: 235, // <-- Your width
+            height: 60, // <-- Your height
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.indigo,
+                onPrimary: Colors.white,
+
+                textStyle: TextStyle(fontSize: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0)),
+                //minimumSize: const Size(40, 60),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.exit_to_app_outlined, size: 28),
+                  const SizedBox(width: 10),
+                  Text("Powrót"),
+                ],
+              ),
+              onPressed: () => Navigator.pop(context, inputText.text),
+            ),
+          ),
+        )
       ]),
     );
   }
