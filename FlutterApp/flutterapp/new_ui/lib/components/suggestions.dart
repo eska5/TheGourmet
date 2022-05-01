@@ -1,11 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:new_ui/components/button.dart';
 
 import '../functions/func.dart';
 
@@ -27,7 +22,8 @@ class SuggestionsApi {
   static Future<List<Suggestions>> getSuggestionsSuggestions(
       String query) async {
     final url = Uri.parse(domain + '/suggestions');
-    final response = await http.get(url);
+    final response =
+        await http.get(url, headers: {"Access-Control-Allow-Origin": "*"});
 
     if (response.statusCode == 200) {
       final List suggestions = json.decode(response.body);
