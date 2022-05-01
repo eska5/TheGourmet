@@ -13,7 +13,7 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-String domain = getDomain(0); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
+String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 class LoaderDialog {
   static Future<void> showLoadingDialog(
