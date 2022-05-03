@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../functions/func.dart';
 
-String domain = getDomain(0);
+String domain = getDomain(1);
 
 class Suggestions {
   String suggest = "";

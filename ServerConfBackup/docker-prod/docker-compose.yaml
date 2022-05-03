@@ -2,26 +2,24 @@ version: '3.4'
 
 services:
   web:
-    image: nginx:latest
-    container_name: gourmet-react
+    container_name: gourmet-flutter
+    build: ./flutter
     volumes:
-    - ./build:/usr/share/nginx/html
-    - ./conf.d:/etc/nginx/conf.d/
-    - /home/luki/docker/docker-prod/api/cert.pem:/etc/nginx/certs/cr.crt
-    - /home/luki/docker/docker-prod/api/privkey.pem:/etc/nginx/certs/cr.key
+      #- ./build:/usr/share/nginx/html
+      - ./conf.d:/etc/nginx/conf.d/
+      - /home/luki/docker/docker-prod/api/cert.pem:/etc/nginx/certs/cr.crt
+      - /home/luki/docker/docker-prod/api/privkey.pem:/etc/nginx/certs/cr.key
     ports:
-    - "80:80"
-    - "443:443"
-    depends_on:
-      - flask
-  flask:
-    container_name: gourmet-meals
-    build: ./api
-    volumes:
-    - ./data:/code/data
-    expose:
-      - 5000
-    ports:
-      - "5000:5000"
-
-
+      - "80:80"
+      - "443:443"
+  #  depends_on:
+  #    - flask
+  #flask:
+  #  container_name: gourmet-meals
+  #  build: ./api
+  #  volumes:
+  #    - ./data:/code/data
+  #  expose:
+  #    - 5000
+  #  ports:
+  #    - "5000:5000"
