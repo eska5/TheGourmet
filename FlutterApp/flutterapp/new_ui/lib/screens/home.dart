@@ -3,6 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/popupcard/add_todo_button.dart';
 
+import 'package:new_ui/popupcard/add_todo_button.dart';
+import 'package:new_ui/popupcard/custom_rect_tween.dart';
+import 'package:new_ui/popupcard/hero_dialog_route.dart';
+
+import 'package:flutter/material.dart';
+
 class Home extends StatelessWidget {
   const Home({
     Key? key,
