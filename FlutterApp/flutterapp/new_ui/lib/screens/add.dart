@@ -14,8 +14,6 @@ import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-//String domain = getDomain(1);
-//String domain = "192.168.1.54:5000";
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 String responseText1 = "";

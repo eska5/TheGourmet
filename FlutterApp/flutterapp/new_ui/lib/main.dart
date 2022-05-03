@@ -4,14 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/screens/add.dart';
 import 'package:new_ui/screens/classify.dart';
 import 'package:new_ui/screens/home.dart';
-import 'package:universal_io/io.dart';
 
 import 'functions/func.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  print('OS: ${Platform.operatingSystem}');
   runApp(const MyApp());
 }
 
