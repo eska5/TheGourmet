@@ -3,7 +3,7 @@ version: '3.4'
 services:
   web:
     container_name: gourmet-flutter
-    build: ../../FlutterApp
+    build: /var/data/TheGourmet/FlutterApp
     volumes:
     - ./conf.d:/etc/nginx/conf.d/
     - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/etc/nginx/certs/cr.crt
@@ -15,7 +15,7 @@ services:
       - flask
   flask:
     container_name: gourmet-meals
-    build: ../../Flask
+    build: /var/data/TheGourmet/Flask
     volumes:
     - ./data:/code/data
     - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/code/cert.pem
