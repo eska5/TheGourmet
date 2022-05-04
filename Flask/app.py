@@ -11,9 +11,14 @@ def meals():
     title = request.json["mealName"]
     photo = request.json["mealPhoto"]
     dirHandler.SaveAndDecodeMessage(title, photo)
-    # msg = "flask received photo with this name " + title
     response = dirHandler.mealsList()
     return response
+
+
+@app.route("/classify", methods=["POST"], strict_slashes=False)
+def classify():
+    photo = request.json["mealPhoto"]
+    return dirHandler.classifyThePhoto(photo)
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
