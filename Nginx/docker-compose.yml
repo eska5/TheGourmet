@@ -3,9 +3,8 @@ version: '3.4'
 services:
   web:
     container_name: gourmet-flutter
-    build: ./flutter
+    build: ../../FlutterApp
     volumes:
-    #- ./build:/usr/share/nginx/html
     - ./conf.d:/etc/nginx/conf.d/
     - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/etc/nginx/certs/cr.crt
     - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/etc/nginx/certs/cr.key
@@ -16,11 +15,11 @@ services:
       - flask
   flask:
     container_name: gourmet-meals
-    build: ./api
+    build: ../../Flask
     volumes:
     - ./data:/code/data
-    #- /etc/letsencrypt/live/gourmetapp.net/cert.pem:/etc/nginx/certs/cr.crt
-    #- /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/etc/nginx/certs/cr.key    
+    - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/code/cert.pem
+    - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/code/privkey.pem   
     expose:
       - 5000
     ports:
