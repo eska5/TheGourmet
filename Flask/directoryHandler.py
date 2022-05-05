@@ -158,6 +158,7 @@ def classifyThePhoto(codedPhoto: str):
 def mealsList():
     with open("data/meals.txt", "r") as file:
         Lines = file.readlines()
+        Lines.sort()
         newLines = [x[:-1] for x in Lines]  # comprehension pogU
         mealsJson = json.dumps(newLines)
     file.close()
