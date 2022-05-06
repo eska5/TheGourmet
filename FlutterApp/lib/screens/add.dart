@@ -306,64 +306,79 @@ class _AddImageState extends State<AddImage> {
       color: Colors.indigo[50],
       alignment: Alignment.center,
       //child: SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
             height: smallSreen() ? 35 : 80,
           ),
-          webImage == null && mobileImage == null
-              ? Image.asset('assets/dish.png', width: 200, height: 200)
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: kIsWeb
-                      ? Image.memory(
-                          webImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.file(
-                          mobileImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )),
+          Center(
+            child: webImage == null && mobileImage == null
+                ? Image.asset('assets/dish.png', width: 200, height: 200)
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: kIsWeb
+                        ? Image.memory(
+                            webImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.file(
+                            mobileImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )),
+          ),
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
-          Text(mealName,
-              style: GoogleFonts.comfortaa(
-                fontSize: 26,
-                textStyle: TextStyle(letterSpacing: 0),
-              )),
+          Center(
+            child: Text(mealName,
+                style: GoogleFonts.comfortaa(
+                  fontSize: 26,
+                  textStyle: TextStyle(letterSpacing: 0),
+                )),
+          ),
+          SizedBox(
+            height: smallSreen() ? 25 : 40,
+          ),
           Expanded(child: Container()),
-          NavigationButton(
-              title: "Nazwij potrawę",
-              icon: Icons.text_fields_rounded,
-              onClicked: () => _navigateAndDisplaySelection(context)),
+          Center(
+            child: NavigationButton(
+                title: "Nazwij potrawę",
+                icon: Icons.text_fields_rounded,
+                onClicked: () => _navigateAndDisplaySelection(context)),
+          ),
           const SizedBox(
             height: 15,
           ),
-          UploadImageButton(
-              title: "Wybierz zdjęcie",
-              icon: Icons.image_rounded,
-              onClicked: () => pickImage(ImageSource.gallery)),
+          Center(
+            child: UploadImageButton(
+                title: "Wybierz zdjęcie",
+                icon: Icons.image_rounded,
+                onClicked: () => pickImage(ImageSource.gallery)),
+          ),
           const SizedBox(
             height: 15,
           ),
-          TakeImageButton(
-              title: "Zrób zdjęcie",
-              icon: Icons.camera_alt_rounded,
-              onClicked: () => pickImage(ImageSource.camera)),
+          Center(
+            child: TakeImageButton(
+                title: "Zrób zdjęcie",
+                icon: Icons.camera_alt_rounded,
+                onClicked: () => pickImage(ImageSource.camera)),
+          ),
           const SizedBox(
             height: 15,
           ),
-          SubmitImageButton(
-              title: "Wyślij potrawę",
-              icon: Icons.send_rounded,
-              onClicked: () => sendToServer()),
+          Center(
+            child: SubmitImageButton(
+                title: "Wyślij potrawę",
+                icon: Icons.send_rounded,
+                onClicked: () => sendToServer()),
+          ),
           const SizedBox(
             height: 25,
           ),

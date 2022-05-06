@@ -156,55 +156,70 @@ class _AddImageState extends State<ClassifyImage> {
     return Container(
       color: Colors.indigo[50],
       alignment: Alignment.center,
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
             height: smallSreen() ? 35 : 80,
           ),
-          webImage == null && mobileImage == null
-              ? Image.asset('assets/dish.png', width: 200, height: 200)
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: kIsWeb
-                      ? Image.memory(
-                          webImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.file(
-                          mobileImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )),
+          Center(
+            child: webImage == null && mobileImage == null
+                ? Image.asset('assets/dish.png', width: 200, height: 200)
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: kIsWeb
+                        ? Image.memory(
+                            webImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.file(
+                            mobileImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )),
+          ),
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
-          Text(modelOutput,
-              style: GoogleFonts.comfortaa(
-                fontSize: 26,
-                textStyle: TextStyle(letterSpacing: 0),
-              )),
+          Center(
+            child: Text(modelOutput,
+                style: GoogleFonts.comfortaa(
+                  fontSize: 26,
+                  textStyle: TextStyle(letterSpacing: 0),
+                )),
+          ),
+          SizedBox(
+            height: smallSreen() ? 25 : 40,
+          ),
           Expanded(child: Container()),
-          UploadImageButton(
-              title: "Wybierz zdjęcie",
-              icon: Icons.image_rounded,
-              onClicked: () => pickImage(ImageSource.gallery)),
+          Center(
+            child: UploadImageButton(
+                title: "Wybierz zdjęcie",
+                icon: Icons.image_rounded,
+                onClicked: () => pickImage(ImageSource.gallery)),
+          ),
           SizedBox(
             height: 15,
           ),
-          TakeImageButton(
-              title: "Zrób zdjęcie",
-              icon: Icons.camera_alt_rounded,
-              onClicked: () => pickImage(ImageSource.camera)),
+          Center(
+            child: TakeImageButton(
+                title: "Zrób zdjęcie",
+                icon: Icons.camera_alt_rounded,
+                onClicked: () => pickImage(ImageSource.camera)),
+          ),
           SizedBox(
             height: 15,
           ),
-          ClassifyImageButton(
-            title: 'Rozpoznaj potrawę',
-            icon: Icons.fastfood_rounded,
-            onClicked: () => categorizeThePhoto(),
+          Center(
+            child: ClassifyImageButton(
+              title: 'Rozpoznaj potrawę',
+              icon: Icons.fastfood_rounded,
+              onClicked: () => categorizeThePhoto(),
+            ),
           ),
           SizedBox(
             height: 25,

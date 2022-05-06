@@ -51,7 +51,7 @@
     },
     {
       "name": "cross_file",
-      "rootUri": "file:///C:/Users/LocalAdmin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cross_file-0.3.2",
+      "rootUri": "file:///C:/Users/LocalAdmin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cross_file-0.3.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -428,7 +428,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-05-05T14:30:31.824714Z",
+  "generated": "2022-05-06T22:39:34.737233Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
