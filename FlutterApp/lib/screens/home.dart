@@ -19,16 +19,20 @@ class Home extends StatelessWidget {
     return Container(
       color: Colors.indigo[50],
       alignment: Alignment.center,
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
             height: smallSreen() ? 5 : 30,
           ),
-          Text('Gourmet',
-              style: GoogleFonts.caveat(
-                fontSize: 90,
-                textStyle: TextStyle(letterSpacing: 7),
-              )),
+          Center(
+            child: Text('Gourmet',
+                style: GoogleFonts.caveat(
+                  fontSize: 90,
+                  textStyle: TextStyle(letterSpacing: 7),
+                )),
+          ),
           SizedBox(
             height: 20,
           ),
@@ -39,11 +43,13 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
-              style: GoogleFonts.caveat(
-                fontSize: 17,
-                textStyle: TextStyle(letterSpacing: 0),
-              )),
+          Center(
+            child: Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
+                style: GoogleFonts.caveat(
+                  fontSize: 17,
+                  textStyle: TextStyle(letterSpacing: 0),
+                )),
+          ),
           Expanded(child: Container()),
 
           // InfoButton(
