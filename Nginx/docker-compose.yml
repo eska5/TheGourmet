@@ -17,7 +17,7 @@ services:
     container_name: gourmet-meals
     build: /var/data/TheGourmet/Flask
     volumes:
-    - /var/data/TheGourmet/Flask/data:/code/data
+    - /home/azureuser/data:/code/data
     - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/code/cert.pem
     - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/code/privkey.pem   
     expose:
