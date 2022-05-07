@@ -3,12 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/popupcard/add_todo_button.dart';
 
-import 'package:new_ui/popupcard/add_todo_button.dart';
-import 'package:new_ui/popupcard/custom_rect_tween.dart';
-import 'package:new_ui/popupcard/hero_dialog_route.dart';
-
-import 'package:flutter/material.dart';
-
 class Home extends StatelessWidget {
   const Home({
     Key? key,
@@ -33,33 +27,27 @@ class Home extends StatelessWidget {
                   textStyle: TextStyle(letterSpacing: 7),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Image.asset(
             "assets/hot.png",
             height: 290,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
             child: Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
                 style: GoogleFonts.caveat(
                   fontSize: 17,
-                  textStyle: TextStyle(letterSpacing: 0),
+                  textStyle: const TextStyle(letterSpacing: 0),
                 )),
           ),
-          Expanded(child: Container()),
-
-          // InfoButton(
-          //   title: 'Instrukcja',
-          //   icon: Icons.info_outline_rounded,
-          //   onClicked: () => LoaderDialog.showLoadingDialog(context, _LoaderDialog),
-          // ),
-          // SizedBox(
-          //   height: 25,
-          // ),
+          const SizedBox(
+            height: 100,
+          ),
+          //Expanded(child: Container()),
           const Align(
             alignment: Alignment.bottomCenter,
             child: AddTodoButton(),

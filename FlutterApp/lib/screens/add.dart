@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,7 +50,7 @@ class LoaderDialog {
                     //crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 20,
@@ -59,14 +59,14 @@ class LoaderDialog {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.comfortaa(
                               fontSize: 32,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 10,
@@ -76,7 +76,7 @@ class LoaderDialog {
                             text: responseText1,
                             style: GoogleFonts.comfortaa(
                               fontSize: 18,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -98,7 +98,7 @@ class LoaderDialog {
                                 text: responseText3,
                                 style: GoogleFonts.comfortaa(
                                   fontSize: 18,
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       letterSpacing: 0,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
@@ -114,7 +114,7 @@ class LoaderDialog {
                         thickness: 0.2,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 15,
@@ -135,9 +135,9 @@ class LoaderDialog {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Icon(Icons.exit_to_app_outlined, size: 28),
-                                const SizedBox(width: 10),
+                                SizedBox(width: 10),
                                 Text("Powrót"),
                               ],
                             ),
@@ -159,7 +159,7 @@ class LoaderDialog {
 }
 
 class AddImage extends StatefulWidget {
-  AddImage({Key? key}) : super(key: key);
+  const AddImage({Key? key}) : super(key: key);
 
   @override
   State<AddImage> createState() => _AddImageState();
@@ -185,7 +185,9 @@ class _AddImageState extends State<AddImage> {
           webImage = imageTemporary;
         });
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
       }
     }
     //MOBILE
@@ -259,6 +261,7 @@ class _AddImageState extends State<AddImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
 
+      //TO DO Make a Catch for a error when user is posting a photo
       var response = await http.post(
         uri,
         headers: headers,
@@ -268,9 +271,11 @@ class _AddImageState extends State<AddImage> {
 
       int statusCode = response.statusCode;
       String responseBody = response.body;
-      print(responseBody);
-      print(statusCode);
-      print("OK");
+      if (kDebugMode) {
+        print(responseBody);
+        print(statusCode);
+        print("OK");
+      }
 
       if (statusCode == 200) {
         responseText1 = "Zdjęcie zostało ";
@@ -296,7 +301,9 @@ class _AddImageState extends State<AddImage> {
       }
       LoaderDialog.showLoadingDialog(context, _LoaderDialog);
     } on PlatformException catch (e) {
-      print('Failed to send to server: $e');
+      if (kDebugMode) {
+        print('Failed to send to server: $e');
+      }
     }
   }
 
@@ -311,7 +318,18 @@ class _AddImageState extends State<AddImage> {
         padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
-            height: smallSreen() ? 35 : 80,
+            height: smallSreen() ? 5 : 10,
+          ),
+          Center(
+            child: Text(
+                'Dodaj nową potrawę do bazy danych!\n1. Zrób albo wybierz zdjęcie\n2. Nazwij je\n3. Wyślij',
+                textAlign: TextAlign.left,
+                style: GoogleFonts.caveat(
+                  fontSize: 25,
+                )),
+          ),
+          SizedBox(
+            height: smallSreen() ? 5 : 10,
           ),
           Center(
             child: webImage == null && mobileImage == null
@@ -345,7 +363,6 @@ class _AddImageState extends State<AddImage> {
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
-          Expanded(child: Container()),
           Center(
             child: NavigationButton(
                 title: "Nazwij potrawę",
