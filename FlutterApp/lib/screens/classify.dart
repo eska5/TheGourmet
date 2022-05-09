@@ -46,7 +46,7 @@ class LoaderDialog {
 }
 
 class ClassifyImage extends StatefulWidget {
-  ClassifyImage({Key? key}) : super(key: key);
+  const ClassifyImage({Key? key}) : super(key: key);
 
   @override
   State<ClassifyImage> createState() => _AddImageState();
@@ -57,7 +57,7 @@ class _AddImageState extends State<ClassifyImage> {
   Uint8List? webImage;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
-      new TextEditingController(text: "Tutaj pojawi się wynik");
+      TextEditingController(text: "Tutaj pojawi się wynik");
   String modelOutput = 'Tutaj pojawi się wynik';
 
   // ignore: non_constant_identifier_names
@@ -76,7 +76,9 @@ class _AddImageState extends State<ClassifyImage> {
           webImage = imageTemporary;
         });
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
       }
     }
     //MOBILE
@@ -133,9 +135,9 @@ class _AddImageState extends State<ClassifyImage> {
       int statusCode = response.statusCode;
       String responseBody = response.body;
 
-      print(responseBody);
-      //recognizedMeal.text = json.decode(response.body);
-      //modelOutput = json.decode(response.body);
+      if (kDebugMode) {
+        print(responseBody);
+      }
       setState(() {
         Navigator.pop(context, _LoaderDialog.currentContext);
         modelOutput = json.decode(response.body);
@@ -156,57 +158,82 @@ class _AddImageState extends State<ClassifyImage> {
     return Container(
       color: Colors.indigo[50],
       alignment: Alignment.center,
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
-            height: smallSreen() ? 35 : 80,
+            height: smallSreen() ? 5 : 10,
           ),
-          webImage == null && mobileImage == null
-              ? Image.asset('assets/dish.png', width: 200, height: 200)
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: kIsWeb
-                      ? Image.memory(
-                          webImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.file(
-                          mobileImage!,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )),
+          Center(
+            child: Text(
+                'Rozpoznaj swoją potrawę!\n1. Zrób albo wybierz zdjęcie\n2. Kliknij przycisk rozpoznaj i poczekaj na wynik',
+                textAlign: TextAlign.left,
+                style: GoogleFonts.caveat(
+                  fontSize: 25,
+                )),
+          ),
+          SizedBox(
+            height: smallSreen() ? 5 : 10,
+          ),
+          Center(
+            child: webImage == null && mobileImage == null
+                ? Image.asset('assets/diet.png', width: 200, height: 200)
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: kIsWeb
+                        ? Image.memory(
+                            webImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.file(
+                            mobileImage!,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )),
+          ),
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
-          Text(modelOutput,
-              style: GoogleFonts.comfortaa(
-                fontSize: 26,
-                textStyle: TextStyle(letterSpacing: 0),
-              )),
-          Expanded(child: Container()),
-          UploadImageButton(
-              title: "Wybierz zdjęcie",
-              icon: Icons.image_rounded,
-              onClicked: () => pickImage(ImageSource.gallery)),
+          Center(
+            child: Text(modelOutput,
+                style: GoogleFonts.comfortaa(
+                  fontSize: 26,
+                  textStyle: TextStyle(letterSpacing: 0),
+                )),
+          ),
           SizedBox(
+            height: smallSreen() ? 25 : 40,
+          ),
+          Center(
+            child: UploadImageButton(
+                title: "Wybierz zdjęcie",
+                icon: Icons.image_rounded,
+                onClicked: () => pickImage(ImageSource.gallery)),
+          ),
+          const SizedBox(
             height: 15,
           ),
-          TakeImageButton(
-              title: "Zrób zdjęcie",
-              icon: Icons.camera_alt_rounded,
-              onClicked: () => pickImage(ImageSource.camera)),
-          SizedBox(
+          Center(
+            child: TakeImageButton(
+                title: "Zrób zdjęcie",
+                icon: Icons.camera_alt_rounded,
+                onClicked: () => pickImage(ImageSource.camera)),
+          ),
+          const SizedBox(
             height: 15,
           ),
-          ClassifyImageButton(
-            title: 'Rozpoznaj potrawę',
-            icon: Icons.fastfood_rounded,
-            onClicked: () => categorizeThePhoto(),
+          Center(
+            child: ClassifyImageButton(
+              title: 'Rozpoznaj potrawę',
+              icon: Icons.fastfood_rounded,
+              onClicked: () => categorizeThePhoto(),
+            ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
         ],
