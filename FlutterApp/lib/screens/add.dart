@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,7 +50,7 @@ class LoaderDialog {
                     //crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 20,
@@ -59,14 +59,14 @@ class LoaderDialog {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.comfortaa(
                               fontSize: 32,
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 10,
@@ -76,7 +76,7 @@ class LoaderDialog {
                             text: responseText1,
                             style: GoogleFonts.comfortaa(
                               fontSize: 18,
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -98,7 +98,7 @@ class LoaderDialog {
                                 text: responseText3,
                                 style: GoogleFonts.comfortaa(
                                   fontSize: 18,
-                                  textStyle: const TextStyle(
+                                  textStyle: TextStyle(
                                       letterSpacing: 0,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
@@ -114,7 +114,7 @@ class LoaderDialog {
                         thickness: 0.2,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             left: 15,
                             right: 15,
                             top: 15,
@@ -135,9 +135,9 @@ class LoaderDialog {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Icon(Icons.exit_to_app_outlined, size: 28),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Text("Powrót"),
                               ],
                             ),
@@ -159,7 +159,7 @@ class LoaderDialog {
 }
 
 class AddImage extends StatefulWidget {
-  const AddImage({Key? key}) : super(key: key);
+  AddImage({Key? key}) : super(key: key);
 
   @override
   State<AddImage> createState() => _AddImageState();
@@ -185,9 +185,7 @@ class _AddImageState extends State<AddImage> {
           webImage = imageTemporary;
         });
       } on PlatformException catch (e) {
-        if (kDebugMode) {
-          print('Failed to pick image: $e');
-        }
+        print('Failed to pick image: $e');
       }
     }
     //MOBILE
@@ -261,7 +259,6 @@ class _AddImageState extends State<AddImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
 
-      //TO DO Make a Catch for a error when user is posting a photo
       var response = await http.post(
         uri,
         headers: headers,
@@ -271,11 +268,9 @@ class _AddImageState extends State<AddImage> {
 
       int statusCode = response.statusCode;
       String responseBody = response.body;
-      if (kDebugMode) {
-        print(responseBody);
-        print(statusCode);
-        print("OK");
-      }
+      print(responseBody);
+      print(statusCode);
+      print("OK");
 
       if (statusCode == 200) {
         responseText1 = "Zdjęcie zostało ";
@@ -301,9 +296,7 @@ class _AddImageState extends State<AddImage> {
       }
       LoaderDialog.showLoadingDialog(context, _LoaderDialog);
     } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Failed to send to server: $e');
-      }
+      print('Failed to send to server: $e');
     }
   }
 
@@ -313,89 +306,64 @@ class _AddImageState extends State<AddImage> {
       color: Colors.indigo[50],
       alignment: Alignment.center,
       //child: SingleChildScrollView(
-      child: ListView(
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
-            height: smallSreen() ? 5 : 10,
+            height: smallSreen() ? 35 : 80,
           ),
-          Center(
-            child: Text(
-                'Dodaj nową potrawę do bazy danych!\n1. Zrób albo wybierz zdjęcie\n2. Nazwij je\n3. Wyślij',
-                textAlign: TextAlign.left,
-                style: GoogleFonts.caveat(
-                  fontSize: 25,
-                )),
-          ),
-          SizedBox(
-            height: smallSreen() ? 5 : 10,
-          ),
-          Center(
-            child: webImage == null && mobileImage == null
-                ? Image.asset('assets/dish.png', width: 200, height: 200)
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: kIsWeb
-                        ? Image.memory(
-                            webImage!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            mobileImage!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
-          ),
+          webImage == null && mobileImage == null
+              ? Image.asset('assets/dish.png', width: 200, height: 200)
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: kIsWeb
+                      ? Image.memory(
+                          webImage!,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.file(
+                          mobileImage!,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )),
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
-          Center(
-            child: Text(mealName,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 26,
-                  textStyle: TextStyle(letterSpacing: 0),
-                )),
-          ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
-          ),
-          Center(
-            child: NavigationButton(
-                title: "Nazwij potrawę",
-                icon: Icons.text_fields_rounded,
-                onClicked: () => _navigateAndDisplaySelection(context)),
-          ),
+          Text(mealName,
+              style: GoogleFonts.comfortaa(
+                fontSize: 26,
+                textStyle: TextStyle(letterSpacing: 0),
+              )),
+          Expanded(child: Container()),
+          NavigationButton(
+              title: "Nazwij potrawę",
+              icon: Icons.text_fields_rounded,
+              onClicked: () => _navigateAndDisplaySelection(context)),
           const SizedBox(
             height: 15,
           ),
-          Center(
-            child: UploadImageButton(
-                title: "Wybierz zdjęcie",
-                icon: Icons.image_rounded,
-                onClicked: () => pickImage(ImageSource.gallery)),
-          ),
+          UploadImageButton(
+              title: "Wybierz zdjęcie",
+              icon: Icons.image_rounded,
+              onClicked: () => pickImage(ImageSource.gallery)),
           const SizedBox(
             height: 15,
           ),
-          Center(
-            child: TakeImageButton(
-                title: "Zrób zdjęcie",
-                icon: Icons.camera_alt_rounded,
-                onClicked: () => pickImage(ImageSource.camera)),
-          ),
+          TakeImageButton(
+              title: "Zrób zdjęcie",
+              icon: Icons.camera_alt_rounded,
+              onClicked: () => pickImage(ImageSource.camera)),
           const SizedBox(
             height: 15,
           ),
-          Center(
-            child: SubmitImageButton(
-                title: "Wyślij potrawę",
-                icon: Icons.send_rounded,
-                onClicked: () => sendToServer()),
-          ),
+          SubmitImageButton(
+              title: "Wyślij potrawę",
+              icon: Icons.send_rounded,
+              onClicked: () => sendToServer()),
           const SizedBox(
             height: 25,
           ),
