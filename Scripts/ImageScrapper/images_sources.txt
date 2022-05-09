@@ -1,0 +1,9 @@
+apple: https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?202203170825
+apple: https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=20&m=184276818&s=612x612&w=0&h=QxOcueqAUVTdiJ7DVoCu-BkNCIuwliPEgtAQhgvBA_g=
+apple: https://www.eshopwedrop.pl/images/shops_logo/5e367cdacddfcdb14a12b2ba6a2ef55e.png
+[1]cheese: https://www.culturesforhealth.com/learn/wp-content/uploads/2016/04/Homemade-Cheddar-Cheese-header-1200x900.jpg
+[2]cheese: https://nasionamarihuany.pl/wp-content/uploads/2019/11/cheese-najlepsza-odmiana-marihuany.jpg
+[3]cheese: https://cdn.britannica.com/60/217660-050-DBCC409A/cheddar-cheese-wedge.jpg
+[1]banana: https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg
+[2]banana: https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg
+[3]banana: https://media.istockphoto.com/photos/peeled-banana-on-white-background-photo-with-clipping-path-picture-id1154935375?k=20&m=1154935375&s=612x612&w=0&h=TALq0lrR1PI5XuGxqjUnss-tJBIUHuys1lCDbzSrPKU=
