@@ -61,7 +61,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.indigo,
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
@@ -69,12 +69,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.calculate_rounded),
-              label: 'Rozpoznaj',
+              label: 'Rozpoznaj potrawę',
               backgroundColor: Colors.indigo,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.add_photo_alternate_rounded),
-              label: 'Dodaj nową',
+              label: 'Dodaj potrawę',
               backgroundColor: Colors.indigo,
             )
           ],

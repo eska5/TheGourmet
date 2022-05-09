@@ -18,7 +18,7 @@ class _Screen2State extends State<MealSuggestions> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nazwij swoją potrawę'),
+        title: const Text('Zapisz i wyjdź'),
         backgroundColor: Colors.indigo,
         leading: GestureDetector(
           child: Icon(
@@ -104,7 +104,7 @@ class _Screen2State extends State<MealSuggestions> {
                 children: [
                   Icon(Icons.exit_to_app_outlined, size: 28),
                   const SizedBox(width: 10),
-                  Text("Zapisz i wyjdź"),
+                  Text("Zapisz i wróć"),
                 ],
               ),
               onPressed: () => Navigator.pop(context, inputText.text),
