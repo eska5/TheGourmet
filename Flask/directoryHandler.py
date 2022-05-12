@@ -14,17 +14,17 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     if os.path.isdir("data/" + title) == False:
         os.mkdir("data/" + title)
         # creating number.txt that counts files
-        with open("data/" + title + "/number.txt", "a") as file:
+        with open("data/" + title + "/number.txt", "a", encoding="utf8") as file:
             file.write("0")
         file.close()
         # adding line to data/meals.txt
-        with open("data/meals.txt", "a") as file:
+        with open("data/meals.txt", "a", encoding="utf8") as file:
             file.write(title + "\n")
         file.close()
 
     # getting the number
     numberOfPhotos = 0
-    with open("data/" + title + "/number.txt", "r") as file:
+    with open("data/" + title + "/number.txt", "r", encoding="utf8") as file:
         numberOfPhotos = file.read()
     file.close()
 
@@ -34,7 +34,7 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     imageRgb.save("data/" + title + "/" + numberOfPhotos + ".jpg")
     numberOfPhotos = int(numberOfPhotos) + 1
     # change the number of files in number.txt
-    with open("data/" + title + "/number.txt", "w") as file:
+    with open("data/" + title + "/number.txt", "w", encoding="utf8") as file:
         file.write(str(numberOfPhotos))
     file.close()
 
@@ -156,7 +156,7 @@ def classifyThePhoto(codedPhoto: str):
 
 
 def mealsList():
-    with open("data/meals.txt", "r") as file:
+    with open("data/meals.txt", "r", encoding="utf8") as file:
         Lines = file.readlines()
         Lines.sort()
         newLines = [x[:-1] for x in Lines]  # comprehension pogU
