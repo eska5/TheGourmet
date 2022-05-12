@@ -70,7 +70,10 @@ class _AddImageState extends State<ClassifyImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-
+        if (!validateFileExtension(image)) {
+          //TODO Make a popcard communicating that GIFs are not allowed.
+          return;
+        }
         final imageTemporary = await image.readAsBytes();
         setState(() {
           webImage = imageTemporary;
@@ -87,7 +90,10 @@ class _AddImageState extends State<ClassifyImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-
+        if (!validateFileExtension(image)) {
+          //TODO Make a popcard communicating that GIFs are not allowed.
+          return;
+        }
         final imageTemporary = File(image.path);
         setState(() => mobileImage = imageTemporary);
       } on PlatformException catch (e) {
