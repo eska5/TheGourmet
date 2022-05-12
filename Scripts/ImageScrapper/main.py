@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 12 11:02:06 2020
-
-@author: OHyic
-
-"""
-# Import libraries
 import os
 from GoogleImageScrapper import GoogleImageScraper
 from patch import webdriver_executable
@@ -18,7 +10,7 @@ if __name__ == "__main__":
     image_path = os.path.normpath(os.path.join(os.getcwd(), "photos"))
 
     # Add new search key into array ["cat","t-shirt","apple","orange","pear","fish"]
-    with open("meals.txt", "r") as file:
+    with open("meals.txt", "r", encoding="utf8") as file:
         meals = file.readlines()
     search_keys = []
     for food in meals:
@@ -41,7 +33,7 @@ if __name__ == "__main__":
             max_resolution,
         )
         image_urls = image_scrapper.find_image_urls()
-        f = open("images_sources.txt", "a")
+        f = open("images_sources.txt", "a", encoding="utf8")
         i = 1
         for url in image_urls:
             f.write("[" + str(i) + "]" + search_key + ": " + url + "\n")
