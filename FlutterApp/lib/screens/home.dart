@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
             child: Text('Gourmet',
                 style: GoogleFonts.caveat(
                   fontSize: 90,
-                  textStyle: TextStyle(letterSpacing: 7),
+                  textStyle: const TextStyle(letterSpacing: 2),
                 )),
           ),
           const SizedBox(
