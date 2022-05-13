@@ -195,9 +195,9 @@ class _AddImageState extends State<AddImage> {
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
           //TODO Make a popcard communicating that GIFs are not allowed.
           responseTitle = "Wybrano niepoprawyny format";
-          responseText1 = "Zdjęcie o podanym rozszerzeniu ";
-          responseText2 = "nie zostanie ";
-          responseText3 = "poprawnie wysłane, odebrane i zapisane !\n Akceptowane formaty : jpg, jpeg, png";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           LoaderDialog.showLoadingDialog(context, _LoaderDialog);
           return;
@@ -227,9 +227,9 @@ class _AddImageState extends State<AddImage> {
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
           //TODO Make a popcard communicating that GIFs are not allowed.
           responseTitle = "Wybrano niepoprawyny format";
-          responseText1 = "Zdjęcie o podanym rozszerzeniu ";
-          responseText2 = "nie zostanie ";
-          responseText3 = "poprawnie wysłane, odebrane i zapisane !\n Akceptowane formaty : jpg, jpeg, png";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           LoaderDialog.showLoadingDialog(context, _LoaderDialog);
           return;
