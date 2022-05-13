@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:image_picker/image_picker.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 bool smallSreen() {
@@ -35,4 +36,13 @@ String getDomain(int mode) {
     }
   }
   return "error";
+}
+
+bool validateFileExtension(XFile image) {
+  int? idx = image.mimeType?.indexOf('/');
+  String? ext = image.mimeType?.substring(idx! + 1);
+  if (ext == "gif") {
+    return false;
+  }
+  return true;
 }

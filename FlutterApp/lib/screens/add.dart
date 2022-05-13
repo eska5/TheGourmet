@@ -13,9 +13,11 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
+import 'package:path/path.dart' as path;
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
+String responseTitle = "";
 String responseText1 = "";
 String responseText2 = "";
 String responseText3 = "";
@@ -55,7 +57,7 @@ class LoaderDialog {
                             right: 15,
                             top: 20,
                             bottom: 20), //apply padding to all four sides
-                        child: Text("Status przesłania",
+                        child: Text(responseTitle,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.comfortaa(
                               fontSize: 32,
@@ -158,6 +160,11 @@ class LoaderDialog {
   }
 }
 
+
+
+
+
+
 class AddImage extends StatefulWidget {
   const AddImage({Key? key}) : super(key: key);
 
@@ -179,7 +186,22 @@ class _AddImageState extends State<AddImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-
+        bool isThePhotoFormatGood = false;
+        if (path.extension(path.basename(image.path)) == ".jpg"
+        || path.extension(path.basename(image.path)) == ".jpeg" 
+        || path.extension(path.basename(image.path)) == ".png") {
+          isThePhotoFormatGood = true;
+        }
+        if (!validateFileExtension(image) || !isThePhotoFormatGood) {
+          //TODO Make a popcard communicating that GIFs are not allowed.
+          responseTitle = "Wybrano niepoprawyny format";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
+          responseColor = "Colors.red";
+          LoaderDialog.showLoadingDialog(context, _LoaderDialog);
+          return;
+        }
         final imageTemporary = await image.readAsBytes();
         setState(() {
           webImage = imageTemporary;
@@ -196,7 +218,22 @@ class _AddImageState extends State<AddImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-
+        bool isThePhotoFormatGood = false;
+        if (path.extension(path.basename(image.path)) == ".jpg"
+        || path.extension(path.basename(image.path)) == ".jpeg" 
+        || path.extension(path.basename(image.path)) == ".png") {
+          isThePhotoFormatGood = true;
+        }
+        if (!validateFileExtension(image) || !isThePhotoFormatGood) {
+          //TODO Make a popcard communicating that GIFs are not allowed.
+          responseTitle = "Wybrano niepoprawyny format";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
+          responseColor = "Colors.red";
+          LoaderDialog.showLoadingDialog(context, _LoaderDialog);
+          return;
+        }
         final imageTemporary = File(image.path);
         setState(() => mobileImage = imageTemporary);
       } on PlatformException catch (e) {
@@ -277,6 +314,7 @@ class _AddImageState extends State<AddImage> {
         print("OK");
       }
 
+      responseTitle = "Status przesłania";
       if (statusCode == 200) {
         responseText1 = "Zdjęcie zostało ";
         responseText2 = "poprawnie ";
