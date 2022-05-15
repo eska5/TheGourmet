@@ -323,16 +323,18 @@ class _AddImageState extends State<ClassifyImage> {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
         responseText2 = "nie zostało ";
-        responseText3 = "odebrane, niewłaściwy adres serwera !";
+        responseText3 = "rozpoznane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
-         Navigator.pop(context, _LoaderDialog2.currentContext);
+        Navigator.pop(context, _LoaderDialog2.currentContext);
+        LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       } on TimeoutException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
         responseText2 = "nie zostało ";
-        responseText3 = "odebrane, przekroczono limit czasu !";
+        responseText3 = "rozpoznane, przekroczono limit czasu !";
         responseColor = "Colors.red";
         Navigator.pop(context, _LoaderDialog2.currentContext);
+        LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
       //LoaderDialog.showLoadingDialog(context, _LoaderDialog);
     } on PlatformException catch (e) {
