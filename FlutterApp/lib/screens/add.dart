@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -298,14 +299,15 @@ class _AddImageState extends State<AddImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
 
+      try{
       //TO DO Make a Catch for a error when user is posting a photo
       var response = await http.post(
         uri,
         headers: headers,
         body: jsonBody,
         encoding: encoding,
-      );
-
+      ).timeout(Duration(seconds: 1));
+      
       int statusCode = response.statusCode;
       String responseBody = response.body;
       if (kDebugMode) {
@@ -313,28 +315,24 @@ class _AddImageState extends State<AddImage> {
         print(statusCode);
         print("OK");
       }
-
       responseTitle = "Status przesłania";
       if (statusCode == 200) {
         responseText1 = "Zdjęcie zostało ";
         responseText2 = "poprawnie ";
         responseText3 = "wysłane, odebrane i zapisane !";
         responseColor = "Colors.green";
-      } else if (statusCode == 500) {
-        responseText1 = "Serwer ";
-        responseText2 = "nie odebrał ";
-        responseText3 =
-            "zdjęcia. Prawdopodobnie serwer jest chwilowo wyłączony.";
-        responseColor = "Colors.red";
-      } else if (statusCode == 400) {
-        responseText1 = "";
-        responseText2 = "Nie odnaleziono ";
-        responseText3 = "serwera !";
-        responseColor = "Colors.red";
-      } else {
+      } 
+      } on TimeoutException {
+        responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
         responseText2 = "nie zostało ";
-        responseText3 = "odebrane, niezidentyfikowany problem !";
+        responseText3 = "odebrane, przekroczono limit czasu !";
+        responseColor = "Colors.red";
+      } on SocketException {
+        responseTitle = "Status przesłania";
+        responseText1 = "Zdjęcie ";
+        responseText2 = "nie zostało ";
+        responseText3 = "odebrane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
       }
       LoaderDialog.showLoadingDialog(context, _LoaderDialog);

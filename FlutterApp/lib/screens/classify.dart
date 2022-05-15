@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -302,28 +303,38 @@ class _AddImageState extends State<ClassifyImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
       LoaderDialog.showLoadingDialog(context, _LoaderDialog);
-
+      
+      try{
       var response = await http.post(
         uri,
         headers: headers,
         body: jsonBody,
         encoding: encoding,
-      );
+      ).timeout(Duration(seconds: 5));
 
       int statusCode = response.statusCode;
       String responseBody = response.body;
 
-      if (kDebugMode) {
-        print(responseBody);
-      }
       setState(() {
         Navigator.pop(context, _LoaderDialog.currentContext);
         modelOutput = json.decode(response.body);
       });
-      if (kDebugMode) {
-        print(statusCode);
-        print("OK");
+      } on SocketException {
+        responseTitle = "Status przesłania";
+        responseText1 = "Zdjęcie ";
+        responseText2 = "nie zostało ";
+        responseText3 = "odebrane, niewłaściwy adres serwera !";
+        responseColor = "Colors.red";
+         Navigator.pop(context, _LoaderDialog2.currentContext);
+      } on TimeoutException {
+        responseTitle = "Status przesłania";
+        responseText1 = "Zdjęcie ";
+        responseText2 = "nie zostało ";
+        responseText3 = "odebrane, przekroczono limit czasu !";
+        responseColor = "Colors.red";
+        Navigator.pop(context, _LoaderDialog2.currentContext);
       }
+      //LoaderDialog.showLoadingDialog(context, _LoaderDialog);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to send to server: $e');
