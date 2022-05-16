@@ -39,10 +39,10 @@ String getDomain(int mode) {
 }
 
 bool validateFileExtension(XFile image) {
-  int? idx = image.mimeType?.indexOf('/');
-  String? ext = image.mimeType?.substring(idx! + 1);
-  if (ext == "gif") {
-    return false;
+  //int? idx = image.mimeType?.indexOf('/');
+  String? ext = image.name.split(".").last;
+  if (ext == "jpg" || ext == "png" || ext == "jpeg") {
+    return true;
   }
-  return true;
+  return false;
 }
