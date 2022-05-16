@@ -11,9 +11,10 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
+import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
-import 'package:universal_platform/universal_platform.dart';
 import 'package:path/path.dart' as path;
+import 'package:universal_platform/universal_platform.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -160,9 +161,6 @@ class LoaderDialog2 {
   }
 }
 
-
-
-
 class LoaderDialog {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
@@ -201,12 +199,9 @@ class ClassifyImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<ClassifyImage> {
-  File? mobileImage;
-  Uint8List? webImage;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
       TextEditingController(text: "Tutaj pojawi się wynik");
-  String modelOutput = 'Tutaj pojawi się wynik';
 
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
@@ -220,13 +215,12 @@ class _AddImageState extends State<ClassifyImage> {
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
         bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
+        if (path.extension(path.basename(image.path)) == ".jpg" ||
+            path.extension(path.basename(image.path)) == ".jpeg" ||
+            path.extension(path.basename(image.path)) == ".png") {
           isThePhotoFormatGood = true;
         }
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
-          //TODO Make a popcard communicating that GIFs are not allowed.
           responseTitle = "Wybrano niepoprawyny format";
           responseText1 = "Rozszerzenie twojego zdjęcia jest ";
           responseText2 = "niepoprawne";
@@ -237,7 +231,7 @@ class _AddImageState extends State<ClassifyImage> {
         }
         final imageTemporary = await image.readAsBytes();
         setState(() {
-          webImage = imageTemporary;
+          globals.webImageClassify = imageTemporary;
         });
       } on PlatformException catch (e) {
         if (kDebugMode) {
@@ -252,13 +246,12 @@ class _AddImageState extends State<ClassifyImage> {
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
         bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
+        if (path.extension(path.basename(image.path)) == ".jpg" ||
+            path.extension(path.basename(image.path)) == ".jpeg" ||
+            path.extension(path.basename(image.path)) == ".png") {
           isThePhotoFormatGood = true;
         }
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
-          //TODO Make a popcard communicating that GIFs are not allowed.
           responseTitle = "Wybrano niepoprawyny format";
           responseText1 = "Rozszerzenie twojego zdjęcia jest ";
           responseText2 = "niepoprawne";
@@ -268,7 +261,7 @@ class _AddImageState extends State<ClassifyImage> {
           return;
         }
         final imageTemporary = File(image.path);
-        setState(() => mobileImage = imageTemporary);
+        setState(() => globals.mobileImageClassify = imageTemporary);
       } on PlatformException catch (e) {
         print('Failed to pick image: $e');
       }
@@ -293,9 +286,9 @@ class _AddImageState extends State<ClassifyImage> {
 
       Uint8List? bytes;
       if (kIsWeb) {
-        bytes = webImage;
+        bytes = globals.webImageClassify;
       } else {
-        bytes = File(mobileImage!.path).readAsBytesSync();
+        bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
       }
 
       String base64Image = base64Encode(bytes!);
@@ -303,22 +296,21 @@ class _AddImageState extends State<ClassifyImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
       LoaderDialog.showLoadingDialog(context, _LoaderDialog);
-      
-      try{
-      var response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonBody,
-        encoding: encoding,
-      ).timeout(Duration(seconds: 5));
 
-      int statusCode = response.statusCode;
-      String responseBody = response.body;
+      try {
+        var response = await http
+            .post(
+              uri,
+              headers: headers,
+              body: jsonBody,
+              encoding: encoding,
+            )
+            .timeout(Duration(seconds: 5));
 
-      setState(() {
-        Navigator.pop(context, _LoaderDialog.currentContext);
-        modelOutput = json.decode(response.body);
-      });
+        setState(() {
+          Navigator.pop(context, _LoaderDialog.currentContext);
+          globals.modelOutput = json.decode(response.body);
+        });
       } on SocketException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
@@ -368,19 +360,20 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 5 : 10,
           ),
           Center(
-            child: webImage == null && mobileImage == null
+            child: globals.webImageClassify == null &&
+                    globals.mobileImageClassify == null
                 ? Image.asset('assets/diet.png', width: 200, height: 200)
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: kIsWeb
                         ? Image.memory(
-                            webImage!,
+                            globals.webImageClassify!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
                           )
                         : Image.file(
-                            mobileImage!,
+                  globals.mobileImageClassify!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
@@ -390,7 +383,7 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 25 : 40,
           ),
           Center(
-            child: Text(modelOutput,
+            child: Text(globals.modelOutput,
                 style: GoogleFonts.comfortaa(
                   fontSize: 26,
                   textStyle: TextStyle(letterSpacing: 0),

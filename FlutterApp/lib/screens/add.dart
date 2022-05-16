@@ -11,10 +11,11 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
+import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
-import 'package:universal_platform/universal_platform.dart';
 import 'package:path/path.dart' as path;
+import 'package:universal_platform/universal_platform.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -161,11 +162,6 @@ class LoaderDialog {
   }
 }
 
-
-
-
-
-
 class AddImage extends StatefulWidget {
   const AddImage({Key? key}) : super(key: key);
 
@@ -174,10 +170,6 @@ class AddImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<AddImage> {
-  File? mobileImage;
-  Uint8List? webImage;
-  String mealName = "Nazwa twojej potrawy";
-
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
   Future pickImage(ImageSource source) async {
@@ -188,9 +180,9 @@ class _AddImageState extends State<AddImage> {
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
         bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
+        if (path.extension(path.basename(image.path)) == ".jpg" ||
+            path.extension(path.basename(image.path)) == ".jpeg" ||
+            path.extension(path.basename(image.path)) == ".png") {
           isThePhotoFormatGood = true;
         }
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
@@ -205,7 +197,7 @@ class _AddImageState extends State<AddImage> {
         }
         final imageTemporary = await image.readAsBytes();
         setState(() {
-          webImage = imageTemporary;
+          globals.webImageAdd = imageTemporary;
         });
       } on PlatformException catch (e) {
         if (kDebugMode) {
@@ -220,13 +212,12 @@ class _AddImageState extends State<AddImage> {
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
         bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
+        if (path.extension(path.basename(image.path)) == ".jpg" ||
+            path.extension(path.basename(image.path)) == ".jpeg" ||
+            path.extension(path.basename(image.path)) == ".png") {
           isThePhotoFormatGood = true;
         }
         if (!validateFileExtension(image) || !isThePhotoFormatGood) {
-          //TODO Make a popcard communicating that GIFs are not allowed.
           responseTitle = "Wybrano niepoprawyny format";
           responseText1 = "Rozszerzenie twojego zdjęcia jest ";
           responseText2 = "niepoprawne";
@@ -236,7 +227,7 @@ class _AddImageState extends State<AddImage> {
           return;
         }
         final imageTemporary = File(image.path);
-        setState(() => mobileImage = imageTemporary);
+        setState(() => globals.mobileImageAdd = imageTemporary);
       } on PlatformException catch (e) {
         print('Failed to pick image: $e');
       }
@@ -252,10 +243,10 @@ class _AddImageState extends State<AddImage> {
       String message = "";
       if (result == "") {
         message = "Nie wprowadzono żadnej nazwy";
-        mealName = "Brak";
+        globals.mealTag = "Brak";
       } else {
         message = "Wprowadzono $result ";
-        mealName = result;
+        globals.mealTag = result;
       }
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: const Duration(seconds: 5),
@@ -286,42 +277,44 @@ class _AddImageState extends State<AddImage> {
       Uint8List? bytes;
 
       if (kIsWeb) {
-        bytes = webImage;
+        bytes = globals.webImageAdd;
       } else {
-        bytes = File(mobileImage!.path).readAsBytesSync();
+        bytes = File(globals.mobileImageAdd!.path).readAsBytesSync();
       }
 
       String base64Image = base64Encode(bytes!);
       Map<String, dynamic> body = {
-        'mealName': mealName,
+        'mealName': globals.mealTag,
         'mealPhoto': base64Image
       };
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
 
-      try{
-      //TO DO Make a Catch for a error when user is posting a photo
-      var response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonBody,
-        encoding: encoding,
-      ).timeout(Duration(seconds: 1));
-      
-      int statusCode = response.statusCode;
-      String responseBody = response.body;
-      if (kDebugMode) {
-        print(responseBody);
-        print(statusCode);
-        print("OK");
-      }
-      responseTitle = "Status przesłania";
-      if (statusCode == 200) {
-        responseText1 = "Zdjęcie zostało ";
-        responseText2 = "poprawnie ";
-        responseText3 = "wysłane, odebrane i zapisane !";
-        responseColor = "Colors.green";
-      } 
+      try {
+        //TO DO Make a Catch for a error when user is posting a photo
+        var response = await http
+            .post(
+              uri,
+              headers: headers,
+              body: jsonBody,
+              encoding: encoding,
+            )
+            .timeout(Duration(seconds: 1));
+
+        int statusCode = response.statusCode;
+        String responseBody = response.body;
+        if (kDebugMode) {
+          print(responseBody);
+          print(statusCode);
+          print("OK");
+        }
+        responseTitle = "Status przesłania";
+        if (statusCode == 200) {
+          responseText1 = "Zdjęcie zostało ";
+          responseText2 = "poprawnie ";
+          responseText3 = "wysłane, odebrane i zapisane !";
+          responseColor = "Colors.green";
+        }
       } on TimeoutException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
@@ -368,19 +361,19 @@ class _AddImageState extends State<AddImage> {
             height: smallSreen() ? 5 : 10,
           ),
           Center(
-            child: webImage == null && mobileImage == null
+            child: globals.webImageAdd == null && globals.mobileImageAdd == null
                 ? Image.asset('assets/dish.png', width: 200, height: 200)
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: kIsWeb
                         ? Image.memory(
-                            webImage!,
+                            globals.webImageAdd!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
                           )
                         : Image.file(
-                            mobileImage!,
+                  globals.mobileImageAdd!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
@@ -390,7 +383,7 @@ class _AddImageState extends State<AddImage> {
             height: smallSreen() ? 25 : 40,
           ),
           Center(
-            child: Text(mealName,
+            child: Text(globals.mealTag,
                 style: GoogleFonts.comfortaa(
                   fontSize: 26,
                   textStyle: TextStyle(letterSpacing: 0),
