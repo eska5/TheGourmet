@@ -11,9 +11,12 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
+import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
-import 'package:universal_platform/universal_platform.dart';
 import 'package:path/path.dart' as path;
+import 'package:universal_platform/universal_platform.dart';
+
+import '../components/loaderdialog.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -23,147 +26,7 @@ String responseText2 = "";
 String responseText3 = "";
 String responseColor = "";
 
-//TEMPORARY
-final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
-
 class LoaderDialog2 {
-  static Future<void> showLoadingDialog(
-      BuildContext context, GlobalKey key) async {
-    //var wid = MediaQuery.of(context).size.width / 2;
-    return showDialog<void>(
-      context: context,
-      //barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.only(
-                left: 32, right: 32, top: 80, bottom: 100),
-            child: Material(
-              color: Colors.indigo,
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 18, right: 18, top: 16, bottom: 18),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    //crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            top: 20,
-                            bottom: 20), //apply padding to all four sides
-                        child: Text(responseTitle,
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.comfortaa(
-                              fontSize: 32,
-                              textStyle: const TextStyle(
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            top: 10,
-                            bottom: 20), //apply padding to all four sides
-                        child: RichText(
-                          text: TextSpan(
-                            text: responseText1,
-                            style: GoogleFonts.comfortaa(
-                              fontSize: 18,
-                              textStyle: const TextStyle(
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: responseText2,
-                                style: GoogleFonts.comfortaa(
-                                  fontSize: 18,
-                                  textStyle: TextStyle(
-                                      letterSpacing: 0,
-                                      fontWeight: FontWeight.bold,
-                                      color: responseColor == "Colors.green"
-                                          ? Colors.green
-                                          : Colors.red),
-                                ),
-                              ),
-                              TextSpan(
-                                text: responseText3,
-                                style: GoogleFonts.comfortaa(
-                                  fontSize: 18,
-                                  textStyle: const TextStyle(
-                                      letterSpacing: 0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              )
-                            ],
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const Divider(
-                        color: Colors.white,
-                        thickness: 0.2,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            top: 15,
-                            bottom: 15), //apply padding to all four sides
-                        child: SizedBox(
-                          width: 235, // <-- Your width
-                          height: 60, // <-- Your height
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              onPrimary: Colors.indigo,
-
-                              textStyle: TextStyle(fontSize: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(32.0)),
-                              //minimumSize: const Size(40, 60),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.exit_to_app_outlined, size: 28),
-                                SizedBox(width: 10),
-                                Text("Powrót"),
-                              ],
-                            ),
-                            onPressed: () => Navigator.pop(
-                                context, _LoaderDialog2.currentContext),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-
-
-
-class LoaderDialog {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
     return showDialog<void>(
@@ -201,12 +64,9 @@ class ClassifyImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<ClassifyImage> {
-  File? mobileImage;
-  Uint8List? webImage;
   TextEditingController inputText = new TextEditingController();
   TextEditingController recognizedMeal =
       TextEditingController(text: "Tutaj pojawi się wynik");
-  String modelOutput = 'Tutaj pojawi się wynik';
 
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
@@ -219,25 +79,20 @@ class _AddImageState extends State<ClassifyImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-        bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
-          isThePhotoFormatGood = true;
-        }
-        if (!validateFileExtension(image) || !isThePhotoFormatGood) {
-          //TODO Make a popcard communicating that GIFs are not allowed.
+
+        if (!validateFileExtension(image)) {
           responseTitle = "Wybrano niepoprawyny format";
           responseText1 = "Rozszerzenie twojego zdjęcia jest ";
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog2.showLoadingDialog(context, _LoaderDialog2);
+          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+              responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = await image.readAsBytes();
         setState(() {
-          webImage = imageTemporary;
+          globals.webImageClassify = imageTemporary;
         });
       } on PlatformException catch (e) {
         if (kDebugMode) {
@@ -251,24 +106,19 @@ class _AddImageState extends State<ClassifyImage> {
         final image = await ImagePicker()
             .pickImage(source: source, maxWidth: 400, maxHeight: 400);
         if (image == null) return;
-        bool isThePhotoFormatGood = false;
-        if (path.extension(path.basename(image.path)) == ".jpg"
-        || path.extension(path.basename(image.path)) == ".jpeg" 
-        || path.extension(path.basename(image.path)) == ".png") {
-          isThePhotoFormatGood = true;
-        }
-        if (!validateFileExtension(image) || !isThePhotoFormatGood) {
-          //TODO Make a popcard communicating that GIFs are not allowed.
+
+        if (!validateFileExtension(image)) {
           responseTitle = "Wybrano niepoprawyny format";
           responseText1 = "Rozszerzenie twojego zdjęcia jest ";
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog2.showLoadingDialog(context, _LoaderDialog2);
+          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+              responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = File(image.path);
-        setState(() => mobileImage = imageTemporary);
+        setState(() => globals.mobileImageClassify = imageTemporary);
       } on PlatformException catch (e) {
         print('Failed to pick image: $e');
       }
@@ -293,32 +143,31 @@ class _AddImageState extends State<ClassifyImage> {
 
       Uint8List? bytes;
       if (kIsWeb) {
-        bytes = webImage;
+        bytes = globals.webImageClassify;
       } else {
-        bytes = File(mobileImage!.path).readAsBytesSync();
+        bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
       }
 
       String base64Image = base64Encode(bytes!);
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
-      LoaderDialog.showLoadingDialog(context, _LoaderDialog);
-      
-      try{
-      var response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonBody,
-        encoding: encoding,
-      ).timeout(Duration(seconds: 5));
+      LoaderDialog2.showLoadingDialog(context, _LoaderDialog2);
 
-      int statusCode = response.statusCode;
-      String responseBody = response.body;
+      try {
+        var response = await http
+            .post(
+              uri,
+              headers: headers,
+              body: jsonBody,
+              encoding: encoding,
+            )
+            .timeout(Duration(seconds: 5));
 
-      setState(() {
-        Navigator.pop(context, _LoaderDialog.currentContext);
-        modelOutput = json.decode(response.body);
-      });
+        setState(() {
+          Navigator.pop(context, _LoaderDialog2.currentContext);
+          globals.modelOutput = json.decode(response.body);
+        });
       } on SocketException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
@@ -336,7 +185,6 @@ class _AddImageState extends State<ClassifyImage> {
         Navigator.pop(context, _LoaderDialog2.currentContext);
         LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
-      //LoaderDialog.showLoadingDialog(context, _LoaderDialog);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to send to server: $e');
@@ -368,19 +216,20 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 5 : 10,
           ),
           Center(
-            child: webImage == null && mobileImage == null
+            child: globals.webImageClassify == null &&
+                    globals.mobileImageClassify == null
                 ? Image.asset('assets/diet.png', width: 200, height: 200)
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: kIsWeb
                         ? Image.memory(
-                            webImage!,
+                            globals.webImageClassify!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
                           )
                         : Image.file(
-                            mobileImage!,
+                            globals.mobileImageClassify!,
                             width: 200,
                             height: 200,
                             fit: BoxFit.cover,
@@ -390,7 +239,7 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 25 : 40,
           ),
           Center(
-            child: Text(modelOutput,
+            child: Text(globals.modelOutput,
                 style: GoogleFonts.comfortaa(
                   fontSize: 26,
                   textStyle: TextStyle(letterSpacing: 0),
