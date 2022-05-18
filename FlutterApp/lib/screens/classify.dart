@@ -162,7 +162,7 @@ class _AddImageState extends State<ClassifyImage> {
               body: jsonBody,
               encoding: encoding,
             )
-            .timeout(Duration(seconds: 5));
+            .timeout(Duration(seconds: 30));
 
         setState(() {
           Navigator.pop(context, _LoaderDialog2.currentContext);
