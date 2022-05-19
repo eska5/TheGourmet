@@ -40,8 +40,18 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
 
 
 def classifyThePhoto(codedPhoto: str):
-    Labels = ['sausage', 'scrambled_eggs', 'banana', 'yellow_cheese', 'ham', 'salmon',
- 'pizza', 'carrot', 'bread', 'broccoli']
+    Labels = [
+        "banana",
+        "bread",
+        "broccoli",
+        "carrot",
+        "ham",
+        "pizza",
+        "salmon",
+        "sausage",
+        "scrambled_eggs",
+        "yellow_cheese",
+    ]
 
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert("RGB")
