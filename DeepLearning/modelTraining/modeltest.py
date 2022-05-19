@@ -4,23 +4,27 @@ import cv2
 import numpy as np
 import tensorflow as tf
 import time
+from pathlib import Path
 
 Labels = [
-    "ham",
-    "yellow_cheese",
-    "salmon",
-    "pizza",
-    "carrot",
-    "scrambled_eggs",
-    "bread",
-    "sausage",
-    "broccoli",
     "banana",
+    "bread",
+    "broccoli",
+    "carrot",
+    "ham",
+    "pizza",
+    "salmon",
+    "sausage",
+    "scrambled_eggs",
+    "yellow_cheese",
 ]
 # get the path/directory
-folder_dir = "C:\\Users\\LocalAdmin\\Desktop\\scripts\\testset"
-model = tf.keras.models.load_model("C:\\Users\\LocalAdmin\\Desktop\\model.h5")
+folder_dir = "C:\\Users\\LocalAdmin\\Desktop\\scripts\\pizzaset"
+model = tf.keras.models.load_model(
+    "C:\\Users\\LocalAdmin\\Downloads\\Telegram Desktop\\model.h5"
+)
 for images in os.listdir(folder_dir):
+    new_filename = Path(images).stem + ".jpg"
     print(images)
     # check if the image ends with png
     if images.endswith(".png") or images.endswith(".jpg") or images.endswith(".jpeg"):
