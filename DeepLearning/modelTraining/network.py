@@ -1,3 +1,4 @@
+from sqlalchemy import true
 import tensorflow as tf
 import wandb
 from wandb.keras import WandbCallback
@@ -35,7 +36,6 @@ def proc_img(filepath):
     df = pd.concat([filepath, labels], axis=1)
 
     # Shuffle the DataFrame and reset index
-    # CZY TO JEST POTRZEBNE?
     # df = df.sample(frac=1).reset_index(drop=True)
 
     return df
@@ -79,11 +79,11 @@ train_images = train_generator.flow_from_dataframe(
     batch_size=16,
     shuffle=True,
     seed=0,
-    rotation_range=15,
+    rotation_range=45,
     zoom_range=0.3,
     width_shift_range=0.2,
     height_shift_range=0.2,
-    shear_range=0.15,
+    shear_range=0.25,
     fill_mode="nearest",
 )
 
@@ -97,11 +97,11 @@ val_images = train_generator.flow_from_dataframe(
     batch_size=16,
     shuffle=True,
     seed=0,
-    rotation_range=15,
+    rotation_range=45,
     zoom_range=0.3,
     width_shift_range=0.2,
     height_shift_range=0.2,
-    shear_range=0.15,
+    shear_range=0.25,
     fill_mode="nearest",
 )
 

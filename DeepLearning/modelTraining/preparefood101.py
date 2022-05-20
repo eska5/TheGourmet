@@ -3,7 +3,7 @@ import shutil
 
 
 if __name__ == "__main__":
-    originalPath = "D:\\Politechnika\\FoodDataSets\\Food101prepared\\"
+    originalPath = "D:\\naszeJedzenie\\"
     try:
         os.mkdir(originalPath + "train")
     except:
@@ -19,15 +19,15 @@ if __name__ == "__main__":
 
     # train data set
 
-    for category in os.listdir("D:\\Politechnika\\FoodDataSets\\Food101\\images"):
+    for category in os.listdir("D:\\DATASET\\"):
         try:
             os.mkdir(originalPath + "train\\" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\Politechnika\\FoodDataSets\\Food101\\images\\" + category
+        imagesPath = "D:\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter == 700:
+            if counter == 350:
                 break
             else:
                 newImgPath = (
@@ -38,34 +38,34 @@ if __name__ == "__main__":
     print("train set done")
 
     # test data set
-    for category in os.listdir("D:\\Politechnika\\FoodDataSets\\Food101\\images"):
+    for category in os.listdir("D:\\DATASET\\"):
         try:
             os.mkdir(originalPath + "test\\" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\Politechnika\\FoodDataSets\\Food101\\images\\" + category
+        imagesPath = "D:\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 699:
+            if counter > 349:
                 newImgPath = (
                     originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 899:
+            if counter == 449:
                 break
             counter += 1
     print("test set done")
 
     # validation data set
-    for category in os.listdir("D:\\Politechnika\\FoodDataSets\\Food101\\images"):
+    for category in os.listdir("D:\\DATASET\\"):
         try:
             os.mkdir(originalPath + "validation\\" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\Politechnika\\FoodDataSets\\Food101\\images\\" + category
+        imagesPath = "D:\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 899:
+            if counter > 449:
                 newImgPath = (
                     originalPath
                     + "validation\\"
@@ -75,7 +75,7 @@ if __name__ == "__main__":
                     + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 1000:
+            if counter == 499:
                 break
             counter += 1
     print("validation set done")
