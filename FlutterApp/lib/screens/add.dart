@@ -132,6 +132,18 @@ class _AddImageState extends State<AddImage> {
       };
       Uint8List? bytes;
 
+      if (!validateRequest("Add")) {
+        responseTitle = "Nie wybrano zdjęcia lub podpisu potrawy";
+        responseText1 = "Zanim dodasz zdjęcie potrawy, ";
+        responseText2 = "";
+        responseText3 =
+            "załaduj zdjęcie z galerii lub aparatu i upewnij się, że dodano nazwę potrawy";
+        responseColor = "Colors.red";
+        LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+            responseText1, responseText2, responseText3, responseColor);
+        return;
+      }
+
       if (kIsWeb) {
         bytes = globals.webImageAdd;
       } else {
