@@ -3,61 +3,89 @@ import cv2
 import random
 import pickle
 from PIL import Image
+import numpy as np
 
 categories = []
-pathTrain = "C:\\Users\\Kuba\\Desktop\\zdjotka\\train\\"
-pathValidation = "C:\\Users\\Kuba\\Desktop\\zdjotka\\validation\\"
+pathTrain = "D:\\naszeJedzenie\\train\\"
+pathValidation = "D:\\naszeJedzenie\\validation\\"
+pathTest = "D:\\naszeJedzenie\\test\\"
 
 try:
-	os.mkdir("convertedTrain")
+    os.mkdir("D:\\naszeJedzenie\\convertedTrain")
 except:
-	pass
+    pass
 
 for category in os.listdir(pathTrain):
-	categories.append(category)
-	imagesPath = os.path.join(pathTrain,category)
-	print(imagesPath)
-	try:
-		os.mkdir("convertedTrain\\" + category)
-	except:
-		pass
-	for imgPath in os.listdir(imagesPath):
-		print(imgPath)
-		try:
-			basewidth = 500
-			img = Image.open(pathTrain+category+"\\"+imgPath).convert('RGB')
-			wpercent = (basewidth/float(img.size[0]))
-			hsize = int((float(img.size[1])*float(wpercent)))
-			img = img.resize((basewidth,hsize), Image.ANTIALIAS)
-			img.save(pathTrain.replace('train','')+"convertedTrain\\"+category + "\\"+imgPath)
-		except Exception as e:
-		       pass
+    categories.append(category)
+    imagesPath = os.path.join(pathTrain, category)
+    print(imagesPath)
+    try:
+        os.mkdir("D:\\naszeJedzenie\\convertedTrain\\" + category)
+    except:
+        pass
+    for imgPath in os.listdir(imagesPath):
+        print(imgPath)
+        # try:
+        img = Image.open(pathTrain + category + "\\" + imgPath).convert("RGB")
+        opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+        im = cv2.resize(opencvImage, (400, 400))
+        cv2.imwrite(
+            "D:\\naszeJedzenie\\convertedTrain\\" + category + "\\" + imgPath, im
+        )
+        # im.save("D:\\naszeJedzenie\\convertedTrain\\" + category + "\\" + imgPath)
+        # except Exception as e:
+        #     pass
 
 try:
-	os.mkdir("convertedValidation")
+    os.mkdir("D:\\naszeJedzenie\\convertedValidation")
 except:
-	pass
+    pass
 for category in os.listdir(pathValidation):
-	categories.append(category)
-	imagesPath = os.path.join(pathValidation,category)
-	print(imagesPath)
-	try:
-		os.mkdir("convertedValidation\\" + category)
-	except:
-		pass
-	for imgPath in os.listdir(imagesPath):
-		print(imgPath)
-		try:
-			basewidth = 500
-			img = Image.open(pathValidation+category+"\\"+imgPath).convert('RGB')
-			wpercent = (basewidth/float(img.size[0]))
-			hsize = int((float(img.size[1])*float(wpercent)))
-			img = img.resize((basewidth,hsize), Image.ANTIALIAS)
-			img.save(pathValidation.replace('validation','')+"convertedValidation\\"+category + "\\"+imgPath)
-		except Exception as e:
-		       pass
+    categories.append(category)
+    imagesPath = os.path.join(pathValidation, category)
+    print(imagesPath)
+    try:
+        os.mkdir("D:\\naszeJedzenie\\convertedValidation\\" + category)
+    except:
+        pass
+    for imgPath in os.listdir(imagesPath):
+        print(imgPath)
+        try:
+            img = Image.open(pathValidation + category + "\\" + imgPath).convert("RGB")
+            opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+            im = cv2.resize(opencvImage, (400, 400))
+            cv2.imwrite(
+                "D:\\naszeJedzenie\\convertedValidation\\" + category + "\\" + imgPath,
+                im,
+            )
+        except Exception as e:
+            pass
+
+try:
+    os.mkdir("D:\\naszeJedzenie\\convertedTest")
+except:
+    pass
+for category in os.listdir(pathTest):
+    categories.append(category)
+    imagesPath = os.path.join(pathTest, category)
+    print(imagesPath)
+    try:
+        os.mkdir("D:\\naszeJedzenie\\convertedTest\\" + category)
+    except:
+        pass
+    for imgPath in os.listdir(imagesPath):
+        print(imgPath)
+        try:
+            img = Image.open(pathTest + category + "\\" + imgPath).convert("RGB")
+            opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+            im = cv2.resize(opencvImage, (400, 400))
+            cv2.imwrite(
+                "D:\\naszeJedzenie\\convertedTest\\" + category + "\\" + imgPath, im
+            )
+            # im.save("D:\\naszeJedzenie\\convertedTest\\" + category + "\\" + imgPath)
+        except Exception as e:
+            pass
 
 
-
-#imgArray = cv2.imread(os.path.join(
+# imgArray = cv2.imread(os.path.join(
 #    path, img), cv2.IMREAD_GRAYSCALE)
