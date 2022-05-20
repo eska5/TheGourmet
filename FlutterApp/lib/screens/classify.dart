@@ -141,6 +141,17 @@ class _AddImageState extends State<ClassifyImage> {
         "Access-Control-Allow-Origin": "*"
       };
 
+      if (!validateRequest("Classify")) {
+        responseTitle = "Nie wybrano zdjęcia";
+        responseText1 = "Zanim poprosisz o rozpoznanie potrawy, ";
+        responseText2 = "";
+        responseText3 = "załaduj zdjęcie z galerii lub aparatu";
+        responseColor = "Colors.red";
+        LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+            responseText1, responseText2, responseText3, responseColor);
+        return;
+      }
+
       Uint8List? bytes;
       if (kIsWeb) {
         bytes = globals.webImageClassify;

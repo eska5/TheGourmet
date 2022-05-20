@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:new_ui/components/globals.dart' as globals;
 import 'package:universal_platform/universal_platform.dart';
 
 bool smallSreen() {
@@ -45,4 +46,35 @@ bool validateFileExtension(XFile image) {
     return true;
   }
   return false;
+}
+
+bool validateRequest(String mode) {
+  var imagePresent;
+  bool tagPresent = true;
+  if (mode == "Classify") {
+    if (UniversalPlatform.isWeb) {
+      imagePresent = globals.webImageClassify ?? false;
+    } else {
+      imagePresent = globals.mobileImageClassify ?? false;
+    }
+  } else if (mode == "Add") {
+    if (UniversalPlatform.isWeb) {
+      imagePresent = globals.webImageAdd ?? false;
+      if (globals.mealTag == "Nazwa twojej potrawy" ||
+          globals.mealTag == "Brak") {
+        tagPresent = false;
+      }
+    } else {
+      imagePresent = globals.mobileImageAdd ?? false;
+      if (globals.mealTag == "Nazwa twojej potrawy" ||
+          globals.mealTag == "Brak") {
+        tagPresent = false;
+      }
+    }
+  }
+
+  if (imagePresent == false || tagPresent == false) {
+    return false;
+  }
+  return true;
 }
