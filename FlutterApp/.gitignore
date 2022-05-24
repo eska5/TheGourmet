@@ -40,6 +40,10 @@ yarn-error.log*
 .pub-cache/
 .pub/
 build/
+
+#IF WE WANT TO DEVELOP FOR WINDOWS, THIS HAS TO BE REMOVED
+windows/
+
 coverage/
 lib/generated_plugin_registrant.dart
 # For library packages, don’t commit the pubspec.lock file.
