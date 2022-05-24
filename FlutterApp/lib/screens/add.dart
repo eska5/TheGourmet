@@ -281,7 +281,7 @@ class _AddImageState extends State<AddImage> {
           ),
           Center(
             child: TakeImageButton(
-                title: "Zrób zdjęcie",
+                title: "  Zrób zdjęcie   ",
                 icon: Icons.camera_alt_rounded,
                 onClicked: () => pickImage(ImageSource.camera)),
           ),
@@ -290,7 +290,7 @@ class _AddImageState extends State<AddImage> {
           ),
           Center(
             child: SubmitImageButton(
-                title: "Wyślij potrawę",
+                title: "Wyślij potrawę ",
                 icon: Icons.send_rounded,
                 onClicked: () => sendToServer()),
           ),
