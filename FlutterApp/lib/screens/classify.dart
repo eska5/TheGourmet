@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
-import 'package:path/path.dart' as path;
+import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import '../components/loaderdialog.dart';
@@ -125,6 +124,13 @@ class _AddImageState extends State<ClassifyImage> {
     }
   }
 
+  void _navigateAndDisplaySelection(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ModelResult()),
+    );
+  }
+
   Future categorizeThePhoto() async {
     try {
       if (!UniversalPlatform.isWeb) {
@@ -178,6 +184,7 @@ class _AddImageState extends State<ClassifyImage> {
         setState(() {
           Navigator.pop(context, _LoaderDialog2.currentContext);
           globals.modelOutput = json.decode(response.body);
+          globals.mealClassified = true;
         });
       } on SocketException {
         responseTitle = "Status przesłania";
@@ -250,11 +257,14 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 25 : 40,
           ),
           Center(
-            child: Text(globals.modelOutput,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 26,
-                  textStyle: TextStyle(letterSpacing: 0),
-                )),
+            child: NavigationButton(
+              title: "       Wynik           ",
+              icon: Icons.api_rounded,
+              onClicked: () => _navigateAndDisplaySelection(context),
+              backgroundColor: Colors.green[600],
+              fontSize: 20,
+              enabled: globals.mealClassified,
+            ),
           ),
           SizedBox(
             height: smallSreen() ? 25 : 40,
