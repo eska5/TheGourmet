@@ -34,15 +34,17 @@ Widget NavigationButton({
   required String title,
   required IconData icon,
   required VoidCallback onClicked,
+  required Color? backgroundColor,
+  required double fontSize,
 }) =>
     SizedBox(
       width: 235, // <-- Your width
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.indigo,
+          primary: backgroundColor,
           onPrimary: Colors.white,
-          textStyle: TextStyle(fontSize: 20),
+          textStyle: TextStyle(fontSize: fontSize),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
           //minimumSize: const Size(40, 60),

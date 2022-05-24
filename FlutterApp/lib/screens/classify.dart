@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/screens/result.dart';
 import 'package:path/path.dart' as path;
 import 'package:universal_platform/universal_platform.dart';
 
@@ -123,6 +124,31 @@ class _AddImageState extends State<ClassifyImage> {
         print('Failed to pick image: $e');
       }
     }
+  }
+
+  void _navigateAndDisplaySelection(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ModelResult()),
+    );
+    setState(() {
+      String message = "";
+      if (result == "") {
+        message = "Nie wprowadzono żadnej nazwy";
+        globals.mealTag = "Brak";
+      } else {
+        message = "Wprowadzono $result ";
+        globals.mealTag = result;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: const Duration(seconds: 5),
+        content: Text(message),
+        action: SnackBarAction(
+          label: 'Okej',
+          onPressed: () {},
+        ),
+      ));
+    });
   }
 
   Future categorizeThePhoto() async {
@@ -250,11 +276,13 @@ class _AddImageState extends State<ClassifyImage> {
             height: smallSreen() ? 25 : 40,
           ),
           Center(
-            child: Text(globals.modelOutput,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 26,
-                  textStyle: TextStyle(letterSpacing: 0),
-                )),
+            child: NavigationButton(
+              title: "Wynik",
+              icon: Icons.api_rounded,
+              onClicked: () => _navigateAndDisplaySelection(context),
+              backgroundColor: Colors.green[600],
+              fontSize: 20,
+            ),
           ),
           SizedBox(
             height: smallSreen() ? 25 : 40,

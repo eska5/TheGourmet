@@ -263,9 +263,12 @@ class _AddImageState extends State<AddImage> {
           ),
           Center(
             child: NavigationButton(
-                title: "Nazwij potrawę",
-                icon: Icons.text_fields_rounded,
-                onClicked: () => _navigateAndDisplaySelection(context)),
+              title: "Nazwij potrawę",
+              icon: Icons.text_fields_rounded,
+              onClicked: () => _navigateAndDisplaySelection(context),
+              backgroundColor: Colors.indigo,
+              fontSize: 20,
+            ),
           ),
           const SizedBox(
             height: 15,
