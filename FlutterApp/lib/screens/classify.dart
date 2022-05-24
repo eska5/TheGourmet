@@ -261,7 +261,7 @@ class _AddImageState extends State<ClassifyImage> {
           ),
           Center(
             child: UploadImageButton(
-                title: "Wybierz zdjęcie",
+                title: "Wybierz zdjęcie  ",
                 icon: Icons.image_rounded,
                 onClicked: () => pickImage(ImageSource.gallery)),
           ),
@@ -270,7 +270,7 @@ class _AddImageState extends State<ClassifyImage> {
           ),
           Center(
             child: TakeImageButton(
-                title: "Zrób zdjęcie",
+                title: "  Zrób zdjęcie      ",
                 icon: Icons.camera_alt_rounded,
                 onClicked: () => pickImage(ImageSource.camera)),
           ),
