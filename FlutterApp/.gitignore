@@ -41,7 +41,7 @@ yarn-error.log*
 .pub/
 build/
 
-#THIS ONE IS IMPORTANT
+#IF WE WANT TO DEVELOP FOR WINDOWS, THIS HAS TO BE REMOVED
 windows/
 
 coverage/
