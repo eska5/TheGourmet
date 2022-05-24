@@ -9,3 +9,4 @@ File? mobileImageAdd;
 Uint8List? webImageAdd;
 File? mobileImageClassify;
 Uint8List? webImageClassify;
+bool mealClassified = false;

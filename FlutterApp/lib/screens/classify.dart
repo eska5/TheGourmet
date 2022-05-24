@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +13,6 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/result.dart';
-import 'package:path/path.dart' as path;
 import 'package:universal_platform/universal_platform.dart';
 
 import '../components/loaderdialog.dart';
@@ -131,24 +129,6 @@ class _AddImageState extends State<ClassifyImage> {
       context,
       MaterialPageRoute(builder: (context) => const ModelResult()),
     );
-    setState(() {
-      String message = "";
-      if (result == "") {
-        message = "Nie wprowadzono żadnej nazwy";
-        globals.mealTag = "Brak";
-      } else {
-        message = "Wprowadzono $result ";
-        globals.mealTag = result;
-      }
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        duration: const Duration(seconds: 5),
-        content: Text(message),
-        action: SnackBarAction(
-          label: 'Okej',
-          onPressed: () {},
-        ),
-      ));
-    });
   }
 
   Future categorizeThePhoto() async {
@@ -204,6 +184,7 @@ class _AddImageState extends State<ClassifyImage> {
         setState(() {
           Navigator.pop(context, _LoaderDialog2.currentContext);
           globals.modelOutput = json.decode(response.body);
+          globals.mealClassified = true;
         });
       } on SocketException {
         responseTitle = "Status przesłania";
@@ -277,11 +258,12 @@ class _AddImageState extends State<ClassifyImage> {
           ),
           Center(
             child: NavigationButton(
-              title: "Wynik",
+              title: "       Wynik           ",
               icon: Icons.api_rounded,
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.green[600],
               fontSize: 20,
+              enabled: globals.mealClassified,
             ),
           ),
           SizedBox(

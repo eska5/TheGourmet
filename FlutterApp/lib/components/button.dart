@@ -36,6 +36,7 @@ Widget NavigationButton({
   required VoidCallback onClicked,
   required Color? backgroundColor,
   required double fontSize,
+  required bool enabled,
 }) =>
     SizedBox(
       width: 235, // <-- Your width
@@ -58,7 +59,7 @@ Widget NavigationButton({
             Text(title),
           ],
         ),
-        onPressed: onClicked,
+        onPressed: enabled ? onClicked : null,
       ),
     );
 

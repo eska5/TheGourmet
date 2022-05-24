@@ -14,7 +14,6 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
-import 'package:path/path.dart' as path;
 import 'package:universal_platform/universal_platform.dart';
 
 import '../components/loaderdialog.dart';
@@ -268,6 +267,7 @@ class _AddImageState extends State<AddImage> {
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.indigo,
               fontSize: 20,
+              enabled: true,
             ),
           ),
           const SizedBox(

@@ -1,8 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-
-import '../components/suggestions.dart';
 
 class ModelResult extends StatefulWidget {
   const ModelResult({Key? key}) : super(key: key);
@@ -19,7 +16,7 @@ class _Screen2State extends State<ModelResult> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wyniki modelu'),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.green[600],
         leading: GestureDetector(
           child: Icon(
             Icons.arrow_back_rounded,
@@ -34,7 +31,9 @@ class _Screen2State extends State<ModelResult> {
           },
         ),
       ),
-      body: Column(children: []),
+      body: Column(children: [
+        //CONTENT OF THE SCREEN
+      ]),
     );
   }
 }
