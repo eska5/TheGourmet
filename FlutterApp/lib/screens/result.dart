@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/popupcard/add_todo_button2.dart';
+import 'package:new_ui/components/globals.dart' as globals;
+
 
 class ModelResult extends StatefulWidget {
   const ModelResult({Key? key}) : super(key: key);
@@ -31,8 +35,22 @@ class _Screen2State extends State<ModelResult> {
           },
         ),
       ),
-      body: Column(children: [
-        //CONTENT OF THE SCREEN
+      body: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child:AddTodoButton2(key: Key("1"),chance: 0.2137, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "1. " + globals.modelOutput),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child:AddTodoButton2(key: Key("2"),chance: 0.4200, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "2. " + globals.modelOutput),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child:AddTodoButton2(key: Key("3"),chance: 0.6969, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput),
+          ),
       ]),
     );
   }

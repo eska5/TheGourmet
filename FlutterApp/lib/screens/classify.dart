@@ -260,6 +260,7 @@ class _AddImageState extends State<ClassifyImage> {
             child: NavigationButton(
               title: "       Wynik           ",
               icon: Icons.api_rounded,
+              //TUTAJ DODAJEMY ZMIENNE DO PRZEKAZANIA :)
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.green[600],
               fontSize: 20,
