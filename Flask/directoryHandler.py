@@ -62,19 +62,16 @@ def classifyThePhoto(codedPhoto: str):
     predict = model.predict(img)
 
     predictions = []
-    probability = []
-
     # 3 best labels and probabilities
     predictions.append(Labels[predict.argmax(axis=1)[0]])
-    probability.append(predict[0][[predict.argmax(axis=1)[0]]][0])
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
     predict[0][[predict.argmax(axis=1)[0]]] = 0
     predictions.append(Labels[predict.argmax(axis=1)[0]])
-    probability.append(predict[0][[predict.argmax(axis=1)[0]]][0])
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
     predict[0][[predict.argmax(axis=1)[0]]] = 0
     predictions.append(Labels[predict.argmax(axis=1)[0]])
-    probability.append(predict[0][[predict.argmax(axis=1)[0]]][0])
-
-    jsonMessage = json.dumps(predictions, probability)
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+    jsonMessage = json.dumps(predictions)
     return jsonMessage
 
 
