@@ -59,8 +59,19 @@ def classifyThePhoto(codedPhoto: str):
     model = tensorflow.keras.models.load_model("model.h5")
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
-    predict = model.predict(img).argmax(axis=1)
-    jsonMessage = json.dumps(Labels[predict[0]])
+    predict = model.predict(img)
+
+    predictions = []
+    # 3 best labels and probabilities
+    predictions.append(Labels[predict.argmax(axis=1)[0]])
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+    predict[0][[predict.argmax(axis=1)[0]]] = 0
+    predictions.append(Labels[predict.argmax(axis=1)[0]])
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+    predict[0][[predict.argmax(axis=1)[0]]] = 0
+    predictions.append(Labels[predict.argmax(axis=1)[0]])
+    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+    jsonMessage = json.dumps(predictions)
     return jsonMessage
 
 

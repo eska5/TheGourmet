@@ -29,6 +29,6 @@ for images in os.listdir(folder_dir):
         im = cv2.resize(opencvImage, (400, 400))
         img = np.expand_dims(im, 0)
         predict = model.predict(img).argmax(axis=1)
-        print(Labels[predict[0]])
+        print(Labels[predict])
         # print(model.predict(img))
         # time.sleep(4)
