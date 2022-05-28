@@ -183,7 +183,18 @@ class _AddImageState extends State<ClassifyImage> {
 
         setState(() {
           Navigator.pop(context, _LoaderDialog2.currentContext);
-          globals.modelOutput = json.decode(response.body);
+          // Wypisuje cały response
+          //print(json.decode(response.body));
+          globals.modelOutput = "test";//json.decode(response.body);
+          globals.modelOutput1 = json.decode(response.body)[0];
+          String temp = json.decode(response.body)[1];
+          globals.modelChance1 = double.parse(temp);
+          globals.modelOutput2 = json.decode(response.body)[2];
+          temp = json.decode(response.body)[3];
+          globals.modelChance2 = double.parse(temp);
+          globals.modelOutput3 = json.decode(response.body)[4];
+          temp = json.decode(response.body)[5];
+          globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
         });
       } on SocketException {
