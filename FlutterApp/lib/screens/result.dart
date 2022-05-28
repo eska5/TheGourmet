@@ -41,15 +41,15 @@ class _Screen2State extends State<ModelResult> {
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("1"),chance: 0.2137, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "1. " + globals.modelOutput),
+            child:AddTodoButton2(key: Key("1"),chance: globals.modelChance1, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "1. " + globals.modelOutput1),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("2"),chance: 0.4200, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "2. " + globals.modelOutput),
+            child:AddTodoButton2(key: Key("2"),chance: globals.modelChance2, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "2. " + globals.modelOutput2),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("3"),chance: 0.6969, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput),
+            child:AddTodoButton2(key: Key("3"),chance: globals.modelChance3, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput3),
           ),
       ]),
     );
