@@ -18,6 +18,10 @@ class CustomRectTween extends RectTween {
   Rect lerp(double t) {
     final elasticCurveValue = Curves.easeOut.transform(t);
     return Rect.fromLTRB(
+      //lerpDouble(begin!.left, end!.left, elasticCurveValue)!,
+      //lerpDouble(begin!.top, end!.top, elasticCurveValue)!,
+      //lerpDouble(begin!.right, end!.right, elasticCurveValue)!,
+      //lerpDouble(begin!.bottom, end!.bottom, elasticCurveValue)!,
       lerpDouble(begin!.left, end!.left, elasticCurveValue)!,
       lerpDouble(begin!.top, end!.top, elasticCurveValue)!,
       lerpDouble(begin!.right, end!.right, elasticCurveValue)!,
