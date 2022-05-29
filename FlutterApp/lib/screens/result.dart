@@ -5,6 +5,7 @@ import 'package:new_ui/popupcard/add_todo_button2.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/screens/report.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 
 class ModelResult extends StatefulWidget {
@@ -18,7 +19,6 @@ class ModelResult extends StatefulWidget {
 
 class _Screen2State extends State<ModelResult> {
   TextEditingController inputText = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,15 @@ class _Screen2State extends State<ModelResult> {
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("1"),chance: globals.modelChance1, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "1. " + globals.modelOutput1),
+            child:AddTodoButton2(key: Key("1"),chance: globals.modelChance1, mobileImageCliassify: UniversalPlatform.isWeb?globals.webImageClassify :globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "1. " + globals.modelOutput1),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("2"),chance: globals.modelChance2, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "2. " + globals.modelOutput2),
+            child:AddTodoButton2(key: Key("2"),chance: globals.modelChance2, mobileImageCliassify: UniversalPlatform.isWeb?globals.webImageClassify :globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "2. " + globals.modelOutput2),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child:AddTodoButton2(key: Key("3"),chance: globals.modelChance3, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput3),
+            child:AddTodoButton2(key: Key("3"),chance: globals.modelChance3, mobileImageCliassify: UniversalPlatform.isWeb?globals.webImageClassify :globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput3),
           ),
           const SizedBox(
             height: 300,
