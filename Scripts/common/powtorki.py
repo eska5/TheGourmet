@@ -1,7 +1,4 @@
 import os
-import filecmp
-import cv2
-from isort import file
 
 
 def change_ext(filename):
@@ -11,7 +8,6 @@ def change_ext(filename):
 
 
 def unique(list1):
-
     # initialize a null list
     unique_list = []
 
@@ -24,7 +20,7 @@ def unique(list1):
     return unique_list
 
 
-directory = "C:\\Users\\LocalAdmin\\Desktop\\DATASET\\apple"
+directory = "C:\\Users\\LocalAdmin\\TheGourmet\\Scripts\\ImageScrapper\\photos\\broccoli"
 
 counter1 = 0
 counter2 = 0
