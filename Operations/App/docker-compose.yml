@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  web:
+    container_name: flutter
+    build: /var/data/TheGourmet/FlutterApp
+    volumes:
+    - ./conf.d:/etc/nginx/conf.d/
+    - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/etc/nginx/certs/cr.crt
+    - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/etc/nginx/certs/cr.key
+    ports:
+    - "80:80"
+    - "443:443"
+    depends_on:
+      - backend
+  backend:
+    container_name: flask
+    build: /var/data/TheGourmet/Flask
+    volumes:
+    - /home/azureuser/model.h5:/code/model.h5
+    - /home/azureuser/data:/code/data
+    - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/code/cert.pem
+    - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/code/privkey.pem   
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+
+
