@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   web:
-    container_name: gourmet-flutter
+    container_name: flutter
     build: /var/data/TheGourmet/FlutterApp
     volumes:
     - ./conf.d:/etc/nginx/conf.d/
@@ -12,9 +12,9 @@ services:
     - "80:80"
     - "443:443"
     depends_on:
-      - flask
-  flask:
-    container_name: gourmet-meals
+      - backend
+  backend:
+    container_name: flask
     build: /var/data/TheGourmet/Flask
     volumes:
     - /home/azureuser/model.h5:/code/model.h5
