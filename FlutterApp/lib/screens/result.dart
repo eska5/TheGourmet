@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/popupcard/add_todo_button2.dart';
 import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/components/button.dart';
+import 'package:new_ui/screens/report.dart';
 
 
 class ModelResult extends StatefulWidget {
@@ -12,8 +14,11 @@ class ModelResult extends StatefulWidget {
   _Screen2State createState() => _Screen2State();
 }
 
+
+
 class _Screen2State extends State<ModelResult> {
   TextEditingController inputText = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,6 @@ class _Screen2State extends State<ModelResult> {
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
-        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Align(
             alignment: Alignment.topCenter,
@@ -51,7 +55,20 @@ class _Screen2State extends State<ModelResult> {
             alignment: Alignment.topCenter,
             child:AddTodoButton2(key: Key("3"),chance: globals.modelChance3, mobileImageCliassify: globals.mobileImageClassify, data: "Tresc tutaj", modelOutput: "3. " + globals.modelOutput3),
           ),
+          const SizedBox(
+            height: 300,
+          ),
+          Align(alignment: Alignment.bottomCenter ,
+          child: SubmitImageButton(title: "Złe wyniki", icon: Icons.report_rounded, onClicked: () => _navigateAndDisplaySelection2(context)),
+          ),
       ]),
     );
   }
 }
+
+  void _navigateAndDisplaySelection2(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ModelResult2()),
+    );
+  }

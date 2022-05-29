@@ -71,6 +71,18 @@ bool validateRequest(String mode) {
         tagPresent = false;
       }
     }
+  } else if (mode == "Report") {
+    if (UniversalPlatform.isWeb) {
+      imagePresent = globals.webImageClassify ?? false;
+      if (globals.ReportMealName == "") {
+        tagPresent = false;
+      }
+    } else {
+      imagePresent = globals.mobileImageClassify ?? false;
+      if (globals.ReportMealName == "") {
+        tagPresent = false;
+      }
+    }
   }
 
   if (imagePresent == false || tagPresent == false) {
