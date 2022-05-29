@@ -101,7 +101,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                   //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 20,
@@ -109,24 +109,24 @@ class _AddTodoPopupCard extends StatelessWidget {
                       child: Text("O projekcie",
                           style: GoogleFonts.comfortaa(
                             fontSize: 32,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           )),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 10,
                           bottom: 20), //apply padding to all four sides
                       child: Text(
-                          "Celem aplikacji jest zbieranie podpisanych zdjęć żywności, które potem użyjemy do uczenia modelu sieci neuronowej, której zadaniem będzie rozpoznawanie jedzenia na podstwie zdjęć. Dziękujemy za wkład i poświęcony czas.",
+                          "Celem aplikacji jest zbieranie podpisanych zdjęć żywności, których potem użyjemy do uczenia modelu sieci neuronowej, której zadaniem będzie rozpoznawanie jedzenia na podstawie zdjęć. Dziękujemy za wkład i poświęcony czas.",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.comfortaa(
                             fontSize: 18,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -137,7 +137,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                       thickness: 0.2,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 10,
@@ -145,24 +145,24 @@ class _AddTodoPopupCard extends StatelessWidget {
                       child: Text("Instrukcja",
                           style: GoogleFonts.comfortaa(
                             fontSize: 32,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           )),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 10,
                           bottom: 20), //apply padding to all four sides
                       child: Text(
-                          "W podstronie \"Dodaj potrawę\", znajduję się przycisk \"Wybierz zdjęcie\", użyj go aby wybrać zdjęcie z galerii albo zrobić je aparatem. Następnie podpisz zdjęcie używając pola do wprowadzania tekstu. Jeśli nazwa potrawy, którą chcesz wprowadzić znajduję się w panelu sugestii, skorzystaj z podpowiedzi. Po wprowadzeniu nazwy i obrazka, kliknij przycisk wyślij.",
+                          "W podstronie \"Dodaj potrawę\" znajduje się przycisk \"Wybierz zdjęcie\". Użyj go, aby wybrać zdjęcie z galerii albo zrobić je aparatem. Następnie podpisz zdjęcie, używając pola do wprowadzania tekstu. Jeśli nazwa potrawy, którą chcesz wprowadzić znajduje się w panelu sugestii, skorzystaj z podpowiedzi. Po wprowadzeniu nazwy i obrazka, kliknij przycisk \"Wyślij\".",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.comfortaa(
                             fontSize: 18,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -173,7 +173,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                       thickness: 0.2,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 15,
@@ -194,9 +194,9 @@ class _AddTodoPopupCard extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(Icons.exit_to_app_outlined, size: 28),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10),
                               Text("Powrót"),
                             ],
                           ),

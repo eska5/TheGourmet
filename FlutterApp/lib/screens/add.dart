@@ -212,18 +212,17 @@ class _AddImageState extends State<AddImage> {
       //child: SingleChildScrollView(
       child: ListView(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(55.0),
         children: [
           SizedBox(
             height: smallSreen() ? 5 : 10,
           ),
           Center(
             child: Text(
-                'Dodaj nową potrawę do bazy danych!\n1. Zrób albo wybierz zdjęcie\n2. Nazwij je\n3. Wyślij',
-                textAlign: TextAlign.left,
-                style: GoogleFonts.caveat(
-                  fontSize: 25,
-                )),
+              'Krótka instrukcja:\nZrób albo wybierz zdjęcie,\nnazwij je i dodaj do bazy danych,\nklikając wyślij.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.comfortaa(fontSize: 16),
+            ),
           ),
           SizedBox(
             height: smallSreen() ? 5 : 10,
@@ -253,7 +252,7 @@ class _AddImageState extends State<AddImage> {
           Center(
             child: Text(globals.mealTag,
                 style: GoogleFonts.comfortaa(
-                  fontSize: 26,
+                  fontSize: 24,
                   textStyle: TextStyle(letterSpacing: 0),
                 )),
           ),
