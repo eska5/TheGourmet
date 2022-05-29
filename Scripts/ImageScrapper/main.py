@@ -1,27 +1,8 @@
 import os
 
+import cleaner as cleaner
 from GoogleImageScrapper import GoogleImageScraper
 from patch import webdriver_executable
-import cleaner as cleaner
-
-def change_ext(filename):
-    my_file = filename
-    base = os.path.splitext(my_file)[0]
-    os.rename(my_file, base + ".jpg")
-
-
-def unique(list1):
-    # initialize a null list
-    unique_list = []
-
-    # traverse for all elements
-    for x in list1:
-        # check if exists in unique_list or not
-        if x not in unique_list:
-            unique_list.append(x)
-
-    return unique_list
-
 
 if __name__ == "__main__":
     # Define file path
@@ -37,8 +18,8 @@ if __name__ == "__main__":
     # for food in meals:
     #    search_keys.append(food[0:-1])
     # Parameters
-    search_keys = ["fluffy eggs scrambled", "klasyczna jajecznica"]
-    number_of_images = 350
+    search_keys = ["scrambled_eggs"]
+    number_of_images = 10
     headless = True
     min_resolution = (400, 400)
     max_resolution = (9999, 9999)
