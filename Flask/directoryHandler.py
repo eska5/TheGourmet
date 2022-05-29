@@ -63,14 +63,10 @@ def classifyThePhoto(codedPhoto: str):
 
     predictions = []
     # 3 best labels and probabilities
-    predictions.append(Labels[predict.argmax(axis=1)[0]])
-    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
-    predict[0][[predict.argmax(axis=1)[0]]] = 0
-    predictions.append(Labels[predict.argmax(axis=1)[0]])
-    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
-    predict[0][[predict.argmax(axis=1)[0]]] = 0
-    predictions.append(Labels[predict.argmax(axis=1)[0]])
-    predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+    for i in range(0, 3):
+        predictions.append(Labels[predict.argmax(axis=1)[0]])
+        predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+        predict[0][[predict.argmax(axis=1)[0]]] = 0
     jsonMessage = json.dumps(predictions)
     return jsonMessage
 
@@ -83,3 +79,35 @@ def mealsList():
         mealsJson = json.dumps(newLines)
     file.close()
     return mealsJson
+
+
+def saveBadResult(result: str, actual_result: str, codedPhoto: str) -> str:
+    dir_name = result + "_" + actual_result
+    # If there is no such directory create the dir
+    if os.path.isdir("data/" + dir_name) == False:
+        os.mkdir("data/" + dir_name)
+        # creating number.txt that counts files
+        with open("data/" + dir_name + "/number.txt", "a", encoding="utf8") as file:
+            file.write("0")
+        file.close()
+        # adding line to data/meals.txt
+        with open("data/faulties.txt", "a", encoding="utf8") as file:
+            file.write(dir_name + "\n")
+        file.close()
+
+    # getting the number
+    numberOfPhotos = 0
+    with open("data/" + dir_name + "/number.txt", "r", encoding="utf8") as file:
+        numberOfPhotos = file.read()
+    file.close()
+
+    # decoding base64 to a file
+    decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
+    imageRgb = decodedImage.convert("RGB")
+    imageRgb.save("data/" + dir_name + "/" + numberOfPhotos + ".jpg")
+    numberOfPhotos = int(numberOfPhotos) + 1
+    # change the number of files in number.txt
+    with open("data/" + dir_name + "/number.txt", "w", encoding="utf8") as file:
+        file.write(str(numberOfPhotos))
+    file.close()
+    return "OK"

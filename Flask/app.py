@@ -1,5 +1,6 @@
-from flask import Flask, redirect, url_for, request
-from flask_cors import CORS, cross_origin
+from flask import Flask, request
+from flask_cors import CORS
+
 import directoryHandler as dirHandler
 
 app = Flask(__name__)
@@ -26,6 +27,14 @@ def suggestMeals():
     suggestions = dirHandler.mealsList()
     return suggestions
 
+
+@app.route("/badresult", methods=["POST"], strict_slashes=False)
+def badresult():
+    result = request.json["modeloutput"]
+    actual_result = request.json["useroutput"]
+    photo = request.json["mealPhoto"]
+    response = dirHandler.saveBadResult(result, actual_result, photo)
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
