@@ -2,7 +2,7 @@ import os
 
 from GoogleImageScrapper import GoogleImageScraper
 from patch import webdriver_executable
-
+import cleaner as cleaner
 
 def change_ext(filename):
     my_file = filename
@@ -37,8 +37,8 @@ if __name__ == "__main__":
     # for food in meals:
     #    search_keys.append(food[0:-1])
     # Parameters
-    search_keys = ["pieczony brokuł"]
-    number_of_images = 300
+    search_keys = ["fluffy eggs scrambled", "klasyczna jajecznica"]
+    number_of_images = 350
     headless = True
     min_resolution = (400, 400)
     max_resolution = (9999, 9999)
@@ -62,22 +62,7 @@ if __name__ == "__main__":
             i += 1
         f.close()
         image_scrapper.save_images(image_urls)
-
-    counter1 = 0
-    counter2 = 0
-    listaDoUsuniecia = []
-    for filename in os.listdir(image_path):
-        f = os.path.join(image_path, filename)
-        for filename2 in os.listdir(image_path):
-            f2 = os.path.join(image_path, filename2)
-            if counter1 > counter2 and open(f, "rb").read() == open(f2, "rb").read():
-                listaDoUsuniecia.append(f2)
-            counter2 += 1
-        counter2 = 0
-        counter1 += 1
-    print(unique(listaDoUsuniecia))
-    for filename in unique(listaDoUsuniecia):
-        os.remove(filename)
+        cleaner.delete_duplicates(search_key)
 
     # Release resources
     del image_scrapper
