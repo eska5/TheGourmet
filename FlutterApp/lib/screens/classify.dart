@@ -217,18 +217,17 @@ class _AddImageState extends State<ClassifyImage> {
       alignment: Alignment.center,
       child: ListView(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(55.0),
         children: [
           SizedBox(
             height: smallSreen() ? 5 : 10,
           ),
           Center(
             child: Text(
-                'Rozpoznaj swoją potrawę!\n1. Zrób albo wybierz zdjęcie\n2. Kliknij przycisk rozpoznaj i poczekaj na wynik',
-                textAlign: TextAlign.left,
-                style: GoogleFonts.caveat(
-                  fontSize: 25,
-                )),
+              'Krótka instrukcja:\nZrób albo wybierz zdjęcie,\na następnie kliknij przycisk\nrozpoznaj i poczekaj na wynik.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.comfortaa(fontSize: 16),
+            ),
           ),
           SizedBox(
             height: smallSreen() ? 5 : 10,
