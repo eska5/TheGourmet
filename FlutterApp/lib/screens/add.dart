@@ -251,8 +251,9 @@ class _AddImageState extends State<AddImage> {
           ),
           Center(
             child: Text(globals.mealTag,
+                textAlign: TextAlign.center,
                 style: GoogleFonts.comfortaa(
-                  fontSize: 24,
+                  fontSize: 22,
                   textStyle: TextStyle(letterSpacing: 0),
                 )),
           ),
