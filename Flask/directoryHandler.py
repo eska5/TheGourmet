@@ -43,7 +43,8 @@ def classifyThePhoto(codedPhoto: str):
     Labels = [
         'broccoli',
         'caesar_salad',
-        'carrot' 'cheesecake',
+        'carrot',
+        'cheesecake',
         'chicken_wings',
         'chocolate_cake',
         'cup_cakes',
