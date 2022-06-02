@@ -19,19 +19,19 @@ bool smallSreen() {
 String getDomain(int mode) {
   if (UniversalPlatform.isAndroid) {
     if (mode == 1) {
-      return "https://gourmetapp.net:5000";
+      return "https://gourmetapp.net";
     } else {
       return "http://10.0.2.2:5000";
     }
   } else if (UniversalPlatform.isIOS) {
     if (mode == 1) {
-      return "https://gourmetapp.net:5000";
+      return "https://gourmetapp.net";
     } else {
       return "http://localhost:5000";
     }
   } else if (UniversalPlatform.isWeb) {
     if (mode == 1) {
-      return "https://gourmetapp.net:5000";
+      return "https://gourmetapp.net";
     } else {
       return "http://localhost:5000";
     }
