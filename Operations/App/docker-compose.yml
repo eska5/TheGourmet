@@ -4,10 +4,12 @@ services:
   web:
     container_name: flutter
     build: /var/data/TheGourmet/FlutterApp
+    network_mode: "host"
     volumes:
     - /var/data/TheGourmet/Operations/App/default.conf:/etc/nginx/conf.d/default.conf
     - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/etc/nginx/certs/cr.crt
     - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/etc/nginx/certs/cr.key
+    - /var/data/TheGourmet/logs:/var/log/nginx
     ports:
     - "80:80"
     - "443:443"
