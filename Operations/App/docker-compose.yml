@@ -3,7 +3,7 @@ version: '3.4'
 services:
   web:
     container_name: flutter
-    build: /var/data/TheGourmet/FlutterApp
+    image: flutter:latest
     network_mode: "host"
     volumes:
     - /var/data/TheGourmet/Operations/App/default.conf:/etc/nginx/conf.d/default.conf
@@ -17,7 +17,7 @@ services:
       - backend
   backend:
     container_name: flask
-    build: /var/data/TheGourmet/Flask
+    image: backend:latest
     volumes:
     - /home/azureuser/model.h5:/code/model.h5
     - /home/azureuser/data:/code/data
@@ -27,5 +27,3 @@ services:
       - 5000
     ports:
       - "5000:5000"
-
-
