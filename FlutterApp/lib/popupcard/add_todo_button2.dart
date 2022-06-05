@@ -22,7 +22,8 @@ class AddTodoButton2 extends StatelessWidget {
   dynamic modelOutput;
   dynamic chance;
   dynamic data;
-  AddTodoButton2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data}) : super(key: key);
+  dynamic chosenColor;
+  AddTodoButton2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data, required this.chosenColor}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +31,7 @@ class AddTodoButton2 extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-            return _AddTodoPopupCard2(key:key, modelOutput: modelOutput,chance: chance,data: data, mobileImageCliassify: mobileImageCliassify);
+            return _AddTodoPopupCard2(key:key, modelOutput: modelOutput,chance: chance,data: data, mobileImageCliassify: mobileImageCliassify, chosenColor: chosenColor);
           }));
         },
         child: Hero(
@@ -39,7 +40,7 @@ class AddTodoButton2 extends StatelessWidget {
             return CustomRectTween(begin: begin!, end: end!);
           },
           child: Material(
-              color: Colors.indigo,
+              color: chosenColor,
               shadowColor: Colors.blue,
               elevation: 2,
               shape: RoundedRectangleBorder(
@@ -85,7 +86,8 @@ class _AddTodoPopupCard2 extends StatelessWidget {
   dynamic modelOutput;
   dynamic chance;
   dynamic data;
-  _AddTodoPopupCard2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data}) : super(key: key);
+  Color chosenColor;
+  _AddTodoPopupCard2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data, required this.chosenColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +101,7 @@ class _AddTodoPopupCard2 extends StatelessWidget {
             return CustomRectTween(begin: begin!, end: end!);
           },
           child: Material(
-            color: Colors.indigo,
+            color: chosenColor,
             elevation: 2,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
@@ -224,7 +226,7 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                             ],
                           ),
                           onPressed: () =>
-                              Navigator.pop(context, _AddTodoPopupCard2(key:key,mobileImageCliassify: mobileImageCliassify,modelOutput: modelOutput,chance: chance,data: data)),
+                              Navigator.pop(context, _AddTodoPopupCard2(key:key,mobileImageCliassify: mobileImageCliassify,modelOutput: modelOutput,chance: chance,data: data, chosenColor: chosenColor,)),
                         ),
                       ),
                     )
