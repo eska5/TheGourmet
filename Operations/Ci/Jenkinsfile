@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clean up') {
+            steps {
+                buildName "${Name}"
+                sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
+                echo 'containers stopped'
+                script{
+                    if (params.Flask && params.Flask){
+                        sh 'yes | sudo docker system prune -a --volumes';
+                        echo 'system pruned'
+                    }
+                    else if (params.Flask){
+                        sh 'sudo docker rmi backend:latest';
+                        echo 'flask image deleted'
+                    }
+                    else if (params.Flutter){
+                        sh 'sudo docker rmi flutter:latest';
+                        echo 'flutter image deleted'
+                    }
+                }
+                sh 'sudo rm -rf /var/data/TheGourmet'
+                echo 'old repo deleted'
+                }
+        }
+        stage('Code checkout') {
+            steps {
+                sh 'cd /var/data; git clone -b ${Branch} https://github.com/eska5/TheGourmet.git'
+                echo "Repository cloned"
+            }
+        }
+        stage('Build back-end') {
+            when {
+                expression { return params.Flask }
+            }
+            steps {
+                sh 'cd /var/data/TheGourmet/Flask; sudo docker build -t backend .'
+                echo "backend image build"
+            }
+        }
+        stage('Build front-end') {
+            when {
+                expression { return params.Flutter }
+            }
+            steps {
+                sh 'cd /var/data/TheGourmet/FlutterApp; sudo docker build -t flutter .'
+                echo "frontend image build"
+            }
+        }
+        stage('App startup') {
+            steps {
+                sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose up -d'
+                echo "App build finished successfull"
+            }
+        }
+        
+    }
+}

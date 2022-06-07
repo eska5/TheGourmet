@@ -52,7 +52,6 @@ def classifyThePhoto(codedPhoto: str):
         "Jajecznica",
         "Ser żółty",
     ]
-
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert("RGB")
     opencvImage = cv2.cvtColor(np.array(imageRgb), cv2.COLOR_RGB2BGR)
@@ -60,7 +59,7 @@ def classifyThePhoto(codedPhoto: str):
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
     predict = model.predict(img)
-
+    print("hehe TESTTESTTEST")
     predictions = []
     # 3 best labels and probabilities
     for i in range(0, 3):
