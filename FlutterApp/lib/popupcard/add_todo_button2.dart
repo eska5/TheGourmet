@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-
 import 'custom_rect_tween.dart';
 import 'hero_dialog_route.dart';
 
@@ -23,15 +22,28 @@ class AddTodoButton2 extends StatelessWidget {
   dynamic chance;
   dynamic data;
   dynamic chosenColor;
-  AddTodoButton2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data, required this.chosenColor}) : super(key: key);
+  AddTodoButton2(
+      {Key? key,
+      required this.mobileImageCliassify,
+      required this.modelOutput,
+      required this.chance,
+      required this.data,
+      required this.chosenColor})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12,top: 12),
+      padding: const EdgeInsets.only(bottom: 12, top: 12),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-            return _AddTodoPopupCard2(key:key, modelOutput: modelOutput,chance: chance,data: data, mobileImageCliassify: mobileImageCliassify, chosenColor: chosenColor);
+            return _AddTodoPopupCard2(
+                key: key,
+                modelOutput: modelOutput,
+                chance: chance,
+                data: data,
+                mobileImageCliassify: mobileImageCliassify,
+                chosenColor: chosenColor);
           }));
         },
         child: Hero(
@@ -41,13 +53,13 @@ class AddTodoButton2 extends StatelessWidget {
           },
           child: Material(
               color: chosenColor,
-              shadowColor: Colors.blue,
+              shadowColor: Colors.indigo[50],
               elevation: 2,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32)),
               child: SizedBox(
-                  width: 190, // <-- Your width
-                  height: 55, // <-- Your height
+                  width: 235, // <-- Your width
+                  height: 60, // <-- Your height
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +70,7 @@ class AddTodoButton2 extends StatelessWidget {
                       Text(
                         modelOutput,
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 23,
                           letterSpacing: 0,
                           color: Colors.white,
                         ),
@@ -87,7 +99,14 @@ class _AddTodoPopupCard2 extends StatelessWidget {
   dynamic chance;
   dynamic data;
   Color chosenColor;
-  _AddTodoPopupCard2({Key? key,required this.mobileImageCliassify,required this.modelOutput,required this.chance,required this.data, required this.chosenColor}) : super(key: key);
+  _AddTodoPopupCard2(
+      {Key? key,
+      required this.mobileImageCliassify,
+      required this.modelOutput,
+      required this.chance,
+      required this.data,
+      required this.chosenColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +147,6 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                                 color: Colors.white),
                           )),
                     ),
-
                     Padding(
                       padding: EdgeInsets.only(
                           left: 15,
@@ -136,20 +154,20 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                           top: 10,
                           bottom: 20), //apply padding to all four sides
                       child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: UniversalPlatform.isWeb
-                        ? Image.memory(
-                            mobileImageCliassify,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            mobileImageCliassify,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
+                          borderRadius: BorderRadius.circular(25),
+                          child: UniversalPlatform.isWeb
+                              ? Image.memory(
+                                  mobileImageCliassify,
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.file(
+                                  mobileImageCliassify,
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                )),
                     ),
                     const Divider(
                       color: Colors.white,
@@ -161,7 +179,10 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                           right: 15,
                           top: 10,
                           bottom: 20), //apply padding to all four sides
-                      child: Text( "Pewnosc: " + (chance*100).toStringAsFixed(2) + "%.",
+                      child: Text(
+                          "Pewnosc: " +
+                              (chance * 100).toStringAsFixed(2) +
+                              "%.",
                           style: GoogleFonts.comfortaa(
                             fontSize: 20,
                             textStyle: TextStyle(
@@ -174,15 +195,13 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                       color: Colors.white,
                       thickness: 0.2,
                     ),
-
                     Padding(
                       padding: EdgeInsets.only(
                           left: 15,
                           right: 15,
                           top: 10,
                           bottom: 20), //apply padding to all four sides
-                      child: Text(
-                          data,
+                      child: Text(data,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.comfortaa(
                             fontSize: 18,
@@ -196,7 +215,6 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                       color: Colors.white,
                       thickness: 0.2,
                     ),
-                    
                     Padding(
                       padding: EdgeInsets.only(
                           left: 15,
@@ -225,8 +243,16 @@ class _AddTodoPopupCard2 extends StatelessWidget {
                               Text("Powrót"),
                             ],
                           ),
-                          onPressed: () =>
-                              Navigator.pop(context, _AddTodoPopupCard2(key:key,mobileImageCliassify: mobileImageCliassify,modelOutput: modelOutput,chance: chance,data: data, chosenColor: chosenColor,)),
+                          onPressed: () => Navigator.pop(
+                              context,
+                              _AddTodoPopupCard2(
+                                key: key,
+                                mobileImageCliassify: mobileImageCliassify,
+                                modelOutput: modelOutput,
+                                chance: chance,
+                                data: data,
+                                chosenColor: chosenColor,
+                              )),
                         ),
                       ),
                     )
