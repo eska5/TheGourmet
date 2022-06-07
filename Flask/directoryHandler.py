@@ -3,11 +3,9 @@ import json
 import os
 from io import BytesIO
 
-import app as main
 import cv2
 import numpy as np
 import tensorflow
-import time
 from PIL import Image
 
 
@@ -41,10 +39,7 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     file.close()
 
 
-def classifyThePhoto(codedPhoto: str, model):
-    print("-------------------------------------")
-    print(type(model))
-    start = time.time()
+def classifyThePhoto(codedPhoto: str):
     Labels = [
         "broccoli",
         "caesar_salad",
@@ -76,18 +71,10 @@ def classifyThePhoto(codedPhoto: str, model):
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert("RGB")
     opencvImage = cv2.cvtColor(np.array(imageRgb), cv2.COLOR_RGB2BGR)
-    first_stage = time.time()
-    print("[INFO] DECODING 1 time: " + str(first_stage - start))
-
-    # model = tensorflow.keras.models.load_model("model.h5")
+    model = tensorflow.keras.models.load_model("model.h5")
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
-    second_stage = time.time()
-    print("[INFO] LOADING MODEL 2 time: " + str(second_stage - start))
-
     predict = model.predict(img)
-    third_stage = time.time()
-    print("[INFO] MODEL PREDICT 3 time: " + str(third_stage - start))
 
     predictions = []
     # 3 best labels and probabilities
@@ -96,8 +83,6 @@ def classifyThePhoto(codedPhoto: str, model):
         predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
         predict[0][[predict.argmax(axis=1)[0]]] = 0
     jsonMessage = json.dumps(predictions)
-    end = time.time()
-    print("[INFO] JOB FINISHED time: " + str(end - start))
     return jsonMessage
 
 
