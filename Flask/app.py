@@ -6,10 +6,11 @@ import directoryHandler as dirHandler
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+
 @app.before_first_request
 def before_first_request():
     global model
-    model = tensorflow.keras.models.load_model("C:\\Users\\LocalAdmin\\TheGourmet\\Flask\\effnet.h5")
+    model = tensorflow.keras.models.load_model("model.h5")
     print("model loaded")
 
 
