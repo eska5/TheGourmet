@@ -19,7 +19,6 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
-
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 String responseTitle = "";
@@ -27,7 +26,6 @@ String responseText1 = "";
 String responseText2 = "";
 String responseText3 = "";
 String responseColor = "";
-
 
 class ModelResult2 extends StatefulWidget {
   const ModelResult2({Key? key}) : super(key: key);
@@ -59,9 +57,8 @@ class _Screen2State2 extends State<ModelResult2> {
           },
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
+      body: Column(children: [
+        Padding(
           padding:
               const EdgeInsets.only(top: 22, left: 22, right: 22, bottom: 10),
           child: TypeAheadField<Suggestions?>(
@@ -106,106 +103,109 @@ class _Screen2State2 extends State<ModelResult2> {
           ),
         ),
         const SizedBox(
-            height: 400,
-          ),
-          Align(alignment: Alignment.bottomCenter,
-          child: SubmitImageButton(title: "Wyslij", icon: Icons.send_rounded, onClicked: () => wyslijReportiWroc(context,this.inputText.text)),
-          ),
+          height: 400,
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SubmitImageButton(
+              title: "Wyslij",
+              icon: Icons.send_rounded,
+              onClicked: () => wyslijReportiWroc(context, this.inputText.text)),
+        ),
       ]),
     );
   }
 }
 
-Future wyslijReportiWroc(context,inputText2) async {
+Future wyslijReportiWroc(context, inputText2) async {
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
   globals.ReportMealName = inputText2;
-    try {
-      if (!UniversalPlatform.isWeb) {
-        final ioc = HttpClient();
-        ioc.badCertificateCallback =
-            (X509Certificate cert, String host, int port) =>
-                host == 'localhost:5000';
-        final http = IOClient(ioc);
-      }
+  try {
+    if (!UniversalPlatform.isWeb) {
+      final ioc = HttpClient();
+      ioc.badCertificateCallback =
+          (X509Certificate cert, String host, int port) =>
+              host == 'localhost:5000';
+      final http = IOClient(ioc);
+    }
 
-      final uri = Uri.parse(domain + "/badresult");
-      final headers = {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      };
-      Uint8List? bytes;
-      print(!validateRequest("Report"));
-      if (!validateRequest("Report")) {
-        responseTitle = "Nie podano poprawnej nazwy potrawy !!!";
-        responseText1 = "";
-        responseText2 = "";
-        responseText3 = "Upewnij się, że dodano nazwę potrawy";
-        responseColor = "Colors.red";
-        LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-            responseText1, responseText2, responseText3, responseColor);
-        return;
-      }
-
-      if (kIsWeb) {
-        bytes = globals.webImageClassify;
-      } else {
-        bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
-      }
-
-      String base64Image = base64Encode(bytes!);
-      Map<String, dynamic> body = {
-        'modeloutput': globals.modelOutput1,
-        'useroutput': globals.ReportMealName,
-        'mealPhoto': base64Image
-      };
-      String jsonBody = json.encode(body);
-      final encoding = Encoding.getByName('utf-8');
-
-      try {
-        //TO DO Make a Catch for a error when user is posting a photo
-        var response = await http
-            .post(
-              uri,
-              headers: headers,
-              body: jsonBody,
-              encoding: encoding,
-            )
-            .timeout(Duration(seconds: 1));
-
-        int statusCode = response.statusCode;
-        String responseBody = response.body;
-        if (kDebugMode) {
-          print(responseBody);
-          print(statusCode);
-          print("OK");
-        }
-        responseTitle = "Status przesłania";
-        if (statusCode == 200) {
-          responseText1 = "Zgłoszenie zostało ";
-          responseText2 = "poprawnie ";
-          responseText3 = "wysłane, odebrane i zapisane !";
-          responseColor = "Colors.green";
-        }
-      } on TimeoutException {
-        responseTitle = "Status przesłania";
-        responseText1 = "Zdjęcie ";
-        responseText2 = "nie zostało ";
-        responseText3 = "odebrane, przekroczono limit czasu !";
-        responseColor = "Colors.red";
-      } on SocketException {
-        responseTitle = "Status przesłania";
-        responseText1 = "Zdjęcie ";
-        responseText2 = "nie zostało ";
-        responseText3 = "odebrane, niewłaściwy adres serwera !";
-        responseColor = "Colors.red";
-      }
+    final uri = Uri.parse(domain + "/badresult");
+    final headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    };
+    Uint8List? bytes;
+    print(!validateRequest("Report"));
+    if (!validateRequest("Report")) {
+      responseTitle = "Nie podano poprawnej nazwy potrawy !!!";
+      responseText1 = "";
+      responseText2 = "";
+      responseText3 = "Upewnij się, że dodano nazwę potrawy";
+      responseColor = "Colors.red";
       LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
           responseText1, responseText2, responseText3, responseColor);
-      //Navigator.pop(context);
-    } on PlatformException catch (e) {
+      return;
+    }
+
+    if (kIsWeb) {
+      bytes = globals.webImageClassify;
+    } else {
+      bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
+    }
+
+    String base64Image = base64Encode(bytes!);
+    Map<String, dynamic> body = {
+      'modeloutput': globals.modelOutput1,
+      'useroutput': globals.ReportMealName,
+      'mealPhoto': base64Image
+    };
+    String jsonBody = json.encode(body);
+    final encoding = Encoding.getByName('utf-8');
+
+    try {
+      //TO DO Make a Catch for a error when user is posting a photo
+      var response = await http
+          .post(
+            uri,
+            headers: headers,
+            body: jsonBody,
+            encoding: encoding,
+          )
+          .timeout(Duration(seconds: 1));
+
+      int statusCode = response.statusCode;
+      String responseBody = response.body;
       if (kDebugMode) {
-        print('Failed to send to server: $e');
+        print(responseBody);
+        print(statusCode);
+        print("OK");
       }
+      responseTitle = "Status przesłania";
+      if (statusCode == 200) {
+        responseText1 = "Zgłoszenie zostało ";
+        responseText2 = "poprawnie ";
+        responseText3 = "wysłane, odebrane i zapisane !";
+        responseColor = "Colors.green";
+      }
+    } on TimeoutException {
+      responseTitle = "Status przesłania";
+      responseText1 = "Zdjęcie ";
+      responseText2 = "nie zostało ";
+      responseText3 = "odebrane, przekroczono limit czasu !";
+      responseColor = "Colors.red";
+    } on SocketException {
+      responseTitle = "Status przesłania";
+      responseText1 = "Zdjęcie ";
+      responseText2 = "nie zostało ";
+      responseText3 = "odebrane, niewłaściwy adres serwera !";
+      responseColor = "Colors.red";
+    }
+    LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+        responseText1, responseText2, responseText3, responseColor);
+    //Navigator.pop(context);
+  } on PlatformException catch (e) {
+    if (kDebugMode) {
+      print('Failed to send to server: $e');
     }
   }
-
+}
