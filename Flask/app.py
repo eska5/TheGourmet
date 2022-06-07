@@ -7,6 +7,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 global model
 model = tensorflow.keras.models.load_model("model.h5")
+print("model loaded")
 
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)

@@ -44,15 +44,6 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
 def classifyThePhoto(codedPhoto: str):
     print("-------------------------------------")
     print(type(main.model))
-    print(
-        main.model.summary(
-            line_length=None,
-            positions=None,
-            print_fn=None,
-            expand_nested=False,
-            show_trainable=False,
-        )
-    )
     start = time.time()
     Labels = [
         "broccoli",
