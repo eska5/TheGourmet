@@ -21,6 +21,16 @@ def meals():
 def classify():
     photo = request.json["mealPhoto"]
     global model
+    print(type(model))
+    print(
+        model.summary(
+            line_length=None,
+            positions=None,
+            print_fn=None,
+            expand_nested=False,
+            show_trainable=False,
+        )
+    )
     return dirHandler.classifyThePhoto(photo, model)
 
 
