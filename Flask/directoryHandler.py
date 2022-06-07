@@ -40,28 +40,43 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     file.close()
 
 
-def classifyThePhoto(codedPhoto: str):
+def classifyThePhoto(codedPhoto: str, model):
     start = time.time()
     Labels = [
-        "Banan",
-        "Chleb",
-        "Brokół",
-        "Marchew",
-        "Szynka",
-        "Pizza",
-        "Łosoś",
-        "Kiełbasa",
-        "Jajecznica",
-        "Ser żółty",
+        "broccoli",
+        "caesar_salad",
+        "carrot",
+        "cheesecake",
+        "chicken_wings",
+        "chocolate_cake",
+        "cup_cakes",
+        "escargots",
+        "french_fries",
+        "hamburger",
+        "hot_dog",
+        "ice_cream",
+        "lasagna",
+        "omelette",
+        "pancakes",
+        "pizza",
+        "ribs",
+        "scrambled_eggs",
+        "soup",
+        "spaghetti_bolognese",
+        "spaghetti_carbonara",
+        "steak",
+        "sushi",
+        "tiramisu",
+        "waffles",
     ]
-    
+
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert("RGB")
     opencvImage = cv2.cvtColor(np.array(imageRgb), cv2.COLOR_RGB2BGR)
     first_stage = time.time()
     print("[INFO] DECODING 1 time: " + str(first_stage - start))
 
-    model = tensorflow.keras.models.load_model("model.h5")
+    # model = tensorflow.keras.models.load_model("model.h5")
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
     second_stage = time.time()
@@ -79,7 +94,7 @@ def classifyThePhoto(codedPhoto: str):
         predict[0][[predict.argmax(axis=1)[0]]] = 0
     jsonMessage = json.dumps(predictions)
     end = time.time()
-    print("end" + str(end - start))
+    print("[INFO] JOB FINISHED time: " + str(end - start))
     return jsonMessage
 
 

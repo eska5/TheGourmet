@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask_cors import CORS
-
+import tensorflow
 import directoryHandler as dirHandler
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
+model = tensorflow.keras.models.load_model("model.h5")
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
@@ -19,7 +19,7 @@ def meals():
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify():
     photo = request.json["mealPhoto"]
-    return dirHandler.classifyThePhoto(photo)
+    return dirHandler.classifyThePhoto(photo, model)
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
