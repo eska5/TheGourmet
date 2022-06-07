@@ -7,6 +7,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 model = tensorflow.keras.models.load_model("model.h5")
 
+
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
     title = request.json["mealName"]
@@ -19,6 +20,7 @@ def meals():
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify():
     photo = request.json["mealPhoto"]
+    global model
     return dirHandler.classifyThePhoto(photo, model)
 
 
@@ -35,6 +37,7 @@ def badresult():
     photo = request.json["mealPhoto"]
     response = dirHandler.saveBadResult(result, actual_result, photo)
     return response
+
 
 if __name__ == "__main__":
     app.run(debug=True)

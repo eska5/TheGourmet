@@ -8,15 +8,11 @@ pipeline {
                 sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
-                    if (params.Flask==true && params.Flask==true){
-                        sh 'yes | sudo docker system prune -a --volumes';
-                        echo 'system pruned'
-                    }
-                    else if (params.Flask==true){
+                    if (params.Flask==true){
                         sh 'sudo docker rmi backend:latest';
                         echo 'flask image deleted'
                     }
-                    else if (params.Flutter==true){
+                    if (params.Flutter==true){
                         sh 'sudo docker rmi flutter:latest';
                         echo 'flutter image deleted'
                     }
