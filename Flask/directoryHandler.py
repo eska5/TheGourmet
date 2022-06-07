@@ -3,6 +3,7 @@ import json
 import os
 from io import BytesIO
 
+import app as main
 import cv2
 import numpy as np
 import tensorflow
@@ -40,10 +41,11 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     file.close()
 
 
-def classifyThePhoto(codedPhoto: str, model):
-    print(type(model))
+def classifyThePhoto(codedPhoto: str):
+    print("-------------------------------------")
+    print(type(main.model))
     print(
-        model.summary(
+        main.model.summary(
             line_length=None,
             positions=None,
             print_fn=None,
@@ -92,7 +94,7 @@ def classifyThePhoto(codedPhoto: str, model):
     second_stage = time.time()
     print("[INFO] LOADING MODEL 2 time: " + str(second_stage - start))
 
-    predict = model.predict(img)
+    predict = main.model.predict(img)
     third_stage = time.time()
     print("[INFO] MODEL PREDICT 3 time: " + str(third_stage - start))
 

@@ -5,6 +5,7 @@ import directoryHandler as dirHandler
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
+global model
 model = tensorflow.keras.models.load_model("model.h5")
 
 
@@ -20,18 +21,17 @@ def meals():
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify():
     photo = request.json["mealPhoto"]
-    global model
-    print(type(model))
-    print(
-        model.summary(
-            line_length=None,
-            positions=None,
-            print_fn=None,
-            expand_nested=False,
-            show_trainable=False,
-        )
-    )
-    return dirHandler.classifyThePhoto(photo, model)
+    # print(type(model))
+    # print(
+    #    model.summary(
+    #        line_length=None,
+    #        positions=None,
+    #        print_fn=None,
+    #        expand_nested=False,
+    #        show_trainable=False,
+    #    )
+    # )
+    return dirHandler.classifyThePhoto(photo)
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
