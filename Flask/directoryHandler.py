@@ -41,9 +41,9 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
     file.close()
 
 
-def classifyThePhoto(codedPhoto: str):
+def classifyThePhoto(codedPhoto: str, model):
     print("-------------------------------------")
-    print(type(main.model))
+    print(type(model))
     start = time.time()
     Labels = [
         "broccoli",
@@ -85,7 +85,7 @@ def classifyThePhoto(codedPhoto: str):
     second_stage = time.time()
     print("[INFO] LOADING MODEL 2 time: " + str(second_stage - start))
 
-    predict = main.model.predict(img)
+    predict = model.predict(img)
     third_stage = time.time()
     print("[INFO] MODEL PREDICT 3 time: " + str(third_stage - start))
 
