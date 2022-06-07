@@ -59,17 +59,17 @@ def classifyThePhoto(codedPhoto: str):
     imageRgb = decodedImage.convert("RGB")
     opencvImage = cv2.cvtColor(np.array(imageRgb), cv2.COLOR_RGB2BGR)
     first_stage = time.time()
-    print("1" + str(first_stage - start))
+    print("[INFO] DECODING 1 time: " + str(first_stage - start))
 
     model = tensorflow.keras.models.load_model("model.h5")
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
     second_stage = time.time()
-    print("2" + str(second_stage - start))
+    print("[INFO] LOADING MODEL 2 time: " + str(second_stage - start))
 
     predict = model.predict(img)
     third_stage = time.time()
-    print("3" + str(third_stage - start))
+    print("[INFO] MODEL PREDICT 3 time: " + str(third_stage - start))
 
     predictions = []
     # 3 best labels and probabilities
