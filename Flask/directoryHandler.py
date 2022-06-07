@@ -6,6 +6,7 @@ from io import BytesIO
 import cv2
 import numpy as np
 import tensorflow
+import time
 from PIL import Image
 
 
@@ -40,6 +41,7 @@ def SaveAndDecodeMessage(title: str, codedPhoto: str):
 
 
 def classifyThePhoto(codedPhoto: str):
+    start = time.time()
     Labels = [
         "Banan",
         "Chleb",
@@ -52,14 +54,23 @@ def classifyThePhoto(codedPhoto: str):
         "Jajecznica",
         "Ser żółty",
     ]
+    
     decodedImage = Image.open(BytesIO(base64.b64decode(str(codedPhoto))))
     imageRgb = decodedImage.convert("RGB")
     opencvImage = cv2.cvtColor(np.array(imageRgb), cv2.COLOR_RGB2BGR)
+    first_stage = time.time()
+    print("1" + first_stage - start)
+
     model = tensorflow.keras.models.load_model("model.h5")
     im = cv2.resize(opencvImage, (400, 400))
     img = np.expand_dims(im, 0)
+    second_stage = time.time()
+    print("2" + second_stage - start)
+
     predict = model.predict(img)
-    print("hehe TESTTESTTEST")
+    third_stage = time.time()
+    print("3" + third_stage - start)
+
     predictions = []
     # 3 best labels and probabilities
     for i in range(0, 3):
@@ -67,6 +78,8 @@ def classifyThePhoto(codedPhoto: str):
         predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
         predict[0][[predict.argmax(axis=1)[0]]] = 0
     jsonMessage = json.dumps(predictions)
+    end = time.time()
+    print("end" + end - start)
     return jsonMessage
 
 

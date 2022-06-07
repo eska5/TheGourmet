@@ -8,15 +8,15 @@ pipeline {
                 sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
-                    if (params.Flask && params.Flask){
+                    if (params.Flask==true && params.Flask==true){
                         sh 'yes | sudo docker system prune -a --volumes';
                         echo 'system pruned'
                     }
-                    else if (params.Flask){
+                    else if (params.Flask==true){
                         sh 'sudo docker rmi backend:latest';
                         echo 'flask image deleted'
                     }
-                    else if (params.Flutter){
+                    else if (params.Flutter==true){
                         sh 'sudo docker rmi flutter:latest';
                         echo 'flutter image deleted'
                     }
@@ -52,9 +52,8 @@ pipeline {
         stage('App startup') {
             steps {
                 sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose up -d'
-                echo "App build finished successfull"
+                echo "App build finished successful"
             }
         }
-        
     }
 }
