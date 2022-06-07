@@ -1,0 +1,31 @@
+PS C:\Users\LocalAdmin\TheGourmet>  c:; cd 'c:\Users\LocalAdmin\TheGourmet'; & 'C:\Users\LocalAdmin\AppData\Local\Programs\Python\Python39\python.exe' 'c:\Users\LocalAdmin\.vscode\extensions\ms-python.python-2022.6.3\pythonFiles\lib\python\debugpy\launcher' '54139' '--' 'c:\Users\LocalAdmin\Desktop\scripts\test_model.py' 
+2022-06-07 18:16:59.524985: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2022-06-07 18:16:59.529433: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your 
+machine.
+2022-06-07 18:17:02.224857: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2022-06-07 18:17:02.229463: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-06-07 18:17:02.234204: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: LUKASZ       
+2022-06-07 18:17:02.237178: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: LUKASZ
+2022-06-07 18:17:02.239579: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network 
+Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[INFO] DECODING time: 0.023969411849975586
+[INFO] MODEL PREDICT time: 4.007492542266846
+["spaghetti_bolognese", "0.9986046", "spaghetti_carbonara", "0.0011361482", "caesar_salad", "4.9794202e-05"]
+[INFO] JOB FINISHED time: 4.007492542266846
+-------------------------------------------------------
+[INFO] DECODING time: 0.0010018348693847656
+[INFO] MODEL PREDICT time: 0.5130000114440918
+["pizza", "0.9977976", "lasagna", "0.0013352751", "omelette", "0.00030470733"]
+[INFO] JOB FINISHED time: 0.5130000114440918
+-------------------------------------------------------
+[INFO] DECODING time: 0.0010008811950683594
+[INFO] MODEL PREDICT time: 0.5320005416870117
+["pizza", "0.9944267", "omelette", "0.0022783394", "lasagna", "0.0011035984"]
+[INFO] JOB FINISHED time: 0.5320005416870117
+-------------------------------------------------------
+[INFO] DECODING time: 0.1100003719329834
+[INFO] MODEL PREDICT time: 0.6370012760162354
+["spaghetti_bolognese", "0.95959073", "spaghetti_carbonara", "0.037606426", "carrot", "0.0012056929"]
+[INFO] JOB FINISHED time: 0.6379997730255127
+-------------------------------------------------------
