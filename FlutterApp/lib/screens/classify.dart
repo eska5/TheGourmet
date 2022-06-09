@@ -183,7 +183,6 @@ class _AddImageState extends State<ClassifyImage> {
             .timeout(Duration(seconds: 30));
 
         setState(() {
-
           // Wypisuje cały response
           //print(json.decode(response.body));
           globals.modelOutput = "test"; //json.decode(response.body);
@@ -231,17 +230,13 @@ class _AddImageState extends State<ClassifyImage> {
       alignment: Alignment.center,
       child: ListView(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(55.0),
+        padding: const EdgeInsets.all(25.0),
         children: [
-          SizedBox(
-            height: smallSreen() ? 5 : 10,
-          ),
           ExpansionTile(
-            title: const Text(
-              'Rozpoznawanie potrawy',
-              style: TextStyle(fontSize: 18),
-            ),
-            subtitle: const Text('Kliknij po dodatkowe informacje'),
+            title: const Text('Rozpoznawanie potrawy',
+                style: TextStyle(fontSize: 22), textAlign: TextAlign.center),
+            subtitle: const Text('Kliknij po dodatkowe informacje',
+                style: TextStyle(fontSize: 15), textAlign: TextAlign.center),
             trailing: Icon(
               _customTileExpanded
                   ? Icons.arrow_circle_up_rounded
