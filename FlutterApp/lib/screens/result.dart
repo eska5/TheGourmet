@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ui/functions/func.dart';
-import 'package:new_ui/popupcard/add_todo_button2.dart';
-import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/components/button.dart';
+import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/popupcard/add_todo_button2.dart';
 import 'package:new_ui/screens/report.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -16,12 +15,13 @@ class ModelResult extends StatefulWidget {
 
 class _Screen2State extends State<ModelResult> {
   TextEditingController inputText = TextEditingController();
+  bool _customTileExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wyniki modelu'),
+        title: const Text('Wróć do ekranu głównego'),
         backgroundColor: Colors.green[600],
         leading: GestureDetector(
           child: Icon(
@@ -37,11 +37,36 @@ class _Screen2State extends State<ModelResult> {
           },
         ),
       ),
-      body: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.only(
+              left: 13.0, right: 13.0, bottom: 13.0, top: 3),
           children: [
-            const SizedBox(
-              height: 20,
+            ExpansionTile(
+              title: const Text(
+                'Wyniki dla twojej potrawy',
+                style: TextStyle(fontSize: 23),
+                textAlign: TextAlign.center,
+              ),
+              subtitle: const Text('Kliknij po dodatkowe informacje',
+                  style: TextStyle(fontSize: 15), textAlign: TextAlign.center),
+              trailing: Icon(
+                _customTileExpanded
+                    ? Icons.arrow_circle_up_rounded
+                    : Icons.arrow_circle_down_rounded,
+              ),
+              children: const <Widget>[
+                ListTile(
+                  title: Text(
+                    'Krótka instrukcja jak sprawdzić wyniki modelu dla twojej potrawy ze zdjęcia.\n\nWidzisz trzy propozycję modelu na temat tego co znajduję się na twoim zdjęciu. Klikając w pozycję, możesz sprawdzić pewność modelu, skład kaloryczny oraz alergeny dla tej propozycji.\n\nJeśli twojej potrawy nie ma w propozycjach, kliknij w przycisk "Złe wyniki". Pokażę ci się ekran, gdzie będziesz napisać co twoim zdaniem znajduje się na zdjęciu. Uwzględnimy twoją sugestię w przyszłych treningach modelu. Dziękujemy!',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
+              ],
+              onExpansionChanged: (bool expanded) {
+                setState(() => _customTileExpanded = expanded);
+              },
             ),
             Align(
               alignment: Alignment.topCenter,

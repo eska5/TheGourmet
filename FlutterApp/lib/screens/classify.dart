@@ -230,7 +230,8 @@ class _AddImageState extends State<ClassifyImage> {
       alignment: Alignment.center,
       child: ListView(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(13.0),
+        padding: const EdgeInsets.only(
+            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
           ExpansionTile(
             title: const Text('Rozpoznawanie potrawy',

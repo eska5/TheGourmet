@@ -213,14 +213,17 @@ class _AddImageState extends State<AddImage> {
       //child: SingleChildScrollView(
       child: ListView(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(55.0),
+        padding: const EdgeInsets.only(
+            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
           ExpansionTile(
             title: const Text(
-              'Rozpoznawanie potrawy',
-              style: TextStyle(fontSize: 18),
+              'Dodanie nowego zdjęcia',
+              style: TextStyle(fontSize: 23),
+              textAlign: TextAlign.center,
             ),
-            subtitle: const Text('Kliknij po dodatkowe informacje'),
+            subtitle: const Text('Kliknij po dodatkowe informacje',
+                style: TextStyle(fontSize: 15), textAlign: TextAlign.center),
             trailing: Icon(
               _customTileExpanded
                   ? Icons.arrow_circle_up_rounded
@@ -229,7 +232,7 @@ class _AddImageState extends State<AddImage> {
             children: const <Widget>[
               ListTile(
                 title: Text(
-                  'Krótka instrukcja jak dodać nową potrawę do bazy danych.\n1. Zrób albo wybierz zdjęcie,\n2. Nazwij potrawę przez ekran "Nazwij potrawę".\n3. Wyślij.',
+                  'Krótka instrukcja jak dodać nową potrawę do bazy danych.\n1. Zrób albo wybierz zdjęcie.\n2. Nazwij potrawę przez ekran "Nazwij potrawę".\n3. Wyślij.\n\nTwoje zdjęcie potrawy trafi do zbioru danych i zostanie użyte w przyszłości do doskonalenia modelu.',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 14),
                 ),
