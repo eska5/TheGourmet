@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
@@ -70,6 +70,7 @@ class _AddImageState extends State<ClassifyImage> {
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
   final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
+  bool _customTileExpanded = false;
 
   Future pickImage(ImageSource source) async {
     //WEB
@@ -185,7 +186,7 @@ class _AddImageState extends State<ClassifyImage> {
 
           // Wypisuje cały response
           //print(json.decode(response.body));
-          globals.modelOutput = "test";//json.decode(response.body);
+          globals.modelOutput = "test"; //json.decode(response.body);
           globals.modelOutput1 = json.decode(response.body)[0];
           String temp = json.decode(response.body)[1];
           globals.modelChance1 = double.parse(temp);
@@ -235,12 +236,29 @@ class _AddImageState extends State<ClassifyImage> {
           SizedBox(
             height: smallSreen() ? 5 : 10,
           ),
-          Center(
-            child: Text(
-              'Krótka instrukcja:\nZrób albo wybierz zdjęcie,\na następnie kliknij przycisk\nrozpoznaj i poczekaj na wynik.',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.comfortaa(fontSize: 16),
+          ExpansionTile(
+            title: const Text(
+              'Rozpoznawanie potrawy',
+              style: TextStyle(fontSize: 18),
             ),
+            subtitle: const Text('Kliknij po dodatkowe informacje'),
+            trailing: Icon(
+              _customTileExpanded
+                  ? Icons.arrow_circle_up_rounded
+                  : Icons.arrow_circle_down_rounded,
+            ),
+            children: const <Widget>[
+              ListTile(
+                title: Text(
+                  'Krótka instrukcja jak rozpoznać swoją potrawę.\n1. Zrób albo wybierz zdjęcie z galerii.\n2. Kliknij przycisk rozpoznaj.\n3. Po zwróceniu wyniku przez model pojawi się ekran z wynikami.\n\nMożesz zawsze dostać się do ekranu z wynikami poprzez przycisk "Wynik".',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+            ],
+            onExpansionChanged: (bool expanded) {
+              setState(() => _customTileExpanded = expanded);
+            },
           ),
           SizedBox(
             height: smallSreen() ? 5 : 10,
