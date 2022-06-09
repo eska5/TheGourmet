@@ -182,7 +182,7 @@ class _AddImageState extends State<ClassifyImage> {
             .timeout(Duration(seconds: 30));
 
         setState(() {
-          Navigator.pop(context, _LoaderDialog2.currentContext);
+
           // Wypisuje cały response
           //print(json.decode(response.body));
           globals.modelOutput = "test";//json.decode(response.body);
@@ -196,6 +196,8 @@ class _AddImageState extends State<ClassifyImage> {
           temp = json.decode(response.body)[5];
           globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
+          Navigator.pop(context, _LoaderDialog2.currentContext);
+          _navigateAndDisplaySelection(context);
         });
       } on SocketException {
         responseTitle = "Status przesłania";
