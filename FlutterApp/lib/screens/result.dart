@@ -45,7 +45,7 @@ class _Screen2State extends State<ModelResult> {
             ExpansionTile(
               title: const Text(
                 'Wyniki dla twojej potrawy',
-                style: TextStyle(fontSize: 23),
+                style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.center,
               ),
               subtitle: const Text('Kliknij po dodatkowe informacje',
