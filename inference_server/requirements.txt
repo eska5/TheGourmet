@@ -4,4 +4,3 @@ Pillow
 tensorflow-cpu
 numpy
 opencv-python
-uwsgi
