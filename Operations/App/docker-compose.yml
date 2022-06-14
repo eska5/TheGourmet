@@ -13,17 +13,23 @@ services:
     ports:
     - "80:80"
     - "443:443"
-    depends_on:
-      - backend
-  backend:
-    container_name: flask
-    image: backend:latest
+  operator:
+    container_name: meals_operator
+    image: meal_opr:latest
+    network_mode: "host"
     volumes:
-    - /home/azureuser/model.h5:/code/model.h5
     - /home/azureuser/data:/code/data
-    - /etc/letsencrypt/live/gourmetapp.net/cert.pem:/code/cert.pem
-    - /etc/letsencrypt/live/gourmetapp.net/privkey.pem:/code/privkey.pem   
     expose:
       - 5000
     ports:
       - "5000:5000"
+  inference:
+    container_name: inference_server
+    image: inf_server:latest
+    network_mode: "host"
+    volumes:
+      - /home/azureuser/model.h5:/code/model.h5
+    expose:
+      - 5100
+    ports:
+      - "5100:5100"

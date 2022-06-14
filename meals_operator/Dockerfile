@@ -9,5 +9,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
-COPY wsgi.ini .
-CMD ["uwsgi", "wsgi.ini"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=5000"]

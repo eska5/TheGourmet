@@ -8,13 +8,17 @@ pipeline {
                 sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
-                    if (params.Flask==true){
-                        sh 'sudo docker rmi backend:latest';
-                        echo 'flask image deleted'
-                    }
                     if (params.Flutter==true){
                         sh 'sudo docker rmi flutter:latest';
                         echo 'flutter image deleted'
+                    }
+                    if (params.Inference_Server==true){
+                        sh 'sudo docker rmi inf_server:latest';
+                        echo 'inf server image deleted'
+                    }
+                    if (params.Meals_Operator==true){
+                        sh 'sudo docker rmi meal_opr:latest';
+                        echo 'meals operator image deleted'
                     }
                 }
                 sh 'sudo rm -rf /var/data/TheGourmet'
@@ -27,16 +31,25 @@ pipeline {
                 echo "Repository cloned"
             }
         }
-        stage('Build back-end') {
+        stage('Build inference server') {
             when {
-                expression { return params.Flask }
+                expression { return params.Inference_Server }
             }
             steps {
-                sh 'cd /var/data/TheGourmet/Flask; sudo docker build -t backend .'
-                echo "backend image build"
+                sh 'cd /var/data/TheGourmet/inference_server; sudo docker build -t inf_server .'
+                echo "Inference server image build"
             }
         }
-        stage('Build front-end') {
+        stage('Build meals operator') {
+            when {
+                expression { return params.Meals_Operator }
+            }
+            steps {
+                sh 'cd /var/data/TheGourmet/meals_operator; sudo docker build -t meal_opr .'
+                echo "Meals operator image build"
+            }
+        }
+        stage('Build flutter UI') {
             when {
                 expression { return params.Flutter }
             }
