@@ -27,16 +27,25 @@ pipeline {
                 echo "Repository cloned"
             }
         }
-        stage('Build back-end') {
+        stage('Build inference server') {
             when {
-                expression { return params.Flask }
+                expression { return params.Inference_Server }
             }
             steps {
-                sh 'cd /var/data/TheGourmet/Flask; sudo docker build -t backend .'
-                echo "backend image build"
+                sh 'cd /var/data/TheGourmet/inference_server; sudo docker build -t inf_server .'
+                echo "Inference server image build"
             }
         }
-        stage('Build front-end') {
+        stage('Build meals operator') {
+            when {
+                expression { return params.Meals_Operator }
+            }
+            steps {
+                sh 'cd /var/data/TheGourmet/meals_operator; sudo docker build -t meal_opr .'
+                echo "Meals operator image build"
+            }
+        }
+        stage('Build flutter UI') {
             when {
                 expression { return params.Flutter }
             }
