@@ -15,12 +15,12 @@ def app_health_check():
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
     m_operator.save_image(request.json["mealName"], request.json["mealPhoto"])
-    return m_operator.mealsList()
+    return m_operator.list_meals()
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
 def suggestions():
-    return m_operator.mealsList()
+    return m_operator.list_meals()
 
 
 @app.route("/badresult", methods=["POST"], strict_slashes=False)
