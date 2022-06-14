@@ -13,8 +13,6 @@ services:
     ports:
     - "80:80"
     - "443:443"
-    depends_on:
-      - backend
   operator:
     container_name: meals_operator
     image: meal_opr:latest
