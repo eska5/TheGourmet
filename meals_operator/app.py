@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
-import operator
+
+import meal_operator as m_operator
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -13,19 +14,19 @@ def app_health_check():
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
-    operator.save_image(request.json["mealName"], request.json["mealPhoto"])
-    return operator.mealsList()
+    m_operator.save_image(request.json["mealName"], request.json["mealPhoto"])
+    return m_operator.mealsList()
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
 def suggestions():
-    return operator.mealsList()
+    return m_operator.mealsList()
 
 
 @app.route("/badresult", methods=["POST"], strict_slashes=False)
 def bad_result():
     dir_name = f"{request.json['modeloutput']}_{request.json['useroutput']}"
-    operator.save_image(dir_name, request.json["mealPhoto"])
+    m_operator.save_image(dir_name, request.json["mealPhoto"])
     return "OK"
 
 
