@@ -16,6 +16,7 @@ services:
   operator:
     container_name: meals_operator
     image: meal_opr:latest
+    network_mode: "host"
     volumes:
     - /home/azureuser/data:/code/data
     expose:
@@ -25,6 +26,7 @@ services:
   inference:
     container_name: inference_server
     image: inf_server:latest
+    network_mode: "host"
     volumes:
       - /home/azureuser/model.h5:/code/model.h5
     expose:

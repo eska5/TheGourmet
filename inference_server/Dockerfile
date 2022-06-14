@@ -9,4 +9,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 5100
 COPY . .
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=5100" ]

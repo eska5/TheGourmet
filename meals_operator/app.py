@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_cors import CORS
-
 import operator
 
 app = Flask(__name__)
