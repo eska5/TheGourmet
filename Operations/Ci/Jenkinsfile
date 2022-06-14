@@ -8,13 +8,17 @@ pipeline {
                 sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
-                    if (params.Flask==true){
-                        sh 'sudo docker rmi backend:latest';
-                        echo 'flask image deleted'
-                    }
                     if (params.Flutter==true){
                         sh 'sudo docker rmi flutter:latest';
                         echo 'flutter image deleted'
+                    }
+                    if (params.Inference_Server==true){
+                        sh 'sudo docker rmi inf_server:latest';
+                        echo 'inf server image deleted'
+                    }
+                    if (params.Meals_Operator==true){
+                        sh 'sudo docker rmi meal_opr:latest';
+                        echo 'meals operator image deleted'
                     }
                 }
                 sh 'sudo rm -rf /var/data/TheGourmet'
