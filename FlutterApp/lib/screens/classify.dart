@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -132,6 +133,13 @@ class _AddImageState extends State<ClassifyImage> {
     );
   }
 
+  void _navigateAndDisplaySelection2(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MealCatalog()),
+    );
+  }
+
   Future categorizeThePhoto() async {
     try {
       if (!UniversalPlatform.isWeb) {
@@ -225,39 +233,22 @@ class _AddImageState extends State<ClassifyImage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.indigo[50],
-      alignment: Alignment.center,
-      child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: const Icon(Icons.calculate_rounded, size: 29),
+        title:
+            const Text('Rozpoznawanie potrawy', style: TextStyle(fontSize: 22)),
+        backgroundColor: Colors.indigo,
+      ),
+      backgroundColor: Colors.indigo[50],
+      body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.only(
             left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
-          ExpansionTile(
-            title: const Text('Rozpoznawanie potrawy',
-                style: TextStyle(fontSize: 23), textAlign: TextAlign.center),
-            subtitle: const Text('Kliknij po dodatkowe informacje',
-                style: TextStyle(fontSize: 15), textAlign: TextAlign.center),
-            trailing: Icon(
-              _customTileExpanded
-                  ? Icons.arrow_circle_up_rounded
-                  : Icons.arrow_circle_down_rounded,
-            ),
-            children: const <Widget>[
-              ListTile(
-                title: Text(
-                  'Krótka instrukcja jak rozpoznać swoją potrawę.\n1. Zrób albo wybierz zdjęcie z galerii.\n2. Kliknij przycisk rozpoznaj.\n3. Po zwróceniu wyniku przez model pojawi się ekran z wynikami.\n\nMożesz zawsze dostać się do ekranu z wynikami poprzez przycisk "Wynik".',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 14),
-                ),
-              ),
-            ],
-            onExpansionChanged: (bool expanded) {
-              setState(() => _customTileExpanded = expanded);
-            },
-          ),
-          SizedBox(
-            height: smallSreen() ? 5 : 10,
+          const SizedBox(
+            height: 5,
           ),
           Stack(
             children: <Widget>[
@@ -306,8 +297,8 @@ class _AddImageState extends State<ClassifyImage> {
               ),
             ],
           ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
+          const SizedBox(
+            height: 40,
           ),
           Center(
             child: ClassifyImageButton(
@@ -316,22 +307,33 @@ class _AddImageState extends State<ClassifyImage> {
               onClicked: () => categorizeThePhoto(),
             ),
           ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
+          const SizedBox(
+            height: 25,
           ),
           Center(
             child: NavigationButton(
-              title: "       Wynik           ",
+              title: "        Wynik              ",
               icon: Icons.api_rounded,
               //TUTAJ DODAJEMY ZMIENNE DO PRZEKAZANIA :)
               onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Colors.green[600],
+              backgroundColor: Colors.blue[400],
               fontSize: 20,
-              enabled: globals.mealClassified,
+              enabled: true,
+              //enabled: globals.mealClassified,
             ),
           ),
           const SizedBox(
             height: 25,
+          ),
+          Center(
+            child: NavigationButton(
+              title: "Katalog potraw",
+              icon: Icons.playlist_add_check_rounded,
+              onClicked: () => _navigateAndDisplaySelection2(context),
+              backgroundColor: Colors.deepPurpleAccent,
+              fontSize: 20,
+              enabled: true,
+            ),
           ),
         ],
       ),

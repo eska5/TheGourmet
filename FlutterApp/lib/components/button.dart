@@ -6,11 +6,11 @@ Widget UploadImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 60, // <-- Your width
-      height: 35, // <-- Your height
+      width: 65, // <-- Your width
+      height: 40, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.indigo,
+          primary: Colors.indigoAccent,
           onPrimary: Colors.white,
           textStyle: TextStyle(fontSize: 13),
           shape: const RoundedRectangleBorder(
@@ -45,10 +45,11 @@ Widget NavigationButton({
   required bool enabled,
 }) =>
     SizedBox(
-      width: 266, // <-- Your width
+      width: 245, // <-- Your width
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          alignment: Alignment.centerLeft,
           primary: backgroundColor,
           onPrimary: Colors.white,
           textStyle: TextStyle(fontSize: fontSize),
@@ -75,11 +76,11 @@ Widget TakeImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 60, // <-- Your width
-      height: 35, // <-- Your height
+      width: 65, // <-- Your width
+      height: 40, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.indigo,
+          primary: Colors.indigoAccent,
           onPrimary: Colors.white,
           textStyle: TextStyle(fontSize: 11),
           shape: const RoundedRectangleBorder(
@@ -110,13 +111,13 @@ Widget ClassifyImageButton({
   required VoidCallback onClicked,
 }) =>
     SizedBox(
-      width: 266, // <-- Your width
+      width: 245, // <-- Your width
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.indigo,
+          primary: Color(0xFFEBAA47),
           onPrimary: Colors.white,
-          textStyle: TextStyle(fontSize: 18),
+          textStyle: TextStyle(fontSize: 20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
           //minimumSize: const Size(40, 60),
