@@ -291,20 +291,21 @@ class _AddImageState extends State<AddImage> {
           const SizedBox(
             height: 15,
           ),
-          Center(
-            child: UploadImageButton(
-                title: "Wybierz zdjęcie",
-                icon: Icons.image_rounded,
-                onClicked: () => pickImage(ImageSource.gallery)),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: TakeImageButton(
-                title: "  Zrób zdjęcie   ",
-                icon: Icons.camera_alt_rounded,
-                onClicked: () => pickImage(ImageSource.camera)),
+          Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, //Center Row contents horizontally,
+            crossAxisAlignment:
+                CrossAxisAlignment.center, //Center Row contents vertically,
+            children: [
+              UploadImageButton(
+                  title: "Wybierz",
+                  icon: Icons.image_rounded,
+                  onClicked: () => pickImage(ImageSource.gallery)),
+              TakeImageButton(
+                  title: "Zrób",
+                  icon: Icons.camera_alt_rounded,
+                  onClicked: () => pickImage(ImageSource.camera)),
+            ],
           ),
           const SizedBox(
             height: 15,

@@ -259,25 +259,62 @@ class _AddImageState extends State<ClassifyImage> {
           SizedBox(
             height: smallSreen() ? 5 : 10,
           ),
+          Stack(
+            children: <Widget>[
+              Center(
+                child: globals.webImageClassify == null &&
+                        globals.mobileImageClassify == null
+                    ? Image.asset('assets/diet.png', width: 200, height: 200)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: kIsWeb
+                            ? Image.memory(
+                                globals.webImageClassify!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                globals.mobileImageClassify!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
+              ),
+              Positioned(
+                right: 30.0,
+                top: 180.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment
+                      .center, //Center Row contents vertically,
+                  children: [
+                    UploadImageButton(
+                        title: "",
+                        icon: Icons.image_rounded,
+                        onClicked: () => pickImage(ImageSource.gallery)),
+                    TakeImageButton(
+                        title: "",
+                        icon: Icons.camera_alt_rounded,
+                        onClicked: () => pickImage(ImageSource.camera)),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 220,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: smallSreen() ? 25 : 40,
+          ),
           Center(
-            child: globals.webImageClassify == null &&
-                    globals.mobileImageClassify == null
-                ? Image.asset('assets/diet.png', width: 200, height: 200)
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: kIsWeb
-                        ? Image.memory(
-                            globals.webImageClassify!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            globals.mobileImageClassify!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
+            child: ClassifyImageButton(
+              title: 'Rozpoznaj potrawę',
+              icon: Icons.fastfood_rounded,
+              onClicked: () => categorizeThePhoto(),
+            ),
           ),
           SizedBox(
             height: smallSreen() ? 25 : 40,
@@ -291,34 +328,6 @@ class _AddImageState extends State<ClassifyImage> {
               backgroundColor: Colors.green[600],
               fontSize: 20,
               enabled: globals.mealClassified,
-            ),
-          ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
-          ),
-          Center(
-            child: UploadImageButton(
-                title: "Wybierz zdjęcie  ",
-                icon: Icons.image_rounded,
-                onClicked: () => pickImage(ImageSource.gallery)),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: TakeImageButton(
-                title: "  Zrób zdjęcie      ",
-                icon: Icons.camera_alt_rounded,
-                onClicked: () => pickImage(ImageSource.camera)),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: ClassifyImageButton(
-              title: 'Rozpoznaj potrawę',
-              icon: Icons.fastfood_rounded,
-              onClicked: () => categorizeThePhoto(),
             ),
           ),
           const SizedBox(
