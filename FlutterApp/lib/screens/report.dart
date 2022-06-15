@@ -1,23 +1,21 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/io_client.dart';
-import 'package:new_ui/functions/func.dart';
-import 'package:new_ui/popupcard/add_todo_button2.dart';
-import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/components/button.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:new_ui/components/globals.dart';
-import '../components/suggestions.dart';
-import 'package:universal_platform/universal_platform.dart';
-import '../components/loaderdialog.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
+import 'package:new_ui/components/button.dart';
+import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/functions/func.dart';
+import 'package:universal_platform/universal_platform.dart';
+
+import '../components/loaderdialog.dart';
+import '../components/suggestions.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
