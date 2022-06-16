@@ -87,8 +87,9 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-              responseText1, responseText2, responseText3, responseColor);
+          showTopSnackBarCustomError(context,  responseTitle);
+          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = await image.readAsBytes();
@@ -114,8 +115,9 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-              responseText1, responseText2, responseText3, responseColor);
+          showTopSnackBarCustomError(context,  responseTitle);
+          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = File(image.path);
@@ -162,8 +164,9 @@ class _AddImageState extends State<ClassifyImage> {
         responseText2 = "";
         responseText3 = "załaduj zdjęcie z galerii lub aparatu";
         responseColor = "Colors.red";
-        LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-            responseText1, responseText2, responseText3, responseColor);
+        showTopSnackBarCustomError(context,  responseTitle);
+        // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+        //     responseText1, responseText2, responseText3, responseColor);
         return;
       }
 
@@ -213,16 +216,18 @@ class _AddImageState extends State<ClassifyImage> {
         responseText2 = "nie zostało ";
         responseText3 = "rozpoznane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
-        Navigator.pop(context, _LoaderDialog2.currentContext);
-        LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
+        //Navigator.pop(context, _LoaderDialog2.currentContext);
+        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       } on TimeoutException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
         responseText2 = "nie zostało ";
         responseText3 = "rozpoznane, przekroczono limit czasu !";
         responseColor = "Colors.red";
-        Navigator.pop(context, _LoaderDialog2.currentContext);
-        LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
+        //Navigator.pop(context, _LoaderDialog2.currentContext);
+        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
     } on PlatformException catch (e) {
       if (kDebugMode) {

@@ -135,13 +135,14 @@ Future wyslijReportiWroc(context, inputText2) async {
     Uint8List? bytes;
     print(!validateRequest("Report"));
     if (!validateRequest("Report")) {
-      responseTitle = "Nie podano poprawnej nazwy potrawy !!!";
+      responseTitle = "Nie podano poprawnej nazwy potrawy !";
       responseText1 = "";
       responseText2 = "";
       responseText3 = "Upewnij się, że dodano nazwę potrawy";
       responseColor = "Colors.red";
-      LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          responseText1, responseText2, responseText3, responseColor);
+      showTopSnackBarCustomError(context, responseTitle);
+      // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+      //     responseText1, responseText2, responseText3, responseColor);
       return;
     }
 
@@ -198,8 +199,11 @@ Future wyslijReportiWroc(context, inputText2) async {
       responseText3 = "odebrane, niewłaściwy adres serwera !";
       responseColor = "Colors.red";
     }
-    LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-        responseText1, responseText2, responseText3, responseColor);
+    responseColor == "Colors.red" ?
+    showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3)) :
+    showTopSnackBarCustomSuccess(context,  (responseText1 + responseText2 + responseText3));
+    // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+    //     responseText1, responseText2, responseText3, responseColor);
     //Navigator.pop(context);
   } on PlatformException catch (e) {
     if (kDebugMode) {
