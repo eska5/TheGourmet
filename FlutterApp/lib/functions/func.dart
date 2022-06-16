@@ -1,8 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:universal_platform/universal_platform.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 bool smallSreen() {
   var pixelRatio = window.devicePixelRatio;
@@ -89,4 +93,25 @@ bool validateRequest(String mode) {
     return false;
   }
   return true;
+}
+
+void showTopSnackBarCustomSuccess(dynamic context,dynamic text) {
+  showTopSnackBar(
+    context,
+    CustomSnackBar.success(
+      icon: Icon(null),
+      backgroundColor: Color.fromARGB(255, 0, 211, 109),
+      message: text,
+    ),
+  );
+}
+void showTopSnackBarCustomError(dynamic context,dynamic text) {
+  showTopSnackBar(
+    context,
+    CustomSnackBar.error(
+      icon: Icon(null),
+      // backgroundColor: color,
+      message: text,
+    ),
+  );
 }
