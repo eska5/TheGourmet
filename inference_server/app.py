@@ -13,31 +13,31 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 labels = [
-    "broccoli",
-    "caesar_salad",
-    "carrot",
-    "cheesecake",
-    "chicken_wings",
-    "chocolate_cake",
-    "cup_cakes",
-    "escargots",
-    "french_fries",
-    "hamburger",
-    "hot_dog",
-    "ice_cream",
-    "lasagna",
-    "omelette",
-    "pancakes",
-    "pizza",
-    "ribs",
-    "scrambled_eggs",
-    "soup",
-    "spaghetti_bolognese",
-    "spaghetti_carbonara",
-    "steak",
-    "sushi",
-    "tiramisu",
-    "waffles",
+    "Brokół",
+    "Sałatka cezar",
+    "Marchewka",
+    "Sernik",
+    "Skrzydełka kurczaka",
+    "Tort czekoladowy",
+    "Babeczki",
+    "Winniczki",
+    "Frytki",
+    "Hamburger",
+    "Hot dog",
+    "Lody",
+    "Lasagne",
+    "Omlet",
+    "Naleśniki",
+    "Pizza",
+    "Żeberka",
+    "Jajecznica",
+    "Zupa",
+    "Spaghetti bolognese",
+    "Spaghetti carbonara",
+    "Stek",
+    "Sushi",
+    "Tiramisu",
+    "Gofry",
 ]
 
 
@@ -53,6 +53,11 @@ def app_health_check():
     if model is not None:
         model_status = "Loaded"
     return f"App is running. Model status is {model_status}."
+
+
+@app.route("/catalog", methods=["GET"], strict_slashes=False)
+def meals_catalog():
+    return json.dumps(labels)
 
 
 @app.route("/classify", methods=["POST"], strict_slashes=False)
