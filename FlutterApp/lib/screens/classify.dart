@@ -318,8 +318,7 @@ class _AddImageState extends State<ClassifyImage> {
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.blue[400],
               fontSize: 20,
-              //enabled: globals.mealClassified,
-              enabled: true,
+              enabled: globals.mealClassified,
             ),
           ),
           const SizedBox(
