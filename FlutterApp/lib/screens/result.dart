@@ -72,44 +72,6 @@ Widget build(BuildContext context) {
               const SizedBox(
             height: 50,
           ),
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: AddTodoButton2(
-            //     key: Key("1"),
-            //     chance: globals.modelChance1,
-            //     mobileImageCliassify: UniversalPlatform.isWeb
-            //         ? globals.webImageClassify
-            //         : globals.mobileImageClassify,
-            //     data: "Tresc tutaj",
-            //     modelOutput: "1. " + globals.modelOutput1,
-            //     chosenColor: globals.firstColor,
-            //   ),
-            // ),
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: AddTodoButton2(
-            //     key: Key("2"),
-            //     chance: globals.modelChance2,
-            //     mobileImageCliassify: UniversalPlatform.isWeb
-            //         ? globals.webImageClassify
-            //         : globals.mobileImageClassify,
-            //     data: "Tresc tutaj",
-            //     modelOutput: "2. " + globals.modelOutput2,
-            //     chosenColor: globals.secondColor,
-            //   ),
-            // ),
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: AddTodoButton2(
-            //       key: Key("3"),
-            //       chance: globals.modelChance3,
-            //       mobileImageCliassify: UniversalPlatform.isWeb
-            //           ? globals.webImageClassify
-            //           : globals.mobileImageClassify,
-            //       data: "Tresc tutaj",
-            //       modelOutput: "3. " + globals.modelOutput3,
-            //       chosenColor: globals.thirdColor),
-            // ),
             SingleChildScrollView(
               child: Container(
                 child: new Column(
