@@ -312,14 +312,13 @@ class _AddImageState extends State<ClassifyImage> {
           ),
           Center(
             child: NavigationButton(
-              title: "        Wynik              ",
+              title: "Propozycje potraw",
               icon: Icons.api_rounded,
               //TUTAJ DODAJEMY ZMIENNE DO PRZEKAZANIA :)
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.blue[400],
               fontSize: 20,
-              enabled: true,
-              //enabled: globals.mealClassified,
+              enabled: globals.mealClassified,
             ),
           ),
           const SizedBox(

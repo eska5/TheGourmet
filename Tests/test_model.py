@@ -1,7 +1,7 @@
 import json
 import os
-from os import listdir
 import time
+
 import cv2
 import numpy as np
 import tensorflow
@@ -11,31 +11,31 @@ model = tensorflow.keras.models.load_model(
     "C:\\Users\\LocalAdmin\\Desktop\\scripts\\effnet.h5"
 )
 Labels = [
-    "broccoli",
-    "caesar_salad",
-    "carrot",
-    "cheesecake",
-    "chicken_wings",
-    "chocolate_cake",
-    "cup_cakes",
-    "escargots",
-    "french_fries",
-    "hamburger",
-    "hot_dog",
-    "ice_cream",
-    "lasagna",
-    "omelette",
-    "pancakes",
-    "pizza",
-    "ribs",
-    "scrambled_eggs",
-    "soup",
-    "spaghetti_bolognese",
-    "spaghetti_carbonara",
-    "steak",
-    "sushi",
-    "tiramisu",
-    "waffles",
+    "Brokół",
+    "Sałatka cezar",
+    "Marchewka",
+    "Sernik",
+    "Skrzydełka kurczaka",
+    "Tort czekoladowy",
+    "Babeczki",
+    "Winniczki",
+    "Frytki",
+    "Hamburger",
+    "Hot dog",
+    "Lody",
+    "Lasagne",
+    "Omlet",
+    "Naleśniki",
+    "Pizza",
+    "Żeberka",
+    "Jajecznica",
+    "Zupa",
+    "Spaghetti bolognese",
+    "Spaghetti carbonara",
+    "Stek",
+    "Sushi",
+    "Tiramisu",
+    "Gofry",
 ]
 
 # get the path/directory
