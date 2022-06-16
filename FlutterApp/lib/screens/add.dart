@@ -51,8 +51,9 @@ class _AddImageState extends State<AddImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-              responseText1, responseText2, responseText3, responseColor);
+          showTopSnackBarCustomError(context, responseTitle);
+          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = await image.readAsBytes();
@@ -78,8 +79,9 @@ class _AddImageState extends State<AddImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-              responseText1, responseText2, responseText3, responseColor);
+          showTopSnackBarCustomError(context, responseTitle);
+          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
         final imageTemporary = File(image.path);
@@ -139,8 +141,9 @@ class _AddImageState extends State<AddImage> {
         responseText3 =
             "załaduj zdjęcie z galerii lub aparatu i upewnij się, że dodano nazwę potrawy";
         responseColor = "Colors.red";
-        LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-            responseText1, responseText2, responseText3, responseColor);
+        showTopSnackBarCustomError(context, responseTitle);
+        // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+        //     responseText1, responseText2, responseText3, responseColor);
         return;
       }
 
@@ -196,8 +199,11 @@ class _AddImageState extends State<AddImage> {
         responseText3 = "odebrane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
       }
-      LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          responseText1, responseText2, responseText3, responseColor);
+      responseColor == "Colors.red" ?
+      showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3)) :
+      showTopSnackBarCustomSuccess(context,  (responseText1 + responseText2 + responseText3));
+      // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
+      //     responseText1, responseText2, responseText3, responseColor);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to send to server: $e');
