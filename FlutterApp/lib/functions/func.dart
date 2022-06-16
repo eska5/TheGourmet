@@ -100,7 +100,7 @@ void showTopSnackBarCustomSuccess(dynamic context,dynamic text) {
     context,
     CustomSnackBar.success(
       icon: Icon(null),
-      // backgroundColor: color,
+      backgroundColor: Color.fromARGB(255, 0, 211, 109),
       message: text,
     ),
   );
