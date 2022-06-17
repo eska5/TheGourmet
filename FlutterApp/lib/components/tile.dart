@@ -1,11 +1,11 @@
 class Tile {
-  final String mealName;
-  final String mealDescription;
-  final double mealProbability;
-  final dynamic color;
-  final dynamic gradient1;
-  final dynamic gradient2;
-  final int numberOfStars;
+   String mealName;
+   String mealDescription;
+   double mealProbability;
+   dynamic color;
+   dynamic gradient1;
+   dynamic gradient2;
+   int numberOfStars;
   bool isExpanded;
 
   Tile({

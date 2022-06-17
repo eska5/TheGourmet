@@ -15,6 +15,7 @@ import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
+import 'package:new_ui/components/tile.dart';
 
 import '../components/loaderdialog.dart';
 
@@ -207,6 +208,10 @@ class _AddImageState extends State<ClassifyImage> {
           temp = json.decode(response.body)[5];
           globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
+          globals.tile1 = Tile(mealName: globals.modelOutput1, mealDescription: globals.modelOutput1, mealProbability: globals.modelChance1*100, color: globals.firstColor, gradient1: Colors.orange,gradient2: Colors.amber,numberOfStars: 3);
+          globals.tile2 = Tile(mealName: globals.modelOutput2, mealDescription: globals.modelOutput2, mealProbability: globals.modelChance2*100, color: globals.secondColor,gradient1: Color(0xFF526573),gradient2: Color(0xFF9CAABD),numberOfStars: 2);
+          globals.tile3 = Tile(mealName: globals.modelOutput3, mealDescription: globals.modelOutput3, mealProbability: globals.modelChance3*100, color: globals.thirdColor,gradient1: Color(0xFF7B4C1E),gradient2: Color(0xFFB9772D),numberOfStars: 1);
+  
           Navigator.pop(context, _LoaderDialog2.currentContext);
           _navigateAndDisplaySelection(context);
         });
