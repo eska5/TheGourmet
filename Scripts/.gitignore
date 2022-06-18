@@ -1,5 +1,6 @@
 __pycache__
 .idea
 venx
+venv
 photos
 ImageScrapper/images_sources.txt
