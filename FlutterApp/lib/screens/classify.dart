@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,13 +12,10 @@ import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/components/tile.dart';
 import 'package:new_ui/functions/func.dart';
-import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:new_ui/components/tile.dart';
-
-import '../components/loaderdialog.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -57,6 +55,42 @@ class LoaderDialog2 {
   }
 }
 
+class Meal {
+  final String? name;
+
+  Meal({this.name});
+}
+
+/// Creating a global list for example purpose.
+/// Generally it should be within data class or where ever you want
+List<Meal> mealList = [
+  Meal(name: "Brokół"),
+  Meal(name: "Sałatka cezar"),
+  Meal(name: "Marchewka"),
+  Meal(name: "Skrzydełka kurczaka"),
+  Meal(name: "Tort czekoladowy"),
+  Meal(name: "Babeczki"),
+  Meal(name: "Winniczki"),
+  Meal(name: "Frytki"),
+  Meal(name: "Sernik"),
+  Meal(name: "Hamburger"),
+  Meal(name: "Hot dog"),
+  Meal(name: "Lody"),
+  Meal(name: "Lasagne"),
+  Meal(name: "Omlet"),
+  Meal(name: "Naleśniki"),
+  Meal(name: "Pizza"),
+  Meal(name: "Żeberka"),
+  Meal(name: "Jajecznica"),
+  Meal(name: "Zupa"),
+  Meal(name: "Spaghetti bolognese"),
+  Meal(name: "Spaghetti carbonara"),
+  Meal(name: "Stek"),
+  Meal(name: "Sushi"),
+  Meal(name: "Tiramisu"),
+  Meal(name: "Gofry"),
+];
+
 class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
 
@@ -73,6 +107,7 @@ class _AddImageState extends State<ClassifyImage> {
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
   final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
   bool _customTileExpanded = false;
+  List<Meal>? selectedMeal = [];
 
   Future pickImage(ImageSource source) async {
     //WEB
@@ -88,7 +123,7 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context,  responseTitle);
+          showTopSnackBarCustomError(context, responseTitle);
           // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
           //     responseText1, responseText2, responseText3, responseColor);
           return;
@@ -116,7 +151,7 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context,  responseTitle);
+          showTopSnackBarCustomError(context, responseTitle);
           // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
           //     responseText1, responseText2, responseText3, responseColor);
           return;
@@ -136,10 +171,48 @@ class _AddImageState extends State<ClassifyImage> {
     );
   }
 
-  void _navigateAndDisplaySelection2(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const MealCatalog()),
+  // @override FilterListDelegate(BuildContext context)
+  // {
+  //
+  // }
+
+  void openMealCatalog() async {
+    await FilterListDelegate.show<Meal>(
+      context: context,
+      list: mealList,
+      selectedListData: selectedMeal,
+      theme: FilterListDelegateThemeData(
+        listTileTheme: ListTileThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          tileColor: Colors.indigo[50],
+          selectedColor: Colors.green,
+          selectedTileColor: Colors.indigo[50],
+          textColor: Colors.blue,
+        ),
+      ),
+      enableOnlySingleSelection: true,
+      onItemSearch: (meal, query) {
+        return meal.name!.toLowerCase().contains(query.toLowerCase());
+      },
+      tileLabel: (meal) => meal!.name,
+      emptySearchChild: Center(child: Text('Nie znaleziono potrawy.')),
+      searchFieldHint: 'Wyszukaj...',
+      // suggestionBuilder: (context, user, isSelected) {
+      //   return ListTile(
+      //     title: Text(user.name!),
+      //     leading: CircleAvatar(
+      //       backgroundColor: Colors.blue,
+      //     ),
+      //     selected: isSelected,
+      //   );
+      // },
+      onApplyButtonClick: (list) {
+        setState(() {
+          selectedMeal = list;
+        });
+      },
     );
   }
 
@@ -165,7 +238,7 @@ class _AddImageState extends State<ClassifyImage> {
         responseText2 = "";
         responseText3 = "załaduj zdjęcie z galerii lub aparatu";
         responseColor = "Colors.red";
-        showTopSnackBarCustomError(context,  responseTitle);
+        showTopSnackBarCustomError(context, responseTitle);
         // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
         //     responseText1, responseText2, responseText3, responseColor);
         return;
@@ -208,10 +281,31 @@ class _AddImageState extends State<ClassifyImage> {
           temp = json.decode(response.body)[5];
           globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
-          globals.tile1 = Tile(mealName: globals.modelOutput1, mealDescription: globals.modelOutput1, mealProbability: globals.modelChance1*100, color: globals.firstColor, gradient1: Colors.orange,gradient2: Colors.amber,numberOfStars: 3);
-          globals.tile2 = Tile(mealName: globals.modelOutput2, mealDescription: globals.modelOutput2, mealProbability: globals.modelChance2*100, color: globals.secondColor,gradient1: Color(0xFF526573),gradient2: Color(0xFF9CAABD),numberOfStars: 2);
-          globals.tile3 = Tile(mealName: globals.modelOutput3, mealDescription: globals.modelOutput3, mealProbability: globals.modelChance3*100, color: globals.thirdColor,gradient1: Color(0xFF7B4C1E),gradient2: Color(0xFFB9772D),numberOfStars: 1);
-  
+          globals.tile1 = Tile(
+              mealName: globals.modelOutput1,
+              mealDescription: globals.modelOutput1,
+              mealProbability: globals.modelChance1 * 100,
+              color: globals.firstColor,
+              gradient1: Colors.orange,
+              gradient2: Colors.amber,
+              numberOfStars: 3);
+          globals.tile2 = Tile(
+              mealName: globals.modelOutput2,
+              mealDescription: globals.modelOutput2,
+              mealProbability: globals.modelChance2 * 100,
+              color: globals.secondColor,
+              gradient1: Color(0xFF526573),
+              gradient2: Color(0xFF9CAABD),
+              numberOfStars: 2);
+          globals.tile3 = Tile(
+              mealName: globals.modelOutput3,
+              mealDescription: globals.modelOutput3,
+              mealProbability: globals.modelChance3 * 100,
+              color: globals.thirdColor,
+              gradient1: Color(0xFF7B4C1E),
+              gradient2: Color(0xFFB9772D),
+              numberOfStars: 1);
+
           Navigator.pop(context, _LoaderDialog2.currentContext);
           _navigateAndDisplaySelection(context);
         });
@@ -222,7 +316,8 @@ class _AddImageState extends State<ClassifyImage> {
         responseText3 = "rozpoznane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
         //Navigator.pop(context, _LoaderDialog2.currentContext);
-        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
         //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       } on TimeoutException {
         responseTitle = "Status przesłania";
@@ -231,7 +326,8 @@ class _AddImageState extends State<ClassifyImage> {
         responseText3 = "rozpoznane, przekroczono limit czasu !";
         responseColor = "Colors.red";
         //Navigator.pop(context, _LoaderDialog2.currentContext);
-        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
         //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
     } on PlatformException catch (e) {
@@ -338,7 +434,7 @@ class _AddImageState extends State<ClassifyImage> {
             child: NavigationButton(
               title: "Katalog potraw",
               icon: Icons.playlist_add_check_rounded,
-              onClicked: () => _navigateAndDisplaySelection2(context),
+              onClicked: () => openMealCatalog(),
               backgroundColor: Colors.deepPurpleAccent,
               fontSize: 20,
               enabled: true,

@@ -40,6 +40,7 @@ dependencies:
   flutter_typeahead: ^3.2.4
   flutter_easyloading: ^3.0.3
   http: ^0.13.4
+  filter_list: ^1.0.1
   universal_io: ^2.0.4
   universal_platform: ^1.0.0+1
   top_snackbar_flutter: ^1.1.1
