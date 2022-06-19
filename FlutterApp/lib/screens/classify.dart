@@ -12,84 +12,15 @@ import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/components/loaderdialog.dart';
 import 'package:new_ui/components/tile.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
 
+import '../components/meal.dart';
+
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
-
-String responseTitle = "";
-String responseText1 = "";
-String responseText2 = "";
-String responseText3 = "";
-String responseColor = "";
-
-class LoaderDialog2 {
-  static Future<void> showLoadingDialog(
-      BuildContext context, GlobalKey key) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Dialog(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(70))),
-              key: key,
-              backgroundColor: Colors.indigo[50],
-              child: Container(
-                width: 150.0,
-                height: 250.0,
-                child: Image.asset(
-                  'assets/plate.gif',
-                  fit: BoxFit.cover,
-                  width: 250,
-                  height: 250,
-                ),
-              )),
-        );
-      },
-    );
-  }
-}
-
-class Meal {
-  final String? name;
-
-  Meal({this.name});
-}
-
-/// Creating a global list for example purpose.
-/// Generally it should be within data class or where ever you want
-List<Meal> mealList = [
-  Meal(name: "Brokół"),
-  Meal(name: "Sałatka cezar"),
-  Meal(name: "Marchewka"),
-  Meal(name: "Skrzydełka kurczaka"),
-  Meal(name: "Tort czekoladowy"),
-  Meal(name: "Babeczki"),
-  Meal(name: "Winniczki"),
-  Meal(name: "Frytki"),
-  Meal(name: "Sernik"),
-  Meal(name: "Hamburger"),
-  Meal(name: "Hot dog"),
-  Meal(name: "Lody"),
-  Meal(name: "Lasagne"),
-  Meal(name: "Omlet"),
-  Meal(name: "Naleśniki"),
-  Meal(name: "Pizza"),
-  Meal(name: "Żeberka"),
-  Meal(name: "Jajecznica"),
-  Meal(name: "Zupa"),
-  Meal(name: "Spaghetti bolognese"),
-  Meal(name: "Spaghetti carbonara"),
-  Meal(name: "Stek"),
-  Meal(name: "Sushi"),
-  Meal(name: "Tiramisu"),
-  Meal(name: "Gofry"),
-];
 
 class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
@@ -171,14 +102,10 @@ class _AddImageState extends State<ClassifyImage> {
     );
   }
 
-  // @override FilterListDelegate(BuildContext context)
-  // {
-  //
-  // }
-
   void openMealCatalog() async {
     await FilterListDelegate.show<Meal>(
       context: context,
+      searchFieldDecorationTheme: InputDecorationTheme(),
       list: mealList,
       selectedListData: selectedMeal,
       theme: FilterListDelegateThemeData(
@@ -189,7 +116,7 @@ class _AddImageState extends State<ClassifyImage> {
           tileColor: Colors.indigo[50],
           selectedColor: Colors.green,
           selectedTileColor: Colors.indigo[50],
-          textColor: Colors.blue,
+          textColor: Colors.deepPurpleAccent,
         ),
       ),
       enableOnlySingleSelection: true,
@@ -255,7 +182,7 @@ class _AddImageState extends State<ClassifyImage> {
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
-      LoaderDialog2.showLoadingDialog(context, _LoaderDialog2);
+      ClassifyLoaderDialog.showLoadingDialog(context, _LoaderDialog2);
 
       try {
         var response = await http

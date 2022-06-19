@@ -9,6 +9,36 @@ String responseColor = "";
 
 final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
+class ClassifyLoaderDialog {
+  static Future<void> showLoadingDialog(
+      BuildContext context, GlobalKey key) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Dialog(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(70))),
+              key: key,
+              backgroundColor: Colors.indigo[50],
+              child: Container(
+                width: 150.0,
+                height: 250.0,
+                child: Image.asset(
+                  'assets/plate.gif',
+                  fit: BoxFit.cover,
+                  width: 250,
+                  height: 250,
+                ),
+              )),
+        );
+      },
+    );
+  }
+}
+
 class LoaderDialog {
   static Future<void> showLoadingDialog(
       BuildContext context,
