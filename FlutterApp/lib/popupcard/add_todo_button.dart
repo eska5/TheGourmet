@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_ui/popupcard/custom_rect_tween.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_ui/components/button.dart';
+import 'package:new_ui/popupcard/custom_rect_tween.dart';
 
 import 'custom_rect_tween.dart';
 import 'hero_dialog_route.dart';

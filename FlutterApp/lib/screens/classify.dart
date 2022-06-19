@@ -11,13 +11,11 @@ import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/components/tile.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:new_ui/components/tile.dart';
-
-import '../components/loaderdialog.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -88,7 +86,7 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context,  responseTitle);
+          showTopSnackBarCustomError(context, responseTitle);
           // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
           //     responseText1, responseText2, responseText3, responseColor);
           return;
@@ -116,7 +114,7 @@ class _AddImageState extends State<ClassifyImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context,  responseTitle);
+          showTopSnackBarCustomError(context, responseTitle);
           // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
           //     responseText1, responseText2, responseText3, responseColor);
           return;
@@ -139,7 +137,7 @@ class _AddImageState extends State<ClassifyImage> {
   void _navigateAndDisplaySelection2(BuildContext context) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const MealCatalog()),
+      MaterialPageRoute(builder: (context) => MealCatalog()),
     );
   }
 
@@ -165,7 +163,7 @@ class _AddImageState extends State<ClassifyImage> {
         responseText2 = "";
         responseText3 = "załaduj zdjęcie z galerii lub aparatu";
         responseColor = "Colors.red";
-        showTopSnackBarCustomError(context,  responseTitle);
+        showTopSnackBarCustomError(context, responseTitle);
         // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
         //     responseText1, responseText2, responseText3, responseColor);
         return;
@@ -208,10 +206,31 @@ class _AddImageState extends State<ClassifyImage> {
           temp = json.decode(response.body)[5];
           globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
-          globals.tile1 = Tile(mealName: globals.modelOutput1, mealDescription: globals.modelOutput1, mealProbability: globals.modelChance1*100, color: globals.firstColor, gradient1: Colors.orange,gradient2: Colors.amber,numberOfStars: 3);
-          globals.tile2 = Tile(mealName: globals.modelOutput2, mealDescription: globals.modelOutput2, mealProbability: globals.modelChance2*100, color: globals.secondColor,gradient1: Color(0xFF526573),gradient2: Color(0xFF9CAABD),numberOfStars: 2);
-          globals.tile3 = Tile(mealName: globals.modelOutput3, mealDescription: globals.modelOutput3, mealProbability: globals.modelChance3*100, color: globals.thirdColor,gradient1: Color(0xFF7B4C1E),gradient2: Color(0xFFB9772D),numberOfStars: 1);
-  
+          globals.tile1 = Tile(
+              mealName: globals.modelOutput1,
+              mealDescription: globals.modelOutput1,
+              mealProbability: globals.modelChance1 * 100,
+              color: globals.firstColor,
+              gradient1: Colors.orange,
+              gradient2: Colors.amber,
+              numberOfStars: 3);
+          globals.tile2 = Tile(
+              mealName: globals.modelOutput2,
+              mealDescription: globals.modelOutput2,
+              mealProbability: globals.modelChance2 * 100,
+              color: globals.secondColor,
+              gradient1: Color(0xFF526573),
+              gradient2: Color(0xFF9CAABD),
+              numberOfStars: 2);
+          globals.tile3 = Tile(
+              mealName: globals.modelOutput3,
+              mealDescription: globals.modelOutput3,
+              mealProbability: globals.modelChance3 * 100,
+              color: globals.thirdColor,
+              gradient1: Color(0xFF7B4C1E),
+              gradient2: Color(0xFFB9772D),
+              numberOfStars: 1);
+
           Navigator.pop(context, _LoaderDialog2.currentContext);
           _navigateAndDisplaySelection(context);
         });
@@ -222,7 +241,8 @@ class _AddImageState extends State<ClassifyImage> {
         responseText3 = "rozpoznane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
         //Navigator.pop(context, _LoaderDialog2.currentContext);
-        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
         //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       } on TimeoutException {
         responseTitle = "Status przesłania";
@@ -231,7 +251,8 @@ class _AddImageState extends State<ClassifyImage> {
         responseText3 = "rozpoznane, przekroczono limit czasu !";
         responseColor = "Colors.red";
         //Navigator.pop(context, _LoaderDialog2.currentContext);
-        showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3));
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
         //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
     } on PlatformException catch (e) {
