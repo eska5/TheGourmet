@@ -16,8 +16,6 @@ import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import '../components/loaderdialog.dart';
-
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
 String responseTitle = "";
@@ -199,9 +197,11 @@ class _AddImageState extends State<AddImage> {
         responseText3 = "odebrane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
       }
-      responseColor == "Colors.red" ?
-      showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3)) :
-      showTopSnackBarCustomSuccess(context,  (responseText1 + responseText2 + responseText3));
+      responseColor == "Colors.red"
+          ? showTopSnackBarCustomError(
+              context, (responseText1 + responseText2 + responseText3))
+          : showTopSnackBarCustomSuccess(
+              context, (responseText1 + responseText2 + responseText3));
       // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
       //     responseText1, responseText2, responseText3, responseColor);
     } on PlatformException catch (e) {

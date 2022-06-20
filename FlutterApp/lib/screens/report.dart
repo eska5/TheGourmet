@@ -14,7 +14,6 @@ import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import '../components/loaderdialog.dart';
 import '../components/suggestions.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
@@ -199,9 +198,11 @@ Future wyslijReportiWroc(context, inputText2) async {
       responseText3 = "odebrane, niewłaściwy adres serwera !";
       responseColor = "Colors.red";
     }
-    responseColor == "Colors.red" ?
-    showTopSnackBarCustomError(context,  (responseText1 + responseText2 + responseText3)) :
-    showTopSnackBarCustomSuccess(context,  (responseText1 + responseText2 + responseText3));
+    responseColor == "Colors.red"
+        ? showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3))
+        : showTopSnackBarCustomSuccess(
+            context, (responseText1 + responseText2 + responseText3));
     // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
     //     responseText1, responseText2, responseText3, responseColor);
     //Navigator.pop(context);

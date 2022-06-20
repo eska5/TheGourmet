@@ -1,14 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/popupcard/Card.dart';
-import 'package:new_ui/popupcard/add_todo_button2.dart';
 import 'package:new_ui/screens/report.dart';
-import 'package:universal_platform/universal_platform.dart';
-import 'package:new_ui/components/tile.dart';
-
 
 class ModelResult extends StatefulWidget {
   const ModelResult({Key? key}) : super(key: key);
@@ -21,8 +16,8 @@ class _Screen2State extends State<ModelResult> {
   TextEditingController inputText = TextEditingController();
   bool _customTileExpanded = false;
 
-@override
-Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wróć do ekranu głównego'),
@@ -42,48 +37,44 @@ Widget build(BuildContext context) {
           },
         ),
       ),
-
-
       body: ListView(
           shrinkWrap: true,
           padding: const EdgeInsets.only(
               left: 0.0, right: 0.0, bottom: 13.0, top: 50),
           children: [
-             Center(
-                child: globals.webImageClassify == null &&
-                        globals.mobileImageClassify == null
-                    ? Image.asset('assets/diet.png', width: 200, height: 200)
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: kIsWeb
-                            ? Image.memory(
-                                globals.webImageClassify!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                globals.mobileImageClassify!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )),
-              ),
-              const SizedBox(
-            height: 50,
-          ),
+            Center(
+              child: globals.webImageClassify == null &&
+                      globals.mobileImageClassify == null
+                  ? Image.asset('assets/diet.png', width: 200, height: 200)
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: kIsWeb
+                          ? Image.memory(
+                              globals.webImageClassify!,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.file(
+                              globals.mobileImageClassify!,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             SingleChildScrollView(
               child: Container(
-                child: new Column(
-                  children: [
-                    createCard(globals.tile1),
-                    createCard(globals.tile2),
-                    createCard(globals.tile3),
-                  ],
-                )
-              ),
+                  child: new Column(
+                children: [
+                  createCard(globals.tile1),
+                  createCard(globals.tile2),
+                  createCard(globals.tile3),
+                ],
+              )),
             ),
-            
             const SizedBox(
               height: 125,
             ),

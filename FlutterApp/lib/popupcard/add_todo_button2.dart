@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/components/globals.dart';
 import 'package:new_ui/popupcard/custom_rect_tween.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:new_ui/components/button.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import 'custom_rect_tween.dart';
@@ -22,6 +21,7 @@ class AddTodoButton2 extends StatelessWidget {
   dynamic chance;
   dynamic data;
   dynamic chosenColor;
+
   AddTodoButton2(
       {Key? key,
       required this.mobileImageCliassify,
@@ -30,6 +30,7 @@ class AddTodoButton2 extends StatelessWidget {
       required this.data,
       required this.chosenColor})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -99,6 +100,7 @@ class _AddTodoPopupCard2 extends StatelessWidget {
   dynamic chance;
   dynamic data;
   Color chosenColor;
+
   _AddTodoPopupCard2(
       {Key? key,
       required this.mobileImageCliassify,
