@@ -222,7 +222,6 @@ class _AddImageState extends State<AddImage> {
       ),
       backgroundColor: Colors.indigo[50],
       body: ListView(
-        shrinkWrap: true,
         padding: const EdgeInsets.only(
             // left: 13.0, right: 13.0, bottom: 13.0, top: 0),
             left: 5.0,
