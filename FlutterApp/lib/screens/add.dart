@@ -308,7 +308,7 @@ class _AddImageState extends State<AddImage> {
               title: "Nazwij potrawę",
               icon: Icons.text_fields_rounded,
               onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Color(0xFFEBAA47),
+              backgroundColor: Color(0xFFFE9901),
               fontSize: 20,
               enabled: true,
             ),
@@ -324,7 +324,6 @@ class _AddImageState extends State<AddImage> {
           ),
         ],
       ),
-      //),
     );
   }
 }
