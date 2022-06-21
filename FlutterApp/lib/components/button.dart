@@ -115,7 +115,7 @@ Widget ClassifyImageButton({
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(0xFFEBAA47),
+          primary: Color(0xFFFE9901),
           onPrimary: Colors.white,
           textStyle: TextStyle(fontSize: 20),
           shape:
