@@ -6,7 +6,6 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
@@ -223,86 +222,109 @@ class _AddImageState extends State<AddImage> {
       ),
       backgroundColor: Colors.indigo[50],
       body: ListView(
-        shrinkWrap: true,
         padding: const EdgeInsets.only(
-            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+            // left: 13.0, right: 13.0, bottom: 13.0, top: 0),
+            left: 5.0,
+            right: 5.0,
+            bottom: 13.0,
+            top: 0),
         children: [
-          const SizedBox(
-            height: 5,
-          ),
-          Center(
-            child: globals.webImageAdd == null && globals.mobileImageAdd == null
-                ? Image.asset('assets/dish.png', width: 200, height: 200)
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: kIsWeb
-                        ? Image.memory(
-                            globals.webImageAdd!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            globals.mobileImageAdd!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
-          ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
-          ),
-          Center(
-            child: Text(globals.mealTag,
+          Container(
+            margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+            padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+            height: 65,
+            decoration: BoxDecoration(
+              color: Colors.blue.shade400,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(45.0),
+                bottomLeft: Radius.circular(45.0),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                globals.mealTag,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 22,
-                  textStyle: TextStyle(letterSpacing: 0),
-                )),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 21),
+              ),
+            ),
           ),
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
+          const SizedBox(
+            height: 30,
+          ),
+          Stack(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(
+                      left: 13.0, top: 100, right: 13.0, bottom: 100)),
+              Center(
+                child: globals.webImageAdd == null &&
+                        globals.mobileImageAdd == null
+                    ? Image.asset('assets/dish.png', width: 200, height: 200)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: kIsWeb
+                            ? Image.memory(
+                                globals.webImageAdd!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                globals.mobileImageAdd!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
+              ),
+              Positioned(
+                right: 30.0,
+                top: 180.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment
+                      .center, //Center Row contents vertically,
+                  children: [
+                    UploadImageButton(
+                        title: "",
+                        icon: Icons.image_rounded,
+                        onClicked: () => pickImage(ImageSource.gallery)),
+                    TakeImageButton(
+                        title: "",
+                        icon: Icons.camera_alt_rounded,
+                        onClicked: () => pickImage(ImageSource.camera)),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 220,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 45,
           ),
           Center(
             child: NavigationButton(
               title: "Nazwij potrawę",
               icon: Icons.text_fields_rounded,
               onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Colors.indigo,
+              backgroundColor: Color(0xFFEBAA47),
               fontSize: 20,
               enabled: true,
             ),
           ),
           const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment:
-                MainAxisAlignment.center, //Center Row contents horizontally,
-            crossAxisAlignment:
-                CrossAxisAlignment.center, //Center Row contents vertically,
-            children: [
-              UploadImageButton(
-                  title: "Wybierz",
-                  icon: Icons.image_rounded,
-                  onClicked: () => pickImage(ImageSource.gallery)),
-              TakeImageButton(
-                  title: "Zrób",
-                  icon: Icons.camera_alt_rounded,
-                  onClicked: () => pickImage(ImageSource.camera)),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
+            height: 25,
           ),
           Center(
             child: SubmitImageButton(
-                title: "Wyślij potrawę ",
+                title: "Wyślij potrawę  ",
                 icon: Icons.send_rounded,
                 onClicked: () => sendToServer()),
-          ),
-          const SizedBox(
-            height: 25,
           ),
         ],
       ),
