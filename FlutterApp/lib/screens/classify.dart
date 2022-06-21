@@ -268,8 +268,8 @@ class _AddImageState extends State<ClassifyImage> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.calculate_rounded, size: 29),
-        title:
-            const Text('Rozpoznawanie potrawy', style: TextStyle(fontSize: 22)),
+        title: const Text('Rozpoznaj swoją potrawę',
+            style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],

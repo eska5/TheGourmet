@@ -216,8 +216,7 @@ class _AddImageState extends State<AddImage> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.add_photo_alternate_rounded, size: 29),
-        title: const Text('Dodanie nowego zdjęcia',
-            style: TextStyle(fontSize: 22)),
+        title: const Text('Dodaj nową potrawę', style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
