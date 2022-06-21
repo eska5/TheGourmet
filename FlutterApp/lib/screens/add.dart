@@ -225,13 +225,44 @@ class _AddImageState extends State<AddImage> {
       body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.only(
-            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+            // left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+            left: 0.0, right: 0.0, bottom: 0.0, top: 0),
         children: [
-          const SizedBox(
-            height: 5,
-          ),
                    Stack(
             children: <Widget>[
+              Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+          height: 60,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(66, 165, 245, 1),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.black26.withOpacity(0.75),
+            //     spreadRadius: 2,
+            //     blurRadius: 4,
+            //     offset: Offset(5,5),
+            //   ),
+            // ],
+            borderRadius: BorderRadius.only(
+               bottomRight: Radius.circular(40.0),
+               bottomLeft: Radius.circular(40.0),
+            ),
+          ),
+
+          child: Center(
+            child: Text(globals.mealTag,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.comfortaa(
+                  fontSize: 20,
+                  textStyle: TextStyle(
+                    letterSpacing: 0,
+                    color: Colors.white),
+                  
+                )),
+          ),
+          ),
+              Padding(padding: const EdgeInsets.only(left: 13.0,top: 100,right: 13.0, bottom: 100)),
               Center(
                 child: globals.webImageAdd == null &&
                         globals.mobileImageAdd == null
@@ -277,46 +308,8 @@ class _AddImageState extends State<AddImage> {
               ),
             ],
           ),
-          // const SizedBox(
-          //   height: 40,
-          // ),
           SizedBox(
             height: smallSreen() ? 20 : 35,
-          ),
-
-          Container(
-          width: 245,
-          height: 60,
-          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-          padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(66, 165, 245, 1),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.black26.withOpacity(0.75),
-            //     spreadRadius: 2,
-            //     blurRadius: 4,
-            //     offset: Offset(5,5),
-            //   ),
-            // ],
-            borderRadius: BorderRadius.only(
-               bottomRight: Radius.circular(40.0),
-               bottomLeft: Radius.circular(40.0),
-            ),
-          ),
-
-          child: Center(
-            child: Text(globals.mealTag,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 20,
-                  textStyle: TextStyle(
-                    letterSpacing: 0,
-                    color: Colors.white),
-                  
-                )),
-          ),
-
           ),
 
           SizedBox(
