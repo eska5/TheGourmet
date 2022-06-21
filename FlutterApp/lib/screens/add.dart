@@ -6,7 +6,6 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
@@ -225,44 +224,42 @@ class _AddImageState extends State<AddImage> {
       body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.only(
-            // left: 13.0, right: 13.0, bottom: 13.0, top: 45),
-            left: 0.0, right: 0.0, bottom: 0.0, top: 0),
+            // left: 13.0, right: 13.0, bottom: 13.0, top: 0),
+            left: 5.0,
+            right: 5.0,
+            bottom: 13.0,
+            top: 0),
         children: [
-                   Stack(
-            children: <Widget>[
-              Container(
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
-          height: 60,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(66, 165, 245, 1),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.black26.withOpacity(0.75),
-            //     spreadRadius: 2,
-            //     blurRadius: 4,
-            //     offset: Offset(5,5),
-            //   ),
-            // ],
-            borderRadius: BorderRadius.only(
-               bottomRight: Radius.circular(40.0),
-               bottomLeft: Radius.circular(40.0),
+          Container(
+            margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+            padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+            height: 65,
+            decoration: BoxDecoration(
+              color: Colors.blue.shade400,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(45.0),
+                bottomLeft: Radius.circular(45.0),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                globals.mealTag,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 21),
+              ),
             ),
           ),
-
-          child: Center(
-            child: Text(globals.mealTag,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.comfortaa(
-                  fontSize: 20,
-                  textStyle: TextStyle(
-                    letterSpacing: 0,
-                    color: Colors.white),
-                  
-                )),
+          const SizedBox(
+            height: 30,
           ),
-          ),
-              Padding(padding: const EdgeInsets.only(left: 13.0,top: 100,right: 13.0, bottom: 100)),
+          Stack(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(
+                      left: 13.0, top: 100, right: 13.0, bottom: 100)),
               Center(
                 child: globals.webImageAdd == null &&
                         globals.mobileImageAdd == null
@@ -308,12 +305,8 @@ class _AddImageState extends State<AddImage> {
               ),
             ],
           ),
-          SizedBox(
-            height: smallSreen() ? 20 : 35,
-          ),
-
-          SizedBox(
-            height: smallSreen() ? 25 : 40,
+          const SizedBox(
+            height: 45,
           ),
           Center(
             child: NavigationButton(
@@ -333,9 +326,6 @@ class _AddImageState extends State<AddImage> {
                 title: "Wyślij potrawę  ",
                 icon: Icons.send_rounded,
                 onClicked: () => sendToServer()),
-          ),
-          const SizedBox(
-            height: 25,
           ),
         ],
       ),
