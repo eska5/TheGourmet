@@ -222,12 +222,8 @@ class _AddImageState extends State<AddImage> {
       ),
       backgroundColor: Colors.indigo[50],
       body: ListView(
-        padding: const EdgeInsets.only(
-            // left: 13.0, right: 13.0, bottom: 13.0, top: 0),
-            left: 5.0,
-            right: 5.0,
-            bottom: 13.0,
-            top: 0),
+        padding:
+            const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 13.0, top: 0),
         children: [
           Container(
             margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
