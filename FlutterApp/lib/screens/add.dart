@@ -213,43 +213,22 @@ class _AddImageState extends State<AddImage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.indigo[50],
-      alignment: Alignment.center,
-      //child: SingleChildScrollView(
-      child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: const Icon(Icons.add_photo_alternate_rounded, size: 29),
+        title: const Text('Dodanie nowego zdjęcia',
+            style: TextStyle(fontSize: 22)),
+        backgroundColor: Colors.indigo,
+      ),
+      backgroundColor: Colors.indigo[50],
+      body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.only(
             left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
-          ExpansionTile(
-            title: const Text(
-              'Dodanie nowego zdjęcia',
-              style: TextStyle(fontSize: 23),
-              textAlign: TextAlign.center,
-            ),
-            subtitle: const Text('Kliknij po dodatkowe informacje',
-                style: TextStyle(fontSize: 15), textAlign: TextAlign.center),
-            trailing: Icon(
-              _customTileExpanded
-                  ? Icons.arrow_circle_up_rounded
-                  : Icons.arrow_circle_down_rounded,
-            ),
-            children: const <Widget>[
-              ListTile(
-                title: Text(
-                  'Krótka instrukcja jak dodać nową potrawę do bazy danych.\n1. Zrób albo wybierz zdjęcie.\n2. Nazwij potrawę przez ekran "Nazwij potrawę".\n3. Wyślij.\n\nTwoje zdjęcie potrawy trafi do zbioru danych i zostanie użyte w przyszłości do doskonalenia modelu.',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 14),
-                ),
-              ),
-            ],
-            onExpansionChanged: (bool expanded) {
-              setState(() => _customTileExpanded = expanded);
-            },
-          ),
-          SizedBox(
-            height: smallSreen() ? 5 : 10,
+          const SizedBox(
+            height: 5,
           ),
           Center(
             child: globals.webImageAdd == null && globals.mobileImageAdd == null
