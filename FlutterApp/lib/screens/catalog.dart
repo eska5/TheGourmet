@@ -36,7 +36,7 @@ class _Screen2State extends State<MealCatalog> {
       backgroundColor: Colors.indigo[50],
       body: AlphabetScrollPage(
         items: [
-          "Brokół",
+          "Brokuł",
           "Sałatka cezar",
           "Marchewka",
           "Sernik",

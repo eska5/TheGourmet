@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_ui/functions/func.dart';
 
 import '../components/button.dart';
 
@@ -21,7 +20,7 @@ class Home extends StatelessWidget {
           Container(
             //margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
             //padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
-            height: 450,
+            height: 400,
             decoration: new BoxDecoration(
               color: Colors.indigo[50],
               borderRadius: BorderRadius.vertical(
@@ -30,9 +29,7 @@ class Home extends StatelessWidget {
             ),
             child: Column(
               children: [
-                SizedBox(
-                  height: smallSreen() ? 5 : 30,
-                ),
+                const SizedBox(height: 5),
                 Center(
                   child: Text('Gourmet',
                       style: GoogleFonts.caveat(
@@ -42,10 +39,7 @@ class Home extends StatelessWidget {
                 ),
                 Image.asset(
                   "assets/hot.png",
-                  height: 260,
-                ),
-                const SizedBox(
-                  height: 3,
+                  height: 245,
                 ),
                 Center(
                   child: Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
