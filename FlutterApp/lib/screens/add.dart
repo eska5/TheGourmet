@@ -230,36 +230,95 @@ class _AddImageState extends State<AddImage> {
           const SizedBox(
             height: 5,
           ),
-          Center(
-            child: globals.webImageAdd == null && globals.mobileImageAdd == null
-                ? Image.asset('assets/dish.png', width: 200, height: 200)
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: kIsWeb
-                        ? Image.memory(
-                            globals.webImageAdd!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            globals.mobileImageAdd!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
+                   Stack(
+            children: <Widget>[
+              Center(
+                child: globals.webImageAdd == null &&
+                        globals.mobileImageAdd == null
+                    ? Image.asset('assets/dish.png', width: 200, height: 200)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: kIsWeb
+                            ? Image.memory(
+                                globals.webImageAdd!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                globals.mobileImageAdd!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
+              ),
+              Positioned(
+                right: 30.0,
+                top: 180.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment
+                      .center, //Center Row contents vertically,
+                  children: [
+                    UploadImageButton(
+                        title: "",
+                        icon: Icons.image_rounded,
+                        onClicked: () => pickImage(ImageSource.gallery)),
+                    TakeImageButton(
+                        title: "",
+                        icon: Icons.camera_alt_rounded,
+                        onClicked: () => pickImage(ImageSource.camera)),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 220,
+              ),
+            ],
           ),
+          // const SizedBox(
+          //   height: 40,
+          // ),
           SizedBox(
-            height: smallSreen() ? 25 : 40,
+            height: smallSreen() ? 20 : 35,
           ),
-          Center(
+
+          Container(
+          width: 245,
+          height: 60,
+          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(66, 165, 245, 1),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.black26.withOpacity(0.75),
+            //     spreadRadius: 2,
+            //     blurRadius: 4,
+            //     offset: Offset(5,5),
+            //   ),
+            // ],
+            borderRadius: BorderRadius.only(
+               bottomRight: Radius.circular(40.0),
+               bottomLeft: Radius.circular(40.0),
+            ),
+          ),
+
+          child: Center(
             child: Text(globals.mealTag,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.comfortaa(
-                  fontSize: 22,
-                  textStyle: TextStyle(letterSpacing: 0),
+                  fontSize: 20,
+                  textStyle: TextStyle(
+                    letterSpacing: 0,
+                    color: Colors.white),
+                  
                 )),
           ),
+
+          ),
+
           SizedBox(
             height: smallSreen() ? 25 : 40,
           ),
@@ -268,36 +327,17 @@ class _AddImageState extends State<AddImage> {
               title: "Nazwij potrawę",
               icon: Icons.text_fields_rounded,
               onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Colors.indigo,
+              backgroundColor: Color(0xFFEBAA47),
               fontSize: 20,
               enabled: true,
             ),
           ),
           const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment:
-                MainAxisAlignment.center, //Center Row contents horizontally,
-            crossAxisAlignment:
-                CrossAxisAlignment.center, //Center Row contents vertically,
-            children: [
-              UploadImageButton(
-                  title: "Wybierz",
-                  icon: Icons.image_rounded,
-                  onClicked: () => pickImage(ImageSource.gallery)),
-              TakeImageButton(
-                  title: "Zrób",
-                  icon: Icons.camera_alt_rounded,
-                  onClicked: () => pickImage(ImageSource.camera)),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
+            height: 25,
           ),
           Center(
             child: SubmitImageButton(
-                title: "Wyślij potrawę ",
+                title: "Wyślij potrawę  ",
                 icon: Icons.send_rounded,
                 onClicked: () => sendToServer()),
           ),
