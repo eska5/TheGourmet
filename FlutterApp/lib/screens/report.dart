@@ -154,7 +154,7 @@ Future wyslijReportiWroc(context, inputText2) async {
 
     String base64Image = base64Encode(bytes!);
     Map<String, dynamic> body = {
-      'modeloutput': globals.modelOutput1,
+      'modeloutput': globals.tile1?.mealName,
       'useroutput': globals.ReportMealName,
       'mealPhoto': base64Image
     };
