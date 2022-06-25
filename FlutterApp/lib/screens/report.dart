@@ -104,9 +104,10 @@ class _Screen2State2 extends State<ModelResult2> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: SubmitImageButton(
+          child: generalButton(
               title: "Wyslij",
               icon: Icons.send_rounded,
+              color: Colors.deepPurpleAccent,
               onClicked: () => wyslijReportiWroc(context, this.inputText.text)),
         ),
       ]),

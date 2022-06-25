@@ -18,10 +18,8 @@ class Home extends StatelessWidget {
             const EdgeInsets.only(left: 0.0, right: 0.0, bottom: 13.0, top: 0),
         children: [
           Container(
-            //margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-            //padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
             height: 400,
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.indigo[50],
               borderRadius: BorderRadius.vertical(
                   bottom: Radius.elliptical(
@@ -55,39 +53,36 @@ class Home extends StatelessWidget {
             height: 25,
           ),
           Center(
-            child: NavigationButton(
+            // Login button
+            child: generalButton(
               title: "Logowanie",
               icon: Icons.login_rounded,
+              color: const Color(0xFFFE9901),
               onClicked: () => {},
-              backgroundColor: Color(0xFFFE9901),
-              fontSize: 20,
-              enabled: true,
             ),
           ),
           const SizedBox(
             height: 20,
           ),
           Center(
-            child: NavigationButton(
+            // Registration button
+            child: generalButton(
               title: "Rejestracja",
               icon: Icons.assignment_ind_rounded,
+              color: const Color(0xFFFB2B3A),
               onClicked: () => {},
-              backgroundColor: Color(0xFFFB2B3A),
-              fontSize: 20,
-              enabled: true,
             ),
           ),
           const SizedBox(
             height: 20,
           ),
           Center(
-            child: NavigationButton(
+            // About us Button
+            child: generalButton(
               title: "O nas",
               icon: Icons.engineering_rounded,
+              color: Color(0xFF00AD2B),
               onClicked: () => {},
-              backgroundColor: Color(0xFF00AD2B),
-              fontSize: 20,
-              enabled: true,
             ),
           ),
         ],

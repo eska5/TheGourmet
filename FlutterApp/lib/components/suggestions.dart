@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import '../functions/func.dart';
 
 String domain = getDomain(1);
