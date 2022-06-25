@@ -3,24 +3,9 @@ library gourmet.globals;
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:new_ui/components/tile.dart';
 
-//Data For Tiles
 String mealTag = "Nazwa twojej potrawy";
-String modelOutput1 = 'Tutaj nazwa';
-double modelChance1 = 0;
-String modelOutput2 = 'Tutaj nazwa';
-double modelChance2 = 0;
-String modelOutput3 = 'Tutaj nazwa';
-double modelChance3 = 0;
-Color firstColor = Color(0xFFE5B80B);
-Color secondColor = Color(0xFFC4CACE);
-Color thirdColor = Color(0xFFA46628);
-
-//Error section
-// ignore: non_constant_identifier_names
-Color ErrorColor = Color(0xFFDC143C);
 
 //Images section
 File? mobileImageAdd;

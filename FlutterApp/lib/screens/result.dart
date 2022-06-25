@@ -63,7 +63,7 @@ class _Screen2State extends State<ModelResult> {
               child: generalButton(
                   title: "Złe wyniki",
                   icon: Icons.report_rounded,
-                  color: globals.ErrorColor,
+                  color: const Color(0xFFDC143C),
                   onClicked: () => _navigateAndDisplaySelection2(context)),
             ),
           ]),

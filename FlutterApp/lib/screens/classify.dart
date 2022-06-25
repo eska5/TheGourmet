@@ -194,44 +194,40 @@ class _AddImageState extends State<ClassifyImage> {
             .timeout(const Duration(seconds: 30));
 
         setState(() {
-          // Zapisanie response do globali
-          globals.modelOutput1 = json.decode(response.body)[0];
-          String temp = json.decode(response.body)[1];
-          globals.modelChance1 = double.parse(temp);
-          globals.modelOutput2 = json.decode(response.body)[2];
-          temp = json.decode(response.body)[3];
-          globals.modelChance2 = double.parse(temp);
-          globals.modelOutput3 = json.decode(response.body)[4];
-          temp = json.decode(response.body)[5];
-          globals.modelChance3 = double.parse(temp);
-          globals.mealClassified = true;
-
           // Changing variables in global Tiles
+          // Tile 1
           globals.tile1 = Tile(
-              mealName: globals.modelOutput1,
-              mealDescription: globals.modelOutput1,
-              mealProbability: globals.modelChance1 * 100,
-              color: globals.firstColor,
+              mealName: json.decode(response.body)[0],
+              mealDescription: json.decode(response.body)[0],
+              mealProbability:
+                  double.parse(json.decode(response.body)[1]) * 100,
+              color: const Color(0xFFE5B80B),
               gradient1: Colors.orange,
               gradient2: Colors.amber,
               numberOfStars: 3);
+          // Tile 2
           globals.tile2 = Tile(
-              mealName: globals.modelOutput2,
-              mealDescription: globals.modelOutput2,
-              mealProbability: globals.modelChance2 * 100,
-              color: globals.secondColor,
-              gradient1: Color(0xFF526573),
-              gradient2: Color(0xFF9CAABD),
+              mealName: json.decode(response.body)[2],
+              mealDescription: json.decode(response.body)[2],
+              mealProbability:
+                  double.parse(json.decode(response.body)[3]) * 100,
+              color: const Color(0xFFC4CACE),
+              gradient1: const Color(0xFF526573),
+              gradient2: const Color(0xFF9CAABD),
               numberOfStars: 2);
+          // Tile 3
           globals.tile3 = Tile(
-              mealName: globals.modelOutput3,
-              mealDescription: globals.modelOutput3,
-              mealProbability: globals.modelChance3 * 100,
-              color: globals.thirdColor,
+              mealName: json.decode(response.body)[4],
+              mealDescription: json.decode(response.body)[4],
+              mealProbability:
+                  double.parse(json.decode(response.body)[5]) * 100,
+              color: const Color(0xFFA46628),
               gradient1: const Color(0xFF7B4C1E),
               gradient2: const Color(0xFFB9772D),
               numberOfStars: 1);
 
+          // Classify button is enabled now
+          globals.mealClassified = true;
           Navigator.pop(context, _LoaderDialog.currentContext);
           _navigateAndDisplaySelection(context);
         });
