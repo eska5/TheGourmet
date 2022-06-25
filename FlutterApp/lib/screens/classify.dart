@@ -72,7 +72,7 @@ class _AddImageState extends State<ClassifyImage> {
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
   final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
-  
+
   bool _customTileExpanded = false;
 
   Future pickImage(ImageSource source) async {
