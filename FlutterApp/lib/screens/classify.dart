@@ -25,6 +25,8 @@ String responseText2 = "";
 String responseText3 = "";
 String responseColor = "";
 
+bool isClassifyReady = false;
+
 class LoaderDialog2 {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
@@ -70,6 +72,7 @@ class _AddImageState extends State<ClassifyImage> {
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
   final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
+  
   bool _customTileExpanded = false;
 
   Future pickImage(ImageSource source) async {
@@ -92,6 +95,7 @@ class _AddImageState extends State<ClassifyImage> {
           return;
         }
         final imageTemporary = await image.readAsBytes();
+        isClassifyReady = true;
         setState(() {
           globals.webImageClassify = imageTemporary;
         });
@@ -120,6 +124,7 @@ class _AddImageState extends State<ClassifyImage> {
           return;
         }
         final imageTemporary = File(image.path);
+        isClassifyReady = true;
         setState(() => globals.mobileImageClassify = imageTemporary);
       } on PlatformException catch (e) {
         print('Failed to pick image: $e');
@@ -331,10 +336,13 @@ class _AddImageState extends State<ClassifyImage> {
             height: 40,
           ),
           Center(
-            child: ClassifyImageButton(
+            child: NavigationButton(
               title: 'Rozpoznaj potrawę',
               icon: Icons.fastfood_rounded,
               onClicked: () => categorizeThePhoto(),
+              backgroundColor: Color(0xFFFE9901),
+              fontSize: 20,
+              enabled: isClassifyReady,
             ),
           ),
           const SizedBox(
