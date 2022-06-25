@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/popupcard/Card.dart';
+import 'package:new_ui/cardTile/Card.dart';
 import 'package:new_ui/screens/report.dart';
+import 'package:new_ui/functions/func.dart' as func;
 
 class ModelResult extends StatefulWidget {
   const ModelResult({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class ModelResult extends StatefulWidget {
 
 class _Screen2State extends State<ModelResult> {
   TextEditingController inputText = TextEditingController();
-  bool _customTileExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,48 +42,28 @@ class _Screen2State extends State<ModelResult> {
           padding: const EdgeInsets.only(
               left: 0.0, right: 0.0, bottom: 13.0, top: 50),
           children: [
-            Center(
-              child: globals.webImageClassify == null &&
-                      globals.mobileImageClassify == null
-                  ? Image.asset('assets/diet.png', width: 200, height: 200)
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: kIsWeb
-                          ? Image.memory(
-                              globals.webImageClassify!,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.file(
-                              globals.mobileImageClassify!,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )),
-            ),
+            Center(child: func.buildPicture()),
             const SizedBox(
               height: 50,
             ),
             SingleChildScrollView(
-              child: Container(
-                  child: new Column(
+              child: Column(
                 children: [
-                  createCard(globals.tile1),
-                  createCard(globals.tile2),
-                  createCard(globals.tile3),
+                  createCard(globals.tile1!),
+                  createCard(globals.tile2!),
+                  createCard(globals.tile3!),
                 ],
-              )),
+              ),
             ),
             const SizedBox(
               height: 125,
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SubmitErrorButton(
+              child: generalButton(
                   title: "Złe wyniki",
                   icon: Icons.report_rounded,
-                  errorColor: globals.ErrorColor,
+                  color: globals.ErrorColor,
                   onClicked: () => _navigateAndDisplaySelection2(context)),
             ),
           ]),

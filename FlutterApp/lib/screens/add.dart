@@ -14,14 +14,7 @@ import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
-
-String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
-
-String responseTitle = "";
-String responseText1 = "";
-String responseText2 = "";
-String responseText3 = "";
-String responseColor = "";
+import 'package:new_ui/functions/func.dart' as func;
 
 class AddImage extends StatefulWidget {
   const AddImage({Key? key}) : super(key: key);
@@ -31,11 +24,17 @@ class AddImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<AddImage> {
-  final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
-  bool _customTileExpanded = false;
+  String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
+  // Response popUp variables
+  String responseTitle = "";
+  String responseText1 = "";
+  String responseText2 = "";
+  String responseText3 = "";
+  String responseColor = "";
+  // Picking image
   Future pickImage(ImageSource source) async {
-    //WEB
+    // WEB
     if (kIsWeb) {
       try {
         final image = await ImagePicker()
@@ -49,10 +48,9 @@ class _AddImageState extends State<AddImage> {
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           showTopSnackBarCustomError(context, responseTitle);
-          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
+
         final imageTemporary = await image.readAsBytes();
         setState(() {
           globals.webImageAdd = imageTemporary;
@@ -63,7 +61,7 @@ class _AddImageState extends State<AddImage> {
         }
       }
     }
-    //MOBILE
+    // MOBILE
     else {
       try {
         final image = await ImagePicker()
@@ -77,18 +75,20 @@ class _AddImageState extends State<AddImage> {
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           showTopSnackBarCustomError(context, responseTitle);
-          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
+
         final imageTemporary = File(image.path);
         setState(() => globals.mobileImageAdd = imageTemporary);
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
       }
     }
   }
 
+  // Meal name Confirmation <for user>
   void _navigateAndDisplaySelection(BuildContext context) async {
     final result = await Navigator.push(
       context,
@@ -114,6 +114,7 @@ class _AddImageState extends State<AddImage> {
     });
   }
 
+  // Sending mealPhoto and mealName to server
   Future sendToServer() async {
     try {
       if (!UniversalPlatform.isWeb) {
@@ -130,7 +131,7 @@ class _AddImageState extends State<AddImage> {
         "Access-Control-Allow-Origin": "*"
       };
       Uint8List? bytes;
-
+      // Response when photo or name were not given
       if (!validateRequest("Add")) {
         responseTitle = "Nie wybrano zdjęcia lub podpisu potrawy";
         responseText1 = "Zanim dodasz zdjęcie potrawy, ";
@@ -139,8 +140,6 @@ class _AddImageState extends State<AddImage> {
             "załaduj zdjęcie z galerii lub aparatu i upewnij się, że dodano nazwę potrawy";
         responseColor = "Colors.red";
         showTopSnackBarCustomError(context, responseTitle);
-        // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-        //     responseText1, responseText2, responseText3, responseColor);
         return;
       }
 
@@ -158,8 +157,8 @@ class _AddImageState extends State<AddImage> {
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
 
+      // Try catch error handling
       try {
-        //TO DO Make a Catch for a error when user is posting a photo
         var response = await http
             .post(
               uri,
@@ -167,7 +166,7 @@ class _AddImageState extends State<AddImage> {
               body: jsonBody,
               encoding: encoding,
             )
-            .timeout(Duration(seconds: 1));
+            .timeout(const Duration(seconds: 1));
 
         int statusCode = response.statusCode;
         String responseBody = response.body;
@@ -176,6 +175,7 @@ class _AddImageState extends State<AddImage> {
           print(statusCode);
           print("OK");
         }
+        // Good request
         responseTitle = "Status przesłania";
         if (statusCode == 200) {
           responseText1 = "Zdjęcie zostało ";
@@ -196,13 +196,12 @@ class _AddImageState extends State<AddImage> {
         responseText3 = "odebrane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
       }
+      // Snackbar Response <for user>
       responseColor == "Colors.red"
           ? showTopSnackBarCustomError(
               context, (responseText1 + responseText2 + responseText3))
           : showTopSnackBarCustomSuccess(
               context, (responseText1 + responseText2 + responseText3));
-      // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-      //     responseText1, responseText2, responseText3, responseColor);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to send to server: $e');
@@ -212,7 +211,10 @@ class _AddImageState extends State<AddImage> {
 
   @override
   Widget build(BuildContext context) {
+    // Shows that we are not in classify
+    globals.isClassify = false;
     return Scaffold(
+      // Top of the screen
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.add_photo_alternate_rounded, size: 29),
@@ -220,17 +222,19 @@ class _AddImageState extends State<AddImage> {
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
+      // Below the top of the screen
       body: ListView(
         padding:
             const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 13.0, top: 0),
         children: [
+          // Meal name container Sticked to appBar on top
           Container(
-            margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-            padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+            margin: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             height: 65,
             decoration: BoxDecoration(
               color: Colors.blue.shade400,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(45.0),
                 bottomLeft: Radius.circular(45.0),
               ),
@@ -239,7 +243,7 @@ class _AddImageState extends State<AddImage> {
               child: Text(
                 globals.mealTag,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 21),
@@ -251,45 +255,30 @@ class _AddImageState extends State<AddImage> {
           ),
           Stack(
             children: <Widget>[
-              Padding(
-                  padding: const EdgeInsets.only(
+              const Padding(
+                  padding: EdgeInsets.only(
                       left: 13.0, top: 100, right: 13.0, bottom: 100)),
               Center(
-                child: globals.webImageAdd == null &&
-                        globals.mobileImageAdd == null
-                    ? Image.asset('assets/dish.png', width: 200, height: 200)
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: kIsWeb
-                            ? Image.memory(
-                                globals.webImageAdd!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                globals.mobileImageAdd!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )),
-              ),
+                  // Display image
+                  child: func.buildPicture()),
               Positioned(
                 right: 30.0,
                 top: 180.0,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .center, //Center Row contents horizontally,
-                  crossAxisAlignment: CrossAxisAlignment
-                      .center, //Center Row contents vertically,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    UploadImageButton(
-                        title: "",
+                    // Upload image button
+                    smallImageButton(
                         icon: Icons.image_rounded,
+                        color: Colors.indigoAccent,
+                        isRight: false,
                         onClicked: () => pickImage(ImageSource.gallery)),
-                    TakeImageButton(
-                        title: "",
+                    // Take image button
+                    smallImageButton(
                         icon: Icons.camera_alt_rounded,
+                        color: Colors.indigoAccent,
+                        isRight: true,
                         onClicked: () => pickImage(ImageSource.camera)),
                   ],
                 ),
@@ -303,22 +292,23 @@ class _AddImageState extends State<AddImage> {
             height: 45,
           ),
           Center(
-            child: NavigationButton(
+            // Name the meal button
+            child: generalButton(
               title: "Nazwij potrawę",
               icon: Icons.text_fields_rounded,
+              color: const Color(0xFFFE9901),
               onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Color(0xFFFE9901),
-              fontSize: 20,
-              enabled: true,
             ),
           ),
           const SizedBox(
             height: 25,
           ),
           Center(
-            child: SubmitImageButton(
+            // Send the meal button
+            child: generalButton(
                 title: "Wyślij potrawę  ",
                 icon: Icons.send_rounded,
+                color: Colors.deepPurpleAccent,
                 onClicked: () => sendToServer()),
           ),
         ],

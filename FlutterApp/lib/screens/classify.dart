@@ -16,18 +16,10 @@ import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
+import 'package:new_ui/functions/func.dart' as func;
 
-String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
-
-String responseTitle = "";
-String responseText1 = "";
-String responseText2 = "";
-String responseText3 = "";
-String responseColor = "";
-
-bool isClassifyReady = false;
-
-class LoaderDialog2 {
+// Loading Gif Class
+class LoaderDialog {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
     return showDialog<void>(
@@ -41,7 +33,7 @@ class LoaderDialog2 {
                   borderRadius: BorderRadius.all(Radius.circular(70))),
               key: key,
               backgroundColor: Colors.indigo[50],
-              child: Container(
+              child: SizedBox(
                 width: 150.0,
                 height: 250.0,
                 child: Image.asset(
@@ -65,15 +57,21 @@ class ClassifyImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<ClassifyImage> {
-  TextEditingController inputText = new TextEditingController();
+  String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
+
+  TextEditingController inputText = TextEditingController();
   TextEditingController recognizedMeal =
       TextEditingController(text: "Tutaj pojawi się wynik");
 
+  // Response popUp variables
+  String responseTitle = "";
+  String responseText1 = "";
+  String responseText2 = "";
+  String responseText3 = "";
+  String responseColor = "";
+
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
-  final GlobalKey<State> _LoaderDialog2 = GlobalKey<State>();
-
-  bool _customTileExpanded = false;
 
   Future pickImage(ImageSource source) async {
     //WEB
@@ -90,12 +88,11 @@ class _AddImageState extends State<ClassifyImage> {
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           showTopSnackBarCustomError(context, responseTitle);
-          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
+
         final imageTemporary = await image.readAsBytes();
-        isClassifyReady = true;
+        globals.isClassifyReady = true;
         setState(() {
           globals.webImageClassify = imageTemporary;
         });
@@ -119,30 +116,31 @@ class _AddImageState extends State<ClassifyImage> {
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
           showTopSnackBarCustomError(context, responseTitle);
-          // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-          //     responseText1, responseText2, responseText3, responseColor);
           return;
         }
+
         final imageTemporary = File(image.path);
-        isClassifyReady = true;
+        globals.isClassifyReady = true;
         setState(() => globals.mobileImageClassify = imageTemporary);
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
       }
     }
   }
 
   void _navigateAndDisplaySelection(BuildContext context) async {
-    final result = await Navigator.push(
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ModelResult()),
     );
   }
 
   void _navigateAndDisplaySelection2(BuildContext context) async {
-    final result = await Navigator.push(
+    await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MealCatalog()),
+      MaterialPageRoute(builder: (context) => const MealCatalog()),
     );
   }
 
@@ -169,8 +167,6 @@ class _AddImageState extends State<ClassifyImage> {
         responseText3 = "załaduj zdjęcie z galerii lub aparatu";
         responseColor = "Colors.red";
         showTopSnackBarCustomError(context, responseTitle);
-        // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
-        //     responseText1, responseText2, responseText3, responseColor);
         return;
       }
 
@@ -185,7 +181,7 @@ class _AddImageState extends State<ClassifyImage> {
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
-      LoaderDialog2.showLoadingDialog(context, _LoaderDialog2);
+      LoaderDialog.showLoadingDialog(context, _LoaderDialog);
 
       try {
         var response = await http
@@ -195,12 +191,10 @@ class _AddImageState extends State<ClassifyImage> {
               body: jsonBody,
               encoding: encoding,
             )
-            .timeout(Duration(seconds: 30));
+            .timeout(const Duration(seconds: 30));
 
         setState(() {
-          // Wypisuje cały response
-          //print(json.decode(response.body));
-          globals.modelOutput = "test"; //json.decode(response.body);
+          // Zapisanie response do globali
           globals.modelOutput1 = json.decode(response.body)[0];
           String temp = json.decode(response.body)[1];
           globals.modelChance1 = double.parse(temp);
@@ -211,6 +205,8 @@ class _AddImageState extends State<ClassifyImage> {
           temp = json.decode(response.body)[5];
           globals.modelChance3 = double.parse(temp);
           globals.mealClassified = true;
+
+          // Changing variables in global Tiles
           globals.tile1 = Tile(
               mealName: globals.modelOutput1,
               mealDescription: globals.modelOutput1,
@@ -232,11 +228,11 @@ class _AddImageState extends State<ClassifyImage> {
               mealDescription: globals.modelOutput3,
               mealProbability: globals.modelChance3 * 100,
               color: globals.thirdColor,
-              gradient1: Color(0xFF7B4C1E),
-              gradient2: Color(0xFFB9772D),
+              gradient1: const Color(0xFF7B4C1E),
+              gradient2: const Color(0xFFB9772D),
               numberOfStars: 1);
 
-          Navigator.pop(context, _LoaderDialog2.currentContext);
+          Navigator.pop(context, _LoaderDialog.currentContext);
           _navigateAndDisplaySelection(context);
         });
       } on SocketException {
@@ -245,20 +241,16 @@ class _AddImageState extends State<ClassifyImage> {
         responseText2 = "nie zostało ";
         responseText3 = "rozpoznane, niewłaściwy adres serwera !";
         responseColor = "Colors.red";
-        //Navigator.pop(context, _LoaderDialog2.currentContext);
         showTopSnackBarCustomError(
             context, (responseText1 + responseText2 + responseText3));
-        //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       } on TimeoutException {
         responseTitle = "Status przesłania";
         responseText1 = "Zdjęcie ";
         responseText2 = "nie zostało ";
         responseText3 = "rozpoznane, przekroczono limit czasu !";
         responseColor = "Colors.red";
-        //Navigator.pop(context, _LoaderDialog2.currentContext);
         showTopSnackBarCustomError(
             context, (responseText1 + responseText2 + responseText3));
-        //LoaderDialog2.showLoadingDialog(context, _LoaderDialog);
       }
     } on PlatformException catch (e) {
       if (kDebugMode) {
@@ -269,7 +261,10 @@ class _AddImageState extends State<ClassifyImage> {
 
   @override
   Widget build(BuildContext context) {
+    // Shows that we are in classify
+    globals.isClassify = true;
     return Scaffold(
+      // Top of the screen
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.calculate_rounded, size: 29),
@@ -278,6 +273,7 @@ class _AddImageState extends State<ClassifyImage> {
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
+      // Below top of the screen
       body: ListView(
         padding: const EdgeInsets.only(
             left: 13.0, right: 13.0, bottom: 13.0, top: 45),
@@ -288,41 +284,26 @@ class _AddImageState extends State<ClassifyImage> {
           Stack(
             children: <Widget>[
               Center(
-                child: globals.webImageClassify == null &&
-                        globals.mobileImageClassify == null
-                    ? Image.asset('assets/diet.png', width: 200, height: 200)
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: kIsWeb
-                            ? Image.memory(
-                                globals.webImageClassify!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                globals.mobileImageClassify!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )),
-              ),
+                  // Display image
+                  child: func.buildPicture()),
               Positioned(
                 right: 30.0,
                 top: 180.0,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .center, //Center Row contents horizontally,
-                  crossAxisAlignment: CrossAxisAlignment
-                      .center, //Center Row contents vertically,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    UploadImageButton(
-                        title: "",
+                    // Upload image button
+                    smallImageButton(
                         icon: Icons.image_rounded,
+                        color: Colors.indigoAccent,
+                        isRight: false,
                         onClicked: () => pickImage(ImageSource.gallery)),
-                    TakeImageButton(
-                        title: "",
+                    // Take image button
+                    smallImageButton(
                         icon: Icons.camera_alt_rounded,
+                        color: Colors.indigoAccent,
+                        isRight: true,
                         onClicked: () => pickImage(ImageSource.camera)),
                   ],
                 ),
@@ -336,23 +317,24 @@ class _AddImageState extends State<ClassifyImage> {
             height: 40,
           ),
           Center(
-            child: NavigationButton(
+            // Classify the meal button
+            child: enabledButton(
               title: 'Rozpoznaj potrawę',
               icon: Icons.fastfood_rounded,
               onClicked: () => categorizeThePhoto(),
               backgroundColor: Color(0xFFFE9901),
               fontSize: 20,
-              enabled: isClassifyReady,
+              enabled: globals.isClassifyReady,
             ),
           ),
           const SizedBox(
             height: 25,
           ),
           Center(
-            child: NavigationButton(
+            // Show last classified button
+            child: enabledButton(
               title: "Propozycje potraw",
               icon: Icons.api_rounded,
-              //TUTAJ DODAJEMY ZMIENNE DO PRZEKAZANIA :)
               onClicked: () => _navigateAndDisplaySelection(context),
               backgroundColor: Colors.blue[400],
               fontSize: 20,
@@ -363,13 +345,12 @@ class _AddImageState extends State<ClassifyImage> {
             height: 25,
           ),
           Center(
-            child: NavigationButton(
+            // Meal catalogue button
+            child: generalButton(
               title: "Katalog potraw",
               icon: Icons.playlist_add_check_rounded,
+              color: Colors.deepPurpleAccent,
               onClicked: () => _navigateAndDisplaySelection2(context),
-              backgroundColor: Colors.deepPurpleAccent,
-              fontSize: 20,
-              enabled: true,
             ),
           ),
         ],
