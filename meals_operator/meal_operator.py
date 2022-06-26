@@ -3,6 +3,7 @@ import json
 import os
 from io import BytesIO
 
+import requests
 from PIL import Image
 
 
@@ -43,3 +44,28 @@ def list_meals():
     file.close()
     lines.sort()
     return json.dumps([x[:-1] for x in lines])
+
+
+def get_meal_from_db(meal_name: str):
+    url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/findOne"
+    payload = json.dumps({
+        "collection": "meals",
+        "database": "gourmet",
+        "dataSource": "Cluster0",
+        "filter": {"name": meal_name},
+        "projection": {
+            "_id": 1,
+            "name": 1,
+            "calories": 1,
+            "allergens": 1,
+            "photos": 1,
+
+        }
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': '4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7',
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return json.loads(response.text)["document"]
