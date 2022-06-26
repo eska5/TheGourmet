@@ -13,10 +13,10 @@ import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/components/tile.dart';
 import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:new_ui/functions/func.dart' as func;
 
 // Loading Gif Class
 class LoaderDialog {
@@ -269,6 +269,13 @@ class _AddImageState extends State<ClassifyImage> {
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _navigateAndDisplaySelection2(context),
+        backgroundColor: Colors.deepPurpleAccent,
+        splashColor: Colors.deepPurpleAccent,
+        label: const Text('Katalog'),
+        icon: const Icon(Icons.format_list_bulleted_rounded),
+      ),
       // Below top of the screen
       body: ListView(
         padding: const EdgeInsets.only(
@@ -339,15 +346,6 @@ class _AddImageState extends State<ClassifyImage> {
           ),
           const SizedBox(
             height: 25,
-          ),
-          Center(
-            // Meal catalogue button
-            child: generalButton(
-              title: "Katalog potraw",
-              icon: Icons.playlist_add_check_rounded,
-              color: Colors.deepPurpleAccent,
-              onClicked: () => _navigateAndDisplaySelection2(context),
-            ),
           ),
         ],
       ),

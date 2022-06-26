@@ -25,11 +25,7 @@ class _Screen2State extends State<MealCatalog> {
             color: Colors.indigo[50],
           ),
           onTap: () {
-            String name = inputText.text;
-            if (kDebugMode) {
-              print("passed to AddMeal screen : $name");
-            }
-            Navigator.pop(context, name);
+            Navigator.pop(context);
           },
         ),
       ),
