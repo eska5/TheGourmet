@@ -30,5 +30,10 @@ def bad_result():
     return "OK"
 
 
+@app.route("/details", methods=["GET"], strict_slashes=False)
+def meal_details():
+    return m_operator.get_meal_from_db(dict(request.headers)["Meal-Name"])
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
