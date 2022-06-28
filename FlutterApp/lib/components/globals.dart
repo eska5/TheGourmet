@@ -15,6 +15,7 @@ Uint8List? webImageClassify;
 bool mealClassified = false;
 // ignore: non_constant_identifier_names
 String ReportMealName = "";
+List<String> catalogBody = [];
 
 // Is it on classify site
 bool isClassify = false;

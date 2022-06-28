@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fetchCatalog();
     FlutterNativeSplash.remove();
     return MaterialApp(
       title: _title,

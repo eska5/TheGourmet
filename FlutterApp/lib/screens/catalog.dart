@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ui/components/globals.dart' as globals;
 
 import '../components/AlphabetScrollPage.dart';
 
@@ -31,33 +31,7 @@ class _Screen2State extends State<MealCatalog> {
       ),
       backgroundColor: Colors.indigo[50],
       body: AlphabetScrollPage(
-        items: [
-          "Brokuł",
-          "Sałatka cezar",
-          "Marchewka",
-          "Sernik",
-          "Skrzydełka kurczaka",
-          "Tort czekoladowy",
-          "Babeczki",
-          "Winniczki",
-          "Frytki",
-          "Hamburger",
-          "Hot dog",
-          "Lody",
-          "Lasagne",
-          "Omlet",
-          "Naleśniki",
-          "Pizza",
-          "Żeberka",
-          "Jajecznica",
-          "Zupa",
-          "Spaghetti bolognese",
-          "Spaghetti carbonara",
-          "Stek",
-          "Sushi",
-          "Tiramisu",
-          "Gofry",
-        ],
+        items: globals.catalogBody,
         onClickedItem: (String value) {},
       ),
     );
