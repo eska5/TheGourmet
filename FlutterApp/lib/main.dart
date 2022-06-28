@@ -1,3 +1,4 @@
+import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,6 +44,8 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
+  GlobalKey bottomNavigationKey = GlobalKey();
+  int currentPage = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     ClassifyImage(),
@@ -59,32 +62,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
+          child: Center(
+            child: _widgetOptions[currentPage],
+          ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.indigo,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.indigo,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calculate_rounded),
-              label: 'Rozpoznaj',
-              backgroundColor: Colors.indigo,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_photo_alternate_rounded),
-              label: 'Dodaj nową',
-              backgroundColor: Colors.indigo,
-            )
+        bottomNavigationBar: FancyBottomNavigation(
+          barBackgroundColor: Colors.indigo,
+          inactiveIconColor: Colors.indigo[50],
+          textColor: Colors.indigo[50],
+          circleColor: Colors.indigo[50],
+          activeIconColor: Colors.indigo,
+          tabs: [
+            TabData(iconData: Icons.home, title: "Home"),
+            TabData(iconData: Icons.calculate_rounded, title: "Rozpoznaj"),
+            TabData(iconData: Icons.add_photo_alternate_rounded, title: "Dodaj")
           ],
-          showSelectedLabels: smallSreen() ? false : true,
-          showUnselectedLabels: smallSreen() ? false : true,
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.indigo[50],
-          onTap: _onItemTapped,
+          initialSelection: 0,
+          key: bottomNavigationKey,
+          onTabChangedListener: (position) {
+            setState(() {
+              currentPage = position;
+            });
+          },
         ));
   }
 }

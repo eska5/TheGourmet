@@ -44,6 +44,7 @@ dependencies:
   universal_io: ^2.0.4
   universal_platform: ^1.0.0+1
   top_snackbar_flutter: ^1.1.1
+  fancy_bottom_navigation: ^0.3.3
 
 dev_dependencies:
   flutter_test:
