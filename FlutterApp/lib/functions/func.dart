@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -118,34 +120,34 @@ void showTopSnackBarCustomError(dynamic context, dynamic text) {
 
 Widget buildPicture() {
   return globals.isClassify
-      // Classify
+  // Classify
       ? globals.webImageClassify != null || globals.mobileImageClassify != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: globals.webImageClassify != null
-                  ? Image.memory(
-                      globals.webImageClassify!,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    )
-                  : Image.file(
-                      globals.mobileImageClassify!,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ))
-          : Image.asset('assets/diet.png', width: 200, height: 200)
-      // Add
+      ? ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: globals.webImageClassify != null
+          ? Image.memory(
+        globals.webImageClassify!,
+        width: 200,
+        height: 200,
+        fit: BoxFit.cover,
+      )
+          : Image.file(
+        globals.mobileImageClassify!,
+        width: 200,
+        height: 200,
+        fit: BoxFit.cover,
+      ))
+      : Image.asset('assets/diet.png', width: 200, height: 200)
+  // Add
       : globals.webImageAdd != null || globals.mobileImageAdd != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: globals.webImageAdd != null
-                  ? Image.memory(
-                      globals.webImageAdd!,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
+      ? ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: globals.webImageAdd != null
+          ? Image.memory(
+        globals.webImageAdd!,
+        width: 200,
+        height: 200,
+        fit: BoxFit.cover,
                     )
                   : Image.file(
                       globals.mobileImageAdd!,
@@ -154,4 +156,52 @@ Widget buildPicture() {
                       fit: BoxFit.cover,
                     ))
           : Image.asset('assets/dish.png', width: 200, height: 200);
+}
+
+void fetchCatalog() async {
+  //Until android will be able to connect to our API we will use static list.
+  if (UniversalPlatform.isAndroid) {
+    globals.catalogBody = [
+      "Brokuł",
+      "Sałatka cezar",
+      "Marchewka",
+      "Sernik",
+      "Skrzydełka kurczaka",
+      "Tort czekoladowy",
+      "Babeczki",
+      "Winniczki",
+      "Frytki",
+      "Hamburger",
+      "Hot dog",
+      "Lody",
+      "Lasagne",
+      "Omlet",
+      "Naleśniki",
+      "Pizza",
+      "Żeberka",
+      "Jajecznica",
+      "Zupa",
+      "Spaghetti bolognese",
+      "Spaghetti carbonara",
+      "Stek",
+      "Sushi",
+      "Tiramisu",
+      "Gofry",
+    ];
+  } else {
+    //For other IOS and WEB we can download catalog with API.
+    List<String> catalogString = [];
+    final response =
+        await http.get(Uri.parse('https://gourmetapp.net/catalog'));
+
+    if (response.statusCode == 200) {
+      var catalogJson = json.decode(response.body);
+      for (var element in catalogJson) {
+        catalogString.add(element);
+      }
+      globals.catalogBody = catalogString;
+    } else {
+      throw Exception('Failed to load catalog');
+    }
+  }
 }
