@@ -67,11 +67,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ),
         bottomNavigationBar: FancyBottomNavigation(
-          barBackgroundColor: Colors.indigo,
-          inactiveIconColor: Colors.indigo[50],
-          textColor: Colors.indigo[50],
-          circleColor: Colors.indigo[50],
-          activeIconColor: Colors.indigo,
+          barBackgroundColor: Colors.indigo[100],
+          inactiveIconColor: Colors.indigo,
+          textColor: Colors.grey[850],
+          circleColor: Colors.indigo,
+          activeIconColor: Colors.indigo[100],
           tabs: [
             TabData(iconData: Icons.home, title: "Home"),
             TabData(iconData: Icons.calculate_rounded, title: "Rozpoznaj"),
