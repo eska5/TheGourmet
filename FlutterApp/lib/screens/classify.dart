@@ -16,7 +16,10 @@ import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
+import 'package:page_indicator/page_indicator.dart';
 import 'package:universal_platform/universal_platform.dart';
+
+import '../cardTile/Card.dart';
 
 // Loading Gif Class
 class LoaderDialog {
@@ -255,97 +258,173 @@ class _AddImageState extends State<ClassifyImage> {
     }
   }
 
+  final PageController controller = PageController();
+  GlobalKey<PageContainerState> key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     // Shows that we are in classify
     globals.isClassify = true;
-    return Scaffold(
-      // Top of the screen
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const Icon(Icons.calculate_rounded, size: 29),
-        title: const Text('Rozpoznaj swoją potrawę',
-            style: TextStyle(fontSize: 22)),
-        backgroundColor: Colors.indigo,
-      ),
-      backgroundColor: Colors.indigo[50],
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _navigateAndDisplaySelection2(context),
-        backgroundColor: Colors.deepPurpleAccent,
-        splashColor: Colors.deepPurpleAccent,
-        label: const Text('Katalog'),
-        icon: const Icon(Icons.format_list_bulleted_rounded),
-      ),
-      // Below top of the screen
-      body: ListView(
-        padding: const EdgeInsets.only(
-            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+    return PageIndicatorContainer(
+      indicatorSelectorColor: Colors.blue.shade400,
+      indicatorColor: Colors.grey,
+      key: key,
+      padding:
+          const EdgeInsets.only(top: 130.0, bottom: 0, left: 0.0, right: 0.0),
+      align: IndicatorAlign.top,
+      length: 2,
+      indicatorSpace: 20.0,
+      child: PageView(
+        scrollDirection: Axis.horizontal,
+        controller: controller,
         children: [
-          const SizedBox(
-            height: 5,
-          ),
-          Stack(
-            children: <Widget>[
-              Center(
-                  // Display image
-                  child: func.buildPicture()),
-              Positioned(
-                right: 30.0,
-                top: 180.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Upload image button
-                    smallImageButton(
-                        icon: Icons.image_rounded,
-                        color: Colors.indigoAccent,
-                        isRight: false,
-                        onClicked: () => pickImage(ImageSource.gallery)),
-                    // Take image button
-                    smallImageButton(
-                        icon: Icons.camera_alt_rounded,
-                        color: Colors.indigoAccent,
-                        isRight: true,
-                        onClicked: () => pickImage(ImageSource.camera)),
+          Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              leading: const Icon(Icons.add_box_rounded, size: 29),
+              title: const Text('Co masz na talerzu?',
+                  style: TextStyle(fontSize: 22)),
+              backgroundColor: Colors.indigo,
+            ),
+            backgroundColor: Colors.indigo[50],
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () => _navigateAndDisplaySelection2(context),
+              backgroundColor: Colors.deepPurpleAccent,
+              splashColor: Colors.deepPurpleAccent,
+              label: const Text('Katalog'),
+              icon: const Icon(Icons.format_list_bulleted_rounded),
+            ),
+            body: ListView(
+              padding: const EdgeInsets.only(
+                  left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+              children: [
+                const SizedBox(
+                  height: 5,
+                ),
+                Stack(
+                  children: <Widget>[
+                    Center(
+                        // Display image
+                        child: func.buildPicture()),
+                    Positioned(
+                      right: 30.0,
+                      top: 180.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // children: [
+                        //   // Upload image button
+                        //   smallImageButton(
+                        //       icon: Icons.image_rounded,
+                        //       color: Colors.indigoAccent,
+                        //       isRight: false,
+                        //       onClicked: () => pickImage(ImageSource.gallery)),
+                        //   // Take image button
+                        //   smallImageButton(
+                        //       icon: Icons.camera_alt_rounded,
+                        //       color: Colors.indigoAccent,
+                        //       isRight: true,
+                        //       onClicked: () => pickImage(ImageSource.camera)),
+                        // ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 220,
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 220,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Center(
-            // Classify the meal button
-            child: enabledButton(
-              title: 'Rozpoznaj potrawę',
-              icon: Icons.fastfood_rounded,
-              onClicked: () => categorizeThePhoto(),
-              backgroundColor: Color(0xFFFE9901),
-              fontSize: 20,
-              enabled: globals.isClassifyReady,
+                const SizedBox(
+                  height: 80,
+                ),
+                Center(
+                  // Classify the meal button
+                  child: enabledButton(
+                    title: 'Załaduj zdjęcie',
+                    icon: Icons.add_photo_alternate_rounded,
+                    onClicked: () => {},
+                    backgroundColor: Color(0xFFFE9901),
+                    fontSize: 20,
+                    enabled: true,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Center(
+                  // Classify the meal button
+                  child: enabledButton(
+                    title: 'Dalej     ',
+                    icon: Icons.arrow_forward_rounded,
+                    onClicked: () => {},
+                    backgroundColor: Colors.blue[400],
+                    fontSize: 20,
+                    enabled: true,
+                  ),
+                ),
+                // Center(
+                //   // Classify the meal button
+                //   child: enabledButton(
+                //     title: 'Rozpoznaj potrawę',
+                //     icon: Icons.fastfood_rounded,
+                //     onClicked: () => categorizeThePhoto(),
+                //     backgroundColor: Color(0xFFFE9901),
+                //     fontSize: 20,
+                //     enabled: globals.isClassifyReady,
+                //   ),
+                // ),
+                const SizedBox(
+                  height: 25,
+                ),
+              ],
             ),
           ),
-          const SizedBox(
-            height: 25,
-          ),
-          Center(
-            // Show last classified button
-            child: enabledButton(
-              title: "Propozycje potraw",
-              icon: Icons.api_rounded,
-              onClicked: () => _navigateAndDisplaySelection(context),
-              backgroundColor: Colors.blue[400],
-              fontSize: 20,
-              enabled: globals.mealClassified,
+          Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              leading: const Icon(Icons.fastfood_rounded, size: 29),
+              title:
+                  const Text('Zobacz wyniki', style: TextStyle(fontSize: 22)),
+              backgroundColor: Colors.indigo,
             ),
-          ),
-          const SizedBox(
-            height: 25,
+            backgroundColor: Colors.indigo[50],
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () => _navigateAndDisplaySelection2(context),
+              backgroundColor: Colors.deepPurpleAccent,
+              splashColor: Colors.deepPurpleAccent,
+              label: const Text('Katalog'),
+              icon: const Icon(Icons.format_list_bulleted_rounded),
+            ),
+            body: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(
+                    left: 0.0, right: 0.0, bottom: 13.0, top: 50),
+                children: [
+                  Center(child: func.buildPicture()),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        createCard(globals.tile1!),
+                        createCard(globals.tile2!),
+                        createCard(globals.tile3!),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 125,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: generalButton(
+                        title: "Złe wyniki",
+                        icon: Icons.report_rounded,
+                        color: const Color(0xFFDC143C),
+                        onClicked: () =>
+                            _navigateAndDisplaySelection2(context)),
+                  ),
+                ]),
           ),
         ],
       ),

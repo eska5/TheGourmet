@@ -9,6 +9,8 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:universal_platform/universal_platform.dart';
 
+import '../components/tile.dart';
+
 bool smallSreen() {
   var pixelRatio = window.devicePixelRatio;
   var logicalScreenSize = window.physicalSize / pixelRatio;
@@ -120,34 +122,34 @@ void showTopSnackBarCustomError(dynamic context, dynamic text) {
 
 Widget buildPicture() {
   return globals.isClassify
-  // Classify
+      // Classify
       ? globals.webImageClassify != null || globals.mobileImageClassify != null
-      ? ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: globals.webImageClassify != null
-          ? Image.memory(
-        globals.webImageClassify!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-      )
-          : Image.file(
-        globals.mobileImageClassify!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-      ))
-      : Image.asset('assets/diet.png', width: 200, height: 200)
-  // Add
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: globals.webImageClassify != null
+                  ? Image.memory(
+                      globals.webImageClassify!,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.file(
+                      globals.mobileImageClassify!,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ))
+          : Image.asset('assets/diet.png', width: 200, height: 200)
+      // Add
       : globals.webImageAdd != null || globals.mobileImageAdd != null
-      ? ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: globals.webImageAdd != null
-          ? Image.memory(
-        globals.webImageAdd!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: globals.webImageAdd != null
+                  ? Image.memory(
+                      globals.webImageAdd!,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
                     )
                   : Image.file(
                       globals.mobileImageAdd!,
@@ -204,4 +206,33 @@ void fetchCatalog() async {
       throw Exception('Failed to load catalog');
     }
   }
+}
+
+void initializeCards() {
+  globals.tile1 = Tile(
+      mealName: "[Animacja 3 kropek]",
+      mealDescription: "",
+      mealProbability: 0,
+      color: const Color(0xFFE5B80B),
+      gradient1: Colors.orange,
+      gradient2: Colors.amber,
+      numberOfStars: 3);
+  // Tile 2
+  globals.tile2 = Tile(
+      mealName: "[Animacja 3 kropek]",
+      mealDescription: "",
+      mealProbability: 0,
+      color: const Color(0xFFC4CACE),
+      gradient1: const Color(0xFF526573),
+      gradient2: const Color(0xFF9CAABD),
+      numberOfStars: 2);
+  // Tile 3
+  globals.tile3 = Tile(
+      mealName: "[Animacja 3 kropek]",
+      mealDescription: "",
+      mealProbability: 0,
+      color: const Color(0xFFA46628),
+      gradient1: const Color(0xFF7B4C1E),
+      gradient2: const Color(0xFFB9772D),
+      numberOfStars: 1);
 }
