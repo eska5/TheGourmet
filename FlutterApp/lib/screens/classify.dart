@@ -312,20 +312,20 @@ class _AddImageState extends State<ClassifyImage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        // children: [
-                        //   // Upload image button
-                        //   smallImageButton(
-                        //       icon: Icons.image_rounded,
-                        //       color: Colors.indigoAccent,
-                        //       isRight: false,
-                        //       onClicked: () => pickImage(ImageSource.gallery)),
-                        //   // Take image button
-                        //   smallImageButton(
-                        //       icon: Icons.camera_alt_rounded,
-                        //       color: Colors.indigoAccent,
-                        //       isRight: true,
-                        //       onClicked: () => pickImage(ImageSource.camera)),
-                        // ],
+                        children: [
+                          // Upload image button
+                          smallImageButton(
+                              icon: Icons.image_rounded,
+                              color: Colors.indigoAccent,
+                              isRight: false,
+                              onClicked: () => pickImage(ImageSource.gallery)),
+                          // Take image button
+                          smallImageButton(
+                              icon: Icons.camera_alt_rounded,
+                              color: Colors.indigoAccent,
+                              isRight: true,
+                              onClicked: () => pickImage(ImageSource.camera)),
+                        ],
                       ),
                     ),
                     const SizedBox(
@@ -337,46 +337,107 @@ class _AddImageState extends State<ClassifyImage> {
                   height: 80,
                 ),
                 Center(
-                  // Classify the meal button
-                  child: enabledButton(
-                    title: 'Załaduj zdjęcie',
-                    icon: Icons.add_photo_alternate_rounded,
-                    onClicked: () => {},
-                    backgroundColor: Color(0xFFFE9901),
-                    fontSize: 20,
-                    enabled: true,
+                    child: PopupMenuButton(
+                  offset: Offset(19, 65),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  color: Colors.deepPurpleAccent,
+                  initialValue: 1,
+                  child: Container(
+                    width: 245,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFE9901),
+                        borderRadius: BorderRadius.all(Radius.circular(32))),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_photo_alternate_rounded,
+                          size: 28,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "Załaduj zdjęcie",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Center(
-                  // Classify the meal button
-                  child: enabledButton(
-                    title: 'Dalej     ',
-                    icon: Icons.arrow_forward_rounded,
-                    onClicked: () => {},
-                    backgroundColor: Colors.blue[400],
-                    fontSize: 20,
-                    enabled: true,
-                  ),
-                ),
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                    PopupMenuItem(
+                      onTap: () => pickImage(ImageSource.gallery),
+                      padding: const EdgeInsets.only(right: 40, left: 40),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_library_rounded,
+                            size: 28,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            " Wybierz zdjęcie",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      onTap: () => pickImage(ImageSource.camera),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.camera_alt_rounded,
+                            size: 28,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            "     Zrób zdjęcie  ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
                 // Center(
                 //   // Classify the meal button
                 //   child: enabledButton(
-                //     title: 'Rozpoznaj potrawę',
-                //     icon: Icons.fastfood_rounded,
-                //     onClicked: () => categorizeThePhoto(),
+                //     title: 'Załaduj zdjęcie',
+                //     icon: Icons.add_photo_alternate_rounded,
+                //     onClicked: () => {},
                 //     backgroundColor: Color(0xFFFE9901),
                 //     fontSize: 20,
-                //     enabled: globals.isClassifyReady,
+                //     enabled: true,
                 //   ),
                 // ),
                 const SizedBox(
-                  height: 25,
+                  height: 40,
                 ),
               ],
             ),
+          ),
+          // Center(
+          //   // Classify the meal button
+          //   child: enabledButton(
+          //     title: 'Rozpoznaj potrawę',
+          //     icon: Icons.fastfood_rounded,
+          //     onClicked: () => categorizeThePhoto(),
+          //     backgroundColor: Color(0xFFFE9901),
+          //     fontSize: 20,
+          //     enabled: globals.isClassifyReady,
+          //   ),
+          // ),
+          const SizedBox(
+            height: 25,
           ),
           Scaffold(
             appBar: AppBar(

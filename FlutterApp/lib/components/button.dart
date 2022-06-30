@@ -106,3 +106,81 @@ Widget smallImageButton({
         onPressed: onClicked,
       ),
     );
+final List<String> genderItems = [
+  'Male',
+  'Female',
+];
+
+// Widget dropDownButton(
+//         {required VoidCallback function2,
+//         required Future<dynamic> function1}) =>
+//     PopupMenuButton(
+//       shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.all(Radius.circular(15.0))),
+//       color: Colors.deepPurpleAccent,
+//       initialValue: 1,
+//       child: Container(
+//         width: 245,
+//         height: 60,
+//         decoration: BoxDecoration(
+//             color: Color(0xFFFE9901),
+//             borderRadius: BorderRadius.all(Radius.circular(32))),
+//         child: Row(
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Icon(
+//               Icons.add_photo_alternate_rounded,
+//               size: 28,
+//               color: Colors.white,
+//             ),
+//             const SizedBox(width: 10),
+//             Text(
+//               "Załaduj zdjęcie",
+//               style: TextStyle(fontSize: 20, color: Colors.white),
+//             ),
+//           ],
+//         ),
+//       ),
+//       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+//         PopupMenuItem(
+//           onTap: () => pickImage(ImageSource.gallery),
+//           padding: const EdgeInsets.only(right: 40, left: 40),
+//           child: Row(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Icon(
+//                 Icons.photo_library_rounded,
+//                 size: 28,
+//                 color: Colors.white,
+//               ),
+//               const SizedBox(width: 10),
+//               Text(
+//                 " Wybierz zdjęcie",
+//                 style: TextStyle(fontSize: 20, color: Colors.white),
+//               ),
+//             ],
+//           ),
+//         ),
+//         PopupMenuItem(
+//           onTap: () => function2,
+//           child: Row(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Icon(
+//                 Icons.camera_alt_rounded,
+//                 size: 28,
+//                 color: Colors.white,
+//               ),
+//               const SizedBox(width: 10),
+//               Text(
+//                 "     Zrób zdjęcie  ",
+//                 style: TextStyle(fontSize: 20, color: Colors.white),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );

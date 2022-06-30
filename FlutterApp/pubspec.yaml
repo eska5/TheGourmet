@@ -45,6 +45,7 @@ dependencies:
   universal_platform: ^1.0.0+1
   top_snackbar_flutter: ^1.1.1
   page_indicator: ^0.4.1
+  dropdown_button2: ^1.4.0
 
 dev_dependencies:
   flutter_test:
