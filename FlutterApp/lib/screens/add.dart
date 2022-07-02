@@ -260,7 +260,7 @@ class _AddImageState extends State<AddImage> {
                   padding: EdgeInsets.only(
                       left: 13.0, top: 100, right: 13.0, bottom: 100)),
               Center(
-                  // Display image
+                // Display image
                   child: func.buildPicture()),
               Positioned(
                 right: 30.0,

@@ -205,32 +205,3 @@ void fetchCatalog() async {
     }
   }
 }
-
-// void initializeCards() {
-//   globals.tile1 = Tile(
-//       mealName: "[Animacja 3 kropek]",
-//       mealDescription: "",
-//       mealProbability: 0,
-//       color: const Color(0xFFE5B80B),
-//       gradient1: Colors.orange,
-//       gradient2: Colors.amber,
-//       numberOfStars: 3);
-//   // Tile 2
-//   globals.tile2 = Tile(
-//       mealName: "[Animacja 3 kropek]",
-//       mealDescription: "",
-//       mealProbability: 0,
-//       color: const Color(0xFFC4CACE),
-//       gradient1: const Color(0xFF526573),
-//       gradient2: const Color(0xFF9CAABD),
-//       numberOfStars: 2);
-//   // Tile 3
-//   globals.tile3 = Tile(
-//       mealName: "[Animacja 3 kropek]",
-//       mealDescription: "",
-//       mealProbability: 0,
-//       color: const Color(0xFFA46628),
-//       gradient1: const Color(0xFF7B4C1E),
-//       gradient2: const Color(0xFFB9772D),
-//       numberOfStars: 1);
-// }
