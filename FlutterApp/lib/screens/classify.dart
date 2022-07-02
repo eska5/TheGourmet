@@ -7,50 +7,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/io_client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/components/tile.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/catalog.dart';
 import 'package:new_ui/screens/result.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:universal_platform/universal_platform.dart';
 
-import '../cardTile/Card.dart';
-
-// Loading Gif Class
-class LoaderDialog {
-  static Future<void> showLoadingDialog(
-      BuildContext context, GlobalKey key) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Dialog(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(70))),
-              key: key,
-              backgroundColor: Colors.indigo[50],
-              child: SizedBox(
-                width: 150.0,
-                height: 250.0,
-                child: Image.asset(
-                  'assets/plate.gif',
-                  fit: BoxFit.cover,
-                  width: 250,
-                  height: 250,
-                ),
-              )),
-        );
-      },
-    );
-  }
-}
+import '../components/result_card.dart';
 
 class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
@@ -88,117 +54,6 @@ class _AddImageState extends State<ClassifyImage> {
       context,
       MaterialPageRoute(builder: (context) => const MealCatalog()),
     );
-  }
-
-  void categorizeThePhoto() async {
-    try {
-      if (!UniversalPlatform.isWeb) {
-        final ioc = HttpClient();
-        ioc.badCertificateCallback =
-            (X509Certificate cert, String host, int port) =>
-                host == 'localhost:5000';
-        final http = IOClient(ioc);
-      }
-
-      final uri = Uri.parse(domain + "/classify");
-      final headers = {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      };
-
-      if (!validateRequest("Classify")) {
-        responseTitle = "Nie wybrano zdjęcia";
-        responseText1 = "Zanim poprosisz o rozpoznanie potrawy, ";
-        responseText2 = "";
-        responseText3 = "załaduj zdjęcie z galerii lub aparatu";
-        responseColor = "Colors.red";
-        showTopSnackBarCustomError(context, responseTitle);
-        return;
-      }
-
-      Uint8List? bytes;
-      if (kIsWeb) {
-        bytes = globals.webImageClassify;
-      } else {
-        bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
-      }
-
-      String base64Image = base64Encode(bytes!);
-      Map<String, dynamic> body = {'mealPhoto': base64Image};
-      String jsonBody = json.encode(body);
-      final encoding = Encoding.getByName('utf-8');
-      //LoaderDialog.showLoadingDialog(context, _LoaderDialog);
-
-      try {
-        var response = await http
-            .post(
-              uri,
-              headers: headers,
-              body: jsonBody,
-              encoding: encoding,
-            )
-            .timeout(const Duration(seconds: 30));
-
-        setState(() {
-          // Changing variables in global Tiles
-          // Tile 1
-          globals.tile1 = Tile(
-              mealName: json.decode(response.body)[0],
-              mealDescription: json.decode(response.body)[0],
-              mealProbability:
-                  double.parse(json.decode(response.body)[1]) * 100,
-              color: const Color(0xFFE5B80B),
-              gradient1: Colors.orange,
-              gradient2: Colors.amber,
-              numberOfStars: 3);
-          // Tile 2
-          globals.tile2 = Tile(
-              mealName: json.decode(response.body)[2],
-              mealDescription: json.decode(response.body)[2],
-              mealProbability:
-                  double.parse(json.decode(response.body)[3]) * 100,
-              color: const Color(0xFFC4CACE),
-              gradient1: const Color(0xFF526573),
-              gradient2: const Color(0xFF9CAABD),
-              numberOfStars: 2);
-          // Tile 3
-          globals.tile3 = Tile(
-              mealName: json.decode(response.body)[4],
-              mealDescription: json.decode(response.body)[4],
-              mealProbability:
-                  double.parse(json.decode(response.body)[5]) * 100,
-              color: const Color(0xFFA46628),
-              gradient1: const Color(0xFF7B4C1E),
-              gradient2: const Color(0xFFB9772D),
-              numberOfStars: 1);
-
-          // Classify button is enabled now
-          globals.mealClassified = true;
-          //Navigator.pop(context, _LoaderDialog.currentContext);
-          //_navigateAndDisplaySelection(context);
-        });
-      } on SocketException {
-        responseTitle = "Status przesłania";
-        responseText1 = "Zdjęcie ";
-        responseText2 = "nie zostało ";
-        responseText3 = "rozpoznane, niewłaściwy adres serwera !";
-        responseColor = "Colors.red";
-        showTopSnackBarCustomError(
-            context, (responseText1 + responseText2 + responseText3));
-      } on TimeoutException {
-        responseTitle = "Status przesłania";
-        responseText1 = "Zdjęcie ";
-        responseText2 = "nie zostało ";
-        responseText3 = "rozpoznane, przekroczono limit czasu !";
-        responseColor = "Colors.red";
-        showTopSnackBarCustomError(
-            context, (responseText1 + responseText2 + responseText3));
-      }
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Failed to send to server: $e');
-      }
-    }
   }
 
   void pickImage(ImageSource source) async {
@@ -258,6 +113,70 @@ class _AddImageState extends State<ClassifyImage> {
     }
   }
 
+  void categorizeThePhoto() async {
+    try {
+      final uri = Uri.parse("https://gourmetapp.net/classify");
+      final headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      };
+
+      Uint8List? bytes;
+      if (kIsWeb) {
+        bytes = globals.webImageClassify;
+      } else {
+        bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
+      }
+
+      String base64Image = base64Encode(bytes!);
+      Map<String, dynamic> body = {'mealPhoto': base64Image};
+      String jsonBody = json.encode(body);
+      final encoding = Encoding.getByName('utf-8');
+
+      try {
+        var response = await http
+            .post(
+              uri,
+              headers: headers,
+              body: jsonBody,
+              encoding: encoding,
+            )
+            .timeout(const Duration(seconds: 30));
+
+        setState(() {
+          // Changing variables in global Tiles
+          for (int i = 0; i < 3; i++) {
+            resultCards[i].mealName = json.decode(response.body)[i * 2];
+            resultCards[i].mealDescription = json.decode(response.body)[i * 2];
+            resultCards[i].mealProbability =
+                double.parse(json.decode(response.body)[i * 2 + 1]) * 100;
+          }
+          globals.mealClassified = true;
+        });
+      } on SocketException {
+        responseTitle = "Status przesłania";
+        responseText1 = "Zdjęcie ";
+        responseText2 = "nie zostało ";
+        responseText3 = "rozpoznane, niewłaściwy adres serwera !";
+        responseColor = "Colors.red";
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
+      } on TimeoutException {
+        responseTitle = "Status przesłania";
+        responseText1 = "Zdjęcie ";
+        responseText2 = "nie zostało ";
+        responseText3 = "rozpoznane, przekroczono limit czasu !";
+        responseColor = "Colors.red";
+        showTopSnackBarCustomError(
+            context, (responseText1 + responseText2 + responseText3));
+      }
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print('Failed to send to server: $e');
+      }
+    }
+  }
+
   final PageController controller = PageController();
   GlobalKey<PageContainerState> key = GlobalKey();
 
@@ -270,7 +189,7 @@ class _AddImageState extends State<ClassifyImage> {
       indicatorColor: Colors.grey,
       key: key,
       padding:
-          const EdgeInsets.only(top: 130.0, bottom: 0, left: 0.0, right: 0.0),
+          const EdgeInsets.only(top: 100.0, bottom: 0, left: 0.0, right: 0.0),
       align: IndicatorAlign.top,
       length: 2,
       indicatorSpace: 20.0,
@@ -502,9 +421,9 @@ class _AddImageState extends State<ClassifyImage> {
                   SingleChildScrollView(
                     child: Column(
                       children: [
-                        createCard(globals.tile1!),
-                        createCard(globals.tile2!),
-                        createCard(globals.tile3!),
+                        createCard(cardDetails1),
+                        createCard(cardDetails2),
+                        createCard(cardDetails3),
                       ],
                     ),
                   ),

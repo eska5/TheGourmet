@@ -12,9 +12,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:new_ui/functions/func.dart' as func;
 
 class AddImage extends StatefulWidget {
   const AddImage({Key? key}) : super(key: key);
@@ -32,6 +32,7 @@ class _AddImageState extends State<AddImage> {
   String responseText2 = "";
   String responseText3 = "";
   String responseColor = "";
+
   // Picking image
   Future pickImage(ImageSource source) async {
     // WEB

@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ui/components/button.dart';
-import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/cardTile/Card.dart';
-import 'package:new_ui/screens/report.dart';
+import 'package:new_ui/components/result_card.dart';
 import 'package:new_ui/functions/func.dart' as func;
+import 'package:new_ui/screens/report.dart';
+
+import '../components/result_card.dart';
 
 class ModelResult extends StatefulWidget {
   const ModelResult({Key? key}) : super(key: key);
@@ -49,9 +50,9 @@ class _Screen2State extends State<ModelResult> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  createCard(globals.tile1!),
-                  createCard(globals.tile2!),
-                  createCard(globals.tile3!),
+                  createCard(resultCards[0]),
+                  createCard(resultCards[1]),
+                  createCard(resultCards[2]),
                 ],
               ),
             ),

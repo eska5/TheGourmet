@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/components/result_card.dart';
 import 'package:new_ui/functions/func.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -154,7 +155,7 @@ Future wyslijReportiWroc(context, inputText2) async {
 
     String base64Image = base64Encode(bytes!);
     Map<String, dynamic> body = {
-      'modeloutput': globals.tile1?.mealName,
+      'modeloutput': cardDetails1.mealName,
       'useroutput': globals.ReportMealName,
       'mealPhoto': base64Image
     };

@@ -1,7 +1,59 @@
-import 'package:flutter/material.dart';
-import 'package:new_ui/components/tile.dart';
+library gourmet.result_card;
 
-Widget createCard(Tile tile) {
+import 'package:flutter/material.dart';
+
+class CardDetails {
+  String mealName;
+  String mealDescription;
+  double mealProbability;
+  dynamic color;
+  dynamic gradient1;
+  dynamic gradient2;
+  int numberOfStars;
+  bool isExpanded;
+
+  CardDetails({
+    required this.mealName,
+    required this.mealDescription,
+    required this.mealProbability,
+    required this.color,
+    required this.gradient1,
+    required this.gradient2,
+    required this.numberOfStars,
+    this.isExpanded = true,
+  });
+}
+
+CardDetails cardDetails1 = CardDetails(
+    mealName: "[Animacja 3 kropek]",
+    mealDescription: "",
+    mealProbability: 0,
+    color: const Color(0xFFE5B80B),
+    gradient1: Colors.orange,
+    gradient2: Colors.amber,
+    numberOfStars: 3);
+
+CardDetails cardDetails2 = CardDetails(
+    mealName: "[Animacja 3 kropek]",
+    mealDescription: "",
+    mealProbability: 0,
+    color: const Color(0xFFC4CACE),
+    gradient1: const Color(0xFF526573),
+    gradient2: const Color(0xFF9CAABD),
+    numberOfStars: 2);
+
+CardDetails cardDetails3 = CardDetails(
+    mealName: "[Animacja 3 kropek]",
+    mealDescription: "",
+    mealProbability: 0,
+    color: const Color(0xFFA46628),
+    gradient1: const Color(0xFF7B4C1E),
+    gradient2: const Color(0xFFB9772D),
+    numberOfStars: 1);
+
+List<CardDetails> resultCards = [cardDetails1, cardDetails2, cardDetails3];
+
+Widget createCard(CardDetails cardDetails) {
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24.0),
@@ -9,7 +61,7 @@ Widget createCard(Tile tile) {
     child: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [tile.gradient1, tile.gradient2],
+          colors: [cardDetails.gradient1, cardDetails.gradient2],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
@@ -20,13 +72,13 @@ Widget createCard(Tile tile) {
         child: ExpansionTile(
           collapsedTextColor: Colors.white,
           collapsedIconColor: Colors.white,
-          leading: tile.numberOfStars == 3
+          leading: cardDetails.numberOfStars == 3
               ? Wrap(children: <Widget>[
                   Icon(Icons.star_rounded),
                   Icon(Icons.star_rounded),
                   Icon(Icons.star_rounded),
                 ])
-              : tile.numberOfStars == 2
+              : cardDetails.numberOfStars == 2
                   ? Wrap(children: <Widget>[
                       Icon(Icons.star_rounded),
                       Icon(Icons.star_rounded),
@@ -40,7 +92,7 @@ Widget createCard(Tile tile) {
           textColor: Colors.white,
           iconColor: Colors.white,
           title: Text(
-            tile.mealName,
+            cardDetails.mealName,
             style: TextStyle(
                 fontFamily: 'avenir',
                 color: Colors.white,
@@ -50,7 +102,7 @@ Widget createCard(Tile tile) {
           children: <Widget>[
             Text(
               "Prawdopodobieństwo: " +
-                  tile.mealProbability.toStringAsFixed(2) +
+                  cardDetails.mealProbability.toStringAsFixed(2) +
                   "%",
               style: TextStyle(
                   fontFamily: 'avenir',
@@ -62,7 +114,7 @@ Widget createCard(Tile tile) {
               height: 10,
             ),
             Text(
-              "Opis: " + tile.mealDescription,
+              "Opis: " + cardDetails.mealDescription,
               style: TextStyle(
                   fontFamily: 'avenir',
                   color: Colors.white,
