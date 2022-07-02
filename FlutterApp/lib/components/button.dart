@@ -111,9 +111,7 @@ final List<String> genderItems = [
   'Female',
 ];
 
-// Widget dropDownButton(
-//         {required VoidCallback function2,
-//         required Future<dynamic> function1}) =>
+// Widget dropDownButton({required void function1, required void function2}) =>
 //     PopupMenuButton(
 //       shape: RoundedRectangleBorder(
 //           borderRadius: BorderRadius.all(Radius.circular(15.0))),
@@ -144,7 +142,7 @@ final List<String> genderItems = [
 //       ),
 //       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
 //         PopupMenuItem(
-//           onTap: () => pickImage(ImageSource.gallery),
+//           onTap: () => function1,
 //           padding: const EdgeInsets.only(right: 40, left: 40),
 //           child: Row(
 //             crossAxisAlignment: CrossAxisAlignment.center,

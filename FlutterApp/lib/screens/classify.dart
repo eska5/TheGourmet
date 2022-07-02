@@ -76,63 +76,6 @@ class _AddImageState extends State<ClassifyImage> {
   // ignore: non_constant_identifier_names
   final GlobalKey<State> _LoaderDialog = GlobalKey<State>();
 
-  Future pickImage(ImageSource source) async {
-    //WEB
-    if (kIsWeb) {
-      try {
-        final image = await ImagePicker()
-            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-        if (image == null) return;
-
-        if (!validateFileExtension(image)) {
-          responseTitle = "Wybrano niepoprawyny format";
-          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
-          responseText2 = "niepoprawne";
-          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
-          responseColor = "Colors.red";
-          showTopSnackBarCustomError(context, responseTitle);
-          return;
-        }
-
-        final imageTemporary = await image.readAsBytes();
-        globals.isClassifyReady = true;
-        setState(() {
-          globals.webImageClassify = imageTemporary;
-        });
-      } on PlatformException catch (e) {
-        if (kDebugMode) {
-          print('Failed to pick image: $e');
-        }
-      }
-    }
-    //MOBILE
-    else {
-      try {
-        final image = await ImagePicker()
-            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-        if (image == null) return;
-
-        if (!validateFileExtension(image)) {
-          responseTitle = "Wybrano niepoprawyny format";
-          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
-          responseText2 = "niepoprawne";
-          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
-          responseColor = "Colors.red";
-          showTopSnackBarCustomError(context, responseTitle);
-          return;
-        }
-
-        final imageTemporary = File(image.path);
-        globals.isClassifyReady = true;
-        setState(() => globals.mobileImageClassify = imageTemporary);
-      } on PlatformException catch (e) {
-        if (kDebugMode) {
-          print('Failed to pick image: $e');
-        }
-      }
-    }
-  }
-
   void _navigateAndDisplaySelection(BuildContext context) async {
     await Navigator.push(
       context,
@@ -147,7 +90,7 @@ class _AddImageState extends State<ClassifyImage> {
     );
   }
 
-  Future categorizeThePhoto() async {
+  void categorizeThePhoto() async {
     try {
       if (!UniversalPlatform.isWeb) {
         final ioc = HttpClient();
@@ -184,7 +127,7 @@ class _AddImageState extends State<ClassifyImage> {
       Map<String, dynamic> body = {'mealPhoto': base64Image};
       String jsonBody = json.encode(body);
       final encoding = Encoding.getByName('utf-8');
-      LoaderDialog.showLoadingDialog(context, _LoaderDialog);
+      //LoaderDialog.showLoadingDialog(context, _LoaderDialog);
 
       try {
         var response = await http
@@ -231,8 +174,8 @@ class _AddImageState extends State<ClassifyImage> {
 
           // Classify button is enabled now
           globals.mealClassified = true;
-          Navigator.pop(context, _LoaderDialog.currentContext);
-          _navigateAndDisplaySelection(context);
+          //Navigator.pop(context, _LoaderDialog.currentContext);
+          //_navigateAndDisplaySelection(context);
         });
       } on SocketException {
         responseTitle = "Status przesłania";
@@ -254,6 +197,63 @@ class _AddImageState extends State<ClassifyImage> {
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to send to server: $e');
+      }
+    }
+  }
+
+  void pickImage(ImageSource source) async {
+    //WEB
+    if (kIsWeb) {
+      try {
+        final image = await ImagePicker()
+            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+        if (image == null) return;
+
+        if (!validateFileExtension(image)) {
+          responseTitle = "Wybrano niepoprawyny format";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
+          responseColor = "Colors.red";
+          showTopSnackBarCustomError(context, responseTitle);
+          return;
+        }
+
+        final imageTemporary = await image.readAsBytes();
+        globals.isClassifyReady = true;
+        setState(() => globals.webImageClassify = imageTemporary);
+        categorizeThePhoto();
+      } on PlatformException catch (e) {
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
+      }
+    }
+    //MOBILE
+    else {
+      try {
+        final image = await ImagePicker()
+            .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+        if (image == null) return;
+
+        if (!validateFileExtension(image)) {
+          responseTitle = "Wybrano niepoprawyny format";
+          responseText1 = "Rozszerzenie twojego zdjęcia jest ";
+          responseText2 = "niepoprawne";
+          responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
+          responseColor = "Colors.red";
+          showTopSnackBarCustomError(context, responseTitle);
+          return;
+        }
+
+        final imageTemporary = File(image.path);
+        globals.isClassifyReady = true;
+        setState(() => globals.mobileImageClassify = imageTemporary);
+        categorizeThePhoto();
+      } on PlatformException catch (e) {
+        if (kDebugMode) {
+          print('Failed to pick image: $e');
+        }
       }
     }
   }
@@ -307,24 +307,65 @@ class _AddImageState extends State<ClassifyImage> {
                         // Display image
                         child: func.buildPicture()),
                     Positioned(
-                      right: 30.0,
-                      top: 180.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // Upload image button
-                          smallImageButton(
-                              icon: Icons.image_rounded,
-                              color: Colors.indigoAccent,
-                              isRight: false,
-                              onClicked: () => pickImage(ImageSource.gallery)),
-                          // Take image button
-                          smallImageButton(
-                              icon: Icons.camera_alt_rounded,
-                              color: Colors.indigoAccent,
-                              isRight: true,
-                              onClicked: () => pickImage(ImageSource.camera)),
+                      right: 65,
+                      top: -15,
+                      child: PopupMenuButton(
+                        offset: Offset(19, 216),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0))),
+                        color: Colors.deepPurpleAccent,
+                        initialValue: 1,
+                        child: Container(
+                          width: 230,
+                          height: 230,
+                          decoration: BoxDecoration(
+                              color: Color(0xFFFE9901).withOpacity(0.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(32))),
+                        ),
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                          PopupMenuItem(
+                            onTap: () => pickImage(ImageSource.gallery),
+                            padding: const EdgeInsets.only(right: 40, left: 40),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.photo_library_rounded,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  " Wybierz zdjęcie",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () => pickImage(ImageSource.camera),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.camera_alt_rounded,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "     Zrób zdjęcie  ",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -334,110 +375,104 @@ class _AddImageState extends State<ClassifyImage> {
                   ],
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 40,
                 ),
                 Center(
-                    child: PopupMenuButton(
-                  offset: Offset(19, 65),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                  color: Colors.deepPurpleAccent,
-                  initialValue: 1,
-                  child: Container(
-                    width: 245,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: Color(0xFFFE9901),
-                        borderRadius: BorderRadius.all(Radius.circular(32))),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add_photo_alternate_rounded,
-                          size: 28,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "Załaduj zdjęcie",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                      ],
-                    ),
+                  // Classify the meal button
+                  child: enabledButton(
+                    title: 'Dalej    ',
+                    icon: Icons.arrow_forward_rounded,
+                    onClicked: () => controller.animateToPage(1,
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.easeOutQuint),
+                    backgroundColor: Colors.blue.shade400,
+                    fontSize: 20,
+                    enabled: true,
                   ),
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                    PopupMenuItem(
-                      onTap: () => pickImage(ImageSource.gallery),
-                      padding: const EdgeInsets.only(right: 40, left: 40),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Center(
+                  child: PopupMenuButton(
+                    offset: Offset(19, 67),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    color: Colors.deepPurpleAccent,
+                    initialValue: 1,
+                    child: Container(
+                      width: 245,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          color: Color(0xFFFE9901),
+                          borderRadius: BorderRadius.all(Radius.circular(32))),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.photo_library_rounded,
+                            Icons.add_photo_alternate_rounded,
                             size: 28,
                             color: Colors.white,
                           ),
                           const SizedBox(width: 10),
                           Text(
-                            " Wybierz zdjęcie",
+                            "Załaduj zdjęcie",
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ],
                       ),
                     ),
-                    PopupMenuItem(
-                      onTap: () => pickImage(ImageSource.camera),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.camera_alt_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            "     Zrób zdjęcie  ",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                        ],
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                      PopupMenuItem(
+                        onTap: () => pickImage(ImageSource.gallery),
+                        padding: const EdgeInsets.only(right: 40, left: 40),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.photo_library_rounded,
+                              size: 28,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              " Wybierz zdjęcie",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )),
-                // Center(
-                //   // Classify the meal button
-                //   child: enabledButton(
-                //     title: 'Załaduj zdjęcie',
-                //     icon: Icons.add_photo_alternate_rounded,
-                //     onClicked: () => {},
-                //     backgroundColor: Color(0xFFFE9901),
-                //     fontSize: 20,
-                //     enabled: true,
-                //   ),
-                // ),
+                      PopupMenuItem(
+                        onTap: () => pickImage(ImageSource.camera),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.camera_alt_rounded,
+                              size: 28,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "     Zrób zdjęcie  ",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 40,
                 ),
               ],
             ),
-          ),
-          // Center(
-          //   // Classify the meal button
-          //   child: enabledButton(
-          //     title: 'Rozpoznaj potrawę',
-          //     icon: Icons.fastfood_rounded,
-          //     onClicked: () => categorizeThePhoto(),
-          //     backgroundColor: Color(0xFFFE9901),
-          //     fontSize: 20,
-          //     enabled: globals.isClassifyReady,
-          //   ),
-          // ),
-          const SizedBox(
-            height: 25,
           ),
           Scaffold(
             appBar: AppBar(
