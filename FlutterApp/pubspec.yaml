@@ -46,6 +46,7 @@ dependencies:
   top_snackbar_flutter: ^1.1.1
   page_indicator: ^0.4.1
   dropdown_button2: ^1.4.0
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
