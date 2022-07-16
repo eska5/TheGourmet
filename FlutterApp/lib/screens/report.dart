@@ -25,14 +25,14 @@ String responseText2 = "";
 String responseText3 = "";
 String responseColor = "";
 
-class ModelResult2 extends StatefulWidget {
-  const ModelResult2({Key? key}) : super(key: key);
+class ReportBadResult extends StatefulWidget {
+  const ReportBadResult({Key? key}) : super(key: key);
 
   @override
   _Screen2State2 createState() => _Screen2State2();
 }
 
-class _Screen2State2 extends State<ModelResult2> {
+class _Screen2State2 extends State<ReportBadResult> {
   TextEditingController inputText = TextEditingController();
 
   @override

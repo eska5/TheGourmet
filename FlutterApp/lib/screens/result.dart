@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/result_card.dart';
-import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/report.dart';
 
 import '../components/result_card.dart';
@@ -43,7 +42,7 @@ class _Screen2State extends State<ModelResult> {
           padding: const EdgeInsets.only(
               left: 0.0, right: 0.0, bottom: 13.0, top: 50),
           children: [
-            Center(child: func.buildPicture()),
+            //Center(child: imageContainer()),  #TODO CHANGE IT TO NEW WIDGET
             const SizedBox(
               height: 50,
             ),
@@ -75,6 +74,6 @@ class _Screen2State extends State<ModelResult> {
 void _navigateAndDisplaySelection2(BuildContext context) async {
   final result = await Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => const ModelResult2()),
+    MaterialPageRoute(builder: (context) => const ReportBadResult()),
   );
 }

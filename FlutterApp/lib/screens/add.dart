@@ -12,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/components/button.dart';
 import 'package:new_ui/components/globals.dart' as globals;
 import 'package:new_ui/functions/func.dart';
-import 'package:new_ui/functions/func.dart' as func;
 import 'package:new_ui/screens/mealsuggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -259,9 +258,9 @@ class _AddImageState extends State<AddImage> {
               const Padding(
                   padding: EdgeInsets.only(
                       left: 13.0, top: 100, right: 13.0, bottom: 100)),
-              Center(
-                  // Display image
-                  child: func.buildPicture()),
+              // Center(
+              //     // Display image
+              //     child: imageContainer()), #TODO CHANGE IT TO NEW WIDGET
               Positioned(
                 right: 30.0,
                 top: 180.0,
