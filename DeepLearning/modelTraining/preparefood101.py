@@ -3,79 +3,93 @@ import shutil
 
 
 if __name__ == "__main__":
-    originalPath = "D:\\naszeJedzenie\\"
+    originalPath = "/Users/jakubsachajko/Desktop/GourmetDataset/DATASET/"
+    newPath = "/Users/jakubsachajko/Desktop/GourmetDataset/"
     try:
-        os.mkdir(originalPath + "train")
+        os.mkdir(newPath + "train")
     except:
         pass
     try:
-        os.mkdir(originalPath + "test")
+        os.mkdir(newPath + "test")
     except:
         pass
     try:
-        os.mkdir(originalPath + "validation")
+        os.mkdir(newPath + "validation")
     except:
         pass
 
     # train data set
 
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir(originalPath):
         try:
-            os.mkdir(originalPath + "train\\" + category)
+            os.mkdir(newPath + "train/" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = originalPath + category
         for imgPath in os.listdir(imagesPath):
-            if counter == 350:
+            if counter == 700:
                 break
             else:
-                newImgPath = (
-                    originalPath + "train\\" + category + "\\" + str(counter) + ".jpg"
-                )
-                shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
+                if counter < 10:
+                    newImgPath = (
+                        newPath + "train/" + category +
+                        "/" + "00" + str(counter) + ".jpg"
+                    )
+                elif counter < 100:
+                    newImgPath = (
+                        newPath + "train/" + category +
+                        "/" + "0" + str(counter) + ".jpg"
+                    )
+                else:
+                    newImgPath = (
+                        newPath + "train/" + category +
+                        "/" + str(counter) + ".jpg"
+                    )
+                shutil.copyfile(imagesPath + "/" + imgPath, newImgPath)
             counter += 1
     print("train set done")
 
     # test data set
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir(originalPath):
         try:
-            os.mkdir(originalPath + "test\\" + category)
+            os.mkdir(newPath + "test/" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = originalPath + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 349:
+            if counter > 699:
                 newImgPath = (
-                    originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
+                    newPath + "test/" + category +
+                    "/" + str(counter) + ".jpg"
                 )
-                shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 449:
+                shutil.copyfile(imagesPath + "/" + imgPath, newImgPath)
+            if counter == 899:
                 break
             counter += 1
     print("test set done")
 
     # validation data set
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir(originalPath):
         try:
-            os.mkdir(originalPath + "validation\\" + category)
+            os.mkdir(newPath + "validation/" + category)
         except:
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = originalPath + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 449:
+            if counter > 899:
                 newImgPath = (
-                    originalPath
-                    + "validation\\"
+                    newPath
+                    + "validation/"
                     + category
-                    + "\\"
+                    + "/"
                     + str(counter)
                     + ".jpg"
                 )
-                shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 499:
+                shutil.copyfile(imagesPath + "/" + imgPath, newImgPath)
+            if counter == 999:
                 break
             counter += 1
     print("validation set done")

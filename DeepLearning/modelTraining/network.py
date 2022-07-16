@@ -12,6 +12,7 @@ wandb.init(project="PhotoParamsTests", entity="gourmet")
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices("GPU")))
 
+
 tf.config.threading.set_inter_op_parallelism_threads(0)
 tf.config.threading.set_intra_op_parallelism_threads(0)
 
@@ -138,7 +139,8 @@ outputs = tf.keras.layers.Dense(10, activation="softmax")(x)
 
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
-model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+model.compile(optimizer="adam", loss="categorical_crossentropy",
+              metrics=["accuracy"])
 
 callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=1)
 
