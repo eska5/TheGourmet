@@ -3,11 +3,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Widget classifyPageIndicator({
   required PageController controller,
+  required int count,
 }) =>
     Center(
       child: SmoothPageIndicator(
         controller: controller, // PageController
-        count: 2,
+        count: count,
         effect: const SlideEffect(
             spacing: 8.0,
             radius: 45.0,

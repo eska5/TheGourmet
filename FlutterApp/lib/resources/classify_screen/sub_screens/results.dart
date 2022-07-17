@@ -1,15 +1,40 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:new_ui/components/page_indicator.dart';
+import 'package:new_ui/resources/common/page_indicator.dart';
 
-import '../../../components/button.dart';
-import '../../../components/result_card.dart';
-import '../functions.dart';
+import '../../common/button.dart';
+import '../methods.dart';
+import '../result_card.dart';
 
-Widget modelResultsScreen({
-  required BuildContext context,
-  required PageController controller,
-}) =>
-    Scaffold(
+class ResultScreen extends StatefulWidget {
+  final PageController controller;
+  static Uint8List? pickedImage;
+
+  const ResultScreen({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  State<ResultScreen> createState() => _ResultScreen();
+}
+
+class _ResultScreen extends State<ResultScreen> {
+  void setResultCards(BuildContext context) async {
+    //Set<Map<String, dynamic>> results = await categorizeThePhoto(context);
+    setState(() {
+      print("got the results");
+      // int i =0;
+      // for (var entry in results) {
+      //   resultCards[i].mealName = entry["name"];
+      // }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.fastfood_rounded, size: 29),
@@ -29,7 +54,7 @@ Widget modelResultsScreen({
           padding: const EdgeInsets.only(
               left: 0.0, right: 0.0, bottom: 13.0, top: 50),
           children: [
-            classifyPageIndicator(controller: controller),
+            classifyPageIndicator(controller: widget.controller, count: 2),
             const SizedBox(
               height: 50,
             ),
@@ -40,9 +65,9 @@ Widget modelResultsScreen({
             SingleChildScrollView(
               child: Column(
                 children: [
-                  createCard(cardDetails1),
-                  createCard(cardDetails2),
-                  createCard(cardDetails3),
+                  createCard(resultCards[0]),
+                  createCard(resultCards[1]),
+                  createCard(resultCards[2]),
                 ],
               ),
             ),
@@ -59,3 +84,5 @@ Widget modelResultsScreen({
             ),
           ]),
     );
+  }
+}

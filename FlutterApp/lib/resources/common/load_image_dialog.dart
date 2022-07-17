@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/load_image.dart';
 
-import '../classify_screen/functions.dart';
+import '../classify_screen/methods.dart';
 
 class LoadImageDialog extends StatefulWidget {
   final Function onClick;
@@ -43,9 +43,6 @@ class _ImageContainer extends State<LoadImageDialog> {
   void setPickedImage(BuildContext context, ImageSource source) async {
     LoadImageScreen.pickedImage = await pickImage(source, context);
     setState(() {
-      if (kDebugMode) {
-        print(LoadImageScreen.pickedImage);
-      }
       widget.onClick();
     });
   }

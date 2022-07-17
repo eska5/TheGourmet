@@ -35,7 +35,7 @@ class _AddImageState extends State<ClassifyImage> {
         LoadImageScreen(
           controller: controller,
         ),
-        modelResultsScreen(context: context, controller: controller)
+        ResultScreen(controller: controller),
       ],
     );
   }

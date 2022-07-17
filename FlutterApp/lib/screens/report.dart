@@ -9,13 +9,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:new_ui/components/button.dart';
-import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/components/result_card.dart';
-import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/resources/classify_screen/result_card.dart';
+import 'package:new_ui/resources/common/button.dart';
+import 'package:new_ui/resources/common/func.dart';
+import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:universal_platform/universal_platform.dart';
 
-import '../components/suggestions.dart';
+import '../resources/common/suggestions.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
