@@ -24,7 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+pubspec.lock
 
 # Created by https://www.toptal.com/developers/gitignore/api/flutter
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter

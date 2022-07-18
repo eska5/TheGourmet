@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:new_ui/screens/add.dart';
 import 'package:new_ui/screens/classify.dart';
 import 'package:new_ui/screens/home.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 Widget navBar({
   required PageController controller,
@@ -29,7 +27,7 @@ Widget navBar({
       ),
       bottomNavigationBar: SafeArea(
           child: Container(
-        margin: const EdgeInsets.fromLTRB(0, 18, 0, 18),
+            //margin: const EdgeInsets.fromLTRB(0, 18, 0, 18),
         decoration: const BoxDecoration(
           color: Colors.indigo,
         ),
