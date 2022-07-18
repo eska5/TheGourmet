@@ -5,7 +5,7 @@ import 'package:new_ui/screens/add.dart';
 import 'package:new_ui/screens/classify.dart';
 import 'package:new_ui/screens/home.dart';
 
-import 'functions/func.dart';
+import 'resources/common/func.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

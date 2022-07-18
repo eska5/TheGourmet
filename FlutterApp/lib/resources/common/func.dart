@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -116,46 +116,6 @@ void showTopSnackBarCustomError(dynamic context, dynamic text) {
       message: text,
     ),
   );
-}
-
-Widget buildPicture() {
-  return globals.isClassify
-  // Classify
-      ? globals.webImageClassify != null || globals.mobileImageClassify != null
-      ? ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: globals.webImageClassify != null
-          ? Image.memory(
-        globals.webImageClassify!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-      )
-          : Image.file(
-        globals.mobileImageClassify!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-      ))
-      : Image.asset('assets/diet.png', width: 200, height: 200)
-  // Add
-      : globals.webImageAdd != null || globals.mobileImageAdd != null
-      ? ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: globals.webImageAdd != null
-          ? Image.memory(
-        globals.webImageAdd!,
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-                    )
-                  : Image.file(
-                      globals.mobileImageAdd!,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ))
-          : Image.asset('assets/dish.png', width: 200, height: 200);
 }
 
 void fetchCatalog() async {

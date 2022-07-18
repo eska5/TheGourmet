@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_ui/components/globals.dart' as globals;
+import 'package:new_ui/resources/common/globals.dart' as globals;
 
-import '../components/AlphabetScrollPage.dart';
+import '../resources/common/catalog_scroll_page.dart';
 
 class MealCatalog extends StatefulWidget {
   const MealCatalog({Key? key}) : super(key: key);

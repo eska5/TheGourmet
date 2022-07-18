@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import '../components/suggestions.dart';
+import '../resources/common/suggestions.dart';
 
 class MealSuggestions extends StatefulWidget {
   const MealSuggestions({Key? key}) : super(key: key);

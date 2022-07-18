@@ -9,12 +9,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:new_ui/components/button.dart';
-import 'package:new_ui/components/globals.dart' as globals;
-import 'package:new_ui/functions/func.dart';
+import 'package:new_ui/resources/classify_screen/result_card.dart';
+import 'package:new_ui/resources/common/button.dart';
+import 'package:new_ui/resources/common/func.dart';
+import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:universal_platform/universal_platform.dart';
 
-import '../components/suggestions.dart';
+import '../resources/common/suggestions.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
 
@@ -24,14 +25,14 @@ String responseText2 = "";
 String responseText3 = "";
 String responseColor = "";
 
-class ModelResult2 extends StatefulWidget {
-  const ModelResult2({Key? key}) : super(key: key);
+class ReportBadResult extends StatefulWidget {
+  const ReportBadResult({Key? key}) : super(key: key);
 
   @override
   _Screen2State2 createState() => _Screen2State2();
 }
 
-class _Screen2State2 extends State<ModelResult2> {
+class _Screen2State2 extends State<ReportBadResult> {
   TextEditingController inputText = TextEditingController();
 
   @override
@@ -154,7 +155,7 @@ Future wyslijReportiWroc(context, inputText2) async {
 
     String base64Image = base64Encode(bytes!);
     Map<String, dynamic> body = {
-      'modeloutput': globals.tile1?.mealName,
+      'modeloutput': cardDetails1.mealName,
       'useroutput': globals.ReportMealName,
       'mealPhoto': base64Image
     };
