@@ -106,7 +106,3 @@ Widget smallImageButton({
         onPressed: onClicked,
       ),
     );
-final List<String> genderItems = [
-  'Male',
-  'Female',
-];

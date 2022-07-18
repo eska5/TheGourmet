@@ -1,19 +1,29 @@
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/page_indicator.dart';
 
 import '../../common/button.dart';
+import '../../common/load_image_dialog.dart';
 import '../methods.dart';
 import '../result_card.dart';
+import 'load_image.dart';
 
 class ResultScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
 
+  //static bool isClassified = false;
+  static ValueNotifier<bool> isClassified = ValueNotifier<bool>(true);
+
+  //final Function onClick;
+
   const ResultScreen({
     Key? key,
     required this.controller,
+    //required this.onClick,
   }) : super(key: key);
 
   @override
@@ -21,14 +31,13 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreen extends State<ResultScreen> {
-  void setResultCards(BuildContext context) async {
-    //Set<Map<String, dynamic>> results = await categorizeThePhoto(context);
+  void callSetState() {
     setState(() {
-      print("got the results");
-      // int i =0;
-      // for (var entry in results) {
-      //   resultCards[i].mealName = entry["name"];
-      // }
+      if (kDebugMode) {
+        print("results rebuild!");
+        //widget.onClick();
+        //print(LoadImageScreen.pickedImage);
+      }
     });
   }
 
@@ -58,17 +67,53 @@ class _ResultScreen extends State<ResultScreen> {
             const SizedBox(
               height: 50,
             ),
-            //Center(child: imageContainer()),  #TODO CHANGE IT TO NEW WIDGET
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: LoadImageScreen.pickedImage != null
+                          ? Image.memory(
+                              LoadImageScreen.pickedImage!,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/diet.png',
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )),
+                ),
+                Positioned(
+                  right: 65,
+                  top: -15,
+                  child: LoadImageDialog(
+                    onClick: callSetState,
+                    imageSource1: ImageSource.gallery,
+                    imageSource2: ImageSource.camera,
+                    iconData1: Icons.photo_library_rounded,
+                    iconData2: Icons.camera_alt_rounded,
+                    text1: " Wybierz zdjęcie",
+                    text2: "     Zrób zdjęcie  ",
+                    menuOffset: const Offset(19, 216),
+                    menuWidth: 230,
+                    menuOpacity: 0.0,
+                    menuHeight: 230,
+                  ),
+                ),
+                const SizedBox(
+                  height: 220,
+                ),
+              ],
+            ),
             const SizedBox(
               height: 50,
             ),
             SingleChildScrollView(
               child: Column(
-                children: [
-                  createCard(resultCards[0]),
-                  createCard(resultCards[1]),
-                  createCard(resultCards[2]),
-                ],
+                children: [for (var card in resultCards) createCard(card)],
               ),
             ),
             const SizedBox(

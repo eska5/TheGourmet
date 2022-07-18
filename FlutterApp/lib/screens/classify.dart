@@ -26,6 +26,15 @@ class _AddImageState extends State<ClassifyImage> {
 
   final PageController controller = PageController();
 
+  void callSetState() {
+    setState(() {
+      if (kDebugMode) {
+        print("classify rebuild!");
+        //print(LoadImageScreen.pickedImage);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageView(
@@ -34,8 +43,12 @@ class _AddImageState extends State<ClassifyImage> {
       children: [
         LoadImageScreen(
           controller: controller,
+          //onClick: callSetState,
         ),
-        ResultScreen(controller: controller),
+        ResultScreen(
+          controller: controller,
+          //onClick: callSetState,
+        ),
       ],
     );
   }

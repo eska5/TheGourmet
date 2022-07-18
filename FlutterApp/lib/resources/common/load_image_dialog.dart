@@ -36,10 +36,10 @@ class LoadImageDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LoadImageDialog> createState() => _ImageContainer();
+  State<LoadImageDialog> createState() => _LoadImageDialog();
 }
 
-class _ImageContainer extends State<LoadImageDialog> {
+class _LoadImageDialog extends State<LoadImageDialog> {
   void setPickedImage(BuildContext context, ImageSource source) async {
     LoadImageScreen.pickedImage = await pickImage(source, context);
     setState(() {

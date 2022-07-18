@@ -7,20 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:new_ui/resources/classify_screen/result_card.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 import 'package:new_ui/resources/common/globals.dart' as globals;
 
 import '../../screens/catalog.dart';
 import '../../screens/report.dart';
 import '../common/func.dart';
 
-Future<Set<Map<String, dynamic>>> categorizeThePhoto(
-    BuildContext context) async {
+void categorizeThePhoto(BuildContext context) async {
+  ResultScreen.isClassified.value = false;
+  print(ResultScreen.isClassified.value);
   final uri = Uri.parse("https://gourmetapp.net/classify");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
   };
-  Set<Map<String, dynamic>> results = {};
   Uint8List? bytes;
   if (kIsWeb) {
     bytes = globals.webImageClassify;
@@ -41,37 +43,19 @@ Future<Set<Map<String, dynamic>>> categorizeThePhoto(
           encoding: encoding,
         )
         .timeout(const Duration(seconds: 30));
-
-    // Set<Map<String, dynamic>> results = {
-    //   // TODO automate this
-    //   {
-    //     'name': json.decode(response.body)[0],
-    //     'description': json.decode(response.body)[0],
-    //     'probability': double.parse(json.decode(response.body)[1]) * 100,
-    //   },
-    //   {
-    //     'name': json.decode(response.body)[2],
-    //     'description': json.decode(response.body)[2],
-    //     'probability': double.parse(json.decode(response.body)[3]) * 100,
-    //   },
-    //   {
-    //     'name': json.decode(response.body)[4],
-    //     'description': json.decode(response.body)[4],
-    //     'probability': double.parse(json.decode(response.body)[5]) * 100,
-    //   },
-    // };
-    // for (int i = 0; i < 3; i++) {
-    //   resultCards[i].mealName = json.decode(response.body)[i * 2];
-    //   resultCards[i].mealDescription = json.decode(response.body)[i * 2];
-    //   resultCards[i].mealProbability =
-    //       double.parse(json.decode(response.body)[i * 2 + 1]) * 100;
-    // }
-    globals.mealClassified = true;
+    for (int i = 0; i < 3; i++) {
+      resultCards[i].mealName = json.decode(response.body)[i * 2];
+      resultCards[i].mealDescription = json.decode(response.body)[i * 2];
+      resultCards[i].mealProbability =
+          double.parse(json.decode(response.body)[i * 2 + 1]) * 100;
+    }
+    ResultScreen.isClassified.value = true;
+    print(ResultScreen.isClassified.value);
+    print(resultCards[0].mealName);
   } on HttpException {
     showTopSnackBarCustomError(
         context, "Wystąpił błąd w komunikacji z serwerem");
   }
-  return results;
 }
 
 Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
@@ -88,10 +72,10 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
         return null;
       }
 
-      final imageTemporary = await image?.readAsBytes();
+      final imageTemporary = await image.readAsBytes();
       globals.isClassifyReady = true;
       globals.webImageClassify = imageTemporary;
-      //categorizeThePhoto(context);
+      categorizeThePhoto(context);
       return imageTemporary;
     } on PlatformException catch (e) {
       if (kDebugMode) {
@@ -124,6 +108,7 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
       }
     }
   }
+  return null;
 }
 
 void navigateToCatalog(BuildContext context) async {

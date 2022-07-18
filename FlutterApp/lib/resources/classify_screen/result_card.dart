@@ -1,6 +1,8 @@
 library gourmet.result_card;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 
 class CardDetails {
   String mealName;
@@ -25,7 +27,7 @@ class CardDetails {
 }
 
 CardDetails cardDetails1 = CardDetails(
-    mealName: "[Animacja 3 kropek]",
+    mealName: "Nie dodano zdjęcia",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFE5B80B),
@@ -34,7 +36,7 @@ CardDetails cardDetails1 = CardDetails(
     numberOfStars: 3);
 
 CardDetails cardDetails2 = CardDetails(
-    mealName: "[Animacja 3 kropek]",
+    mealName: "Nie dodano zdjęcia",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFC4CACE),
@@ -43,7 +45,7 @@ CardDetails cardDetails2 = CardDetails(
     numberOfStars: 2);
 
 CardDetails cardDetails3 = CardDetails(
-    mealName: "[Animacja 3 kropek]",
+    mealName: "Nie dodano zdjęcia",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFA46628),
@@ -91,13 +93,27 @@ Widget createCard(CardDetails cardDetails) {
                     ]),
           textColor: Colors.white,
           iconColor: Colors.white,
-          title: Text(
-            cardDetails.mealName,
-            style: TextStyle(
-                fontFamily: 'avenir',
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 24),
+          title: ValueListenableBuilder<bool>(
+            builder: (BuildContext context, bool value, Widget? child) {
+              // This builder will only get called when the _counter
+              // is updated.
+              return value == true
+                  ? Text(
+                      cardDetails.mealName,
+                      style: TextStyle(
+                          fontFamily: 'avenir',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24),
+                    )
+                  : SpinKitThreeBounce(
+                      color: Colors.white,
+                      size: 40,
+                      duration: Duration(seconds: 2),
+                    );
+            },
+            valueListenable: ResultScreen.isClassified,
+            child: Center(),
           ),
           children: <Widget>[
             Text(
