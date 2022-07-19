@@ -9,14 +9,11 @@ Widget classifyPageIndicator({
       child: SmoothPageIndicator(
         controller: controller, // PageController
         count: count,
-        effect: const SlideEffect(
-            spacing: 8.0,
-            radius: 45.0,
-            dotWidth: 20.0,
-            dotHeight: 16.0,
-            paintStyle: PaintingStyle.stroke,
-            strokeWidth: 1.5,
-            dotColor: Colors.blue,
-            activeDotColor: Colors.blue), // your preferred effect
+        effect: const WormEffect(
+          dotHeight: 22,
+          dotWidth: 24,
+          spacing: 20,
+          activeDotColor: Color(0xFF5C6BC0),
+        ),
       ),
     );

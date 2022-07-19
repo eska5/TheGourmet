@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_ui/resources/common/page_indicator.dart';
 
 import '../../common/button.dart';
 import '../../common/load_image_dialog.dart';
@@ -63,7 +62,6 @@ class _ResultScreen extends State<ResultScreen> {
           padding: const EdgeInsets.only(
               left: 0.0, right: 0.0, bottom: 13.0, top: 50),
           children: [
-            classifyPageIndicator(controller: widget.controller, count: 2),
             const SizedBox(
               height: 50,
             ),

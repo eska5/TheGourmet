@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
 
 import '../../common/button.dart';
-import '../../common/page_indicator.dart';
 import '../methods.dart';
 
 class LoadImageScreen extends StatefulWidget {
@@ -58,7 +57,6 @@ class _LoadImageScreen extends State<LoadImageScreen> {
         padding: const EdgeInsets.only(
             left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
-          classifyPageIndicator(controller: widget.controller, count: 2),
           const SizedBox(
             height: 30,
           ),

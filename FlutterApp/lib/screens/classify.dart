@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/load_image.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 
+import '../resources/common/page_indicator.dart';
+
 class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
 
@@ -37,18 +39,27 @@ class _AddImageState extends State<ClassifyImage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      scrollDirection: Axis.horizontal,
-      controller: controller,
+    return Stack(
       children: [
-        LoadImageScreen(
-          controller: controller,
-          //onClick: callSetState,
+        classifyPageIndicator(controller: controller, count: 2),
+        Flexible(
+          child: PageView(
+            scrollDirection: Axis.horizontal,
+            controller: controller,
+            children: [
+              LoadImageScreen(
+                controller: controller,
+              ),
+              ResultScreen(
+                controller: controller,
+              ),
+            ],
+          ),
         ),
-        ResultScreen(
-          controller: controller,
-          //onClick: callSetState,
-        ),
+        Positioned(
+            right: MediaQuery.of(context).size.width / 2 - 24,
+            top: MediaQuery.of(context).padding.top + 66,
+            child: classifyPageIndicator(controller: controller, count: 2)),
       ],
     );
   }
