@@ -86,9 +86,7 @@ class _ResultScreen extends State<ResultScreen> {
                               fit: BoxFit.cover,
                             )),
                 ),
-                Positioned(
-                  right: 65,
-                  top: -15,
+                Center(
                   child: LoadImageDialog(
                     onClick: callSetState,
                     imageSource1: ImageSource.gallery,
@@ -97,10 +95,10 @@ class _ResultScreen extends State<ResultScreen> {
                     iconData2: Icons.camera_alt_rounded,
                     text1: " Wybierz zdjęcie",
                     text2: "     Zrób zdjęcie  ",
-                    menuOffset: const Offset(19, 216),
-                    menuWidth: 230,
+                    menuOffset: const Offset(42, 175),
+                    menuWidth: 200,
                     menuOpacity: 0.0,
-                    menuHeight: 230,
+                    menuHeight: 200,
                   ),
                 ),
                 const SizedBox(

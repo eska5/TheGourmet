@@ -81,9 +81,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                             fit: BoxFit.cover,
                           )),
               ),
-              Positioned(
-                right: 65,
-                top: -15,
+              Center(
                 child: LoadImageDialog(
                   onClick: callSetState,
                   imageSource1: ImageSource.gallery,
@@ -92,10 +90,10 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                   iconData2: Icons.camera_alt_rounded,
                   text1: " Wybierz zdjęcie",
                   text2: "     Zrób zdjęcie  ",
-                  menuOffset: const Offset(19, 216),
-                  menuWidth: 230,
+                  menuOffset: const Offset(42, 175),
+                  menuWidth: 200,
                   menuOpacity: 0.0,
-                  menuHeight: 230,
+                  menuHeight: 200,
                 ),
               ),
               const SizedBox(
@@ -130,7 +128,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
               iconData2: Icons.camera_alt_rounded,
               text1: " Wybierz zdjęcie",
               text2: "     Zrób zdjęcie  ",
-              menuOffset: const Offset(19, 67),
+              menuOffset: const Offset(15, -10),
               menuWidth: 245,
               menuOpacity: 1.0,
               menuHeight: 60,

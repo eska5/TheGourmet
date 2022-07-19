@@ -50,6 +50,8 @@ class _LoadImageDialog extends State<LoadImageDialog> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      tooltip: "Kliknij, żeby dodać zdjęcie",
+      elevation: 100,
       offset: widget.menuOffset,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
