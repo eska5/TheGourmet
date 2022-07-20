@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
 
 import '../../common/button.dart';
-import '../../common/page_indicator.dart';
 import '../methods.dart';
 
 class LoadImageScreen extends StatefulWidget {
@@ -58,7 +57,6 @@ class _LoadImageScreen extends State<LoadImageScreen> {
         padding: const EdgeInsets.only(
             left: 13.0, right: 13.0, bottom: 13.0, top: 45),
         children: [
-          classifyPageIndicator(controller: widget.controller, count: 2),
           const SizedBox(
             height: 30,
           ),
@@ -81,9 +79,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                             fit: BoxFit.cover,
                           )),
               ),
-              Positioned(
-                right: 65,
-                top: -15,
+              Center(
                 child: LoadImageDialog(
                   onClick: callSetState,
                   imageSource1: ImageSource.gallery,
@@ -92,10 +88,10 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                   iconData2: Icons.camera_alt_rounded,
                   text1: " Wybierz zdjęcie",
                   text2: "     Zrób zdjęcie  ",
-                  menuOffset: const Offset(19, 216),
-                  menuWidth: 230,
+                  menuOffset: const Offset(42, 175),
+                  menuWidth: 200,
                   menuOpacity: 0.0,
-                  menuHeight: 230,
+                  menuHeight: 200,
                 ),
               ),
               const SizedBox(
@@ -130,7 +126,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
               iconData2: Icons.camera_alt_rounded,
               text1: " Wybierz zdjęcie",
               text2: "     Zrób zdjęcie  ",
-              menuOffset: const Offset(19, 67),
+              menuOffset: const Offset(15, -10),
               menuWidth: 245,
               menuOpacity: 1.0,
               menuHeight: 60,
