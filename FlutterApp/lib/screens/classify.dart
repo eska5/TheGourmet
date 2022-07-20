@@ -40,21 +40,20 @@ class _AddImageState extends State<ClassifyImage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: [
         classifyPageIndicator(controller: controller, count: 2),
-        Flexible(
-          child: PageView(
-            scrollDirection: Axis.horizontal,
-            controller: controller,
-            children: [
-              LoadImageScreen(
-                controller: controller,
-              ),
-              ResultScreen(
-                controller: controller,
-              ),
-            ],
-          ),
+        PageView(
+          scrollDirection: Axis.horizontal,
+          controller: controller,
+          children: [
+            LoadImageScreen(
+              controller: controller,
+            ),
+            ResultScreen(
+              controller: controller,
+            ),
+          ],
         ),
         Positioned(
             right: MediaQuery.of(context).size.width / 2 - 24,
