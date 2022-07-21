@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
 
-import '../../common/button.dart';
 import '../methods.dart';
 
 class LoadImageScreen extends StatefulWidget {
@@ -46,12 +45,32 @@ class _LoadImageScreen extends State<LoadImageScreen> {
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => navigateToCatalog(context),
-        backgroundColor: Colors.deepPurpleAccent,
-        splashColor: Colors.deepPurpleAccent,
-        label: const Text('Katalog'),
-        icon: const Icon(Icons.format_list_bulleted_rounded),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FloatingActionButton.extended(
+              heroTag: null,
+              onPressed: () => navigateToCatalog(context),
+              backgroundColor: Colors.deepPurpleAccent,
+              splashColor: Colors.deepPurpleAccent,
+              label: const Text('Katalog'),
+              icon: const Icon(Icons.format_list_bulleted_rounded),
+            ),
+            FloatingActionButton.extended(
+              heroTag: null,
+              onPressed: () => widget.controller.animateToPage(1,
+                  duration: Duration(milliseconds: 800),
+                  curve: Curves.easeOutQuint),
+              backgroundColor: Colors.blue.shade400,
+              splashColor: Colors.blue.shade400,
+              label: const Text('Dalej'),
+              icon: const Icon(Icons.arrow_forward_rounded),
+            ),
+          ],
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.only(
@@ -63,21 +82,36 @@ class _LoadImageScreen extends State<LoadImageScreen> {
           Stack(
             children: <Widget>[
               Center(
-                child: ClipRRect(
+                child: Container(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    child: LoadImageScreen.pickedImage != null
-                        ? Image.memory(
-                            LoadImageScreen.pickedImage!,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.asset(
-                            'assets/diet.png',
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )),
+                    color: Colors.transparent,
+                    // boxShadow: const [
+                    //   BoxShadow(
+                    //     color: Colors.grey,
+                    //     blurRadius: 40.0,
+                    //     spreadRadius: 0.0,
+                    //     offset:
+                    //         Offset(0.0, 0.0), // shadow direction: bottom right
+                    //   )
+                    // ],
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: LoadImageScreen.pickedImage != null
+                          ? Image.memory(
+                              LoadImageScreen.pickedImage!,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/diet.png',
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )),
+                ),
               ),
               Center(
                 child: LoadImageDialog(
@@ -92,27 +126,13 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                   menuWidth: 200,
                   menuOpacity: 0.0,
                   menuHeight: 200,
+                  isButton: false,
                 ),
               ),
               const SizedBox(
                 height: 220,
               ),
             ],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Center(
-            child: enabledButton(
-              title: 'Dalej    ',
-              icon: Icons.arrow_forward_rounded,
-              onClicked: () => widget.controller.animateToPage(1,
-                  duration: Duration(milliseconds: 800),
-                  curve: Curves.easeOutQuint),
-              backgroundColor: Colors.blue.shade400,
-              fontSize: 20,
-              enabled: true,
-            ),
           ),
           const SizedBox(
             height: 40,
@@ -130,6 +150,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
               menuWidth: 245,
               menuOpacity: 1.0,
               menuHeight: 60,
+              isButton: true,
               menuInnerWidget: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,

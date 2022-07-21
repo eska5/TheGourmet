@@ -27,7 +27,7 @@ class CardDetails {
 }
 
 CardDetails cardDetails1 = CardDetails(
-    mealName: "Nie dodano zdjęcia",
+    mealName: "",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFE5B80B),
@@ -36,7 +36,7 @@ CardDetails cardDetails1 = CardDetails(
     numberOfStars: 3);
 
 CardDetails cardDetails2 = CardDetails(
-    mealName: "Nie dodano zdjęcia",
+    mealName: "",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFC4CACE),
@@ -45,7 +45,7 @@ CardDetails cardDetails2 = CardDetails(
     numberOfStars: 2);
 
 CardDetails cardDetails3 = CardDetails(
-    mealName: "Nie dodano zdjęcia",
+    mealName: "",
     mealDescription: "",
     mealProbability: 0,
     color: const Color(0xFFA46628),
@@ -57,17 +57,15 @@ List<CardDetails> resultCards = [cardDetails1, cardDetails2, cardDetails3];
 
 Widget createCard(CardDetails cardDetails) {
   return Card(
+    margin: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
+    elevation: 10,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(24.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
     child: Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [cardDetails.gradient1, cardDetails.gradient2],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(24)),
+        color: Colors.blue.shade300,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Theme(
         data: ThemeData().copyWith(dividerColor: Colors.transparent),
@@ -76,66 +74,71 @@ Widget createCard(CardDetails cardDetails) {
           collapsedIconColor: Colors.white,
           leading: cardDetails.numberOfStars == 3
               ? Wrap(children: <Widget>[
-                  Icon(Icons.star_rounded),
-                  Icon(Icons.star_rounded),
-                  Icon(Icons.star_rounded),
+                  //Icon(Icons.star_rounded, color: Colors.amber),
+                  //Icon(Icons.star_rounded, color: Colors.amber),
+                  Icon(
+                    Icons.emoji_events_rounded,
+                    color: Colors.amber,
+                    size: 35,
+                  ),
                 ])
               : cardDetails.numberOfStars == 2
-                  ? Wrap(children: <Widget>[
-                      Icon(Icons.star_rounded),
-                      Icon(Icons.star_rounded),
-                      Icon(Icons.star_border_rounded),
+              ? Wrap(children: <Widget>[
+                      //Icon(Icons.star_rounded),
+                      //Icon(Icons.star_rounded),
+                      Icon(
+                        Icons.emoji_events_rounded,
+                        color: Colors.grey.shade300,
+                        size: 35,
+                      ),
                     ])
-                  : Wrap(children: <Widget>[
-                      Icon(Icons.star_rounded),
-                      Icon(Icons.star_border_rounded),
-                      Icon(Icons.star_border_rounded),
+              : Wrap(children: <Widget>[
+                      //Icon(Icons.star_rounded),
+                      //Icon(Icons.star_border_rounded),
+                      Icon(
+                        Icons.emoji_events_rounded,
+                        color: Colors.brown,
+                        size: 35,
+                      ),
                     ]),
           textColor: Colors.white,
           iconColor: Colors.white,
           title: ValueListenableBuilder<bool>(
             builder: (BuildContext context, bool value, Widget? child) {
-              // This builder will only get called when the _counter
-              // is updated.
               return value == true
-                  ? Text(
-                      cardDetails.mealName,
-                      style: TextStyle(
-                          fontFamily: 'avenir',
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24),
-                    )
-                  : SpinKitThreeBounce(
-                      color: Colors.white,
-                      size: 40,
-                      duration: Duration(seconds: 2),
-                    );
+                  ? mealName(text: cardDetails.mealName, isLoading: false)
+                  : mealName(text: cardDetails.mealName, isLoading: true);
             },
             valueListenable: ResultScreen.isClassified,
-            child: Center(),
+            child: const SizedBox.shrink(),
           ),
           children: <Widget>[
-            Text(
-              "Prawdopodobieństwo: " +
-                  cardDetails.mealProbability.toStringAsFixed(2) +
-                  "%",
-              style: TextStyle(
-                  fontFamily: 'avenir',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18),
+            ValueListenableBuilder<bool>(
+              builder: (BuildContext context, bool value, Widget? child) {
+                return value == true
+                    ? mealProbability(
+                        probability: cardDetails.mealProbability,
+                        isLoading: false)
+                    : mealProbability(
+                        probability: cardDetails.mealProbability,
+                        isLoading: true);
+              },
+              valueListenable: ResultScreen.isClassified,
+              child: const SizedBox.shrink(),
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              "Opis: " + cardDetails.mealDescription,
-              style: TextStyle(
-                  fontFamily: 'avenir',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18),
+            ValueListenableBuilder<bool>(
+              builder: (BuildContext context, bool value, Widget? child) {
+                return value == true
+                    ? mealDescription(
+                        text: cardDetails.mealDescription, isLoading: false)
+                    : mealDescription(
+                        text: cardDetails.mealDescription, isLoading: true);
+              },
+              valueListenable: ResultScreen.isClassified,
+              child: const SizedBox.shrink(),
             ),
             const SizedBox(
               height: 10,
@@ -145,4 +148,47 @@ Widget createCard(CardDetails cardDetails) {
       ),
     ),
   );
+}
+
+Widget mealName({required String text, required bool isLoading}) {
+  return isLoading == false
+      ? Text(
+          text,
+          style: const TextStyle(
+              fontFamily: 'avenir',
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: 24),
+        )
+      : const SpinKitThreeBounce(
+          color: Colors.white,
+          size: 40,
+          duration: Duration(seconds: 2),
+        );
+}
+
+Widget mealProbability({required double probability, required bool isLoading}) {
+  return isLoading == false
+      ? Text(
+          "Prawdopodobieństwo: " + probability.toStringAsFixed(2) + "%",
+          style: const TextStyle(
+              fontFamily: 'avenir',
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: 18),
+        )
+      : const SizedBox();
+}
+
+Widget mealDescription({required String text, required bool isLoading}) {
+  return isLoading == false
+      ? Text(
+          "Opis: " + text,
+          style: const TextStyle(
+              fontFamily: 'avenir',
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: 18),
+        )
+      : const SizedBox();
 }

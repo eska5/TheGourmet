@@ -42,7 +42,6 @@ class _AddImageState extends State<ClassifyImage> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        classifyPageIndicator(controller: controller, count: 2),
         PageView(
           scrollDirection: Axis.horizontal,
           controller: controller,

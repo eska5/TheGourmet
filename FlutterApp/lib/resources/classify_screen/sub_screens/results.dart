@@ -15,7 +15,7 @@ class ResultScreen extends StatefulWidget {
   static Uint8List? pickedImage;
 
   //static bool isClassified = false;
-  static ValueNotifier<bool> isClassified = ValueNotifier<bool>(true);
+  static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
 
   //final Function onClick;
 
@@ -50,12 +50,32 @@ class _ResultScreen extends State<ResultScreen> {
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => navigateToCatalog(context),
-        backgroundColor: Colors.deepPurpleAccent,
-        splashColor: Colors.deepPurpleAccent,
-        label: const Text('Katalog'),
-        icon: const Icon(Icons.format_list_bulleted_rounded),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FloatingActionButton.extended(
+              heroTag: null,
+              onPressed: () => widget.controller.animateToPage(0,
+                  duration: Duration(milliseconds: 800),
+                  curve: Curves.easeOutQuint),
+              backgroundColor: Colors.green,
+              splashColor: Colors.green,
+              label: const Text('Wróć'),
+              icon: const Icon(Icons.arrow_back_rounded),
+            ),
+            FloatingActionButton.extended(
+              heroTag: null,
+              onPressed: () => navigateToCatalog(context),
+              backgroundColor: Colors.deepPurpleAccent,
+              splashColor: Colors.deepPurpleAccent,
+              label: const Text('Katalog'),
+              icon: const Icon(Icons.format_list_bulleted_rounded),
+            ),
+          ],
+        ),
       ),
       body: ListView(
           shrinkWrap: true,
@@ -68,21 +88,35 @@ class _ResultScreen extends State<ResultScreen> {
             Stack(
               children: <Widget>[
                 Center(
-                  child: ClipRRect(
+                  child: Container(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      child: LoadImageScreen.pickedImage != null
-                          ? Image.memory(
-                              LoadImageScreen.pickedImage!,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              'assets/diet.png',
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )),
+                      color: Colors.transparent,
+                      // boxShadow: const [
+                      //   BoxShadow(
+                      //     color: Colors.grey,
+                      //     blurRadius: 40.0,
+                      //     spreadRadius: 0.0,
+                      //     offset: Offset(0.0, 0.0),
+                      //   )
+                      // ],
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: LoadImageScreen.pickedImage != null
+                            ? Image.memory(
+                                LoadImageScreen.pickedImage!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'assets/diet.png',
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
+                  ),
                 ),
                 Center(
                   child: LoadImageDialog(
@@ -97,6 +131,7 @@ class _ResultScreen extends State<ResultScreen> {
                     menuWidth: 200,
                     menuOpacity: 0.0,
                     menuHeight: 200,
+                    isButton: false,
                   ),
                 ),
                 const SizedBox(

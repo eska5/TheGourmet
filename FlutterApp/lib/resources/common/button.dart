@@ -13,6 +13,7 @@ Widget enabledButton({
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 5,
           alignment: Alignment.centerLeft,
           primary: backgroundColor,
           onPrimary: Colors.white,
