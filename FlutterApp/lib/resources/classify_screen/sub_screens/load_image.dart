@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
+import 'package:show_up_animation/show_up_animation.dart';
 
 import '../methods.dart';
 
@@ -72,107 +73,115 @@ class _LoadImageScreen extends State<LoadImageScreen> {
           ],
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.only(
-            left: 13.0, right: 13.0, bottom: 13.0, top: 45),
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Stack(
-            children: <Widget>[
-              Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.transparent,
-                    // boxShadow: const [
-                    //   BoxShadow(
-                    //     color: Colors.grey,
-                    //     blurRadius: 40.0,
-                    //     spreadRadius: 0.0,
-                    //     offset:
-                    //         Offset(0.0, 0.0), // shadow direction: bottom right
-                    //   )
-                    // ],
-                  ),
-                  child: ClipRRect(
+      body: ShowUpAnimation(
+        animationDuration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOutCirc,
+        direction: Direction.vertical,
+        offset: 0.5,
+        child: ListView(
+          padding: const EdgeInsets.only(
+              left: 13.0, right: 13.0, bottom: 13.0, top: 45),
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      child: LoadImageScreen.pickedImage != null
-                          ? Image.memory(
-                              LoadImageScreen.pickedImage!,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              'assets/diet.png',
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )),
-                ),
-              ),
-              Center(
-                child: LoadImageDialog(
-                  onClick: callSetState,
-                  imageSource1: ImageSource.gallery,
-                  imageSource2: ImageSource.camera,
-                  iconData1: Icons.photo_library_rounded,
-                  iconData2: Icons.camera_alt_rounded,
-                  text1: " Wybierz zdjęcie",
-                  text2: "     Zrób zdjęcie  ",
-                  menuOffset: const Offset(42, 175),
-                  menuWidth: 200,
-                  menuOpacity: 0.0,
-                  menuHeight: 200,
-                  isButton: false,
-                ),
-              ),
-              const SizedBox(
-                height: 220,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Center(
-            child: LoadImageDialog(
-              onClick: callSetState,
-              imageSource1: ImageSource.gallery,
-              imageSource2: ImageSource.camera,
-              iconData1: Icons.photo_library_rounded,
-              iconData2: Icons.camera_alt_rounded,
-              text1: " Wybierz zdjęcie",
-              text2: "     Zrób zdjęcie  ",
-              menuOffset: const Offset(15, -10),
-              menuWidth: 245,
-              menuOpacity: 1.0,
-              menuHeight: 60,
-              isButton: true,
-              menuInnerWidget: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
-                    Icons.add_photo_alternate_rounded,
-                    size: 28,
-                    color: Colors.white,
+                      color: Colors.transparent,
+                      boxShadow: [
+                        LoadImageScreen.pickedImage != null
+                            ? const BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 10.0,
+                                spreadRadius: 0.0,
+                                offset: Offset(
+                                    0.0, 0.0), // shadow direction: bottom right
+                              )
+                            : const BoxShadow(color: Colors.transparent)
+                      ],
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: LoadImageScreen.pickedImage != null
+                            ? Image.memory(
+                                LoadImageScreen.pickedImage!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'assets/diet.png',
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Załaduj zdjęcie",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                Center(
+                  child: LoadImageDialog(
+                    onClick: callSetState,
+                    imageSource1: ImageSource.gallery,
+                    imageSource2: ImageSource.camera,
+                    iconData1: Icons.photo_library_rounded,
+                    iconData2: Icons.camera_alt_rounded,
+                    text1: " Wybierz zdjęcie",
+                    text2: "     Zrób zdjęcie  ",
+                    menuOffset: const Offset(42, 175),
+                    menuWidth: 200,
+                    menuOpacity: 0.0,
+                    menuHeight: 200,
+                    isButton: false,
                   ),
-                ],
+                ),
+                const SizedBox(
+                  height: 220,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Center(
+              child: LoadImageDialog(
+                onClick: callSetState,
+                imageSource1: ImageSource.gallery,
+                imageSource2: ImageSource.camera,
+                iconData1: Icons.photo_library_rounded,
+                iconData2: Icons.camera_alt_rounded,
+                text1: " Wybierz zdjęcie",
+                text2: "     Zrób zdjęcie  ",
+                menuOffset: const Offset(15, -10),
+                menuWidth: 245,
+                menuOpacity: 1.0,
+                menuHeight: 60,
+                isButton: true,
+                menuInnerWidget: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.add_photo_alternate_rounded,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Załaduj zdjęcie",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-        ],
+            const SizedBox(
+              height: 40,
+            ),
+          ],
+        ),
       ),
     );
   }

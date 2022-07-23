@@ -3,8 +3,8 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:show_up_animation/show_up_animation.dart';
 
-import '../../common/button.dart';
 import '../../common/load_image_dialog.dart';
 import '../methods.dart';
 import '../result_card.dart';
@@ -77,88 +77,92 @@ class _ResultScreen extends State<ResultScreen> {
           ],
         ),
       ),
-      body: ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.only(
-              left: 0.0, right: 0.0, bottom: 13.0, top: 50),
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Stack(
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.transparent,
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //     color: Colors.grey,
-                      //     blurRadius: 40.0,
-                      //     spreadRadius: 0.0,
-                      //     offset: Offset(0.0, 0.0),
-                      //   )
-                      // ],
-                    ),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: LoadImageScreen.pickedImage != null
-                            ? Image.memory(
-                                LoadImageScreen.pickedImage!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                'assets/diet.png',
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )),
-                  ),
-                ),
-                Center(
-                  child: LoadImageDialog(
-                    onClick: callSetState,
-                    imageSource1: ImageSource.gallery,
-                    imageSource2: ImageSource.camera,
-                    iconData1: Icons.photo_library_rounded,
-                    iconData2: Icons.camera_alt_rounded,
-                    text1: " Wybierz zdjęcie",
-                    text2: "     Zrób zdjęcie  ",
-                    menuOffset: const Offset(42, 175),
-                    menuWidth: 200,
-                    menuOpacity: 0.0,
-                    menuHeight: 200,
-                    isButton: false,
-                  ),
-                ),
-                const SizedBox(
-                  height: 220,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: [for (var card in resultCards) createCard(card)],
+      body: ShowUpAnimation(
+        animationDuration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOutCirc,
+        direction: Direction.vertical,
+        offset: 0.5,
+        child: ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(
+                left: 0.0, right: 0.0, bottom: 13.0, top: 50),
+            children: [
+              const SizedBox(
+                height: 50,
               ),
-            ),
-            const SizedBox(
-              height: 125,
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: generalButton(
-                  title: "Złe wyniki",
-                  icon: Icons.report_rounded,
-                  color: const Color(0xFFDC143C),
-                  onClicked: () => navigateToReportScreen(context)),
-            ),
-          ]),
+              Stack(
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.transparent,
+                        boxShadow: [
+                          LoadImageScreen.pickedImage != null
+                              ? const BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 10.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(0.0,
+                                      0.0), // shadow direction: bottom right
+                                )
+                              : const BoxShadow(color: Colors.transparent)
+                        ],
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: LoadImageScreen.pickedImage != null
+                              ? Image.memory(
+                                  LoadImageScreen.pickedImage!,
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'assets/diet.png',
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                )),
+                    ),
+                  ),
+                  Center(
+                    child: LoadImageDialog(
+                      onClick: callSetState,
+                      imageSource1: ImageSource.gallery,
+                      imageSource2: ImageSource.camera,
+                      iconData1: Icons.photo_library_rounded,
+                      iconData2: Icons.camera_alt_rounded,
+                      text1: " Wybierz zdjęcie",
+                      text2: "     Zrób zdjęcie  ",
+                      menuOffset: const Offset(42, 175),
+                      menuWidth: 200,
+                      menuOpacity: 0.0,
+                      menuHeight: 200,
+                      isButton: false,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 220,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (var card in resultCards) createResultCard(card),
+                    createReportCard(report_card, context)
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 125,
+              ),
+            ]),
+      ),
     );
   }
 }

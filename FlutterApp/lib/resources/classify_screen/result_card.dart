@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 
+import 'methods.dart';
+
 class CardDetails {
   String mealName;
   String mealDescription;
   double mealProbability;
-  dynamic color;
-  dynamic gradient1;
-  dynamic gradient2;
-  int numberOfStars;
+  Color color;
+  int cardNumber;
   bool isExpanded;
 
   CardDetails({
@@ -19,43 +19,43 @@ class CardDetails {
     required this.mealDescription,
     required this.mealProbability,
     required this.color,
-    required this.gradient1,
-    required this.gradient2,
-    required this.numberOfStars,
+    required this.cardNumber,
     this.isExpanded = true,
   });
 }
 
-CardDetails cardDetails1 = CardDetails(
+CardDetails result_1 = CardDetails(
+  mealName: "",
+  mealDescription: "",
+  mealProbability: 0,
+  color: Colors.blue.shade300,
+  cardNumber: 1,
+);
+
+CardDetails result_2 = CardDetails(
     mealName: "",
     mealDescription: "",
     mealProbability: 0,
-    color: const Color(0xFFE5B80B),
-    gradient1: Colors.orange,
-    gradient2: Colors.amber,
-    numberOfStars: 3);
+    color: Colors.blue.shade300,
+    cardNumber: 2);
 
-CardDetails cardDetails2 = CardDetails(
+CardDetails result_3 = CardDetails(
     mealName: "",
     mealDescription: "",
     mealProbability: 0,
-    color: const Color(0xFFC4CACE),
-    gradient1: const Color(0xFF526573),
-    gradient2: const Color(0xFF9CAABD),
-    numberOfStars: 2);
+    color: Colors.blue.shade300,
+    cardNumber: 3);
 
-CardDetails cardDetails3 = CardDetails(
-    mealName: "",
+CardDetails report_card = CardDetails(
+    mealName: "Złe wyniki?",
     mealDescription: "",
     mealProbability: 0,
-    color: const Color(0xFFA46628),
-    gradient1: const Color(0xFF7B4C1E),
-    gradient2: const Color(0xFFB9772D),
-    numberOfStars: 1);
+    color: const Color(0xFFFE9901),
+    cardNumber: 4);
 
-List<CardDetails> resultCards = [cardDetails1, cardDetails2, cardDetails3];
+List<CardDetails> resultCards = [result_1, result_2, result_3];
 
-Widget createCard(CardDetails cardDetails) {
+Widget createResultCard(CardDetails cardDetails) {
   return Card(
     margin: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
     elevation: 10,
@@ -64,7 +64,7 @@ Widget createCard(CardDetails cardDetails) {
     ),
     child: Container(
       decoration: BoxDecoration(
-        color: Colors.blue.shade300,
+        color: cardDetails.color,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Theme(
@@ -72,29 +72,23 @@ Widget createCard(CardDetails cardDetails) {
         child: ExpansionTile(
           collapsedTextColor: Colors.white,
           collapsedIconColor: Colors.white,
-          leading: cardDetails.numberOfStars == 3
-              ? Wrap(children: <Widget>[
-                  //Icon(Icons.star_rounded, color: Colors.amber),
-                  //Icon(Icons.star_rounded, color: Colors.amber),
+          leading: cardDetails.cardNumber == 1
+              ? Wrap(children: const <Widget>[
                   Icon(
                     Icons.emoji_events_rounded,
                     color: Colors.amber,
                     size: 35,
                   ),
                 ])
-              : cardDetails.numberOfStars == 2
-              ? Wrap(children: <Widget>[
-                      //Icon(Icons.star_rounded),
-                      //Icon(Icons.star_rounded),
+              : cardDetails.cardNumber == 2
+                  ? Wrap(children: <Widget>[
                       Icon(
                         Icons.emoji_events_rounded,
                         color: Colors.grey.shade300,
                         size: 35,
                       ),
                     ])
-              : Wrap(children: <Widget>[
-                      //Icon(Icons.star_rounded),
-                      //Icon(Icons.star_border_rounded),
+                  : Wrap(children: const <Widget>[
                       Icon(
                         Icons.emoji_events_rounded,
                         color: Colors.brown,
@@ -191,4 +185,130 @@ Widget mealDescription({required String text, required bool isLoading}) {
               fontSize: 18),
         )
       : const SizedBox();
+}
+
+Widget createReportCard(CardDetails cardDetails, BuildContext context) {
+  return Card(
+    margin: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
+    elevation: 10,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    child: Container(
+      decoration: BoxDecoration(
+        color: cardDetails.color,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Theme(
+        data: ThemeData().copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          collapsedTextColor: Colors.white,
+          collapsedIconColor: Colors.white,
+          leading: const Icon(
+            Icons.report_rounded,
+            size: 35,
+          ),
+          textColor: Colors.white,
+          iconColor: Colors.white,
+          title: ValueListenableBuilder<bool>(
+            builder: (BuildContext context, bool value, Widget? child) {
+              return value == true
+                  ? mealName(text: cardDetails.mealName, isLoading: false)
+                  : mealName(text: cardDetails.mealName, isLoading: true);
+            },
+            valueListenable: ResultScreen.isClassified,
+            child: const SizedBox.shrink(),
+          ),
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(
+                  height: 3,
+                ),
+                GestureDetector(
+                  onTap: () => {},
+                  child: Container(
+                    width: 120,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade400,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        const BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 4.0,
+                            spreadRadius: 1,
+                            offset: Offset(0, 0))
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Więcej\nwyników",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontFamily: 'avenir',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => navigateToReportScreen(context),
+                  child: Container(
+                    width: 120,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFDC143C),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        const BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 4.0,
+                            spreadRadius: 1,
+                            offset: Offset(0, 0))
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Zgłoś\nwynik",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontFamily: 'avenir',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 3,
+                ),
+              ],
+            ),
+
+            // generalButton(
+            //   title: "Zgłoś wynik",
+            //   icon: Icons.note_add_rounded,
+            //   onClicked: () => navigateToReportScreen(context),
+            //   color: Colors.white,
+            //   textColor: Colors.black,
+            // ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget reportCardContent() {
+  return Row(
+    children: [],
+  );
 }

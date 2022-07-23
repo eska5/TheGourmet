@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 import 'package:new_ui/resources/common/globals.dart' as globals;
+import 'package:new_ui/resources/common/snack_bars.dart';
 
 import '../../screens/catalog.dart';
 import '../../screens/report.dart';
@@ -52,9 +53,11 @@ void categorizeThePhoto(BuildContext context) async {
     ResultScreen.isClassified.value = true;
     print(ResultScreen.isClassified.value);
     print(resultCards[0].mealName);
+    if (resultCards[0].mealProbability < 50) {
+      showWarningMessage(context, "Wyniki mogą być niedokładne");
+    }
   } on HttpException {
-    showTopSnackBarCustomError(
-        context, "Wystąpił błąd w komunikacji z serwerem");
+    showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
   }
 }
 
@@ -68,7 +71,7 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
       if (image == null) return null;
 
       if (!validateFileExtension(image)) {
-        showTopSnackBarCustomError(context, "Wybrano niepoprawyny format");
+        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
         return null;
       }
 
@@ -91,8 +94,7 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
       if (image == null) return null;
 
       if (!validateFileExtension(image)) {
-        showTopSnackBarCustomError(
-            context, "Wybrano niepoprawyny format zdjęcia");
+        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
         return null;
       }
 

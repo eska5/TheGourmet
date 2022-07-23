@@ -15,6 +15,8 @@ import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:new_ui/screens/suggestions.dart';
 import 'package:universal_platform/universal_platform.dart';
 
+import '../resources/common/snack_bars.dart';
+
 class AddImage extends StatefulWidget {
   const AddImage({Key? key}) : super(key: key);
 
@@ -47,7 +49,7 @@ class _AddImageState extends State<AddImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context, responseTitle);
+          showErrorMessage(context, responseTitle);
           return;
         }
 
@@ -74,7 +76,7 @@ class _AddImageState extends State<AddImage> {
           responseText2 = "niepoprawne";
           responseText3 = ". Akceptowane formaty : jpg, jpeg, png";
           responseColor = "Colors.red";
-          showTopSnackBarCustomError(context, responseTitle);
+          showErrorMessage(context, responseTitle);
           return;
         }
 
@@ -139,7 +141,7 @@ class _AddImageState extends State<AddImage> {
         responseText3 =
             "załaduj zdjęcie z galerii lub aparatu i upewnij się, że dodano nazwę potrawy";
         responseColor = "Colors.red";
-        showTopSnackBarCustomError(context, responseTitle);
+        showErrorMessage(context, responseTitle);
         return;
       }
 
@@ -198,9 +200,9 @@ class _AddImageState extends State<AddImage> {
       }
       // Snackbar Response <for user>
       responseColor == "Colors.red"
-          ? showTopSnackBarCustomError(
+          ? showErrorMessage(
               context, (responseText1 + responseText2 + responseText3))
-          : showTopSnackBarCustomSuccess(
+          : showSuccessMessage(
               context, (responseText1 + responseText2 + responseText3));
     } on PlatformException catch (e) {
       if (kDebugMode) {
@@ -297,6 +299,7 @@ class _AddImageState extends State<AddImage> {
               title: "Nazwij potrawę",
               icon: Icons.text_fields_rounded,
               color: const Color(0xFFFE9901),
+              textColor: Colors.white,
               onClicked: () => _navigateAndDisplaySelection(context),
             ),
           ),
@@ -309,6 +312,7 @@ class _AddImageState extends State<AddImage> {
                 title: "Wyślij potrawę  ",
                 icon: Icons.send_rounded,
                 color: Colors.deepPurpleAccent,
+                textColor: Colors.white,
                 onClicked: () => sendToServer()),
           ),
         ],

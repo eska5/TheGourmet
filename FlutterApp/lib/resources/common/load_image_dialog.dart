@@ -68,10 +68,10 @@ class _LoadImageDialog extends State<LoadImageDialog> {
           boxShadow: [
             widget.isButton == true
                 ? const BoxShadow(
-                    color: Colors.grey, //New
-                    blurRadius: 10.0,
+                    color: Colors.grey,
+                    blurRadius: 4.0,
                     spreadRadius: 1,
-                    offset: Offset(3, 3))
+                    offset: Offset(0, 0))
                 : const BoxShadow(color: Colors.transparent)
           ],
         ),

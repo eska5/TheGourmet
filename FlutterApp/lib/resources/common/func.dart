@@ -1,12 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/globals.dart' as globals;
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 bool smallSreen() {
@@ -94,28 +91,6 @@ bool validateRequest(String mode) {
     return false;
   }
   return true;
-}
-
-void showTopSnackBarCustomSuccess(dynamic context, dynamic text) {
-  showTopSnackBar(
-    context,
-    CustomSnackBar.success(
-      icon: Icon(null),
-      backgroundColor: Color.fromARGB(255, 0, 211, 109),
-      message: text,
-    ),
-  );
-}
-
-void showTopSnackBarCustomError(dynamic context, dynamic text) {
-  showTopSnackBar(
-    context,
-    CustomSnackBar.error(
-      icon: Icon(null),
-      // backgroundColor: color,
-      message: text,
-    ),
-  );
 }
 
 void fetchCatalog() async {
