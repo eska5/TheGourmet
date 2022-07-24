@@ -77,7 +77,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
         animationDuration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         direction: Direction.vertical,
-        offset: -0.1,
+        offset: 0,
         child: ListView(
           padding: const EdgeInsets.only(
               left: 13.0, right: 13.0, bottom: 13.0, top: 45),

@@ -151,11 +151,18 @@ class _ResultScreen extends State<ResultScreen> {
                 height: 50,
               ),
               SingleChildScrollView(
-                child: Column(
-                  children: [
-                    for (var card in resultCards) createResultCard(card),
-                    createReportCard(report_card, context)
-                  ],
+                child: ShowUpAnimation(
+                  animationDuration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOutCirc,
+                  direction: Direction.vertical,
+                  offset: 0.5,
+                  child: Column(
+                    children: [
+                      for (var card in resultCards) createResultCard(card),
+                      const SizedBox(height: 40),
+                      createReportCard(report_card, context, callSetState)
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(

@@ -16,8 +16,11 @@ import '../../screens/catalog.dart';
 import '../../screens/report.dart';
 import '../common/func.dart';
 
+String responseBody = "";
+
 void categorizeThePhoto(BuildContext context) async {
   ResultScreen.isClassified.value = false;
+  resultCards = [result_1, result_2, result_3];
   print(ResultScreen.isClassified.value);
   final uri = Uri.parse("https://gourmetapp.net/classify");
   final headers = {
@@ -44,11 +47,12 @@ void categorizeThePhoto(BuildContext context) async {
           encoding: encoding,
         )
         .timeout(const Duration(seconds: 30));
+    responseBody = response.body;
     for (int i = 0; i < 3; i++) {
-      resultCards[i].mealName = json.decode(response.body)[i * 2];
-      resultCards[i].mealDescription = json.decode(response.body)[i * 2];
+      resultCards[i].mealName = json.decode(responseBody)[i * 2];
+      resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
       resultCards[i].mealProbability =
-          double.parse(json.decode(response.body)[i * 2 + 1]) * 100;
+          double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
     }
     ResultScreen.isClassified.value = true;
     print(ResultScreen.isClassified.value);
@@ -125,4 +129,17 @@ void navigateToReportScreen(BuildContext context) async {
     context,
     MaterialPageRoute(builder: (context) => const ReportBadResult()),
   );
+}
+
+void getMoreResults(Function onClick) {
+  // print(responseBody[3]);
+  for (int i = 3; i < 6; i++) {
+    resultCards.add(result_4_and_more);
+    // TODO MAKE BACKEND RETURN ALL THE RESULTS
+    // resultCards[i].mealName = json.decode(responseBody)[i * 2];
+    // resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
+    // resultCards[i].mealProbability =
+    //     double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
+  }
+  onClick();
 }

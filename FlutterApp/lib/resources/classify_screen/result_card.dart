@@ -46,6 +46,13 @@ CardDetails result_3 = CardDetails(
     color: Colors.blue.shade300,
     cardNumber: 3);
 
+CardDetails result_4_and_more = CardDetails(
+    mealName: "",
+    mealDescription: "",
+    mealProbability: 0,
+    color: Colors.blue.shade300,
+    cardNumber: 4);
+
 CardDetails report_card = CardDetails(
     mealName: "Złe wyniki?",
     mealDescription: "",
@@ -187,7 +194,8 @@ Widget mealDescription({required String text, required bool isLoading}) {
       : const SizedBox();
 }
 
-Widget createReportCard(CardDetails cardDetails, BuildContext context) {
+Widget createReportCard(
+    CardDetails cardDetails, BuildContext context, Function onClick) {
   return Card(
     margin: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
     elevation: 10,
@@ -220,83 +228,85 @@ Widget createReportCard(CardDetails cardDetails, BuildContext context) {
             child: const SizedBox.shrink(),
           ),
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(
-                  height: 3,
-                ),
-                GestureDetector(
-                  onTap: () => {},
-                  child: Container(
-                    width: 120,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade400,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        const BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 4.0,
-                            spreadRadius: 1,
-                            offset: Offset(0, 0))
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Więcej\nwyników",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontFamily: 'avenir',
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () => navigateToReportScreen(context),
-                  child: Container(
-                    width: 120,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFDC143C),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        const BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 4.0,
-                            spreadRadius: 1,
-                            offset: Offset(0, 0))
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Zgłoś\nwynik",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontFamily: 'avenir',
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-              ],
+            ValueListenableBuilder<bool>(
+              builder: (BuildContext context, bool value, Widget? child) {
+                return value == true
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          GestureDetector(
+                            onTap: () => getMoreResults(onClick),
+                            child: Container(
+                              width: 120,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.blue.shade400,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                boxShadow: [
+                                  const BoxShadow(
+                                      color: Colors.grey,
+                                      blurRadius: 4.0,
+                                      spreadRadius: 1,
+                                      offset: Offset(0, 0))
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Więcej\nwyników",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontFamily: 'avenir',
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => navigateToReportScreen(context),
+                            child: Container(
+                              width: 120,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFDC143C),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                boxShadow: [
+                                  const BoxShadow(
+                                      color: Colors.grey,
+                                      blurRadius: 4.0,
+                                      spreadRadius: 1,
+                                      offset: Offset(0, 0))
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Zgłoś\nwynik",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontFamily: 'avenir',
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                        ],
+                      )
+                    : const SizedBox.shrink();
+              },
+              valueListenable: ResultScreen.isClassified,
+              child: const SizedBox.shrink(),
             ),
-
-            // generalButton(
-            //   title: "Zgłoś wynik",
-            //   icon: Icons.note_add_rounded,
-            //   onClicked: () => navigateToReportScreen(context),
-            //   color: Colors.white,
-            //   textColor: Colors.black,
-            // ),
             const SizedBox(
               height: 10,
             ),
