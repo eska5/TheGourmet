@@ -13,6 +13,7 @@ Widget enabledButton({
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 5,
           alignment: Alignment.centerLeft,
           primary: backgroundColor,
           onPrimary: Colors.white,
@@ -39,14 +40,16 @@ Widget generalButton({
   required IconData icon,
   required VoidCallback onClicked,
   required Color color,
+  required Color textColor,
 }) =>
     SizedBox(
       width: 245, // <-- Your width
       height: 60, // <-- Your height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 5,
           primary: color,
-          onPrimary: Colors.white,
+          onPrimary: textColor,
           textStyle: const TextStyle(fontSize: 20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),

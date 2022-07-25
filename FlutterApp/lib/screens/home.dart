@@ -58,6 +58,7 @@ class Home extends StatelessWidget {
               title: "Logowanie",
               icon: Icons.login_rounded,
               color: const Color(0xFFFE9901),
+              textColor: Colors.white,
               onClicked: () => {},
             ),
           ),
@@ -68,6 +69,7 @@ class Home extends StatelessWidget {
             // Registration button
             child: generalButton(
               title: "Rejestracja",
+              textColor: Colors.white,
               icon: Icons.assignment_ind_rounded,
               color: const Color(0xFFFB2B3A),
               onClicked: () => {},
@@ -82,6 +84,7 @@ class Home extends StatelessWidget {
               title: "O nas",
               icon: Icons.engineering_rounded,
               color: Color(0xFF00AD2B),
+              textColor: Colors.white,
               onClicked: () => {},
             ),
           ),

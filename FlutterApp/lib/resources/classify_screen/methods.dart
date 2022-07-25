@@ -9,26 +9,29 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
-import 'package:new_ui/resources/common/globals.dart' as globals;
+import 'package:new_ui/resources/common/snack_bars.dart';
 
 import '../../screens/catalog.dart';
 import '../../screens/report.dart';
 import '../common/func.dart';
 
-void categorizeThePhoto(BuildContext context) async {
+String responseBody = "";
+
+void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
-  print(ResultScreen.isClassified.value);
+  resultCards = [
+    CardDetails(color: Colors.blue.shade300, cardNumber: 1),
+    CardDetails(color: Colors.blue.shade300, cardNumber: 2),
+    CardDetails(color: Colors.blue.shade300, cardNumber: 3)
+  ];
+  if (kDebugMode) {
+    print(ResultScreen.isClassified.value);
+  }
   final uri = Uri.parse("https://gourmetapp.net/classify");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
   };
-  Uint8List? bytes;
-  if (kIsWeb) {
-    bytes = globals.webImageClassify;
-  } else {
-    bytes = File(globals.mobileImageClassify!.path).readAsBytesSync();
-  }
 
   Map<String, dynamic> body = {'mealPhoto': base64Encode(bytes!)};
   String jsonBody = json.encode(body);
@@ -43,23 +46,28 @@ void categorizeThePhoto(BuildContext context) async {
           encoding: encoding,
         )
         .timeout(const Duration(seconds: 30));
+    responseBody = response.body;
     for (int i = 0; i < 3; i++) {
-      resultCards[i].mealName = json.decode(response.body)[i * 2];
-      resultCards[i].mealDescription = json.decode(response.body)[i * 2];
+      resultCards[i].mealName = json.decode(responseBody)[i * 2];
+      resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
       resultCards[i].mealProbability =
-          double.parse(json.decode(response.body)[i * 2 + 1]) * 100;
+          double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
     }
     ResultScreen.isClassified.value = true;
-    print(ResultScreen.isClassified.value);
-    print(resultCards[0].mealName);
+    if (kDebugMode) {
+      print(ResultScreen.isClassified.value);
+      print(resultCards[0].mealName);
+    }
+    if (resultCards[0].mealProbability < 50) {
+      showWarningMessage(context, "Wyniki mogą być niedokładne");
+    }
   } on HttpException {
-    showTopSnackBarCustomError(
-        context, "Wystąpił błąd w komunikacji z serwerem");
+    showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
   }
 }
 
 Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
-  final Uint8List? imageTemporary;
+  Uint8List? imageTemporary;
   //WEB
   if (kIsWeb) {
     try {
@@ -68,15 +76,12 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
       if (image == null) return null;
 
       if (!validateFileExtension(image)) {
-        showTopSnackBarCustomError(context, "Wybrano niepoprawyny format");
+        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
         return null;
       }
 
-      final imageTemporary = await image.readAsBytes();
-      globals.isClassifyReady = true;
-      globals.webImageClassify = imageTemporary;
-      categorizeThePhoto(context);
-      return imageTemporary;
+      imageTemporary = await image.readAsBytes();
+      categorizeThePhoto(context, imageTemporary);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to pick image: $e');
@@ -91,24 +96,19 @@ Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
       if (image == null) return null;
 
       if (!validateFileExtension(image)) {
-        showTopSnackBarCustomError(
-            context, "Wybrano niepoprawyny format zdjęcia");
+        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
         return null;
       }
 
-      final imageTemporary2 = File(image.path);
       imageTemporary = await image.readAsBytes();
-      globals.isClassifyReady = true;
-      globals.mobileImageClassify = imageTemporary2;
-      //categorizeThePhoto(context);
-      return imageTemporary;
+      categorizeThePhoto(context, imageTemporary);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to pick image: $e');
       }
     }
   }
-  return null;
+  return imageTemporary;
 }
 
 void navigateToCatalog(BuildContext context) async {
@@ -123,4 +123,17 @@ void navigateToReportScreen(BuildContext context) async {
     context,
     MaterialPageRoute(builder: (context) => const ReportBadResult()),
   );
+}
+
+void getMoreResults(Function onClick) {
+  // print(responseBody[3]);
+  for (int i = 3; i < 5; i++) {
+    resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+    // TODO MAKE BACKEND RETURN ALL THE RESULTS
+    // resultCards[i].mealName = json.decode(responseBody)[i * 2];
+    // resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
+    // resultCards[i].mealProbability =
+    //     double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
+  }
+  onClick();
 }

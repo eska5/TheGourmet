@@ -18,6 +18,7 @@ class LoadImageDialog extends StatefulWidget {
   final double menuHeight;
   final double menuOpacity;
   final Widget? menuInnerWidget;
+  final bool isButton;
 
   const LoadImageDialog({
     Key? key,
@@ -33,6 +34,7 @@ class LoadImageDialog extends StatefulWidget {
     required this.menuOpacity,
     this.menuInnerWidget,
     required this.onClick,
+    required this.isButton,
   }) : super(key: key);
 
   @override
@@ -45,6 +47,7 @@ class _LoadImageDialog extends State<LoadImageDialog> {
     setState(() {
       widget.onClick();
     });
+    //categorizeThePhoto(context);
   }
 
   @override
@@ -61,10 +64,21 @@ class _LoadImageDialog extends State<LoadImageDialog> {
         width: widget.menuWidth,
         height: widget.menuHeight,
         decoration: BoxDecoration(
-            color: const Color(0xFFFE9901).withOpacity(widget.menuOpacity),
-            borderRadius: const BorderRadius.all(Radius.circular(32))),
+          color: const Color(0xFFFE9901).withOpacity(widget.menuOpacity),
+          borderRadius: const BorderRadius.all(Radius.circular(32)),
+          boxShadow: [
+            widget.isButton == true
+                ? const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4.0,
+                    spreadRadius: 1,
+                    offset: Offset(0, 0))
+                : const BoxShadow(color: Colors.transparent)
+          ],
+        ),
         child: widget.menuInnerWidget,
       ),
+      // ),
       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
         PopupMenuItem(
           onTap: () => setPickedImage(context, widget.imageSource1),

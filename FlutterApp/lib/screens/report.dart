@@ -13,6 +13,7 @@ import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/common/button.dart';
 import 'package:new_ui/resources/common/func.dart';
 import 'package:new_ui/resources/common/globals.dart' as globals;
+import 'package:new_ui/resources/common/snack_bars.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import '../resources/common/suggestions.dart';
@@ -109,6 +110,7 @@ class _Screen2State2 extends State<ReportBadResult> {
               title: "Wyslij",
               icon: Icons.send_rounded,
               color: Colors.deepPurpleAccent,
+              textColor: Colors.white,
               onClicked: () => wyslijReportiWroc(context, this.inputText.text)),
         ),
       ]),
@@ -141,7 +143,7 @@ Future wyslijReportiWroc(context, inputText2) async {
       responseText2 = "";
       responseText3 = "Upewnij się, że dodano nazwę potrawy";
       responseColor = "Colors.red";
-      showTopSnackBarCustomError(context, responseTitle);
+      showErrorMessage(context, responseTitle);
       // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
       //     responseText1, responseText2, responseText3, responseColor);
       return;
@@ -155,7 +157,7 @@ Future wyslijReportiWroc(context, inputText2) async {
 
     String base64Image = base64Encode(bytes!);
     Map<String, dynamic> body = {
-      'modeloutput': cardDetails1.mealName,
+      'modeloutput': resultCards[0].mealName,
       'useroutput': globals.ReportMealName,
       'mealPhoto': base64Image
     };
@@ -201,9 +203,9 @@ Future wyslijReportiWroc(context, inputText2) async {
       responseColor = "Colors.red";
     }
     responseColor == "Colors.red"
-        ? showTopSnackBarCustomError(
+        ? showErrorMessage(
             context, (responseText1 + responseText2 + responseText3))
-        : showTopSnackBarCustomSuccess(
+        : showSuccessMessage(
             context, (responseText1 + responseText2 + responseText3));
     // LoaderDialog.showLoadingDialog(context, _LoaderDialog, responseTitle,
     //     responseText1, responseText2, responseText3, responseColor);
