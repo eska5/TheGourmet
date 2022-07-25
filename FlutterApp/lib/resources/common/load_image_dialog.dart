@@ -47,6 +47,7 @@ class _LoadImageDialog extends State<LoadImageDialog> {
     setState(() {
       widget.onClick();
     });
+    //categorizeThePhoto(context);
   }
 
   @override

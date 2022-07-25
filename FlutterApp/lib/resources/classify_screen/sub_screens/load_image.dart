@@ -12,12 +12,9 @@ class LoadImageScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
 
-  //final Function onClick;
-
   const LoadImageScreen({
     Key? key,
     required this.controller,
-    //required this.onClick,
   }) : super(key: key);
 
   @override
@@ -29,8 +26,6 @@ class _LoadImageScreen extends State<LoadImageScreen> {
     setState(() {
       if (kDebugMode) {
         print("load_image rebuild!");
-        //widget.onClick();
-        //print(LoadImageScreen.pickedImage);
       }
     });
   }

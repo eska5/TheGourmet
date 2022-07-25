@@ -10,61 +10,29 @@ class CardDetails {
   String mealName;
   String mealDescription;
   double mealProbability;
-  Color color;
-  int cardNumber;
-  bool isExpanded;
+  Color color = Colors.blue.shade300;
+  int cardNumber = 1;
+  final bool isExpanded;
 
   CardDetails({
-    required this.mealName,
-    required this.mealDescription,
-    required this.mealProbability,
+    this.mealName = "",
+    this.mealDescription = "",
+    this.mealProbability = 0,
     required this.color,
     required this.cardNumber,
     this.isExpanded = true,
   });
 }
 
-CardDetails result_1 = CardDetails(
-  mealName: "",
-  mealDescription: "",
-  mealProbability: 0,
-  color: Colors.blue.shade300,
-  cardNumber: 1,
-);
-
-CardDetails result_2 = CardDetails(
-    mealName: "",
-    mealDescription: "",
-    mealProbability: 0,
-    color: Colors.blue.shade300,
-    cardNumber: 2);
-
-CardDetails result_3 = CardDetails(
-    mealName: "",
-    mealDescription: "",
-    mealProbability: 0,
-    color: Colors.blue.shade300,
-    cardNumber: 3);
-
-CardDetails result_4_and_more = CardDetails(
-    mealName: "",
-    mealDescription: "",
-    mealProbability: 0,
-    color: Colors.blue.shade300,
-    cardNumber: 4);
-
-CardDetails report_card = CardDetails(
-    mealName: "Złe wyniki?",
-    mealDescription: "",
-    mealProbability: 0,
-    color: const Color(0xFFFE9901),
-    cardNumber: 4);
-
-List<CardDetails> resultCards = [result_1, result_2, result_3];
+List<CardDetails> resultCards = [
+  CardDetails(color: Colors.blue.shade300, cardNumber: 1),
+  CardDetails(color: Colors.blue.shade300, cardNumber: 2),
+  CardDetails(color: Colors.blue.shade300, cardNumber: 3)
+];
 
 Widget createResultCard(CardDetails cardDetails) {
   return Card(
-    margin: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
+    margin: const EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
     elevation: 10,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -79,29 +47,7 @@ Widget createResultCard(CardDetails cardDetails) {
         child: ExpansionTile(
           collapsedTextColor: Colors.white,
           collapsedIconColor: Colors.white,
-          leading: cardDetails.cardNumber == 1
-              ? Wrap(children: const <Widget>[
-                  Icon(
-                    Icons.emoji_events_rounded,
-                    color: Colors.amber,
-                    size: 35,
-                  ),
-                ])
-              : cardDetails.cardNumber == 2
-                  ? Wrap(children: <Widget>[
-                      Icon(
-                        Icons.emoji_events_rounded,
-                        color: Colors.grey.shade300,
-                        size: 35,
-                      ),
-                    ])
-                  : Wrap(children: const <Widget>[
-                      Icon(
-                        Icons.emoji_events_rounded,
-                        color: Colors.brown,
-                        size: 35,
-                      ),
-                    ]),
+          leading: cardNumberSwitchCase(cardDetails.cardNumber),
           textColor: Colors.white,
           iconColor: Colors.white,
           title: ValueListenableBuilder<bool>(
@@ -149,6 +95,52 @@ Widget createResultCard(CardDetails cardDetails) {
       ),
     ),
   );
+}
+
+Widget cardNumberSwitchCase(int cardNumber) {
+  Widget widget = const SizedBox.shrink();
+  switch (cardNumber) {
+    case 1:
+      widget = Wrap(children: const <Widget>[
+        Icon(
+          Icons.emoji_events_rounded,
+          color: Colors.amber,
+          size: 35,
+        ),
+      ]);
+      break;
+    case 2:
+      widget = Wrap(children: <Widget>[
+        Icon(
+          Icons.emoji_events_rounded,
+          color: Colors.grey.shade300,
+          size: 35,
+        ),
+      ]);
+      break;
+    case 3:
+      widget = Wrap(children: const <Widget>[
+        Icon(
+          Icons.emoji_events_rounded,
+          color: Colors.brown,
+          size: 35,
+        ),
+      ]);
+      break;
+    case 4:
+      widget = Wrap(children: <Widget>[
+        Icon(
+          Icons.question_mark_rounded,
+          color: Colors.teal.shade900,
+          size: 35,
+        ),
+      ]);
+      break;
+    default:
+      widget = const SizedBox.shrink();
+      break;
+  }
+  return widget;
 }
 
 Widget mealName({required String text, required bool isLoading}) {
@@ -245,20 +237,20 @@ Widget createReportCard(
                               decoration: BoxDecoration(
                                 color: Colors.blue.shade400,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                boxShadow: [
-                                  const BoxShadow(
+                                    const BorderRadius.all(Radius.circular(10)),
+                                boxShadow: const [
+                                  BoxShadow(
                                       color: Colors.grey,
                                       blurRadius: 4.0,
                                       spreadRadius: 1,
                                       offset: Offset(0, 0))
                                 ],
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "Więcej\nwyników",
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontFamily: 'avenir',
                                       color: Colors.white,
                                       fontWeight: FontWeight.w400,
@@ -272,23 +264,23 @@ Widget createReportCard(
                             child: Container(
                               width: 120,
                               height: 80,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFDC143C),
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFDC143C),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 boxShadow: [
-                                  const BoxShadow(
+                                  BoxShadow(
                                       color: Colors.grey,
                                       blurRadius: 4.0,
                                       spreadRadius: 1,
                                       offset: Offset(0, 0))
                                 ],
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "Zgłoś\nwynik",
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontFamily: 'avenir',
                                       color: Colors.white,
                                       fontWeight: FontWeight.w400,

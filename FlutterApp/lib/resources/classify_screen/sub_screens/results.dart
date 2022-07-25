@@ -13,16 +13,11 @@ import 'load_image.dart';
 class ResultScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
-
-  //static bool isClassified = false;
   static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
-
-  //final Function onClick;
 
   const ResultScreen({
     Key? key,
     required this.controller,
-    //required this.onClick,
   }) : super(key: key);
 
   @override
@@ -34,8 +29,6 @@ class _ResultScreen extends State<ResultScreen> {
     setState(() {
       if (kDebugMode) {
         print("results rebuild!");
-        //widget.onClick();
-        //print(LoadImageScreen.pickedImage);
       }
     });
   }
@@ -160,7 +153,13 @@ class _ResultScreen extends State<ResultScreen> {
                     children: [
                       for (var card in resultCards) createResultCard(card),
                       const SizedBox(height: 40),
-                      createReportCard(report_card, context, callSetState)
+                      createReportCard(
+                          CardDetails(
+                              mealName: "Złe wyniki?",
+                              color: const Color(0xFFFE9901),
+                              cardNumber: 4),
+                          context,
+                          callSetState)
                     ],
                   ),
                 ),
