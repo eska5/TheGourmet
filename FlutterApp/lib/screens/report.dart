@@ -11,11 +11,11 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/common/button.dart';
-import 'package:new_ui/resources/common/func.dart';
 import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:new_ui/resources/common/snack_bars.dart';
 import 'package:universal_platform/universal_platform.dart';
 
+import '../resources/common/methods.dart';
 import '../resources/common/suggestions.dart';
 
 String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION

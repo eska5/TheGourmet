@@ -9,30 +9,16 @@ class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
 
   @override
-  State<ClassifyImage> createState() => _AddImageState();
+  State<ClassifyImage> createState() => _ClassifyImage();
 }
 
-class _AddImageState extends State<ClassifyImage> {
-  // String domain = getDomain(1); //0 IS FOR DEVELOPMENT, 1 IS FOR PRODUCTION
-  //
-  // TextEditingController inputText = TextEditingController();
-  // TextEditingController recognizedMeal =
-  //     TextEditingController(text: "Tutaj pojawi się wynik");
-  //
-  // // Response popUp variables
-  // String responseTitle = "";
-  // String responseText1 = "";
-  // String responseText2 = "";
-  // String responseText3 = "";v
-  // String responseColor = "";
-
+class _ClassifyImage extends State<ClassifyImage> {
   final PageController controller = PageController();
 
   void callSetState() {
     setState(() {
       if (kDebugMode) {
         print("classify rebuild!");
-        //print(LoadImageScreen.pickedImage);
       }
     });
   }
@@ -54,10 +40,8 @@ class _AddImageState extends State<ClassifyImage> {
             ),
           ],
         ),
-        Positioned(
-            right: MediaQuery.of(context).size.width / 2 - 24,
-            top: MediaQuery.of(context).padding.top + 66,
-            child: classifyPageIndicator(controller: controller, count: 2)),
+        classifyPageIndicator(
+            controller: controller, count: 2, context: context),
       ],
     );
   }

@@ -4,16 +4,12 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
-import 'package:new_ui/resources/common/snack_bars.dart';
 
-import '../../screens/catalog.dart';
 import '../../screens/report.dart';
-import '../common/func.dart';
+import '../common/snack_bars.dart';
 
 String responseBody = "";
 
@@ -66,58 +62,6 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   }
 }
 
-Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
-  Uint8List? imageTemporary;
-  //WEB
-  if (kIsWeb) {
-    try {
-      final image = await ImagePicker()
-          .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-      if (image == null) return null;
-
-      if (!validateFileExtension(image)) {
-        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-        return null;
-      }
-
-      imageTemporary = await image.readAsBytes();
-      categorizeThePhoto(context, imageTemporary);
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Failed to pick image: $e');
-      }
-    }
-  }
-  //MOBILE
-  else {
-    try {
-      final image = await ImagePicker()
-          .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-      if (image == null) return null;
-
-      if (!validateFileExtension(image)) {
-        showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-        return null;
-      }
-
-      imageTemporary = await image.readAsBytes();
-      categorizeThePhoto(context, imageTemporary);
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Failed to pick image: $e');
-      }
-    }
-  }
-  return imageTemporary;
-}
-
-void navigateToCatalog(BuildContext context) async {
-  await Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const MealCatalog()),
-  );
-}
-
 void navigateToReportScreen(BuildContext context) async {
   await Navigator.push(
     context,
@@ -137,3 +81,48 @@ void getMoreResults(Function onClick) {
   }
   onClick();
 }
+
+// Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
+//   Uint8List? imageTemporary;
+//   //WEB
+//   if (kIsWeb) {
+//     try {
+//       final image = await ImagePicker()
+//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+//       if (image == null) return null;
+//
+//       if (!validateFileExtension(image)) {
+//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
+//         return null;
+//       }
+//
+//       imageTemporary = await image.readAsBytes();
+//       categorizeThePhoto(context, imageTemporary);
+//     } on PlatformException catch (e) {
+//       if (kDebugMode) {
+//         print('Failed to pick image: $e');
+//       }
+//     }
+//   }
+//   //MOBILE
+//   else {
+//     try {
+//       final image = await ImagePicker()
+//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
+//       if (image == null) return null;
+//
+//       if (!validateFileExtension(image)) {
+//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
+//         return null;
+//       }
+//
+//       imageTemporary = await image.readAsBytes();
+//       categorizeThePhoto(context, imageTemporary);
+//     } on PlatformException catch (e) {
+//       if (kDebugMode) {
+//         print('Failed to pick image: $e');
+//       }
+//     }
+//   }
+//   return imageTemporary;
+// }

@@ -14,8 +14,3 @@ bool mealClassified = false;
 // ignore: non_constant_identifier_names
 String ReportMealName = "";
 List<String> catalogBody = [];
-
-// Is it on classify site
-bool isClassify = false;
-// Is picture for classify ready
-bool isClassifyReady = false;

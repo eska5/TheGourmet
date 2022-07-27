@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 
-import 'methods.dart';
+import 'classify_methods.dart';
 
 class CardDetails {
   String mealName;

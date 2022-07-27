@@ -2,10 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'func.dart';
-
-String domain = getDomain(1);
-
 class Suggestions {
   String suggest = "";
 
@@ -21,7 +17,7 @@ class Suggestions {
 class SuggestionsApi {
   static Future<List<Suggestions>> getSuggestionsSuggestions(
       String query) async {
-    final url = Uri.parse(domain + '/suggestions');
+    final url = Uri.parse('https://gourmetapp.net/suggestions');
     final response =
         await http.get(url, headers: {"Access-Control-Allow-Origin": "*"});
 
