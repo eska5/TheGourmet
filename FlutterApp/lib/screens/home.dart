@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFACC7E4),
+      color: const Color(0xFFACC7E4),
       alignment: Alignment.center,
       child: ListView(
         padding:
@@ -83,7 +83,7 @@ class Home extends StatelessWidget {
             child: generalButton(
               title: "O nas",
               icon: Icons.engineering_rounded,
-              color: Color(0xFF00AD2B),
+              color: const Color(0xFF00AD2B),
               textColor: Colors.white,
               onClicked: () => {},
             ),

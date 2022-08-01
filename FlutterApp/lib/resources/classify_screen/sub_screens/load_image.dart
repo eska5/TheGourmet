@@ -8,20 +8,20 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../common/methods.dart';
 
-class LoadImageScreen extends StatefulWidget {
+class ClassifyLoadImageScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
 
-  const LoadImageScreen({
+  const ClassifyLoadImageScreen({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<LoadImageScreen> createState() => _LoadImageScreen();
+  State<ClassifyLoadImageScreen> createState() => _LoadImageScreen();
 }
 
-class _LoadImageScreen extends State<LoadImageScreen> {
+class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
@@ -88,7 +88,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.transparent,
                       boxShadow: [
-                        LoadImageScreen.pickedImage != null
+                        ClassifyLoadImageScreen.pickedImage != null
                             ? const BoxShadow(
                                 color: Colors.grey,
                                 blurRadius: 10.0,
@@ -101,9 +101,9 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(25),
-                        child: LoadImageScreen.pickedImage != null
+                        child: ClassifyLoadImageScreen.pickedImage != null
                             ? Image.memory(
-                                LoadImageScreen.pickedImage!,
+                                ClassifyLoadImageScreen.pickedImage!,
                                 width: 200,
                                 height: 200,
                                 fit: BoxFit.cover,

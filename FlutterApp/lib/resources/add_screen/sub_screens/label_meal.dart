@@ -1,15 +1,14 @@
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ui/resources/common/button.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import '../add_methods.dart';
+import '../../common/suggestions.dart';
 
 class LabelMealScreen extends StatefulWidget {
   final PageController controller;
-  static Uint8List? pickedImage;
+  static String mealLabel = "";
+  static TextEditingController inputText = TextEditingController();
 
   const LabelMealScreen({
     Key? key,
@@ -24,7 +23,7 @@ class _LabelMealScreen extends State<LabelMealScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
-        print("load_image rebuild!");
+        print("label_meal rebuild!");
       }
     });
   }
@@ -58,8 +57,8 @@ class _LabelMealScreen extends State<LabelMealScreen> {
             ),
             FloatingActionButton.extended(
               heroTag: null,
-              onPressed: () => widget.controller.animateToPage(1,
-                  duration: Duration(milliseconds: 800),
+              onPressed: () => widget.controller.animateToPage(2,
+                  duration: const Duration(milliseconds: 800),
                   curve: Curves.easeOutQuint),
               backgroundColor: Colors.blue.shade400,
               splashColor: Colors.blue.shade400,
@@ -81,14 +80,48 @@ class _LabelMealScreen extends State<LabelMealScreen> {
             const SizedBox(
               height: 30,
             ),
-            Center(
-              // Name the meal button
-              child: generalButton(
-                title: "Nazwij potrawę",
-                icon: Icons.text_fields_rounded,
-                color: const Color(0xFFFE9901),
-                textColor: Colors.white,
-                onClicked: () => navigateToSuggestions(context),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 22, left: 22, right: 22, bottom: 10),
+              child: TypeAheadField<Suggestions?>(
+                hideSuggestionsOnKeyboardHide: true,
+                debounceDuration: const Duration(milliseconds: 500),
+                textFieldConfiguration: TextFieldConfiguration(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search_rounded),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                    ),
+                    hintText: 'Podaj nazwę potrawy',
+                  ),
+                  controller: LabelMealScreen.inputText,
+                ),
+                suggestionsCallback: SuggestionsApi.getSuggestionsSuggestions,
+                itemBuilder: (context, Suggestions? suggestion) {
+                  final hint = suggestion;
+                  return ListTile(
+                    title: Text(hint!.suggest.toString()),
+                  );
+                },
+                noItemsFoundBuilder: (context) => Container(
+                  height: 40,
+                  child: const Center(
+                    child: Text(
+                      'Brak potraw w bazie',
+                    ),
+                  ),
+                ),
+                onSuggestionSelected: (Suggestions? suggestion) {
+                  final potrawa = suggestion!;
+                  LabelMealScreen.inputText.text = potrawa.suggest;
+                  TextField(
+                    controller: LabelMealScreen.inputText,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'podaj nazwe potrawy',
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(

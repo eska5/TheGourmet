@@ -2,10 +2,12 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ui/resources/add_screen/sub_screens/label_meal.dart';
 import 'package:new_ui/resources/common/button.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import '../add_methods.dart';
+import 'load_image.dart';
 
 class SummaryScreen extends StatefulWidget {
   final PageController controller;
@@ -24,7 +26,7 @@ class _SummaryScreen extends State<SummaryScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
-        print("load_image rebuild!");
+        print("summary rebuild!");
       }
     });
   }
@@ -48,23 +50,16 @@ class _SummaryScreen extends State<SummaryScreen> {
             FloatingActionButton.extended(
               heroTag: null,
               onPressed: () => widget.controller.animateToPage(0,
-                  duration: Duration(milliseconds: 800),
+                  duration: const Duration(milliseconds: 800),
                   curve: Curves.easeOutQuint),
               backgroundColor: Colors.green,
               splashColor: Colors.green,
               label: const Text('Wróć'),
               icon: const Icon(Icons.arrow_back_rounded),
             ),
-            FloatingActionButton.extended(
-              heroTag: null,
-              onPressed: () => widget.controller.animateToPage(1,
-                  duration: Duration(milliseconds: 800),
-                  curve: Curves.easeOutQuint),
-              backgroundColor: Colors.blue.shade400,
-              splashColor: Colors.blue.shade400,
-              label: const Text('Dalej'),
-              icon: const Icon(Icons.arrow_forward_rounded),
-            ),
+            const SizedBox(
+              height: 0,
+            )
           ],
         ),
       ),
@@ -80,6 +75,85 @@ class _SummaryScreen extends State<SummaryScreen> {
             const SizedBox(
               height: 30,
             ),
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.transparent,
+                      boxShadow: [
+                        AddLoadImageScreen.pickedImage != null
+                            ? const BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 10.0,
+                                spreadRadius: 0.0,
+                                offset: Offset(
+                                    0.0, 0.0), // shadow direction: bottom right
+                              )
+                            : const BoxShadow(color: Colors.transparent)
+                      ],
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: AddLoadImageScreen.pickedImage != null
+                            ? Image.memory(
+                                AddLoadImageScreen.pickedImage!,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'assets/diet.png',
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )),
+                  ),
+                ),
+                const SizedBox(
+                  height: 220,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Container(
+                  alignment: Alignment.center,
+                  //width: 40,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color(0xFFFE9901),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.indigo.shade100,
+                        blurRadius: 10.0,
+                        spreadRadius: 0.0,
+                        offset:
+                            Offset(0.0, 0.0), // shadow direction: bottom right
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Text(LabelMealScreen.inputText.text,
+                        style: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             Center(
               // Send the meal button
               child: generalButton(
@@ -87,7 +161,10 @@ class _SummaryScreen extends State<SummaryScreen> {
                   icon: Icons.send_rounded,
                   color: Colors.deepPurpleAccent,
                   textColor: Colors.white,
-                  onClicked: () => sendToServer()),
+                  onClicked: () => sendMeal(
+                      context,
+                      AddLoadImageScreen.pickedImage,
+                      LabelMealScreen.inputText.text)),
             ),
             const SizedBox(
               height: 40,

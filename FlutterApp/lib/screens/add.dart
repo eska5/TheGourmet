@@ -33,15 +33,14 @@ class _AddImage extends State<AddImage> {
           scrollDirection: Axis.horizontal,
           controller: controller,
           children: [
-            LoadImageScreen(
+            AddLoadImageScreen(
               controller: controller,
             ),
             LabelMealScreen(controller: controller),
             SummaryScreen(controller: controller),
           ],
         ),
-        classifyPageIndicator(
-            controller: controller, count: 3, context: context),
+        pageIndicator(controller: controller, count: 3, context: context),
       ],
     );
   }

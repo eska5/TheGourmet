@@ -32,7 +32,7 @@ class _ClassifyImage extends State<ClassifyImage> {
           scrollDirection: Axis.horizontal,
           controller: controller,
           children: [
-            LoadImageScreen(
+            ClassifyLoadImageScreen(
               controller: controller,
             ),
             ResultScreen(
@@ -40,8 +40,7 @@ class _ClassifyImage extends State<ClassifyImage> {
             ),
           ],
         ),
-        classifyPageIndicator(
-            controller: controller, count: 2, context: context),
+        pageIndicator(controller: controller, count: 2, context: context),
       ],
     );
   }

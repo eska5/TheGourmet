@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Widget classifyPageIndicator({
+Widget pageIndicator({
   required PageController controller,
   required int count,
   required BuildContext context,
