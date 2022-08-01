@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:new_ui/resources/common/globals.dart' as globals;
 import 'package:new_ui/resources/common/snack_bars.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -81,7 +80,7 @@ bool validateFileExtension(XFile image) {
 void fetchCatalog() async {
   //Until android will be able to connect to our API we will use static list.
   if (UniversalPlatform.isAndroid) {
-    globals.catalogBody = [
+    MealCatalog.catalogBody = [
       "Brokuł",
       "Sałatka cezar",
       "Marchewka",
@@ -119,7 +118,7 @@ void fetchCatalog() async {
       for (var element in catalogJson) {
         catalogString.add(element);
       }
-      globals.catalogBody = catalogString;
+      MealCatalog.catalogBody = catalogString;
     } else {
       throw Exception('Failed to load catalog');
     }

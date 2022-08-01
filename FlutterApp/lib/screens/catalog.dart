@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:new_ui/resources/common/globals.dart' as globals;
 
 import '../resources/common/catalog_scroll_page.dart';
 
 class MealCatalog extends StatefulWidget {
+  static List<String> catalogBody = [];
+
   const MealCatalog({Key? key}) : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class _Screen2State extends State<MealCatalog> {
       ),
       backgroundColor: Colors.indigo[50],
       body: AlphabetScrollPage(
-        items: globals.catalogBody,
+        items: MealCatalog.catalogBody,
         onClickedItem: (String value) {},
       ),
     );
