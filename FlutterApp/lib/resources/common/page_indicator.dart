@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Widget classifyPageIndicator({
+Widget pageIndicator({
   required PageController controller,
   required int count,
+  required BuildContext context,
 }) =>
-    Center(
+    Container(
+      alignment: Alignment.topCenter,
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 66),
       child: SmoothPageIndicator(
         controller: controller, // PageController
         count: count,

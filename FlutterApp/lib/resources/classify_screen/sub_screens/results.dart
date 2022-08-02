@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../common/load_image_dialog.dart';
-import '../methods.dart';
+import '../../common/methods.dart';
 import '../result_card.dart';
 import 'load_image.dart';
 
@@ -91,7 +91,7 @@ class _ResultScreen extends State<ResultScreen> {
                         borderRadius: BorderRadius.circular(25),
                         color: Colors.transparent,
                         boxShadow: [
-                          LoadImageScreen.pickedImage != null
+                          ClassifyLoadImageScreen.pickedImage != null
                               ? const BoxShadow(
                                   color: Colors.grey,
                                   blurRadius: 10.0,
@@ -104,9 +104,9 @@ class _ResultScreen extends State<ResultScreen> {
                       ),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: LoadImageScreen.pickedImage != null
+                          child: ClassifyLoadImageScreen.pickedImage != null
                               ? Image.memory(
-                                  LoadImageScreen.pickedImage!,
+                                  ClassifyLoadImageScreen.pickedImage!,
                                   width: 200,
                                   height: 200,
                                   fit: BoxFit.cover,
@@ -133,6 +133,7 @@ class _ResultScreen extends State<ResultScreen> {
                       menuOpacity: 0.0,
                       menuHeight: 200,
                       isButton: false,
+                      forClassification: true,
                     ),
                   ),
                   const SizedBox(

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_ui/screens/add.dart';
-import 'package:new_ui/screens/classify.dart';
-import 'package:new_ui/screens/home.dart';
-
-import 'navbar.dart';
-import 'resources/common/func.dart';
+import 'package:new_ui/resources/common/methods.dart';
+import 'package:new_ui/resources/common/nav_bar.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

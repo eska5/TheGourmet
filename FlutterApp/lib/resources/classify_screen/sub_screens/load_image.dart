@@ -6,22 +6,22 @@ import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import '../methods.dart';
+import '../../common/methods.dart';
 
-class LoadImageScreen extends StatefulWidget {
+class ClassifyLoadImageScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
 
-  const LoadImageScreen({
+  const ClassifyLoadImageScreen({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<LoadImageScreen> createState() => _LoadImageScreen();
+  State<ClassifyLoadImageScreen> createState() => _LoadImageScreen();
 }
 
-class _LoadImageScreen extends State<LoadImageScreen> {
+class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
@@ -88,7 +88,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.transparent,
                       boxShadow: [
-                        LoadImageScreen.pickedImage != null
+                        ClassifyLoadImageScreen.pickedImage != null
                             ? const BoxShadow(
                                 color: Colors.grey,
                                 blurRadius: 10.0,
@@ -101,9 +101,9 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(25),
-                        child: LoadImageScreen.pickedImage != null
+                        child: ClassifyLoadImageScreen.pickedImage != null
                             ? Image.memory(
-                                LoadImageScreen.pickedImage!,
+                                ClassifyLoadImageScreen.pickedImage!,
                                 width: 200,
                                 height: 200,
                                 fit: BoxFit.cover,
@@ -118,19 +118,19 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                 ),
                 Center(
                   child: LoadImageDialog(
-                    onClick: callSetState,
-                    imageSource1: ImageSource.gallery,
-                    imageSource2: ImageSource.camera,
-                    iconData1: Icons.photo_library_rounded,
-                    iconData2: Icons.camera_alt_rounded,
-                    text1: " Wybierz zdjęcie",
-                    text2: "     Zrób zdjęcie  ",
-                    menuOffset: const Offset(42, 175),
-                    menuWidth: 200,
-                    menuOpacity: 0.0,
-                    menuHeight: 200,
-                    isButton: false,
-                  ),
+                      onClick: callSetState,
+                      imageSource1: ImageSource.gallery,
+                      imageSource2: ImageSource.camera,
+                      iconData1: Icons.photo_library_rounded,
+                      iconData2: Icons.camera_alt_rounded,
+                      text1: " Wybierz zdjęcie",
+                      text2: "     Zrób zdjęcie  ",
+                      menuOffset: const Offset(42, 175),
+                      menuWidth: 200,
+                      menuOpacity: 0.0,
+                      menuHeight: 200,
+                      isButton: false,
+                      forClassification: true),
                 ),
                 const SizedBox(
                   height: 220,
@@ -154,6 +154,7 @@ class _LoadImageScreen extends State<LoadImageScreen> {
                 menuOpacity: 1.0,
                 menuHeight: 60,
                 isButton: true,
+                forClassification: true,
                 menuInnerWidget: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

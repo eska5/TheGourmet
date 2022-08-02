@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:new_ui/resources/add_screen/sub_screens/load_image.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/load_image.dart';
 
-import '../classify_screen/methods.dart';
+import 'methods.dart';
 
 class LoadImageDialog extends StatefulWidget {
   final Function onClick;
@@ -19,6 +20,7 @@ class LoadImageDialog extends StatefulWidget {
   final double menuOpacity;
   final Widget? menuInnerWidget;
   final bool isButton;
+  final bool forClassification;
 
   const LoadImageDialog({
     Key? key,
@@ -35,6 +37,7 @@ class LoadImageDialog extends StatefulWidget {
     this.menuInnerWidget,
     required this.onClick,
     required this.isButton,
+    required this.forClassification,
   }) : super(key: key);
 
   @override
@@ -43,11 +46,16 @@ class LoadImageDialog extends StatefulWidget {
 
 class _LoadImageDialog extends State<LoadImageDialog> {
   void setPickedImage(BuildContext context, ImageSource source) async {
-    LoadImageScreen.pickedImage = await pickImage(source, context);
+    if (widget.forClassification) {
+      ClassifyLoadImageScreen.pickedImage =
+          await pickImage(source, context, widget.forClassification);
+    } else {
+      AddLoadImageScreen.pickedImage =
+          await pickImage(source, context, widget.forClassification);
+    }
     setState(() {
       widget.onClick();
     });
-    //categorizeThePhoto(context);
   }
 
   @override

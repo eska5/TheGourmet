@@ -18,9 +18,9 @@ if __name__ == "__main__":
     # for food in meals:
     #    search_keys.append(food[0:-1])
     # Parameters
-    search_keys = ["scrambled_eggs"]
-    number_of_images = 10
-    headless = True
+    search_keys = ["buraczki"]  # HASŁA DO WYSZUKANIA
+    number_of_images = 10  # ILOŚĆ ZDJĘĆ
+    headless = False
     min_resolution = (400, 400)
     max_resolution = (9999, 9999)
 
