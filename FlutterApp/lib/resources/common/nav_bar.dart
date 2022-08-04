@@ -6,7 +6,7 @@ import 'package:new_ui/screens/home.dart';
 
 Widget navBar({
   required PageController controller,
-  int selectedIndex = 0,
+  required int selectedIndex,
   var padding = const EdgeInsets.fromLTRB(25, 24, 25, 24),
   double gap = 10,
   List<Widget> widgetOptions = const <Widget>[
@@ -22,6 +22,7 @@ Widget navBar({
         controller: controller,
         itemBuilder: (context, option) {
           selectedIndex = option;
+          print(selectedIndex);
           return widgetOptions[selectedIndex];
         },
       ),
@@ -32,7 +33,7 @@ Widget navBar({
         child: GNav(
           rippleColor: Colors.grey[800]!,
           hoverColor: Colors.grey[700]!,
-          curve: Curves.bounceIn,
+          curve: Curves.easeInOut,
           duration: const Duration(milliseconds: 800),
           gap: 8,
           color: Colors.grey[800],

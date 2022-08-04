@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   static const String _title = 'Gourmet';
-  PageController controller = PageController();
+  static PageController controller = PageController();
+  static int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: navBar(controller: controller), //MyStatefulWidget(),
+      home: navBar(
+          controller: controller,
+          selectedIndex: selectedIndex), //MyStatefulWidget(),
     );
   }
 }
