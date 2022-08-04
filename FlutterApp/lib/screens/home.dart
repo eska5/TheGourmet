@@ -85,25 +85,6 @@ class Home extends StatelessWidget {
                       icon: MyFlutterApp.brain,
                     ),
                   ),
-                  // Positioned(
-                  //   top: 0,
-                  //   child: GButton(
-                  //     onPressed: () {
-                  //       MyApp.controller.animateToPage(0,
-                  //           duration: const Duration(milliseconds: 500),
-                  //           curve: Curves.ease);
-                  //     },
-                  //     gap: 10,
-                  //     icon: Icons.home,
-                  //     iconColor: Colors.white,
-                  //     iconActiveColor: Colors.white,
-                  //     text: 'Home',
-                  //     textColor: Colors.white,
-                  //     backgroundColor: Colors.white.withOpacity(0.2),
-                  //     iconSize: 25,
-                  //     padding: const EdgeInsets.fromLTRB(25, 24, 25, 24),
-                  //   ),
-                  // ),
                   const SizedBox(
                     height: 20,
                   ),

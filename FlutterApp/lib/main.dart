@@ -7,15 +7,15 @@ import 'package:new_ui/resources/common/nav_bar.dart';
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(MyApp());
+  runApp(MainScreen());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  MainScreen({Key? key}) : super(key: key);
 
   static const String _title = 'Gourmet';
   static PageController controller = PageController();
-  static int selectedIndex = 0;
+  static GlobalKey gButtonClassifyKey = GlobalKey(debugLabel: "mid_nav_btn");
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: navBar(
-          controller: controller,
-          selectedIndex: selectedIndex), //MyStatefulWidget(),
+        controller: controller,
+        gButtonClassifyKey: gButtonClassifyKey,
+      ), //MyStatefulWidget(),
     );
   }
 }

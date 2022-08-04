@@ -6,7 +6,8 @@ import 'package:new_ui/screens/home.dart';
 
 Widget navBar({
   required PageController controller,
-  required int selectedIndex,
+  int selectedIndex = 0,
+  required GlobalKey gButtonClassifyKey,
   var padding = const EdgeInsets.fromLTRB(25, 24, 25, 24),
   double gap = 10,
   List<Widget> widgetOptions = const <Widget>[
@@ -22,7 +23,6 @@ Widget navBar({
         controller: controller,
         itemBuilder: (context, option) {
           selectedIndex = option;
-          print(selectedIndex);
           return widgetOptions[selectedIndex];
         },
       ),
@@ -58,6 +58,7 @@ Widget navBar({
               padding: padding,
             ),
             GButton(
+              key: gButtonClassifyKey,
               onPressed: () {
                 controller.animateToPage(1,
                     duration: const Duration(milliseconds: 500),

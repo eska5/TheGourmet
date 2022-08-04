@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
-import '../../main.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:new_ui/main.dart';
 
 void handleButtonClick() {
-  MyApp.selectedIndex = 1;
-  MyApp.controller.animateToPage(1,
-      duration: const Duration(milliseconds: 800), curve: Curves.easeOutQuint);
+  final GButton gbtn = MainScreen.gButtonClassifyKey.currentWidget as GButton;
+  gbtn.onPressed!();
 }
