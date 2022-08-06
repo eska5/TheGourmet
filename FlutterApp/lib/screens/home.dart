@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../resources/common/button.dart';
+import '../resources/common/my_flutter_app_icons.dart';
+import '../resources/home_screen/home_methods.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -11,84 +13,93 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFACC7E4),
+      color: Colors.indigo.shade50,
       alignment: Alignment.center,
-      child: ListView(
-        padding:
-            const EdgeInsets.only(left: 0.0, right: 0.0, bottom: 13.0, top: 0),
-        children: [
-          Container(
-            height: 400,
-            decoration: BoxDecoration(
-              color: Colors.indigo[50],
-              borderRadius: BorderRadius.vertical(
-                  bottom: Radius.elliptical(
-                      MediaQuery.of(context).size.width, 60.0)),
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 5),
-                Center(
-                  child: Text('Gourmet',
-                      style: GoogleFonts.caveat(
-                        fontSize: 90,
-                        textStyle: const TextStyle(letterSpacing: 2),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Gourmet AI',
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 60,
+                        textStyle: const TextStyle(
+                            letterSpacing: 2, fontWeight: FontWeight.w400),
                       )),
-                ),
-                Image.asset(
-                  "assets/hot.png",
-                  height: 245,
-                ),
-                Center(
-                  child: Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
-                      style: GoogleFonts.caveat(
-                        fontSize: 17,
-                        textStyle: const TextStyle(letterSpacing: 0),
-                      )),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Center(
-            // Login button
-            child: generalButton(
-              title: "Logowanie",
-              icon: Icons.login_rounded,
-              color: const Color(0xFFFE9901),
-              textColor: Colors.white,
-              onClicked: () => {},
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            // Registration button
-            child: generalButton(
-              title: "Rejestracja",
-              textColor: Colors.white,
-              icon: Icons.assignment_ind_rounded,
-              color: const Color(0xFFFB2B3A),
-              onClicked: () => {},
+            Center(
+              child: Image.asset(
+                "assets/hot.png",
+                height: 250,
+                width: 250,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            // About us Button
-            child: generalButton(
-              title: "O nas",
-              icon: Icons.engineering_rounded,
-              color: const Color(0xFF00AD2B),
-              textColor: Colors.white,
-              onClicked: () => {},
+            const SizedBox(
+              height: 5,
             ),
-          ),
-        ],
+            Container(
+              height: 250,
+              decoration: const BoxDecoration(
+                color: Color(0xFFACC7E4),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(35),
+                    topLeft: Radius.circular(35)),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12, right: 12),
+                      child: Text(
+                        'Pozwól sztucznej inteligencji rozpoznać co masz na talerzu',
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 23,
+                          textStyle: const TextStyle(letterSpacing: 0),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: generalButton(
+                      title: "Rozpocznij",
+                      color: const Color(0xFFFE9901),
+                      textColor: Colors.white,
+                      onClicked: () => handleButtonClick(),
+                      icon: MyFlutterApp.brain,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: Text('Jakub Sachajko & Łukasz Niedźwiadek © 2022',
+                        style: GoogleFonts.caveat(
+                          fontSize: 17,
+                          textStyle: const TextStyle(letterSpacing: 0),
+                        )),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
