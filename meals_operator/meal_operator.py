@@ -9,22 +9,15 @@ from PIL import Image
 
 def save_image(title: str, coded_image: str):
     # If there is no such directory create the dir
-    if os.path.isdir("data/" + title) == False:
+    if not os.path.isdir("data/" + title):
         os.mkdir("data/" + title)
         # creating number.txt that counts files
         with open("data/" + title + "/number.txt", "a", encoding="utf8") as file:
             file.write("0")
-        file.close()
-        # adding line to data/meals.txt
-        with open("data/meals.txt", "a", encoding="utf8") as file:
-            file.write(title + "\n")
-        file.close()
-
+        add_suggestion(value=title)
     # getting the number
-    image_number = 0
     with open("data/" + title + "/number.txt", "r", encoding="utf8") as file:
         image_number = file.read()
-    file.close()
 
     # decoding base64 to a file
     decoded_image = Image.open(BytesIO(base64.b64decode(str(coded_image))))
@@ -35,18 +28,28 @@ def save_image(title: str, coded_image: str):
     # change the number of files in number.txt
     with open("data/" + title + "/number.txt", "w", encoding="utf8") as file:
         file.write(str(image_number))
-    file.close()
 
 
-def list_meals():
-    with open("data/meals.txt", "r", encoding="utf8") as file:
-        lines = file.readlines()
-    file.close()
-    lines.sort()
-    return json.dumps([x[:-1] for x in lines])
+def get_suggestions() -> list:
+    url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/findOne"
+    payload = json.dumps({
+        "collection": "suggestions",
+        "database": "gourmet",
+        "dataSource": "Cluster0",
+        "filter": {"key": "suggestions"},
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': '4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7',
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    raw_data = json.loads(response.text)["document"]
+    del raw_data["key"], raw_data["_id"]
+    return list(raw_data.values())
 
 
-def get_meal_from_db(meal_name: str):
+def get_meal(meal_name: str) -> dict:
     url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/findOne"
     payload = json.dumps({
         "collection": "meals",
@@ -69,3 +72,22 @@ def get_meal_from_db(meal_name: str):
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     return json.loads(response.text)["document"]
+
+
+def add_suggestion(value: str) -> int:
+    index = len(get_suggestions())
+    url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/updateOne"
+    payload = json.dumps({
+        "collection": "suggestions",
+        "database": "gourmet",
+        "dataSource": "Cluster0",
+        "filter": {"key": "suggestions"},
+        "update": {"$set": {index: value}}
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': '4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7',
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response.status_code
