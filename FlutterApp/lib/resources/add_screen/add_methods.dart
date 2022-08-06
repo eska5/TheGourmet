@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import '../common/snack_bars.dart';
 
 Future sendMeal(BuildContext context, Uint8List? image, String label) async {
-  final uri = Uri.parse("http://localhost:5000/meals");
+  final uri = Uri.parse("'https://gourmetapp.net/api/v1/meals");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"

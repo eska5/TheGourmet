@@ -23,7 +23,7 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   if (kDebugMode) {
     print(ResultScreen.isClassified.value);
   }
-  final uri = Uri.parse("https://gourmetapp.net/classify");
+  final uri = Uri.parse("https://gourmetapp.net/api/v1/classify");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
@@ -81,48 +81,3 @@ void getMoreResults(Function onClick) {
   }
   onClick();
 }
-
-// Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
-//   Uint8List? imageTemporary;
-//   //WEB
-//   if (kIsWeb) {
-//     try {
-//       final image = await ImagePicker()
-//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-//       if (image == null) return null;
-//
-//       if (!validateFileExtension(image)) {
-//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-//         return null;
-//       }
-//
-//       imageTemporary = await image.readAsBytes();
-//       categorizeThePhoto(context, imageTemporary);
-//     } on PlatformException catch (e) {
-//       if (kDebugMode) {
-//         print('Failed to pick image: $e');
-//       }
-//     }
-//   }
-//   //MOBILE
-//   else {
-//     try {
-//       final image = await ImagePicker()
-//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-//       if (image == null) return null;
-//
-//       if (!validateFileExtension(image)) {
-//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-//         return null;
-//       }
-//
-//       imageTemporary = await image.readAsBytes();
-//       categorizeThePhoto(context, imageTemporary);
-//     } on PlatformException catch (e) {
-//       if (kDebugMode) {
-//         print('Failed to pick image: $e');
-//       }
-//     }
-//   }
-//   return imageTemporary;
-// }

@@ -17,7 +17,7 @@ class Suggestions {
 class SuggestionsApi {
   static Future<List<Suggestions>> getSuggestionsSuggestions(
       String query) async {
-    final url = Uri.parse('https://gourmetapp.net/suggestions');
+    final url = Uri.parse('https://gourmetapp.net/api/v1/suggestions');
     final response =
         await http.get(url, headers: {"Access-Control-Allow-Origin": "*"});
 

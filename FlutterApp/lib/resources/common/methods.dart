@@ -111,7 +111,7 @@ void fetchCatalog() async {
     //For other IOS and WEB we can download catalog with API.
     List<String> catalogString = [];
     final response =
-        await http.get(Uri.parse('https://gourmetapp.net/catalog'));
+        await http.get(Uri.parse('https://gourmetapp.net/api/v1/catalog'));
 
     if (response.statusCode == 200) {
       var catalogJson = json.decode(response.body);
