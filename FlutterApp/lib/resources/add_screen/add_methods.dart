@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -29,11 +30,11 @@ Future sendMeal(BuildContext context, Uint8List? image, String label) async {
   try {
     var response = await http
         .post(
-          uri,
-          headers: headers,
-          body: jsonBody,
-          encoding: encoding,
-        )
+      uri,
+      headers: headers,
+      body: jsonBody,
+      encoding: encoding,
+    )
         .timeout(const Duration(seconds: 3));
 
     int statusCode = response.statusCode;
@@ -49,5 +50,7 @@ Future sendMeal(BuildContext context, Uint8List? image, String label) async {
     if (kDebugMode) {
       print("error");
     }
+  } on TimeoutException {
+    showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
   }
 }
