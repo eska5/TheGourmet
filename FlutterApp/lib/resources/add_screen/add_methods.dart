@@ -34,7 +34,7 @@ Future sendMeal(BuildContext context, Uint8List? image, String label) async {
           body: jsonBody,
           encoding: encoding,
         )
-        .timeout(const Duration(seconds: 1));
+        .timeout(const Duration(seconds: 3));
 
     int statusCode = response.statusCode;
 
