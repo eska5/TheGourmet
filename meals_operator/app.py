@@ -16,8 +16,11 @@ def app_health_check():
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
-    meal_name = request.json["mealName"]
-    meal_photo = request.json["mealPhoto"]
+    try:
+        meal_name = request.json["mealName"]
+        meal_photo = request.json["mealPhoto"]
+    except KeyError:
+        return app.response_class(status=400)
 
     if meal_photo == "" or meal_name == "":
         return app.response_class(status=400)
