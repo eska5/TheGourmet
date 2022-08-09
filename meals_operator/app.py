@@ -11,7 +11,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
-    return app.response_class(status=200, response="App is running.", mimetype='application/json')
+    return app.response_class(status=200, response="App is running.", content_type='application/json')
 
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
@@ -31,7 +31,7 @@ def meals():
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
 def suggestions():
-    return app.response_class(response=json.dumps(m_operator.get_suggestions()), mimetype='application/json')
+    return app.response_class(response=json.dumps(m_operator.get_suggestions()), content_type='application/json')
 
 
 @app.route("/badresult", methods=["POST"], strict_slashes=False)
@@ -54,7 +54,7 @@ def meal_details():
         return app.response_class(status=404)
 
     return app.response_class(status=200, response=json.dumps(meal_details_dict),
-                              mimetype='application/json')
+                              content_type='application/json')
 
 
 if __name__ == "__main__":
