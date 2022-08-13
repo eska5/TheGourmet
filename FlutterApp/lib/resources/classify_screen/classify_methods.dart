@@ -12,6 +12,7 @@ import '../../screens/report.dart';
 import '../common/snack_bars.dart';
 
 String responseBody = "";
+int cardIndex = 0;
 
 void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
@@ -43,12 +44,7 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
         )
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
-    for (int i = 0; i < 3; i++) {
-      resultCards[i].mealName = json.decode(responseBody)[i * 2];
-      resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
-      resultCards[i].mealProbability =
-          double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
-    }
+    setDataInCards(3);
     ResultScreen.isClassified.value = true;
     if (kDebugMode) {
       print(ResultScreen.isClassified.value);
@@ -69,15 +65,30 @@ void navigateToReportScreen(BuildContext context) async {
   );
 }
 
-void getMoreResults(Function onClick) {
-  // print(responseBody[3]);
-  for (int i = 3; i < 5; i++) {
-    resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
-    // TODO MAKE BACKEND RETURN ALL THE RESULTS
-    // resultCards[i].mealName = json.decode(responseBody)[i * 2];
-    // resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
-    // resultCards[i].mealProbability =
-    //     double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
+void setDataInCards(int amount) {
+  for (int i = cardIndex; i < cardIndex + amount; i++) {
+    resultCards[i].mealName = Map.from(json.decode(responseBody)[i])["name"];
+    resultCards[i].mealProbability =
+        double.parse(Map.from(json.decode(responseBody)[i])["certainty"]) * 100;
+
+    if (Map.from(json.decode(responseBody)[i])["description"] !=
+        "Brak danych") {
+      Map description =
+          Map.from(Map.from(json.decode(responseBody)[i])["description"]);
+      resultCards[i].mealDescription =
+          "Szacowane kalorie na 100g: ${description['calories']} kcal\nMożliwe alergeny: ${description['allergens']}";
+    } else {
+      resultCards[i].mealDescription =
+          Map.from(json.decode(responseBody)[i])["description"];
+    }
   }
+  cardIndex += amount;
+}
+
+void getMoreResults(int amount, Function onClick) {
+  for (int i = cardIndex; i < cardIndex + amount; i++) {
+    resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+  }
+  setDataInCards(amount);
   onClick();
 }

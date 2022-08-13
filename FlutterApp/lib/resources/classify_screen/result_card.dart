@@ -176,7 +176,7 @@ Widget mealProbability({required double probability, required bool isLoading}) {
 Widget mealDescription({required String text, required bool isLoading}) {
   return isLoading == false
       ? Text(
-          "Opis: " + text,
+          text,
           style: const TextStyle(
               fontFamily: 'avenir',
               color: Colors.white,
@@ -230,7 +230,8 @@ Widget createReportCard(
                             height: 3,
                           ),
                           GestureDetector(
-                            onTap: () => getMoreResults(onClick),
+                            onTap: () => getMoreResults(2, onClick),
+                            //onTap: () => setDataInCards(2, onClick),
                             child: Container(
                               width: 120,
                               height: 80,
