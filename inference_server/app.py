@@ -10,6 +10,9 @@ from PIL import Image
 from flask import Flask, request
 from flask_cors import CORS
 
+from inference_server.response_type import ClassifiedMeal
+from meals_operator.meal_operator import get_meal
+
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -46,11 +49,14 @@ def classify_photo():
     predict = model.predict(img)
 
     predictions = []
-    # 3 best labels and probabilities
+
     for i in range(0, 15):
-        predictions.append(labels[predict.argmax(axis=1)[0]])
-        predictions.append(str(predict[0][[predict.argmax(axis=1)[0]]][0]))
+        name = labels[predict.argmax(axis=1)[0]]
+        certainty = predict[0][[predict.argmax(axis=1)[0]]][0]
+        description = get_meal(meal_name=name.lower())
         predict[0][[predict.argmax(axis=1)[0]]] = 0
+        predictions.append(ClassifiedMeal(name=name, description=description, certainty=certainty).to_dict())
+
     return app.response_class(response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
 

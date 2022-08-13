@@ -57,7 +57,7 @@ def get_meal(meal_name: str) -> dict:
         "dataSource": "Cluster0",
         "filter": {"name": meal_name},
         "projection": {
-            "_id": 1,
+            "_id": 0,
             "name": 1,
             "calories": 1,
             "allergens": 1,
