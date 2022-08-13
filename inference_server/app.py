@@ -10,8 +10,7 @@ from PIL import Image
 from flask import Flask, request
 from flask_cors import CORS
 
-from inference_server.response_type import ClassifiedMeal
-from meals_operator.meal_operator import get_meal
+from response_type import ClassifiedMeal, get_meal
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
