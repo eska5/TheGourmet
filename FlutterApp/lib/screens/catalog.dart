@@ -24,6 +24,7 @@ class _Screen2State extends State<MealCatalog> {
           child: Icon(
             Icons.arrow_back_rounded,
             color: Colors.indigo[50],
+            size: 32,
           ),
           onTap: () {
             Navigator.pop(context);

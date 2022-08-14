@@ -21,7 +21,7 @@ Future sendMeal(BuildContext context, Uint8List? image, String label) async {
   if (image == null) {
     body = {'mealName': label, 'mealPhoto': ""};
   } else {
-    body = {'mealName': label, 'mealPhoto': json.encode(base64Encode(image!))};
+    body = {'mealName': label, 'mealPhoto': json.encode(base64Encode(image))};
   }
 
   String jsonBody = json.encode(body);
@@ -30,11 +30,11 @@ Future sendMeal(BuildContext context, Uint8List? image, String label) async {
   try {
     var response = await http
         .post(
-      uri,
-      headers: headers,
-      body: jsonBody,
-      encoding: encoding,
-    )
+          uri,
+          headers: headers,
+          body: jsonBody,
+          encoding: encoding,
+        )
         .timeout(const Duration(seconds: 3));
 
     int statusCode = response.statusCode;
