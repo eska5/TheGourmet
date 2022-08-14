@@ -16,6 +16,7 @@ int cardIndex = 0;
 
 void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
+  cardIndex = 0;
   resultCards = [
     CardDetails(color: Colors.blue.shade300, cardNumber: 1),
     CardDetails(color: Colors.blue.shade300, cardNumber: 2),
@@ -85,10 +86,14 @@ void setDataInCards(int amount) {
   cardIndex += amount;
 }
 
-void getMoreResults(int amount, Function onClick) {
-  for (int i = cardIndex; i < cardIndex + amount; i++) {
-    resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+void getMoreResults(int amount, Function onClick, BuildContext context) {
+  if (cardIndex < 7) {
+    for (int i = cardIndex; i < cardIndex + amount; i++) {
+      resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+    }
+    setDataInCards(amount);
+    onClick();
+  } else {
+    showErrorMessage(context, "Osiągnięto limit propozycji");
   }
-  setDataInCards(amount);
-  onClick();
 }

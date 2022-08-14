@@ -230,7 +230,7 @@ Widget createReportCard(
                             height: 3,
                           ),
                           GestureDetector(
-                            onTap: () => getMoreResults(2, onClick),
+                            onTap: () => getMoreResults(2, onClick, context),
                             //onTap: () => setDataInCards(2, onClick),
                             child: Container(
                               width: 120,
