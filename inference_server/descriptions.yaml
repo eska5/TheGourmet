@@ -1,0 +1,19 @@
+---
+descriptions:
+  marchewka:
+    calories: 41.3
+    allergens:
+      - "IgE sp. F31"
+  spaghetti bolognese:
+    calories: 113
+    allergens:
+      - "Mleko"
+      - "Soja"
+      - "Seler"
+      - "Jaja"
+      - "Gluten"
+  pizza:
+    calories: 266
+    allergens:
+      - "Gluten"
+      - "Zboża"

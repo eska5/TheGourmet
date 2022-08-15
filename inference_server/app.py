@@ -1,17 +1,17 @@
 import base64
 import json
+import logging
 from io import BytesIO
 
 import cv2
 import numpy as np
 import tensorflow
 import yaml
-import logging
 from PIL import Image
 from flask import Flask, request
 from flask_cors import CORS
 
-from response_type import ClassifiedMeal, get_meal
+from response_type import ClassifiedMeal
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -21,13 +21,19 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 
+
 @app.before_first_request
 def before_first_request():
     global model
     model = tensorflow.keras.models.load_model("model.h5")
+
     global labels
     with open("catalog.yaml", 'r', encoding='utf8') as stream:
-        labels = yaml.safe_load(stream)['catalog']['meals']
+        labels = yaml.safe_load(stream)['catalog']
+
+    global descriptions
+    with open("descriptions.yaml", 'r', encoding='utf8') as stream:
+        descriptions = yaml.safe_load(stream)['descriptions']
 
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
@@ -47,23 +53,24 @@ def meals_catalog():
 
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify_photo():
+    app.logger.info("Running classification on the image...")
     decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["mealPhoto"]))))
-    opencvImage = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
-    img = np.expand_dims(cv2.resize(opencvImage, (400, 400)), 0)
-    logging.debug("Model is loading...")
+    opencv_image = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
+    img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
+    app.logger.info("Model is loading...")
     predict = model.predict(img)
-    logging.debug("Model loaded")
+    app.logger.info("Model loaded")
 
     predictions = []
-    
-    logging.debug("Creating predictions...")
+
+    app.logger.info("Creating predictions...")
     for i in range(0, 7):
         name = labels[predict.argmax(axis=1)[0]]
         certainty = predict[0][[predict.argmax(axis=1)[0]]][0]
-        description = get_meal(meal_name=name.lower())
         predict[0][[predict.argmax(axis=1)[0]]] = 0
-        predictions.append(ClassifiedMeal(name=name, description=description, certainty=certainty).to_dict())
-    logging.debug("Predictions created")
+        predictions.append(
+            ClassifiedMeal(name=name, description=descriptions[name.lower()], certainty=certainty).to_dict())
+    app.logger.info("Predictions created. Classification finished")
     return app.response_class(response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
 
