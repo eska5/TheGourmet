@@ -12,9 +12,11 @@ import '../../screens/report.dart';
 import '../common/snack_bars.dart';
 
 String responseBody = "";
+int cardIndex = 0;
 
 void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
+  cardIndex = 0;
   resultCards = [
     CardDetails(color: Colors.blue.shade300, cardNumber: 1),
     CardDetails(color: Colors.blue.shade300, cardNumber: 2),
@@ -23,7 +25,7 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
   if (kDebugMode) {
     print(ResultScreen.isClassified.value);
   }
-  final uri = Uri.parse("https://gourmetapp.net/classify");
+  final uri = Uri.parse("https://gourmetapp.net/api/v1/classify");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
@@ -43,12 +45,7 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
         )
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
-    for (int i = 0; i < 3; i++) {
-      resultCards[i].mealName = json.decode(responseBody)[i * 2];
-      resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
-      resultCards[i].mealProbability =
-          double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
-    }
+    setDataInCards(3);
     ResultScreen.isClassified.value = true;
     if (kDebugMode) {
       print(ResultScreen.isClassified.value);
@@ -69,60 +66,34 @@ void navigateToReportScreen(BuildContext context) async {
   );
 }
 
-void getMoreResults(Function onClick) {
-  // print(responseBody[3]);
-  for (int i = 3; i < 5; i++) {
-    resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
-    // TODO MAKE BACKEND RETURN ALL THE RESULTS
-    // resultCards[i].mealName = json.decode(responseBody)[i * 2];
-    // resultCards[i].mealDescription = json.decode(responseBody)[i * 2];
-    // resultCards[i].mealProbability =
-    //     double.parse(json.decode(responseBody)[i * 2 + 1]) * 100;
+void setDataInCards(int amount) {
+  for (int i = cardIndex; i < cardIndex + amount; i++) {
+    resultCards[i].mealName = Map.from(json.decode(responseBody)[i])["name"];
+    resultCards[i].mealProbability =
+        double.parse(Map.from(json.decode(responseBody)[i])["certainty"]) * 100;
+
+    if (Map.from(json.decode(responseBody)[i])["description"] !=
+        "Brak danych") {
+      Map description =
+          Map.from(Map.from(json.decode(responseBody)[i])["description"]);
+      resultCards[i].mealDescription =
+          "Szacowane kalorie na 100g: ${description['calories']} kcal\nMożliwe alergeny: ${description['allergens']}";
+    } else {
+      resultCards[i].mealDescription =
+          Map.from(json.decode(responseBody)[i])["description"];
+    }
   }
-  onClick();
+  cardIndex += amount;
 }
 
-// Future<Uint8List?> pickImage(ImageSource source, BuildContext context) async {
-//   Uint8List? imageTemporary;
-//   //WEB
-//   if (kIsWeb) {
-//     try {
-//       final image = await ImagePicker()
-//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-//       if (image == null) return null;
-//
-//       if (!validateFileExtension(image)) {
-//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-//         return null;
-//       }
-//
-//       imageTemporary = await image.readAsBytes();
-//       categorizeThePhoto(context, imageTemporary);
-//     } on PlatformException catch (e) {
-//       if (kDebugMode) {
-//         print('Failed to pick image: $e');
-//       }
-//     }
-//   }
-//   //MOBILE
-//   else {
-//     try {
-//       final image = await ImagePicker()
-//           .pickImage(source: source, maxWidth: 400, maxHeight: 400);
-//       if (image == null) return null;
-//
-//       if (!validateFileExtension(image)) {
-//         showErrorMessage(context, "Wybrano niepoprawny format zdjęcia");
-//         return null;
-//       }
-//
-//       imageTemporary = await image.readAsBytes();
-//       categorizeThePhoto(context, imageTemporary);
-//     } on PlatformException catch (e) {
-//       if (kDebugMode) {
-//         print('Failed to pick image: $e');
-//       }
-//     }
-//   }
-//   return imageTemporary;
-// }
+void getMoreResults(int amount, Function onClick, BuildContext context) {
+  if (cardIndex < 7) {
+    for (int i = cardIndex; i < cardIndex + amount; i++) {
+      resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+    }
+    setDataInCards(amount);
+    onClick();
+  } else {
+    showErrorMessage(context, "Osiągnięto limit propozycji");
+  }
+}
