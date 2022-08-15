@@ -17,24 +17,24 @@ descriptions:
     allergens:
       - "Gluten"
       - "Zboża"
-  Brokół:
+  brokół:
     calories: 34
     allergens: 
       - "Brak alergenów"
-  Sałatka cezar:
+  sałatka cezar:
     calories: 113
     allergens: 
       - "Mleko"
       - "Jaja"
       - "Orzechy"
       - "Sezam"
-  Sernik:
+  sernik:
     calories: 321
     allergens: 
       - "Jaja"
       - "Gluten"
       - "Mleko"
-  Skrzydełka kurczaka:
+  skrzydełka kurczaka:
     calories: 203 
     allergens: 
       - "Jaja"
@@ -42,14 +42,14 @@ descriptions:
       - "Mleko"
       - "Soja"
       - "Orzechy"
-  Tort czekoladowy:
+  tort czekoladowy:
     calories: 370
     allergens: 
       - "Orzechy"
       - "Jaja"
       - "Gluten"
       - "Mleko"
-  Babeczki:
+  babeczki:
     calories: 305 
     allergens: 
       - "Gluten"
@@ -58,15 +58,15 @@ descriptions:
       - "Mleko"
       - "Soja"
       - "Dwutlenek siarki"
-  Winniczki:
+  winniczki:
     calories: 285
     allergens: 
       - "Brak danych"
-  Frytki:
+  frytki:
     calories: 312
     allergens:
       - "Brak alergenów"
-  Hamburger: 
+  hamburger: 
     calories: 295 
     allergens: 
       - "Mleko"
@@ -74,7 +74,7 @@ descriptions:
       - "Jaja"
       - "Zboża"
       - "Gluten"
-  Hot dog:
+  hot dog:
     calories: 290
     allergens: 
       - "Zboża"
@@ -86,25 +86,25 @@ descriptions:
       - "Seler"
       - "Sezam"
       - "Soja"
-  Lody:
+  lody:
     calories: 207
     allergens: 
       - "Mleko"
-  Lasagne:
+  lasagne:
     calories: 135
     allergens: 
       - "Gluten"
       - "Mleko"
-  Omlet:
+  omlet:
     calories: 153
     allergens: 
       - "Jaja"
-  Naleśniki:
+  naleśniki:
     calories: 227
     allergens: 
       - "Jaja"
       - "Mleko"
-  Żeberka:
+  żeberka:
     calories: 351
     allergens: 
       - "Gluten"
@@ -112,26 +112,26 @@ descriptions:
       - "Soja"
       - "Musztarda"
       - "Seler"
-  Jajecznica:
+  jajecznica:
     calories: 148 
     allergens: 
       - "jaja"
-  Zupa:
+  zupa:
     calories: 220
     allergens: 
       - "Seler"
-  Spaghetti carbonara:
+  spaghetti carbonara:
     calories: 191 
     allergens: 
       - "Gluten"
       - "Zboża"
       - "Jaja"
       - "Mleko"
-  Stek:
+  stek:
     calories: 270
     allergens: 
       - "Brak danych"
-  Sushi:
+  sushi:
     calories: 150
     allergens:  
       - "Seler"
@@ -143,14 +143,14 @@ descriptions:
       - "Orzechy"
       - "Soja"
       - "Mięczaki"
-  Tiramisu:
+  tiramisu:
     calories: 283 
     allergens:  
       - "Mleko"
       - "Jaja"
       - "Zboża"
       - "Gluten"
-  Gofry:
+  gofry:
     calories: 291
     allergens:  
       - "Mleko"
@@ -159,31 +159,3 @@ descriptions:
       - "Gluten"
       - "Soja"
       - "Orzechy"
-
-
-catalog:
-  - "Brokół"
-  - "Sałatka cezar"
-  - "Marchewka"
-  - "Sernik"
-  - "Skrzydełka kurczaka"
-  - "Tort czekoladowy"
-  - "Babeczki"
-  - "Winniczki"
-  - "Frytki"
-  - "Hamburger"
-  - "Hot dog"
-  - "Lody"
-  - "Lasagne"
-  - "Omlet"
-  - "Naleśniki"
-  - "Pizza"
-  - "Żeberka"
-  - "Jajecznica"
-  - "Zupa"
-  - "Spaghetti bolognese"
-  - "Spaghetti carbonara"
-  - "Stek"
-  - "Sushi"
-  - "Tiramisu"
-  - "Gofry"
