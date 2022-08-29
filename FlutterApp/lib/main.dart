@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_ui/resources/common/methods.dart';
 import 'package:new_ui/resources/common/nav_bar.dart';
 
-void main() {
+void main() async{
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Future.delayed(Duration(milliseconds: 100));
   runApp(MainScreen());
 }
 
