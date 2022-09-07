@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 110,
             ),
             Center(
               child: Image.asset(
