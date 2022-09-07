@@ -77,7 +77,7 @@ void setDataInCards(int amount) {
       Map description =
           Map.from(Map.from(json.decode(responseBody)[i])["description"]);
       resultCards[i].mealDescription =
-          "Szacowane kalorie na 100g: ${description['calories']} kcal\nMożliwe alergeny: ${description['allergens']}";
+          "Szacowane kalorie na 100g: ${description['calories']} kcal\nMożliwe alergeny: ${description['allergens'].toString().replaceAll(RegExp(r'[\[\]]'), '')}";
     } else {
       resultCards[i].mealDescription =
           Map.from(json.decode(responseBody)[i])["description"];

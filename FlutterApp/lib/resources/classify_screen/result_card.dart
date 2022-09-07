@@ -130,8 +130,8 @@ Widget cardNumberSwitchCase(int cardNumber) {
     case 4:
       widget = Wrap(children: <Widget>[
         Icon(
-          Icons.question_mark_rounded,
-          color: Colors.teal.shade900,
+          Icons.star_outline_rounded,
+          color: Colors.grey.shade300,
           size: 35,
         ),
       ]);
@@ -175,13 +175,17 @@ Widget mealProbability({required double probability, required bool isLoading}) {
 
 Widget mealDescription({required String text, required bool isLoading}) {
   return isLoading == false
-      ? Text(
-          text,
-          style: const TextStyle(
-              fontFamily: 'avenir',
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 18),
+      ? Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15),
+          child: Text(
+            text,
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+                fontFamily: 'avenir',
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 18),
+          ),
         )
       : const SizedBox();
 }
