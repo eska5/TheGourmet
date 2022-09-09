@@ -4,6 +4,7 @@ import os
 from io import BytesIO
 
 import requests
+import yaml
 from PIL import Image
 
 
@@ -31,22 +32,14 @@ def save_image(title: str, coded_image: str):
 
 
 def get_suggestions() -> list:
-    url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/findOne"
-    payload = json.dumps({
-        "collection": "suggestions",
-        "database": "gourmet",
-        "dataSource": "Cluster0",
-        "filter": {"key": "suggestions"},
-    })
-    headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Headers': '*',
-        'api-key': '4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7',
-    }
-    response = requests.request("POST", url, headers=headers, data=payload)
-    raw_data = json.loads(response.text)["document"]
-    del raw_data["key"], raw_data["_id"]
-    return list(raw_data.values())
+    with open("suggestions.yaml", 'r', encoding='utf8') as stream:
+        suggestions = yaml.safe_load(stream)['suggestions']
+        return suggestions
+
+
+def add_suggestion(value: str):
+    with open("suggestions.yaml", "a") as yaml_file:
+        yaml_file.write(f' - "{value}"')
 
 
 def get_meal(meal_name: str) -> dict:
@@ -72,22 +65,3 @@ def get_meal(meal_name: str) -> dict:
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     return json.loads(response.text)["document"]
-
-
-def add_suggestion(value: str) -> int:
-    index = len(get_suggestions())
-    url = "https://data.mongodb-api.com/app/data-bduvb/endpoint/data/v1/action/updateOne"
-    payload = json.dumps({
-        "collection": "suggestions",
-        "database": "gourmet",
-        "dataSource": "Cluster0",
-        "filter": {"key": "suggestions"},
-        "update": {"$set": {index: value}}
-    })
-    headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Headers': '*',
-        'api-key': '4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7',
-    }
-    response = requests.request("POST", url, headers=headers, data=payload)
-    return response.status_code
