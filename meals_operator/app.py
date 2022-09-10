@@ -8,6 +8,9 @@ import meal_operator as m_operator
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+BAD_RESULTS_PATH = "data/bad_results"
+NEW_IMAGES_PATH = "data/images"
+
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
@@ -25,7 +28,7 @@ def meals():
     if meal_photo == "" or meal_name == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=meal_name, coded_image=meal_photo)
+    m_operator.save_image(title=meal_name, coded_image=meal_photo, path=NEW_IMAGES_PATH)
     return app.response_class(status=201)
 
 
@@ -42,7 +45,7 @@ def bad_result():
     if bad_result_name == "" or bad_result_photo == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=bad_result_name, coded_image=request.json["mealPhoto"])
+    m_operator.save_image(title=bad_result_name, coded_image=request.json["mealPhoto"], path=BAD_RESULTS_PATH)
     return app.response_class(status=201)
 
 

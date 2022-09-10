@@ -7,39 +7,41 @@ import requests
 import yaml
 from PIL import Image
 
+from meals_operator.app import NEW_IMAGES_PATH
 
-def save_image(title: str, coded_image: str):
+
+def save_image(title: str, coded_image: str, path: str):
     # If there is no such directory create the dir
-    if not os.path.isdir("data/" + title):
-        os.mkdir("data/" + title)
+    if not os.path.isdir(f"{path}/{title}"):
+        os.mkdir(f"{path}/{title}")
         # creating number.txt that counts files
-        with open("data/" + title + "/number.txt", "a", encoding="utf8") as file:
+        with open(f"{path}/{title}/number.txt", "a", encoding="utf8") as file:
             file.write("0")
-        add_suggestion(value=title)
+        add_labels(value=title, path=f"{path}/labels.yaml")
     # getting the number
-    with open("data/" + title + "/number.txt", "r", encoding="utf8") as file:
+    with open(f"{path}/{title}/number.txt", "r", encoding="utf8") as file:
         image_number = file.read()
 
     # decoding base64 to a file
     decoded_image = Image.open(BytesIO(base64.b64decode(str(coded_image))))
     image_rgb = decoded_image.convert("RGB")
-    image_rgb.save("data/" + title + "/" + image_number + ".jpg")
+    image_rgb.save(f"{path}/{title}/{image_number}.jpg")
     image_number = int(image_number) + 1
 
     # change the number of files in number.txt
-    with open("data/" + title + "/number.txt", "w", encoding="utf8") as file:
+    with open(f"{path}/{title}/number.txt", "w", encoding="utf8") as file:
         file.write(str(image_number))
 
 
 def get_suggestions() -> list:
-    with open("suggestions.yaml", 'r', encoding='utf8') as stream:
+    with open(f"{NEW_IMAGES_PATH}/labels.yaml", 'r', encoding='utf8') as stream:
         suggestions = yaml.safe_load(stream)['suggestions']
         return suggestions
 
 
-def add_suggestion(value: str):
-    with open("suggestions.yaml", "a") as yaml_file:
-        yaml_file.write(f' - "{value}"')
+def add_labels(value: str, path: str):
+    with open(path, "a") as yaml_file:
+        yaml_file.write(f' - "{value}"\n')
 
 
 def get_meal(meal_name: str) -> dict:
