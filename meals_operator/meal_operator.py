@@ -7,7 +7,8 @@ import requests
 import yaml
 from PIL import Image
 
-from app import NEW_IMAGES_PATH
+BAD_RESULTS_PATH = "data/bad_results"
+NEW_IMAGES_PATH = "data/images"
 
 
 def save_image(title: str, coded_image: str, path: str):
