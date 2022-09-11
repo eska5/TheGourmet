@@ -1,17 +1,18 @@
-import base64
-import json
-import logging
-from io import BytesIO
-
 import cv2
-import numpy as np
-import tensorflow
 import yaml
-from PIL import Image
-from flask import Flask, request
-from flask_cors import CORS
+import json
+import base64
+import logging
+import requests
+import tensorflow
 
+import numpy as np
+from PIL import Image
+from io import BytesIO
+from flask_cors import CORS
+from flask import Flask, request
 from response_type import ClassifiedMeal
+from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -73,6 +74,60 @@ def classify_photo():
     app.logger.info("Predictions created. Classification finished")
     return app.response_class(response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
+
+
+@app.route("/YOLO_classify", methods=["POST"], strict_slashes=False)
+def classify_photo_YOLO():
+    MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
+    MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/1"
+    
+    app.logger.info("Running YOLO classification on the image...")
+
+    # Load Image with PIL
+    decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["mealPhoto"]))))
+    opencv_image = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
+    pilImage = Image.fromarray(opencv_image)
+
+    # Convert to JPEG Buffer
+    buffered = BytesIO.BytesIO()
+    pilImage.save(buffered, quality=100, format="JPEG")
+
+    # Build multipart form and post request
+    multipart_form = MultipartEncoder(fields={'file': ("imageToUpload", buffered.getvalue(), "image/jpeg")})
+    response = requests.post(f"{MODEL_URL}?api_key={MY_KEY}",
+                                data=multipart_form, 
+                                headers={'Content-Type': multipart_form.content_type})
+    predictions = response.json()
+
+    # label list
+    labels = []
+    for prediction in predictions["predictions"]:
+        if prediction["class"] not in labels:
+            labels.append(prediction["class"])
+
+    # initialize a list of colors to represent each possible class label
+    np.random.seed(42)
+    COLORS = np.random.randint(0, 255, size=(len(labels), 3),
+        dtype="uint8")
+
+    # ensure at least one detection exists
+    if len(predictions["predictions"]) > 0:
+        for index, prediction in enumerate(predictions["predictions"]):            
+            (x1, y1) = (int(prediction["x"] - prediction['width'] / 2), int(prediction["y"] - prediction['height'] / 2))
+            (x2, y2) = (int(prediction["x"] + prediction["width"] / 2), int(prediction["y"] + prediction["height"] / 2))
+            color = [int(c) for c in COLORS[labels.index(prediction["class"])]]
+            # print(color)
+            cv2.rectangle(opencv_image, (x1, y1), (x2, y2), color, 2)
+            text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
+            cv2.putText(opencv_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 
+                0.5, color, 2)
+
+    yolo_image = base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
+    json_dict = {
+        'Yolo_image': yolo_image
+    }
+    return app.response_class(response=json.dumps(json_dict).encode('utf8'),
+                            content_type='application/json')
 
 
 if __name__ == "__main__":
