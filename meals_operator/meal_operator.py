@@ -7,7 +7,7 @@ import requests
 import yaml
 from PIL import Image
 
-from meals_operator.app import NEW_IMAGES_PATH
+from app import NEW_IMAGES_PATH
 
 
 def save_image(title: str, coded_image: str, path: str):
