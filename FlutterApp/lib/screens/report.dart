@@ -118,7 +118,7 @@ class _Screen2State2 extends State<ReportBadResult> {
 
 Future sendReport(BuildContext context, Uint8List? image, String goodLabel,
     String badLabel) async {
-  final uri = Uri.parse("https://gourmetapp.net/badresult");
+  final uri = Uri.parse("https://gourmetapp.net/api/v1/badresult");
   final headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
@@ -147,7 +147,7 @@ Future sendReport(BuildContext context, Uint8List? image, String goodLabel,
 
     if (statusCode == 500) {
       showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
-    } else if (statusCode == 200) {
+    } else if (statusCode == 201) {
       showSuccessMessage(context, "Pomyślnie wysłano zgłoszenie");
     } else if (statusCode == 400) {
       showErrorMessage(context, "Niepoprawne dane");
