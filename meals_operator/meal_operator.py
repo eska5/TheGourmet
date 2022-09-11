@@ -37,7 +37,7 @@ def save_image(title: str, coded_image: str, path: str):
 def get_suggestions() -> list:
     with open(f"{NEW_IMAGES_PATH}/labels.yaml", 'r', encoding='utf8') as stream:
         suggestions = yaml.safe_load(stream)['suggestions']
-        return suggestions
+        return sorted(suggestions)
 
 
 def add_labels(value: str, path: str):
