@@ -89,7 +89,7 @@ def classify_photo_YOLO():
     pilImage = Image.fromarray(opencv_image)
 
     # Convert to JPEG Buffer
-    buffered = BytesIO.BytesIO()
+    buffered = BytesIO()
     pilImage.save(buffered, quality=100, format="JPEG")
 
     # Build multipart form and post request
@@ -116,7 +116,6 @@ def classify_photo_YOLO():
             (x1, y1) = (int(prediction["x"] - prediction['width'] / 2), int(prediction["y"] - prediction['height'] / 2))
             (x2, y2) = (int(prediction["x"] + prediction["width"] / 2), int(prediction["y"] + prediction["height"] / 2))
             color = [int(c) for c in COLORS[labels.index(prediction["class"])]]
-            # print(color)
             cv2.rectangle(opencv_image, (x1, y1), (x2, y2), color, 2)
             text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
             cv2.putText(opencv_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 
