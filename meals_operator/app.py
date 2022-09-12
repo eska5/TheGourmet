@@ -25,7 +25,7 @@ def meals():
     if meal_photo == "" or meal_name == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=meal_name, coded_image=meal_photo)
+    m_operator.save_image(title=meal_name, coded_image=meal_photo, path=m_operator.NEW_IMAGES_PATH)
     return app.response_class(status=201)
 
 
@@ -42,7 +42,8 @@ def bad_result():
     if bad_result_name == "" or bad_result_photo == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=bad_result_name, coded_image=request.json["mealPhoto"])
+    m_operator.save_image(title=bad_result_name, coded_image=request.json["mealPhoto"],
+                          path=m_operator.BAD_RESULTS_PATH)
     return app.response_class(status=201)
 
 
