@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:new_ui/resources/classify_screen/result_card.dart';
-import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
 
 import '../../screens/report.dart';
 import '../common/snack_bars.dart';
@@ -14,7 +14,7 @@ import '../common/snack_bars.dart';
 String responseBody = "";
 int cardIndex = 0;
 
-void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
+void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
   cardIndex = 0;
   resultCards = [
@@ -54,6 +54,37 @@ void categorizeThePhoto(BuildContext context, Uint8List? bytes) async {
     if (resultCards[0].mealProbability < 50) {
       showWarningMessage(context, "Wyniki mogą być niedokładne");
     }
+  } on HttpException {
+    showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
+  }
+}
+
+void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
+  ResultScreen.isClassified.value = false;
+  if (kDebugMode) {
+    print(ResultScreen.isClassified.value);
+  }
+  final uri = Uri.parse("https://gourmetapp.net/api/v1/detection");
+  final headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  };
+
+  Map<String, dynamic> body = {'img_for_detection': base64Encode(bytes!)};
+  String jsonBody = json.encode(body);
+  final encoding = Encoding.getByName('utf-8');
+
+  try {
+    var response = await http
+        .post(
+          uri,
+          headers: headers,
+          body: jsonBody,
+          encoding: encoding,
+        )
+        .timeout(const Duration(seconds: 30));
+    responseBody = response.body;
+    ResultScreen.isClassified.value = true;
   } on HttpException {
     showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
   }

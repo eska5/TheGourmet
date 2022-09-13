@@ -39,7 +39,8 @@ class _ResultScreen extends State<ResultScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.fastfood_rounded, size: 29),
-        title: const Text('Zobacz wyniki', style: TextStyle(fontSize: 22)),
+        title:
+            const Text('Wyniki klasyfikacji', style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],

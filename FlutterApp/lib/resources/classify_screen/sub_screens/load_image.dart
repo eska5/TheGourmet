@@ -4,17 +4,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/load_image_dialog.dart';
+import 'package:new_ui/screens/classify.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../common/methods.dart';
 
 class ClassifyLoadImageScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
+  final Function onClick;
 
   const ClassifyLoadImageScreen({
     Key? key,
     required this.controller,
+    required this.onClick,
   }) : super(key: key);
 
   @override
@@ -136,6 +140,58 @@ class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
                   height: 220,
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 10.0,
+                      spreadRadius: 0.0,
+                      offset:
+                          Offset(0.0, 0.0), // shadow direction: bottom right
+                    )
+                  ],
+                ),
+                child: ToggleSwitch(
+                  minWidth: 147.0,
+                  initialLabelIndex: ClassifyImage.isClassificationSet ? 1 : 0,
+                  cornerRadius: 10.0,
+                  activeFgColor: Colors.white,
+                  inactiveBgColor: Colors.grey,
+                  inactiveFgColor: Colors.white,
+                  totalSwitches: 2,
+                  labels: const ['Detekcja', 'Klasyfikacja'],
+                  iconSize: 26,
+                  customTextStyles: const [
+                    TextStyle(fontSize: 17, color: Colors.white)
+                  ],
+                  icons: const [
+                    Icons.location_searching_rounded,
+                    Icons.category_rounded,
+                  ],
+                  activeBgColors: [
+                    const [Colors.deepPurpleAccent],
+                    [Colors.blue.shade400],
+                  ],
+                  onToggle: (index) {
+                    if (index == 1) {
+                      ClassifyImage.isClassificationSet = true;
+                    } else {
+                      ClassifyImage.isClassificationSet = false;
+                    }
+                    print(
+                        "isClassificationSet: ${ClassifyImage.isClassificationSet}");
+                    widget.onClick();
+                  },
+                ),
+              ),
             ),
             const SizedBox(
               height: 40,

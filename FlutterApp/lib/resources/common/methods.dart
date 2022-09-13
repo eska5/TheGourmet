@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/snack_bars.dart';
+import 'package:new_ui/screens/classify.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import '../../screens/catalog.dart';
@@ -63,7 +64,11 @@ Future<Uint8List?> pickImage(
     }
   }
   if (forClassification) {
-    categorizeThePhoto(context, imageTemporary);
+    if (ClassifyImage.isClassificationSet == true) {
+      sendClassifyRequest(context, imageTemporary);
+    } else {
+      sendDetectionRequest(context, imageTemporary);
+    }
   }
   return imageTemporary;
 }

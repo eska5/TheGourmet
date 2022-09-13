@@ -2,7 +2,7 @@ library gourmet.result_card;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
 
 import 'classify_methods.dart';
 

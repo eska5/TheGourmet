@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/detection_results.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/load_image.dart';
-import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
 
 import '../resources/common/page_indicator.dart';
 
 class ClassifyImage extends StatefulWidget {
   const ClassifyImage({Key? key}) : super(key: key);
+  static bool isClassificationSet = true;
 
   @override
   State<ClassifyImage> createState() => _ClassifyImage();
@@ -34,10 +36,13 @@ class _ClassifyImage extends State<ClassifyImage> {
           children: [
             ClassifyLoadImageScreen(
               controller: controller,
+              onClick: callSetState,
             ),
-            ResultScreen(
-              controller: controller,
-            ),
+            ClassifyImage.isClassificationSet
+                ? ResultScreen(
+                    controller: controller,
+                  )
+                : DetectionResultScreen(controller: controller)
           ],
         ),
         pageIndicator(controller: controller, count: 2, context: context),
