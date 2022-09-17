@@ -47,7 +47,7 @@ class LoadImageDialog extends StatefulWidget {
 class _LoadImageDialog extends State<LoadImageDialog> {
   void setPickedImage(BuildContext context, ImageSource source) async {
     if (widget.forClassification) {
-      ClassifyLoadImageScreen.pickedImage =
+      ClassifyLoadImageScreen.pickedClassificationImage =
           await pickImage(source, context, widget.forClassification);
     } else {
       AddLoadImageScreen.pickedImage =
@@ -89,7 +89,10 @@ class _LoadImageDialog extends State<LoadImageDialog> {
       // ),
       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
         PopupMenuItem(
-          onTap: () => setPickedImage(context, widget.imageSource1),
+          onTap: () => setPickedImage(
+            context,
+            widget.imageSource1,
+          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

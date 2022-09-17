@@ -92,7 +92,8 @@ class _ResultScreen extends State<ResultScreen> {
                         borderRadius: BorderRadius.circular(25),
                         color: Colors.transparent,
                         boxShadow: [
-                          ClassifyLoadImageScreen.pickedImage != null
+                          ClassifyLoadImageScreen.pickedClassificationImage !=
+                                  null
                               ? const BoxShadow(
                                   color: Colors.grey,
                                   blurRadius: 10.0,
@@ -105,9 +106,12 @@ class _ResultScreen extends State<ResultScreen> {
                       ),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: ClassifyLoadImageScreen.pickedImage != null
+                          child: ClassifyLoadImageScreen
+                                      .pickedClassificationImage !=
+                                  null
                               ? Image.memory(
-                                  ClassifyLoadImageScreen.pickedImage!,
+                                  ClassifyLoadImageScreen
+                                      .pickedClassificationImage!,
                                   width: 200,
                                   height: 200,
                                   fit: BoxFit.cover,

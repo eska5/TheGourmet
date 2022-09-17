@@ -66,6 +66,7 @@ Future<Uint8List?> pickImage(
   if (forClassification) {
     if (ClassifyImage.isClassificationSet == true) {
       sendClassifyRequest(context, imageTemporary);
+      sendDetectionRequest(context, imageTemporary);
     } else {
       sendDetectionRequest(context, imageTemporary);
     }

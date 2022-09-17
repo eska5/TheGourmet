@@ -7,11 +7,11 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../common/load_image_dialog.dart';
 import '../../common/methods.dart';
-import 'load_image.dart';
+import 'classify_results.dart';
 
 class DetectionResultScreen extends StatefulWidget {
   final PageController controller;
-  static Uint8List? pickedImage;
+  static Uint8List? detectedImage;
   static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
 
   const DetectionResultScreen({
@@ -82,69 +82,81 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
               const SizedBox(
                 height: 50,
               ),
-              Stack(
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.transparent,
-                        boxShadow: [
-                          ClassifyLoadImageScreen.pickedImage != null
-                              ? const BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(0.0,
-                                      0.0), // shadow direction: bottom right
-                                )
-                              : const BoxShadow(color: Colors.transparent)
-                        ],
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: ClassifyLoadImageScreen.pickedImage != null
-                              ? Image.memory(
-                                  ClassifyLoadImageScreen.pickedImage!,
-                                  width: 300,
-                                  height: 300,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  'assets/diet.png',
-                                  width: 300,
-                                  height: 300,
-                                  fit: BoxFit.cover,
-                                )),
-                    ),
-                  ),
-                  Center(
-                    child: LoadImageDialog(
-                      onClick: callSetState,
-                      imageSource1: ImageSource.gallery,
-                      imageSource2: ImageSource.camera,
-                      iconData1: Icons.photo_library_rounded,
-                      iconData2: Icons.camera_alt_rounded,
-                      text1: " Wybierz zdjęcie",
-                      text2: "     Zrób zdjęcie  ",
-                      menuOffset: const Offset(42, 175),
-                      menuWidth: 200,
-                      menuOpacity: 0.0,
-                      menuHeight: 200,
-                      isButton: false,
-                      forClassification: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 220,
-                  ),
-                ],
+              ValueListenableBuilder<bool>(
+                builder: (BuildContext context, bool value, Widget? child) {
+                  return value == true
+                      ? imageBox(isDetected: true)
+                      : imageBox(isDetected: false);
+                },
+                valueListenable: ResultScreen.isClassified,
+                child: const SizedBox.shrink(),
               ),
               const SizedBox(
                 height: 125,
               ),
             ]),
       ),
+    );
+  }
+
+  Widget imageBox({required bool isDetected}) {
+    return Stack(
+      children: <Widget>[
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: Colors.transparent,
+              boxShadow: [
+                isDetected == true
+                    ? const BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 10.0,
+                        spreadRadius: 0.0,
+                        offset:
+                            Offset(0.0, 0.0), // shadow direction: bottom right
+                      )
+                    : const BoxShadow(color: Colors.transparent)
+              ],
+            ),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: isDetected == true
+                    ? Image.memory(
+                        DetectionResultScreen.detectedImage!,
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.scaleDown,
+                      )
+                    : Image.asset(
+                        'assets/diet.png',
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      )),
+          ),
+        ),
+        Center(
+          child: LoadImageDialog(
+            onClick: callSetState,
+            imageSource1: ImageSource.gallery,
+            imageSource2: ImageSource.camera,
+            iconData1: Icons.photo_library_rounded,
+            iconData2: Icons.camera_alt_rounded,
+            text1: " Wybierz zdjęcie",
+            text2: "     Zrób zdjęcie  ",
+            menuOffset: const Offset(42, 175),
+            menuWidth: 300,
+            menuOpacity: 0.0,
+            menuHeight: 300,
+            isButton: false,
+            forClassification: true,
+          ),
+        ),
+        const SizedBox(
+          height: 220,
+        ),
+      ],
     );
   }
 }

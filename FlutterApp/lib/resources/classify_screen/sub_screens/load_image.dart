@@ -12,8 +12,10 @@ import '../../common/methods.dart';
 
 class ClassifyLoadImageScreen extends StatefulWidget {
   final PageController controller;
-  static Uint8List? pickedImage;
+  static Uint8List? pickedClassificationImage;
+  static Uint8List? pickedDetectionImage;
   final Function onClick;
+  static ValueNotifier<bool> isDetectionSet = ValueNotifier<bool>(false);
 
   const ClassifyLoadImageScreen({
     Key? key,
@@ -92,7 +94,8 @@ class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.transparent,
                       boxShadow: [
-                        ClassifyLoadImageScreen.pickedImage != null
+                        ClassifyLoadImageScreen.pickedClassificationImage !=
+                                null
                             ? const BoxShadow(
                                 color: Colors.grey,
                                 blurRadius: 10.0,
@@ -105,19 +108,22 @@ class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(25),
-                        child: ClassifyLoadImageScreen.pickedImage != null
-                            ? Image.memory(
-                                ClassifyLoadImageScreen.pickedImage!,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                'assets/diet.png',
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )),
+                        child:
+                            ClassifyLoadImageScreen.pickedClassificationImage !=
+                                    null
+                                ? Image.memory(
+                                    ClassifyLoadImageScreen
+                                        .pickedClassificationImage!,
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/diet.png',
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  )),
                   ),
                 ),
                 Center(

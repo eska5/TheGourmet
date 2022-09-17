@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/detection_results.dart';
 
 import '../../screens/report.dart';
 import '../common/snack_bars.dart';
@@ -61,6 +62,7 @@ void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
 
 void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
+  DetectionResultScreen.detectedImage = null;
   if (kDebugMode) {
     print(ResultScreen.isClassified.value);
   }
@@ -85,6 +87,11 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
     ResultScreen.isClassified.value = true;
+    DetectionResultScreen.detectedImage =
+        base64Decode(json.decode(response.body)["detection_result"]);
+    if (kDebugMode) {
+      print("detection performed");
+    }
   } on HttpException {
     showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
   }
