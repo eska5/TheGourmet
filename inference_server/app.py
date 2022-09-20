@@ -13,13 +13,13 @@ from flask import Flask, request
 from flask_cors import CORS
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from response_type import ClassifiedMeal
+from response_type import Meal
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
-MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/1"
+MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/3"
 
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
@@ -74,7 +74,7 @@ def classify_photo():
         certainty = predict[0][[predict.argmax(axis=1)[0]]][0]
         predict[0][[predict.argmax(axis=1)[0]]] = 0
         predictions.append(
-            ClassifiedMeal(name=name, description=descriptions[name.lower()], certainty=certainty).to_dict())
+            Meal(name=name, description=descriptions[name.lower()], certainty=certainty).to_dict())
     app.logger.info("Predictions created. Classification finished")
     return app.response_class(status=200, response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
@@ -93,41 +93,45 @@ def detect_meal():
     buffered = BytesIO()
     pilImage.save(buffered, quality=100, format="JPEG")
 
-    app.logger.info("Sending request to Roboflow.")
+    app.logger.info("Sending request to Roboflow...")
     multipart_form = MultipartEncoder(fields={'file': ("imageToUpload", buffered.getvalue(), "image/jpeg")})
-    response = requests.post(f"{MODEL_URL}?api_key={MY_KEY}",
-                             data=multipart_form,
-                             headers={'Content-Type': multipart_form.content_type})
-    predictions = response.json()
+    roboflow_response = requests.post(f"{MODEL_URL}?api_key={MY_KEY}",
+                                      data=multipart_form,
+                                      headers={'Content-Type': multipart_form.content_type}).json()
 
     # label list
-    detection_labels = []
-    for prediction in predictions["predictions"]:
-        if prediction["class"] not in detection_labels:
-            detection_labels.append(prediction["class"])
+    app.logger.info("Creating predictions...")
+    predictions = []
+    detection_result = []
+    for prediction in roboflow_response["predictions"]:
+        if prediction["class"] not in detection_result:
+            detection_result.append(prediction["class"])
 
     # initialize a list of colors to represent each possible class label
     np.random.seed(42)
-    COLORS = np.random.randint(0, 255, size=(len(detection_labels), 3),
+    COLORS = np.random.randint(0, 255, size=(len(detection_result), 3),
                                dtype="uint8")
 
     # ensure at least one detection exists
-    if len(predictions["predictions"]) > 0:
-        for index, prediction in enumerate(predictions["predictions"]):
+    if len(roboflow_response["predictions"]) > 0:
+        for index, prediction in enumerate(roboflow_response["predictions"]):
+            predictions.append(
+                Meal(name=prediction["class"], certainty=prediction["confidence"], description="placeholder").to_dict())
+
             (x1, y1) = (int(prediction["x"] - prediction['width'] / 2), int(prediction["y"] - prediction['height'] / 2))
             (x2, y2) = (int(prediction["x"] + prediction["width"] / 2), int(prediction["y"] + prediction["height"] / 2))
-            color = [int(c) for c in COLORS[detection_labels.index(prediction["class"])]]
+            color = [int(c) for c in COLORS[detection_result.index(prediction["class"])]]
             cv2.rectangle(opencv_image, (x1, y1), (x2, y2), color, 2)
             text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
             cv2.putText(opencv_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, color, 2)
 
-    yolo_image = base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
-    response_body = {
-        'detection_result': yolo_image
+    yolo_image = {
+        'detection_result': base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
     }
+    predictions.insert(0, yolo_image)
     app.logger.info("Detection finished.")
-    return app.response_class(status=200, response=json.dumps(response_body).encode('utf8'),
+    return app.response_class(status=200, response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
 
 

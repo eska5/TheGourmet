@@ -1,4 +1,4 @@
-class ClassifiedMeal:
+class Meal:
     def __init__(self, name: str, description: str, certainty: float):
         self.name = name
         self.certainty = certainty
