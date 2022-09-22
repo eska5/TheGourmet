@@ -12,7 +12,7 @@ import 'classify_results.dart';
 class DetectionResultScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? detectedImage;
-  static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
+  static ValueNotifier<bool> isDetected = ValueNotifier<bool>(false);
 
   const DetectionResultScreen({
     Key? key,
@@ -27,7 +27,7 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
-        print("results rebuild!");
+        print("detection_results rebuild!");
       }
     });
   }

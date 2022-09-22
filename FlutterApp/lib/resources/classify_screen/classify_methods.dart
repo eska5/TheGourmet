@@ -87,8 +87,9 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
     ResultScreen.isClassified.value = true;
-    DetectionResultScreen.detectedImage =
-        base64Decode(json.decode(response.body)["detection_result"]);
+
+    DetectionResultScreen.detectedImage = base64Decode(
+        Map.from(json.decode(responseBody)[0])["detection_result"]);
     if (kDebugMode) {
       print("detection performed");
     }

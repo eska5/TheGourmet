@@ -28,7 +28,7 @@ class _ResultScreen extends State<ResultScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
-        print("results rebuild!");
+        print("classify_results rebuild!");
       }
     });
   }
@@ -92,8 +92,7 @@ class _ResultScreen extends State<ResultScreen> {
                         borderRadius: BorderRadius.circular(25),
                         color: Colors.transparent,
                         boxShadow: [
-                          ClassifyLoadImageScreen.pickedClassificationImage !=
-                                  null
+                          ClassifyLoadImageScreen.pickedImage != null
                               ? const BoxShadow(
                                   color: Colors.grey,
                                   blurRadius: 10.0,
@@ -106,12 +105,9 @@ class _ResultScreen extends State<ResultScreen> {
                       ),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: ClassifyLoadImageScreen
-                                      .pickedClassificationImage !=
-                                  null
+                          child: ClassifyLoadImageScreen.pickedImage != null
                               ? Image.memory(
-                                  ClassifyLoadImageScreen
-                                      .pickedClassificationImage!,
+                                  ClassifyLoadImageScreen.pickedImage!,
                                   width: 200,
                                   height: 200,
                                   fit: BoxFit.cover,

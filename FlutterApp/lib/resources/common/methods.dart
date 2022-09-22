@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:new_ui/resources/common/snack_bars.dart';
-import 'package:new_ui/screens/classify.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import '../../screens/catalog.dart';
@@ -56,7 +55,6 @@ Future<Uint8List?> pickImage(
       }
 
       imageTemporary = await image.readAsBytes();
-      //categorizeThePhoto(context, imageTemporary);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to pick image: $e');
@@ -64,12 +62,8 @@ Future<Uint8List?> pickImage(
     }
   }
   if (forClassification) {
-    if (ClassifyImage.isClassificationSet == true) {
-      sendClassifyRequest(context, imageTemporary);
-      sendDetectionRequest(context, imageTemporary);
-    } else {
-      sendDetectionRequest(context, imageTemporary);
-    }
+    sendDetectionRequest(context, imageTemporary);
+    sendClassifyRequest(context, imageTemporary);
   }
   return imageTemporary;
 }

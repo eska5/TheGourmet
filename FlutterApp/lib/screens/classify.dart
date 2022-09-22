@@ -44,9 +44,17 @@ class _ClassifyImage extends State<ClassifyImage> {
                   )
                 : DetectionResultScreen(controller: controller)
           ],
+          onPageChanged: _onPageViewChange,
         ),
         pageIndicator(controller: controller, count: 2, context: context),
       ],
     );
+  }
+
+  _onPageViewChange(int page) {
+    if (kDebugMode) {
+      print("Current Page: " + page.toString());
+    }
+    callSetState();
   }
 }

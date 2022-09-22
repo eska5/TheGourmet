@@ -47,7 +47,7 @@ class LoadImageDialog extends StatefulWidget {
 class _LoadImageDialog extends State<LoadImageDialog> {
   void setPickedImage(BuildContext context, ImageSource source) async {
     if (widget.forClassification) {
-      ClassifyLoadImageScreen.pickedClassificationImage =
+      ClassifyLoadImageScreen.pickedImage =
           await pickImage(source, context, widget.forClassification);
     } else {
       AddLoadImageScreen.pickedImage =
