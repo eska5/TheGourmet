@@ -19,7 +19,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
-MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/3"
+MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
 
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
