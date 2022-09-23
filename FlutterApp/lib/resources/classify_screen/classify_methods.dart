@@ -18,7 +18,7 @@ int cardIndex = 0;
 void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isClassified.value = false;
   cardIndex = 0;
-  resultCards = [
+  classifyResultCards = [
     CardDetails(color: Colors.blue.shade300, cardNumber: 1),
     CardDetails(color: Colors.blue.shade300, cardNumber: 2),
     CardDetails(color: Colors.blue.shade300, cardNumber: 3)
@@ -50,9 +50,9 @@ void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
     ResultScreen.isClassified.value = true;
     if (kDebugMode) {
       print(ResultScreen.isClassified.value);
-      print(resultCards[0].mealName);
+      print(classifyResultCards[0].mealName);
     }
-    if (resultCards[0].mealProbability < 50) {
+    if (classifyResultCards[0].mealProbability < 50) {
       showWarningMessage(context, "Wyniki mogą być niedokładne");
     }
   } on HttpException {
@@ -61,7 +61,7 @@ void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
 }
 
 void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
-  ResultScreen.isClassified.value = false;
+  ResultScreen.isDetected.value = false;
   DetectionResultScreen.detectedImage = null;
   if (kDebugMode) {
     print(ResultScreen.isClassified.value);
@@ -86,8 +86,11 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         )
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
-    ResultScreen.isClassified.value = true;
-
+    ResultScreen.isDetected.value = true;
+    detectionResultCards = [
+      CardDetails(color: Colors.blue.shade300, cardNumber: 1),
+      CardDetails(color: Colors.blue.shade300, cardNumber: 2),
+    ];
     DetectionResultScreen.detectedImage = base64Decode(
         Map.from(json.decode(responseBody)[0])["detection_result"]);
     if (kDebugMode) {
@@ -107,18 +110,19 @@ void navigateToReportScreen(BuildContext context) async {
 
 void setDataInCards(int amount) {
   for (int i = cardIndex; i < cardIndex + amount; i++) {
-    resultCards[i].mealName = Map.from(json.decode(responseBody)[i])["name"];
-    resultCards[i].mealProbability =
+    classifyResultCards[i].mealName =
+        Map.from(json.decode(responseBody)[i])["name"];
+    classifyResultCards[i].mealProbability =
         double.parse(Map.from(json.decode(responseBody)[i])["certainty"]) * 100;
 
     if (Map.from(json.decode(responseBody)[i])["description"] !=
         "Brak danych") {
       Map description =
           Map.from(Map.from(json.decode(responseBody)[i])["description"]);
-      resultCards[i].mealDescription =
+      classifyResultCards[i].mealDescription =
           "Szacowane kalorie na 100g: ${description['calories']} kcal\nMożliwe alergeny: ${description['allergens'].toString().replaceAll(RegExp(r'[\[\]]'), '')}";
     } else {
-      resultCards[i].mealDescription =
+      classifyResultCards[i].mealDescription =
           Map.from(json.decode(responseBody)[i])["description"];
     }
   }
@@ -128,7 +132,8 @@ void setDataInCards(int amount) {
 void getMoreResults(int amount, Function onClick, BuildContext context) {
   if (cardIndex < 7) {
     for (int i = cardIndex; i < cardIndex + amount; i++) {
-      resultCards.add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
+      classifyResultCards
+          .add(CardDetails(color: Colors.blue.shade300, cardNumber: 4));
     }
     setDataInCards(amount);
     onClick();

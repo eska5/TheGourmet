@@ -14,6 +14,7 @@ class ResultScreen extends StatefulWidget {
   final PageController controller;
   static Uint8List? pickedImage;
   static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
+  static ValueNotifier<bool> isDetected = ValueNotifier<bool>(false);
 
   const ResultScreen({
     Key? key,
@@ -153,7 +154,8 @@ class _ResultScreen extends State<ResultScreen> {
                   offset: 0.5,
                   child: Column(
                     children: [
-                      for (var card in resultCards) createResultCard(card),
+                      for (var card in classifyResultCards)
+                        createResultCard(card, true),
                       const SizedBox(height: 40),
                       createReportCard(
                           CardDetails(

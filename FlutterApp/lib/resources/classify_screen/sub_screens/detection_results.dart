@@ -7,6 +7,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../common/load_image_dialog.dart';
 import '../../common/methods.dart';
+import '../result_card.dart';
 import 'classify_results.dart';
 
 class DetectionResultScreen extends StatefulWidget {
@@ -88,8 +89,30 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
                       ? imageBox(isDetected: true)
                       : imageBox(isDetected: false);
                 },
-                valueListenable: ResultScreen.isClassified,
+                valueListenable: ResultScreen.isDetected,
                 child: const SizedBox.shrink(),
+              ),
+              SingleChildScrollView(
+                child: ShowUpAnimation(
+                  animationDuration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOutCirc,
+                  direction: Direction.vertical,
+                  offset: 0.5,
+                  child: Column(
+                    children: [
+                      for (var card in detectionResultCards)
+                        createResultCard(card, false),
+                      const SizedBox(height: 40),
+                      createReportCard(
+                          CardDetails(
+                              mealName: "Złe wyniki?",
+                              color: const Color(0xFFFE9901),
+                              cardNumber: 4),
+                          context,
+                          callSetState)
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 125,
