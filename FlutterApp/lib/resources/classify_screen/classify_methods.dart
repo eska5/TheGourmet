@@ -62,6 +62,7 @@ void sendClassifyRequest(BuildContext context, Uint8List? bytes) async {
 
 void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
   ResultScreen.isDetected.value = false;
+  detectionResultCards = [];
   DetectionResultScreen.detectedImage = null;
   if (kDebugMode) {
     print(ResultScreen.isClassified.value);
@@ -87,10 +88,11 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         .timeout(const Duration(seconds: 30));
     responseBody = response.body;
     ResultScreen.isDetected.value = true;
-    detectionResultCards = [
-      CardDetails(color: Colors.blue.shade300, cardNumber: 1),
-      CardDetails(color: Colors.blue.shade300, cardNumber: 2),
-    ];
+    int detectedMeals = json.decode(responseBody).length - 1;
+    for (int i = 0; i < detectedMeals; i++) {
+      detectionResultCards
+          .add(CardDetails(color: Colors.blue.shade300, cardNumber: i + 1));
+    }
     DetectionResultScreen.detectedImage = base64Decode(
         Map.from(json.decode(responseBody)[0])["detection_result"]);
     if (kDebugMode) {

@@ -92,6 +92,9 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
                 valueListenable: ResultScreen.isDetected,
                 child: const SizedBox.shrink(),
               ),
+              const SizedBox(
+                height: 50,
+              ),
               SingleChildScrollView(
                 child: ShowUpAnimation(
                   animationDuration: const Duration(milliseconds: 400),

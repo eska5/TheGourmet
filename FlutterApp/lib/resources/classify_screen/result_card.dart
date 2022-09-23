@@ -32,8 +32,6 @@ List<CardDetails> classifyResultCards = [
 
 List<CardDetails> detectionResultCards = [
   CardDetails(color: Colors.blue.shade300, cardNumber: 1),
-  CardDetails(color: Colors.blue.shade300, cardNumber: 2),
-  CardDetails(color: Colors.blue.shade300, cardNumber: 3)
 ];
 
 Widget createResultCard(CardDetails cardDetails, bool classification) {
