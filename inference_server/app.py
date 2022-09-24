@@ -36,8 +36,10 @@ for key in descriptions.keys():
 
 @app.before_first_request
 def before_first_request():
+    app.logger.info("Server is preparing for inference...")
     global model
     model = tensorflow.keras.models.load_model("model.h5")
+    app.logger.info("Done.")
 
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
@@ -71,13 +73,13 @@ def classify_photo():
 
     predictions = []
 
-    app.logger.info("Creating predictions...")
+    app.logger.info("Creating predictions")
     for i in range(0, 7):
         name = labels[predict.argmax(axis=1)[0]]
         certainty = predict[0][[predict.argmax(axis=1)[0]]][0]
         predict[0][[predict.argmax(axis=1)[0]]] = 0
         predictions.append(Meal(certainty=certainty, description=descriptions[name.lower()]).to_dict())
-    app.logger.info("Predictions created. Classification finished")
+    app.logger.info("Classification finished.")
     return app.response_class(response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
 
