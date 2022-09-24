@@ -6,7 +6,6 @@ from io import BytesIO
 import cv2
 import numpy as np
 import requests
-import tensorflow
 import yaml
 from PIL import Image
 from flask import Flask, request
@@ -30,7 +29,7 @@ logging.basicConfig(
 @app.before_first_request
 def before_first_request():
     global model
-    model = tensorflow.keras.models.load_model("model.h5")
+    # model = tensorflow.keras.models.load_model("model.h5")
 
     global labels
     with open("catalog.yaml", 'r', encoding='utf8') as stream:
@@ -87,7 +86,8 @@ def detect_meal():
     # Load Image with PIL
     decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["img_for_detection"]))))
     opencv_image = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
-    pilImage = Image.fromarray(opencv_image)
+    resized_opencv_image = cv2.resize(opencv_image, (400, 400))
+    pilImage = Image.fromarray(resized_opencv_image)
 
     # Convert to JPEG Buffer
     buffered = BytesIO()
@@ -99,6 +99,7 @@ def detect_meal():
                                       data=multipart_form,
                                       headers={'Content-Type': multipart_form.content_type}).json()
 
+    print(roboflow_response)
     # label list
     app.logger.info("Creating predictions...")
     predictions = []
@@ -126,10 +127,15 @@ def detect_meal():
             cv2.putText(opencv_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, color, 2)
 
+    image_debug = base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
     yolo_image = {
-        'detection_result': base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
+        'detection_result': image_debug
     }
     predictions.insert(0, yolo_image)
+    imgdata = base64.b64decode(image_debug)
+    filename = 'some_image.jpg'  # I assume you have a way of picking unique filenames
+    with open(filename, 'wb') as f:
+        f.write(imgdata)
     app.logger.info("Detection finished.")
     return app.response_class(status=200, response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
