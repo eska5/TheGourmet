@@ -6,6 +6,7 @@ from io import BytesIO
 import cv2
 import numpy as np
 import requests
+import tensorflow
 import yaml
 from PIL import Image
 from flask import Flask, request
@@ -29,7 +30,7 @@ logging.basicConfig(
 @app.before_first_request
 def before_first_request():
     global model
-    # model = tensorflow.keras.models.load_model("model.h5")
+    model = tensorflow.keras.models.load_model("model.h5")
 
     global labels
     with open("catalog.yaml", 'r', encoding='utf8') as stream:
@@ -75,7 +76,7 @@ def classify_photo():
         predictions.append(
             Meal(name=name, description=descriptions[name.lower()], certainty=certainty).to_dict())
     app.logger.info("Predictions created. Classification finished")
-    return app.response_class(status=200, response=json.dumps(predictions).encode('utf8'),
+    return app.response_class(response=json.dumps(predictions).encode('utf8'),
                               content_type='application/json')
 
 
@@ -84,14 +85,14 @@ def detect_meal():
     app.logger.info("Running YOLO classification on the image...")
 
     # Load Image with PIL
-    decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["img_for_detection"]))))
-    opencv_image = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
-    resized_opencv_image = cv2.resize(opencv_image, (400, 400))
-    pilImage = Image.fromarray(resized_opencv_image)
+    image_from_base64 = Image.open(BytesIO(base64.b64decode(str(request.json["img_for_detection"]))))
+    numpy_coded_image = np.array(image_from_base64.convert("RGB"))
+    image_for_inference = Image.fromarray(cv2.resize(numpy_coded_image, (400, 400)))
+    final_image = cv2.cvtColor(cv2.resize(numpy_coded_image, (400, 400)), cv2.COLOR_BGR2RGB)
 
     # Convert to JPEG Buffer
     buffered = BytesIO()
-    pilImage.save(buffered, quality=100, format="JPEG")
+    image_for_inference.save(buffered, quality=100, format="JPEG")
 
     app.logger.info("Sending request to Roboflow...")
     multipart_form = MultipartEncoder(fields={'file': ("imageToUpload", buffered.getvalue(), "image/jpeg")})
@@ -117,17 +118,18 @@ def detect_meal():
     if len(roboflow_response["predictions"]) > 0:
         for index, prediction in enumerate(roboflow_response["predictions"]):
             predictions.append(
-                Meal(name=prediction["class"], certainty=prediction["confidence"], description="placeholder").to_dict())
+                Meal(name=prediction["class"], certainty=prediction["confidence"],
+                     description=descriptions[prediction["class"]]).to_dict())
 
             (x1, y1) = (int(prediction["x"] - prediction['width'] / 2), int(prediction["y"] - prediction['height'] / 2))
             (x2, y2) = (int(prediction["x"] + prediction["width"] / 2), int(prediction["y"] + prediction["height"] / 2))
             color = [int(c) for c in COLORS[detection_result.index(prediction["class"])]]
-            cv2.rectangle(opencv_image, (x1, y1), (x2, y2), color, 2)
+            cv2.rectangle(final_image, (x1, y1), (x2, y2), color, 2)
             text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
-            cv2.putText(opencv_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
+            cv2.putText(final_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, color, 2)
 
-    image_debug = base64.b64encode(cv2.imencode('.jpg', opencv_image)[1]).decode()
+    image_debug = base64.b64encode(cv2.imencode('.jpg', final_image)[1]).decode()
     yolo_image = {
         'detection_result': image_debug
     }
