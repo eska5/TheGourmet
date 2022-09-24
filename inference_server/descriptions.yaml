@@ -1,50 +1,35 @@
 ---
 descriptions:
+  brokol:
+    name: "Brokół"
+    calories: 34
+    allergens:
+      - "Brak alergenów"
+  sałatka cezar:
+    name: "Sałatka cezar"
+    calories: 113
+    allergens:
+      - "Mleko"
+      - "Jaja"
+      - "Orzechy"
+      - "Sezam"
   marchewka:
     name: "Marchewka"
     catalog_name:
     calories: 41
     allergens:
       - "IgE sp. F31"
-  spaghetti bolognese:
-    name: "Spaghetti bolognese"
-    calories: 113
-    allergens:
-      - "Mleko"
-      - "Soja"
-      - "Seler"
-      - "Jaja"
-      - "Gluten"
-  pizza:
-    name: "Pizza"
-    calories: 266
-    allergens:
-      - "Gluten"
-      - "Zboża"
-  brokol:
-    name: "Brokół"
-    calories: 34
-    allergens: 
-      - "Brak alergenów"
-  sałatka cezar:
-    name: "Sałatka cezar"
-    calories: 113
-    allergens: 
-      - "Mleko"
-      - "Jaja"
-      - "Orzechy"
-      - "Sezam"
   sernik:
     name: "Sernik"
     calories: 321
-    allergens: 
+    allergens:
       - "Jaja"
       - "Gluten"
       - "Mleko"
   skrzydełka kurczaka:
     name: "Skrzydełka kurczaka"
-    calories: 203 
-    allergens: 
+    calories: 203
+    allergens:
       - "Jaja"
       - "Gluten"
       - "Mleko"
@@ -53,15 +38,15 @@ descriptions:
   tort czekoladowy:
     name: "Tort czekoladowy"
     calories: 370
-    allergens: 
+    allergens:
       - "Orzechy"
       - "Jaja"
       - "Gluten"
       - "Mleko"
   babeczki:
     name: "Babeczki"
-    calories: 305 
-    allergens: 
+    calories: 305
+    allergens:
       - "Gluten"
       - "Orzechy"
       - "Jaja"
@@ -71,7 +56,7 @@ descriptions:
   winniczki:
     name: "Winniczki"
     calories: 285
-    allergens: 
+    allergens:
       - "Brak danych"
   frytki:
     name: "Frytki"
@@ -120,6 +105,12 @@ descriptions:
     allergens: 
       - "Jaja"
       - "Mleko"
+  pizza:
+    name: "Pizza"
+    calories: 266
+    allergens:
+      - "Gluten"
+      - "Zboża"
   zeberka:
     name: "Żeberka"
     calories: 351
@@ -138,6 +129,15 @@ descriptions:
     calories: 220
     allergens: 
       - "Warzywa"
+      - "Gluten"
+  spaghetti bolognese:
+    name: "Spaghetti bolognese"
+    calories: 113
+    allergens:
+      - "Mleko"
+      - "Soja"
+      - "Seler"
+      - "Jaja"
       - "Gluten"
   spaghetti carbonara:
     name: "Spaghetti carbonara"
