@@ -5,3 +5,5 @@ tensorflow-cpu
 numpy
 opencv-python
 pyyaml
+requests
+requests-toolbelt
