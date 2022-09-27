@@ -1,7 +1,6 @@
 __pycache__/GoogleImageScrapper.cpython-37.pyc
+webdriver
 ghostdriver.log
-webdriver/phantomjs.exe
-webdriver/chromedriver_win32.zip
 __pycache__/GoogleImageScrapper.cpython-38.pyc
 __pycache__/*
 webdriver/*.zip
