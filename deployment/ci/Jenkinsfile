@@ -60,7 +60,7 @@ pipeline {
         }
         stage('App startup') {
             steps {
-                sh 'cd /var/data/TheGourmet/deployment/App; sudo docker-compose up -d'
+                sh 'cd /var/data/TheGourmet/deployment/app; sudo docker-compose up -d'
                 echo "App build finished successful"
             }
         }
