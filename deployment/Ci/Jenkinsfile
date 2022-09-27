@@ -5,7 +5,7 @@ pipeline {
         stage('Clean up') {
             steps {
                 buildName "${Name}"
-                sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose down'
+                sh 'cd /var/data/TheGourmet/deployment/App; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
                     if (params.Flutter==true){
@@ -36,7 +36,7 @@ pipeline {
                 expression { return params.Inference_Server }
             }
             steps {
-                sh 'cd /var/data/TheGourmet/inference_server; sudo docker build -t inf_server .'
+                sh 'cd /var/data/TheGourmet/src/inference_server; sudo docker build -t inf_server .'
                 echo "Inference server image build"
             }
         }
@@ -45,7 +45,7 @@ pipeline {
                 expression { return params.Meals_Operator }
             }
             steps {
-                sh 'cd /var/data/TheGourmet/meals_operator; sudo docker build -t meal_opr .'
+                sh 'cd /var/data/TheGourmet/src/meals_operator; sudo docker build -t meal_opr .'
                 echo "Meals operator image build"
             }
         }
@@ -54,13 +54,13 @@ pipeline {
                 expression { return params.Flutter }
             }
             steps {
-                sh 'cd /var/data/TheGourmet/FlutterApp; sudo docker build -t flutter .'
+                sh 'cd /var/data/TheGourmet/src/app_ui; sudo docker build -t flutter .'
                 echo "frontend image build"
             }
         }
         stage('App startup') {
             steps {
-                sh 'cd /var/data/TheGourmet/Operations/App; sudo docker-compose up -d'
+                sh 'cd /var/data/TheGourmet/deployment/App; sudo docker-compose up -d'
                 echo "App build finished successful"
             }
         }
