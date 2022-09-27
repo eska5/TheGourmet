@@ -6,4 +6,6 @@ __pycache__/GoogleImageScrapper.cpython-38.pyc
 __pycache__/*
 webdriver/*.zip
 photos
+meals.txt
+images_sources.txt
 .ipynb_checkpoints/juypter_main-checkpoint.ipynb

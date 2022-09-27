@@ -4,21 +4,16 @@ Created on Sat Jul 18 13:01:02 2020
 
 @author: OHyic
 """
+import io
+import os
+# import helper libraries
+import time
+
+import requests
+from PIL import Image
 # import selenium drivers
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
-
-# import helper libraries
-import time
-import urllib.request
-import os
-import requests
-import io
-from PIL import Image
 
 # custom patch libraries
 import patch
@@ -26,14 +21,14 @@ import patch
 
 class GoogleImageScraper:
     def __init__(
-        self,
-        webdriver_path,
-        image_path,
-        search_key="cat",
-        number_of_images=1,
-        headless=False,
-        min_resolution=(0, 0),
-        max_resolution=(1920, 1080),
+            self,
+            webdriver_path,
+            image_path,
+            search_key="cat",
+            number_of_images=1,
+            headless=False,
+            min_resolution=(0, 0),
+            max_resolution=(1920, 1080),
     ):
         # check parameter types
         image_path = os.path.join(image_path, search_key)
@@ -75,8 +70,8 @@ class GoogleImageScraper:
         self.webdriver_path = webdriver_path
         self.image_path = image_path
         self.url = (
-            "https://www.google.com/search?q=%s&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947"
-            % (search_key)
+                "https://www.google.com/search?q=%s&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947"
+                % (search_key)
         )
         self.headless = headless
         self.min_resolution = min_resolution
@@ -183,10 +178,10 @@ class GoogleImageScraper:
                         image_resolution = image_from_web.size
                         if image_resolution != None:
                             if (
-                                image_resolution[0] < self.min_resolution[0]
-                                or image_resolution[1] < self.min_resolution[1]
-                                or image_resolution[0] > self.max_resolution[0]
-                                or image_resolution[1] > self.max_resolution[1]
+                                    image_resolution[0] < self.min_resolution[0]
+                                    or image_resolution[1] < self.min_resolution[1]
+                                    or image_resolution[0] > self.max_resolution[0]
+                                    or image_resolution[1] > self.max_resolution[1]
                             ):
                                 image_from_web.close()
                                 # print("GoogleImageScraper Notification: %s did not meet resolution requirements."%(image_url))
