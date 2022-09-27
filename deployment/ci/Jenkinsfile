@@ -5,7 +5,7 @@ pipeline {
         stage('Clean up') {
             steps {
                 buildName "${Name}"
-                sh 'cd /var/data/TheGourmet/deployment/App; sudo docker-compose down'
+                sh 'cd /var/data/TheGourmet/deployment/app; sudo docker-compose down'
                 echo 'containers stopped'
                 script{
                     if (params.Flutter==true){
@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Build flutter UI') {
             when {
-                expression { return params.Flutter }
+                expression { return params.UI }
             }
             steps {
                 sh 'cd /var/data/TheGourmet/src/app_ui; sudo docker build -t flutter .'
