@@ -89,7 +89,10 @@ class _LoadImageDialog extends State<LoadImageDialog> {
       // ),
       itemBuilder: (BuildContext context) => <PopupMenuEntry>[
         PopupMenuItem(
-          onTap: () => setPickedImage(context, widget.imageSource1),
+          onTap: () => setPickedImage(
+            context,
+            widget.imageSource1,
+          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

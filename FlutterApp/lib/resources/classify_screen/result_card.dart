@@ -2,7 +2,7 @@ library gourmet.result_card;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:new_ui/resources/classify_screen/sub_screens/results.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
 
 import 'classify_methods.dart';
 
@@ -24,13 +24,19 @@ class CardDetails {
   });
 }
 
-List<CardDetails> resultCards = [
+List<CardDetails> classifyResultCards = [
   CardDetails(color: Colors.blue.shade300, cardNumber: 1),
   CardDetails(color: Colors.blue.shade300, cardNumber: 2),
   CardDetails(color: Colors.blue.shade300, cardNumber: 3)
 ];
 
-Widget createResultCard(CardDetails cardDetails) {
+List<CardDetails> detectionResultCards = [
+  CardDetails(color: Colors.blue.shade300, cardNumber: 1),
+];
+
+Widget createResultCard(CardDetails cardDetails, bool classification) {
+  ValueNotifier<bool> isReady =
+      classification ? ResultScreen.isClassified : ResultScreen.isDetected;
   return Card(
     margin: const EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 5),
     elevation: 10,
@@ -56,7 +62,7 @@ Widget createResultCard(CardDetails cardDetails) {
                   ? mealName(text: cardDetails.mealName, isLoading: false)
                   : mealName(text: cardDetails.mealName, isLoading: true);
             },
-            valueListenable: ResultScreen.isClassified,
+            valueListenable: isReady,
             child: const SizedBox.shrink(),
           ),
           children: <Widget>[
@@ -70,7 +76,7 @@ Widget createResultCard(CardDetails cardDetails) {
                         probability: cardDetails.mealProbability,
                         isLoading: true);
               },
-              valueListenable: ResultScreen.isClassified,
+              valueListenable: isReady,
               child: const SizedBox.shrink(),
             ),
             const SizedBox(
@@ -84,7 +90,7 @@ Widget createResultCard(CardDetails cardDetails) {
                     : mealDescription(
                         text: cardDetails.mealDescription, isLoading: true);
               },
-              valueListenable: ResultScreen.isClassified,
+              valueListenable: isReady,
               child: const SizedBox.shrink(),
             ),
             const SizedBox(

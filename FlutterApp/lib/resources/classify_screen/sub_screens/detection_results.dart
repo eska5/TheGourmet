@@ -8,27 +8,27 @@ import 'package:show_up_animation/show_up_animation.dart';
 import '../../common/load_image_dialog.dart';
 import '../../common/methods.dart';
 import '../result_card.dart';
-import 'load_image.dart';
+import 'classify_results.dart';
 
-class ResultScreen extends StatefulWidget {
+class DetectionResultScreen extends StatefulWidget {
   final PageController controller;
-  static Uint8List? pickedImage;
-  static ValueNotifier<bool> isClassified = ValueNotifier<bool>(false);
+  static Uint8List? detectedImage;
+  static ValueNotifier<bool> isDetected = ValueNotifier<bool>(false);
 
-  const ResultScreen({
+  const DetectionResultScreen({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<ResultScreen> createState() => _ResultScreen();
+  State<DetectionResultScreen> createState() => _DetectionResultScreen();
 }
 
-class _ResultScreen extends State<ResultScreen> {
+class _DetectionResultScreen extends State<DetectionResultScreen> {
   void callSetState() {
     setState(() {
       if (kDebugMode) {
-        print("results rebuild!");
+        print("detection_results rebuild!");
       }
     });
   }
@@ -39,7 +39,7 @@ class _ResultScreen extends State<ResultScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.fastfood_rounded, size: 29),
-        title: const Text('Zobacz wyniki', style: TextStyle(fontSize: 22)),
+        title: const Text('Wyniki detekcji', style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
@@ -83,63 +83,14 @@ class _ResultScreen extends State<ResultScreen> {
               const SizedBox(
                 height: 50,
               ),
-              Stack(
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.transparent,
-                        boxShadow: [
-                          ClassifyLoadImageScreen.pickedImage != null
-                              ? const BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 0.0,
-                                  offset: Offset(0.0,
-                                      0.0), // shadow direction: bottom right
-                                )
-                              : const BoxShadow(color: Colors.transparent)
-                        ],
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: ClassifyLoadImageScreen.pickedImage != null
-                              ? Image.memory(
-                                  ClassifyLoadImageScreen.pickedImage!,
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  'assets/diet.png',
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                )),
-                    ),
-                  ),
-                  Center(
-                    child: LoadImageDialog(
-                      onClick: callSetState,
-                      imageSource1: ImageSource.gallery,
-                      imageSource2: ImageSource.camera,
-                      iconData1: Icons.photo_library_rounded,
-                      iconData2: Icons.camera_alt_rounded,
-                      text1: " Wybierz zdjęcie",
-                      text2: "     Zrób zdjęcie  ",
-                      menuOffset: const Offset(42, 175),
-                      menuWidth: 200,
-                      menuOpacity: 0.0,
-                      menuHeight: 200,
-                      isButton: false,
-                      forClassification: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 220,
-                  ),
-                ],
+              ValueListenableBuilder<bool>(
+                builder: (BuildContext context, bool value, Widget? child) {
+                  return value == true
+                      ? imageBox(isDetected: true)
+                      : imageBox(isDetected: false);
+                },
+                valueListenable: ResultScreen.isDetected,
+                child: const SizedBox.shrink(),
               ),
               const SizedBox(
                 height: 50,
@@ -152,7 +103,8 @@ class _ResultScreen extends State<ResultScreen> {
                   offset: 0.5,
                   child: Column(
                     children: [
-                      for (var card in resultCards) createResultCard(card),
+                      for (var card in detectionResultCards)
+                        createResultCard(card, false),
                       const SizedBox(height: 40),
                       createReportCard(
                           CardDetails(
@@ -170,6 +122,67 @@ class _ResultScreen extends State<ResultScreen> {
               ),
             ]),
       ),
+    );
+  }
+
+  Widget imageBox({required bool isDetected}) {
+    return Stack(
+      children: <Widget>[
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: Colors.transparent,
+              boxShadow: [
+                isDetected == true
+                    ? const BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 10.0,
+                        spreadRadius: 0.0,
+                        offset:
+                            Offset(0.0, 0.0), // shadow direction: bottom right
+                      )
+                    : const BoxShadow(color: Colors.transparent)
+              ],
+            ),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: isDetected == true
+                    ? Image.memory(
+                        DetectionResultScreen.detectedImage!,
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.scaleDown,
+                      )
+                    : Image.asset(
+                        'assets/diet.png',
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      )),
+          ),
+        ),
+        Center(
+          child: LoadImageDialog(
+            onClick: callSetState,
+            imageSource1: ImageSource.gallery,
+            imageSource2: ImageSource.camera,
+            iconData1: Icons.photo_library_rounded,
+            iconData2: Icons.camera_alt_rounded,
+            text1: " Wybierz zdjęcie",
+            text2: "     Zrób zdjęcie  ",
+            menuOffset: const Offset(42, 175),
+            menuWidth: 300,
+            menuOpacity: 0.0,
+            menuHeight: 300,
+            isButton: false,
+            forClassification: true,
+          ),
+        ),
+        const SizedBox(
+          height: 220,
+        ),
+      ],
     );
   }
 }

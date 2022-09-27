@@ -158,6 +158,8 @@ class _SummaryScreen extends State<SummaryScreen> {
               // Send the meal button
               child: generalButton(
                   title: "Wyślij potrawę  ",
+                  width: 245,
+                  height: 60,
                   icon: Icons.send_rounded,
                   color: Colors.deepPurpleAccent,
                   textColor: Colors.white,

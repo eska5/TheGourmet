@@ -49,3 +49,23 @@ void showWarningMessage(dynamic context, dynamic text) {
     displayDuration: const Duration(seconds: 2),
   );
 }
+
+void showInfoMessage(dynamic context, String text, Color backgroundColor) {
+  showTopSnackBar(
+    context,
+    CustomSnackBar.info(
+      icon: const Icon(null),
+      // backgroundColor: color,
+      message: text,
+      backgroundColor: backgroundColor,
+      textStyle: const TextStyle(
+          fontFamily: 'avenir',
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          fontSize: 19),
+    ),
+    displayDuration: const Duration(milliseconds: 500),
+    showOutAnimationDuration: const Duration(seconds: 1),
+    hideOutAnimationDuration: const Duration(milliseconds: 500),
+  );
+}

@@ -64,7 +64,7 @@ def meals_catalog():
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify_photo():
     app.logger.info("Running classification on the image...")
-    decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["mealPhoto"]))))
+    decoded_image = Image.open(BytesIO(base64.b64decode(str(request.json["image"]))))
     opencv_image = cv2.cvtColor(np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR)
     img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
     app.logger.info("Model is loading...")
@@ -89,7 +89,7 @@ def detect_meal():
     app.logger.info("Running YOLO classification on the image...")
 
     app.logger.info("Loading image from base64")
-    image_from_base64 = Image.open(BytesIO(base64.b64decode(str(request.json["img_for_detection"]))))
+    image_from_base64 = Image.open(BytesIO(base64.b64decode(str(request.json["image"]))))
     numpy_coded_image = np.array(image_from_base64.convert("RGB"))
     image_for_inference = Image.fromarray(cv2.resize(numpy_coded_image, (400, 400)))
     final_image = cv2.cvtColor(cv2.resize(numpy_coded_image, (400, 400)), cv2.COLOR_BGR2RGB)
@@ -132,7 +132,7 @@ def detect_meal():
 
     app.logger.info(f"Inference results: {predictions}")
     yolo_image = {
-        'detection_result': base64.b64encode(cv2.imencode('.jpg', final_image)[1]).decode()
+        'result_image': base64.b64encode(cv2.imencode('.jpg', final_image)[1]).decode()
     }
     predictions.insert(0, yolo_image)
     app.logger.info("Detection finished.")

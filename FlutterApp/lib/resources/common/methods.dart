@@ -55,7 +55,6 @@ Future<Uint8List?> pickImage(
       }
 
       imageTemporary = await image.readAsBytes();
-      //categorizeThePhoto(context, imageTemporary);
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print('Failed to pick image: $e');
@@ -63,7 +62,8 @@ Future<Uint8List?> pickImage(
     }
   }
   if (forClassification) {
-    categorizeThePhoto(context, imageTemporary);
+    sendDetectionRequest(context, imageTemporary);
+    sendClassifyRequest(context, imageTemporary);
   }
   return imageTemporary;
 }

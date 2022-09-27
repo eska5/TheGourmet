@@ -102,6 +102,8 @@ class _Screen2State2 extends State<ReportBadResult> {
           alignment: Alignment.bottomCenter,
           child: generalButton(
               title: "Wyslij",
+              width: 245,
+              height: 60,
               icon: Icons.send_rounded,
               color: Colors.deepPurpleAccent,
               textColor: Colors.white,

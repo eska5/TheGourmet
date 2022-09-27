@@ -83,6 +83,8 @@ class Home extends StatelessWidget {
                       textColor: Colors.white,
                       onClicked: () => handleButtonClick(),
                       icon: MyFlutterApp.brain,
+                      width: 245,
+                      height: 60,
                     ),
                   ),
                   const SizedBox(
