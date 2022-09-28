@@ -6,5 +6,9 @@ class Meal:
         self.certainty: float = certainty
 
     def to_dict(self) -> dict:
-        return {"name": self.name, "certainty": str(self.certainty), "calories": self.calories,
-                "allergens": self.allergens}
+        return {
+            "name": self.name,
+            "certainty": str(self.certainty),
+            "calories": self.calories,
+            "allergens": self.allergens,
+        }

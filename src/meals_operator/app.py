@@ -11,7 +11,9 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
-    return app.response_class(status=200, response="App is running.", content_type='application/json')
+    return app.response_class(
+        status=200, response="App is running.", content_type="application/json"
+    )
 
 
 @app.route("/meals", methods=["POST"], strict_slashes=False)
@@ -25,13 +27,18 @@ def meals():
     if meal_photo == "" or meal_name == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=meal_name, coded_image=meal_photo, path=m_operator.NEW_IMAGES_PATH)
+    m_operator.save_image(
+        title=meal_name, coded_image=meal_photo, path=m_operator.NEW_IMAGES_PATH
+    )
     return app.response_class(status=201)
 
 
 @app.route("/suggestions", methods=["GET"], strict_slashes=False)
 def suggestions():
-    return app.response_class(response=json.dumps(m_operator.get_suggestions()), content_type='application/json')
+    return app.response_class(
+        response=json.dumps(m_operator.get_suggestions()),
+        content_type="application/json",
+    )
 
 
 @app.route("/badresult", methods=["POST"], strict_slashes=False)
@@ -42,8 +49,11 @@ def bad_result():
     if bad_result_name == "" or bad_result_photo == "":
         return app.response_class(status=400)
 
-    m_operator.save_image(title=bad_result_name, coded_image=request.json["mealPhoto"],
-                          path=m_operator.BAD_RESULTS_PATH)
+    m_operator.save_image(
+        title=bad_result_name,
+        coded_image=request.json["mealPhoto"],
+        path=m_operator.BAD_RESULTS_PATH,
+    )
     return app.response_class(status=201)
 
 
@@ -54,8 +64,11 @@ def meal_details():
     if meal_details_dict is None:
         return app.response_class(status=404)
 
-    return app.response_class(status=200, response=json.dumps(meal_details_dict),
-                              content_type='application/json')
+    return app.response_class(
+        status=200,
+        response=json.dumps(meal_details_dict),
+        content_type="application/json",
+    )
 
 
 if __name__ == "__main__":
