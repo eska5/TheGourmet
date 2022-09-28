@@ -1,0 +1,30 @@
+# This is a basic workflow that is manually triggered
+
+name: python-code-style-check
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+      - name: Repo checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.BRANCH_NAME }}
+      - name: run style checks
+        run: cd $GITHUB_WORKSPACE/src; make style-check
