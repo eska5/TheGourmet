@@ -17,6 +17,8 @@ jobs:
       steps:
       - name: checkout repo
         uses: actions/checkout@v2
+        with:
+          ref: ${GITHUB_REF##*/}
       - name: recon
         run: cd $GITHUB_WORKSPACE; ls 
       - name: build application
