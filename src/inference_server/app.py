@@ -15,12 +15,13 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from response_type import Meal
 
-app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app = Flask(__name__)  # pylint: disable=C0103
+CORS = CORS(app, resources={r"/*": {"origins": "*"}})
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
 MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
-
+MODEL = None
+LABELS = []
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
     level=logging.INFO,
@@ -28,25 +29,25 @@ logging.basicConfig(
 )
 
 with open("descriptions.yaml", "r", encoding="utf8") as stream:
-    descriptions = yaml.safe_load(stream)["descriptions"]
+    DESCRIPTIONS = yaml.safe_load(stream)["descriptions"]
 
-labels = []
-for key in descriptions.keys():
-    labels.append(key)
+
+for key in DESCRIPTIONS.keys():
+    LABELS.append(key)
 
 
 @app.before_first_request
 def before_first_request():
     app.logger.info("Server is preparing for inference...")
-    global model
-    model = tensorflow.keras.models.load_model("model.h5")
+    global MODEL
+    MODEL = tensorflow.keras.models.load_model("model.h5")
     app.logger.info("Done.")
 
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
     model_status = "Not loaded"
-    if model is not None:
+    if MODEL is not None:
         model_status = "Loaded"
     return app.response_class(
         status=200,
@@ -59,8 +60,8 @@ def app_health_check():
 def meals_catalog():
     app.logger.info("Creating meal catalog...")
     catalog = []
-    for meal in labels:
-        catalog.append(descriptions[meal]["name"])
+    for meal in LABELS:
+        catalog.append(DESCRIPTIONS[meal]["name"])
     return app.response_class(
         response=json.dumps(catalog).encode("utf8"), content_type="application/json"
     )
@@ -75,18 +76,18 @@ def classify_photo():
     )
     img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
     app.logger.info("Model is loading...")
-    predict = model.predict(img)
+    predict = MODEL.predict(img)
     app.logger.info("Model loaded")
 
     predictions = []
 
     app.logger.info("Creating predictions")
-    for i in range(0, 7):
-        name = labels[predict.argmax(axis=1)[0]]
+    for _ in range(0, 7):
+        name = LABELS[predict.argmax(axis=1)[0]]
         certainty = predict[0][[predict.argmax(axis=1)[0]]][0]
         predict[0][[predict.argmax(axis=1)[0]]] = 0
         predictions.append(
-            Meal(certainty=certainty, description=descriptions[name.lower()]).to_dict()
+            Meal(certainty=certainty, description=DESCRIPTIONS[name.lower()]).to_dict()
         )
     app.logger.info("Classification finished.")
     return app.response_class(
@@ -95,7 +96,7 @@ def classify_photo():
 
 
 @app.route("/detection", methods=["POST"], strict_slashes=False)
-def detect_meal():
+def detect_meal():  # pylint: disable=R0914
     app.logger.info("Running YOLO classification on the image...")
 
     app.logger.info("Loading image from base64")
@@ -132,32 +133,38 @@ def detect_meal():
 
     app.logger.info("Drawing result on the new image")
     np.random.seed(42)
-    COLORS = np.random.randint(0, 255, size=(len(detection_result), 3), dtype="uint8")
+    colors = np.random.randint(0, 255, size=(len(detection_result), 3), dtype="uint8")
 
     if roboflow_response["predictions"]:
-        for index, prediction in enumerate(roboflow_response["predictions"]):
+        for prediction in roboflow_response["predictions"]:
             predictions.append(
                 Meal(
                     certainty=prediction["confidence"],
-                    description=descriptions[prediction["class"]],
+                    description=DESCRIPTIONS[prediction["class"]],
                 ).to_dict()
             )
 
-            (x1, y1) = (
+            (x_1, y_1) = (
                 int(prediction["x"] - prediction["width"] / 2),
                 int(prediction["y"] - prediction["height"] / 2),
             )
-            (x2, y2) = (
+            (x_2, y_2) = (
                 int(prediction["x"] + prediction["width"] / 2),
                 int(prediction["y"] + prediction["height"] / 2),
             )
             color = [
-                int(c) for c in COLORS[detection_result.index(prediction["class"])]
+                int(c) for c in colors[detection_result.index(prediction["class"])]
             ]
-            cv2.rectangle(final_image, (x1, y1), (x2, y2), color, 2)
+            cv2.rectangle(final_image, (x_1, y_1), (x_2, y_2), color, 2)
             text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
             cv2.putText(
-                final_image, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2
+                final_image,
+                text,
+                (x_1, y_1 - 5),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.5,
+                color,
+                2,
             )
 
     app.logger.info(f"Inference results: {predictions}")

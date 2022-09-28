@@ -1,4 +1,4 @@
-class Meal:
+class Meal:  # pylint: disable=R0903
     def __init__(self, description: dict, certainty: float):
         self.name: str = description["name"]
         self.calories: int = description["calories"]
