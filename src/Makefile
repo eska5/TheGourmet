@@ -1,5 +1,5 @@
 SOURCES := inference_server
-SEPERATOR := "-------------------------------------------------------------------"
+SEPERATOR := "------------------------------------------------------------------"
 .SILENT: prerequisites style-check
 
 
@@ -10,7 +10,7 @@ prerequisites:
 	sudo apt-get -y install pylint
 
 
-style-check:
+style-check: prerequisites
 	echo $(SEPERATOR)
 	echo "Running mypy type check inside: $(SOURCES)"
 	mypy $(SOURCES) --ignore-missing-imports
