@@ -18,4 +18,4 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       - name: build application
-        run: echo $GITHUB_WORKSPACE
+        run: cd $GITHUB_WORKSPACE/src; make style-check
