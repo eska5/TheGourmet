@@ -27,7 +27,7 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
         with:
-          ref: ${{ env.BRANCH_NAME }}
+          ref: github-actions-style-check
       - name: recon
         run: cd $GITHUB_WORKSPACE; ls
       - name: build application
