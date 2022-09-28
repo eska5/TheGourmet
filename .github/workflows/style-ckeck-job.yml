@@ -22,10 +22,12 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+      - name: Debug
+        run: echo ${{ env.BRANCH_NAME }}
       - name: checkout repo
         uses: actions/checkout@v2
         with:
-          ref: $BRANCH_NAME
+          ref: ${{ env.BRANCH_NAME }}
       - name: recon
         run: cd $GITHUB_WORKSPACE; ls
       - name: build application
