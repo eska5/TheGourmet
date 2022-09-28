@@ -1,7 +1,8 @@
 # This is a basic workflow that is manually triggered
 
 name: python-code-style-check
-
+env:
+ BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
@@ -15,10 +16,12 @@ jobs:
   build:
       runs-on: ubuntu-latest
       steps:
+      - name: test
+        run: echo $GITHUB_REF_NAME; echo $GITHUB_WORKSPACE
       - name: checkout repo
         uses: actions/checkout@v2
         with:
-          ref: ${GITHUB_REF##*/}
+          ref: $GITHUB_REF_NAME
       - name: recon
         run: cd $GITHUB_WORKSPACE; ls 
       - name: build application
