@@ -17,5 +17,7 @@ jobs:
       steps:
       - name: checkout repo
         uses: actions/checkout@v2
+      - name: recon
+        run: cd $GITHUB_WORKSPACE; ls 
       - name: build application
         run: cd $GITHUB_WORKSPACE/src; make style-check
