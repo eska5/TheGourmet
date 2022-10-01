@@ -9,8 +9,8 @@ import 'package:new_ui/resources/classify_screen/result_card.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/classify_results.dart';
 import 'package:new_ui/resources/classify_screen/sub_screens/detection_results.dart';
 
-import '../../screens/report.dart';
 import '../common/snack_bars.dart';
+import 'sub_screens/report.dart';
 
 String classifyResponse = "";
 int classifyCardIndex = 0;
@@ -151,5 +151,53 @@ void getMoreResults(int amount, Function onClick, BuildContext context) {
     onClick();
   } else {
     showErrorMessage(context, "Osiągnięto limit propozycji");
+  }
+}
+
+Future sendBadResultRequest(BuildContext context, Uint8List? image,
+    String goodLabel, String badLabel) async {
+  final uri = Uri.parse("https://gourmetapp.net/api/v1/badresult");
+  final headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  };
+
+  String base64Image = base64Encode(image!);
+  Map<String, dynamic> body = {
+    'modeloutput': badLabel,
+    'useroutput': goodLabel,
+    'mealPhoto': base64Image
+  };
+  String jsonBody = json.encode(body);
+  final encoding = Encoding.getByName('utf-8');
+
+  print(goodLabel + " " + badLabel);
+  if (goodLabel == "") {
+    showErrorMessage(context, "Niepoprawne dane");
+  } else {
+    try {
+      var response = await http
+          .post(
+            uri,
+            headers: headers,
+            body: jsonBody,
+            encoding: encoding,
+          )
+          .timeout(Duration(seconds: 1));
+
+      int statusCode = response.statusCode;
+
+      if (statusCode == 500) {
+        showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
+      } else if (statusCode == 201) {
+        showSuccessMessage(context, "Pomyślnie wysłano zgłoszenie");
+      } else if (statusCode == 400) {
+        showErrorMessage(context, "Niepoprawne dane");
+      }
+    } on HttpException {
+      if (kDebugMode) {
+        print("error");
+      }
+    }
   }
 }
