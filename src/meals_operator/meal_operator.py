@@ -27,7 +27,7 @@ def save_image(title: str, coded_image: str, path: str):
     decoded_image = Image.open(BytesIO(base64.b64decode(str(coded_image))))
     image_rgb = decoded_image.convert("RGB")
     image_rgb.save(f"{path}/{title}/{image_number}.jpg")
-    image_number = int(image_number) + 1
+    image_number = str(int(image_number) + 1)
 
     # change the number of files in number.txt
     with open(f"{path}/{title}/number.txt", "w", encoding="utf8") as file:

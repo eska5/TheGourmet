@@ -3,11 +3,11 @@ import json
 import logging
 from io import BytesIO
 
+import yaml
+import requests
 import cv2
 import numpy as np
-import requests
 import tensorflow
-import yaml
 from PIL import Image
 from flask import Flask, request
 from flask_cors import CORS
