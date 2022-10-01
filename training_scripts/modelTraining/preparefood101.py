@@ -3,26 +3,30 @@ import shutil
 
 
 if __name__ == "__main__":
-    originalPath = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
+    ORIGINAL_PATH = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
     try:
-        os.mkdir(originalPath + "train")
-    except:
+        os.mkdir(ORIGINAL_PATH + "train")
+    except Exception as e:
+        print(e)
         pass
     try:
-        os.mkdir(originalPath + "test")
-    except:
+        os.mkdir(ORIGINAL_PATH + "test")
+    except Exception as e:
+        print(e)
         pass
     try:
-        os.mkdir(originalPath + "validation")
-    except:
+        os.mkdir(ORIGINAL_PATH + "validation")
+    except Exception as e:
+        print(e)
         pass
 
     # train data set
 
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "train\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "train\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
@@ -31,7 +35,7 @@ if __name__ == "__main__":
                 break
             else:
                 newImgPath = (
-                    originalPath + "train\\" + category + "\\" + str(counter) + ".jpg"
+                    ORIGINAL_PATH + "train\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             counter += 1
@@ -40,15 +44,16 @@ if __name__ == "__main__":
     # test data set
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "test\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "test\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
             if counter > 699:
                 newImgPath = (
-                    originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
+                    ORIGINAL_PATH + "test\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             if counter == 899:
@@ -59,15 +64,16 @@ if __name__ == "__main__":
     # validation data set
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "validation\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "validation\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
             if counter > 899:
                 newImgPath = (
-                    originalPath
+                    ORIGINAL_PATH
                     + "validation\\"
                     + category
                     + "\\"

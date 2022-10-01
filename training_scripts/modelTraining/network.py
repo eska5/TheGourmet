@@ -131,9 +131,9 @@ pretrained_model.trainable = False
 # Train
 inputs = pretrained_model.input
 
-x = tf.keras.layers.Dense(128, activation="relu")(pretrained_model.output)
-x = tf.keras.layers.Dense(128, activation="relu")(x)
-outputs = tf.keras.layers.Dense(30, activation="softmax")(x)
+model_output = tf.keras.layers.Dense(128, activation="relu")(pretrained_model.output)
+model_output = tf.keras.layers.Dense(128, activation="relu")(model_output)
+outputs = tf.keras.layers.Dense(30, activation="softmax")(model_output)
 
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
