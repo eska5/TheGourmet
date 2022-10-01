@@ -4,6 +4,7 @@ import shutil
 
 if __name__ == "__main__":
     ORIGINAL_PATH = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
+    IMAGES_PATH = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
     try:
         os.mkdir(ORIGINAL_PATH + "train")
     except OSError as err:
@@ -25,15 +26,14 @@ if __name__ == "__main__":
         except OSError as err:
             pass
         counter = 0
-        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
+        imagesPath = IMAGES_PATH + category
         for imgPath in os.listdir(imagesPath):
             if counter == 700:
                 break
-            else:
-                newImgPath = (
-                    ORIGINAL_PATH + "train\\" + category + "\\" + str(counter) + ".jpg"
-                )
-                shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
+            newImgPath = (
+                ORIGINAL_PATH + "train\\" + category + "\\" + str(counter) + ".jpg"
+            )
+            shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             counter += 1
     print("train set done")
 
@@ -44,7 +44,7 @@ if __name__ == "__main__":
         except OSError as err:
             pass
         counter = 0
-        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
+        imagesPath = IMAGES_PATH + category
         for imgPath in os.listdir(imagesPath):
             if counter > 699:
                 newImgPath = (
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         except OSError as err:
             pass
         counter = 0
-        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
+        imagesPath = IMAGES_PATH + category
         for imgPath in os.listdir(imagesPath):
             if counter > 899:
                 newImgPath = (
