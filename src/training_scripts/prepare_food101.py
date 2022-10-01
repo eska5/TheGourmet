@@ -5,7 +5,9 @@ import shutil
 
 if __name__ == "__main__":
     ORIGINAL_PATH = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
-    IMAGES_PATH = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
+    IMAGES_PATH = (
+        "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
+    )
     try:
         os.mkdir(ORIGINAL_PATH + "train")
     except OSError as err:
@@ -21,7 +23,9 @@ if __name__ == "__main__":
 
     # train data set
 
-    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
+    for category in os.listdir(
+        "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
+    ):
         try:
             os.mkdir(ORIGINAL_PATH + "train\\" + category)
         except OSError as err:
@@ -39,7 +43,9 @@ if __name__ == "__main__":
     print("train set done")
 
     # test data set
-    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
+    for category in os.listdir(
+        "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
+    ):
         try:
             os.mkdir(ORIGINAL_PATH + "test\\" + category)
         except OSError as err:
@@ -58,7 +64,9 @@ if __name__ == "__main__":
     print("test set done")
 
     # validation data set
-    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
+    for category in os.listdir(
+        "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"
+    ):
         try:
             os.mkdir(ORIGINAL_PATH + "validation\\" + category)
         except OSError as err:
