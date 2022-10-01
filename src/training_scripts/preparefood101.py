@@ -30,7 +30,7 @@ if __name__ == "__main__":
                 break
             else:
                 newImgPath = (
-                        originalPath + "train\\" + category + "\\" + str(counter) + ".jpg"
+                    originalPath + "train\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             counter += 1
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         for imgPath in os.listdir(imagesPath):
             if counter > 349:
                 newImgPath = (
-                        originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
+                    originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             if counter == 449:
@@ -66,12 +66,12 @@ if __name__ == "__main__":
         for imgPath in os.listdir(imagesPath):
             if counter > 449:
                 newImgPath = (
-                        originalPath
-                        + "validation\\"
-                        + category
-                        + "\\"
-                        + str(counter)
-                        + ".jpg"
+                    originalPath
+                    + "validation\\"
+                    + category
+                    + "\\"
+                    + str(counter)
+                    + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             if counter == 499:

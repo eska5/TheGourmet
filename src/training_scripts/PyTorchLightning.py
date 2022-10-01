@@ -1,4 +1,5 @@
 import gc
+
 # from torch.utils.data import Dataset
 import warnings
 
@@ -59,9 +60,9 @@ gc.collect()
 #             optimizer.step()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     torch.cuda.empty_cache()
-    warnings.filterwarnings('ignore')
+    warnings.filterwarnings("ignore")
     print(torch.cuda.memory_allocated())
 
     if torch.cuda.is_available():
@@ -69,7 +70,7 @@ if __name__ == '__main__':
     else:
         device = torch.device("cpu")
 
-    print(f'Using {device} for inference')
+    print(f"Using {device} for inference")
 
     # model_type = "GPUNet-D2"  # select one from above
     # select either fp32 of fp16 (for better performance on GPU)
@@ -87,26 +88,37 @@ if __name__ == '__main__':
     basicPathToData = "C:\\Users\\kubas\\OneDrive\\Desktop\\GourmetData\\"
 
     transform = transforms.Compose(
-        [transforms.RandomRotation(30), transforms.RandomHorizontalFlip(), transforms.RandomAffine(15),
-         transforms.Resize(224), transforms.ToTensor()])
+        [
+            transforms.RandomRotation(30),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomAffine(15),
+            transforms.Resize(224),
+            transforms.ToTensor(),
+        ]
+    )
 
     datasetTrain = datasets.ImageFolder(
-        basicPathToData + "convertedTrain", transform=transform)
+        basicPathToData + "convertedTrain", transform=transform
+    )
 
     datasetTest = datasets.ImageFolder(
-        basicPathToData + "convertedTest", transform=transform)
+        basicPathToData + "convertedTest", transform=transform
+    )
 
     datasetValidation = datasets.ImageFolder(
-        basicPathToData + "convertedValidation", transform=transform)
+        basicPathToData + "convertedValidation", transform=transform
+    )
 
     traindataloader = torch.utils.data.DataLoader(
-        datasetTrain, batch_size=32, shuffle=True, num_workers=1, pin_memory=True)
+        datasetTrain, batch_size=32, shuffle=True, num_workers=1, pin_memory=True
+    )
 
     validationdataloader = torch.utils.data.DataLoader(
-        datasetValidation, batch_size=32, shuffle=True, num_workers=1, pin_memory=True)
+        datasetValidation, batch_size=32, shuffle=True, num_workers=1, pin_memory=True
+    )
     print(torch.cuda.memory_allocated())
 
-    model = EfficientNet.from_pretrained('efficientnet-b3')
+    model = EfficientNet.from_pretrained("efficientnet-b3")
 
     model._dropout = torch.nn.Dropout(0.5)
     model._fc = torch.nn.Linear(2048, 101)
@@ -120,12 +132,12 @@ if __name__ == '__main__':
 
     cuda = True
     epochs = 25
-    model_name = 'effnetB3.pt'
-    optimizer = torch.optim.Adam(
-        model.parameters(), lr=4e-4, weight_decay=0.001)
+    model_name = "effnetB3.pt"
+    optimizer = torch.optim.Adam(model.parameters(), lr=4e-4, weight_decay=0.001)
     criterion = torch.nn.CrossEntropyLoss()
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
-                                                           'min', factor=0.1, patience=2, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, "min", factor=0.1, patience=2, verbose=True
+    )
 
     writer = SummaryWriter()  # for TENSORBOARD
     early_stop_count = 0
@@ -141,7 +153,7 @@ if __name__ == '__main__':
         model.train()
         correct = 0
         train_loss = 0.0
-        tbar = tqdm(traindataloader, dest='Training', position=0, leave=True)
+        tbar = tqdm(traindataloader, dest="Training", position=0, leave=True)
         for i, (inp, lbl) in enumerate(tbar):
             optimizer.zero_grad()
             if cuda:
@@ -154,18 +166,17 @@ if __name__ == '__main__':
             loss.backward()
             optimizer.step()
             tbar.set_description(
-                f"Epoch: {epoch + 1}, loss: {loss.item():.5f}, acc: {100.0 * correct / ((i + 1) * traindataloader.batch_size):.4f}%")
+                f"Epoch: {epoch + 1}, loss: {loss.item():.5f}, acc: {100.0 * correct / ((i + 1) * traindataloader.batch_size):.4f}%"
+            )
             train_acc = 100.0 * correct / len(traindataloader.dataset)
-            train_loss /= (len(traindataloader.dataset) /
-                           traindataloader.batch_size)
+            train_loss /= len(traindataloader.dataset) / traindataloader.batch_size
 
         # Validation
         model.eval()
         with torch.no_grad():
             correct = 0
             val_loss = 0.0
-            vbar = tqdm(validationdataloader,
-                        desc="Validation", position=0, leave=True)
+            vbar = tqdm(validationdataloader, desc="Validation", position=0, leave=True)
             for i, (inp, lbl) in enumerate(vbar):
                 if cuda:
                     inp, lbl = inp.cuda(), lbl.cuda()
@@ -174,12 +185,13 @@ if __name__ == '__main__':
                 out = out.argmax(dim=1)
                 correct += (out == lbl).sum().item()
             val_acc = 100.0 * correct / len(validationdataloader.dataset)
-            val_loss /= (len(validationdataloader.dataset) /
-                         validationdataloader.batch_size)
+            val_loss /= (
+                len(validationdataloader.dataset) / validationdataloader.batch_size
+            )
 
-        print(f'\nEpoch: {epoch + 1}/{epochs}')
-        print(f'Train loss: {train_loss}, Train Accuracy: {train_acc}')
-        print(f'Validation loss: {val_loss}, Validation Accuracy: {val_acc}\n')
+        print(f"\nEpoch: {epoch + 1}/{epochs}")
+        print(f"Train loss: {train_loss}, Train Accuracy: {train_acc}")
+        print(f"Validation loss: {val_loss}, Validation Accuracy: {val_acc}\n")
 
         scheduler.step(val_loss)
 
@@ -193,15 +205,16 @@ if __name__ == '__main__':
             best = val_acc
             torch.save(model, model_name)
             early_stop_count = 0
-            print('Accuracy Improved, model saved.\n')
+            print("Accuracy Improved, model saved.\n")
         else:
             early_stop_count += 1
 
         if early_stop_count == ES_patience:
-            print('Early Stopping Initiated...')
+            print("Early Stopping Initiated...")
             print(
-                f'Best Accuracy achieved: {best:.2f}% at epoch:{epoch + 1 - ES_patience}')
-            print(f'Model saved as {model_name}')
+                f"Best Accuracy achieved: {best:.2f}% at epoch:{epoch + 1 - ES_patience}"
+            )
+            print(f"Model saved as {model_name}")
         break
 
     writer.flush()
