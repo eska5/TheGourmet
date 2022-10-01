@@ -21,6 +21,6 @@ style-check: prerequisites
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
-	pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603
+	pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603,C0411
 	echo "Successfully finished pylint code smells check inside: $(SOURCES)"
 	echo $(SEPERATOR)
