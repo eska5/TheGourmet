@@ -1,9 +1,12 @@
-from pathlib import Path
-
-import pandas as pd
+from sqlalchemy import true
 import tensorflow as tf
 import wandb
 from wandb.keras import WandbCallback
+from pathlib import Path
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 
 wandb.init(project="PhotoParamsTests", entity="gourmet")
 
@@ -12,13 +15,13 @@ print("Num GPUs Available: ", len(tf.config.list_physical_devices("GPU")))
 tf.config.threading.set_inter_op_parallelism_threads(0)
 tf.config.threading.set_intra_op_parallelism_threads(0)
 
-train_dir = Path("D:\\naszeJedzenie\\convertedTrain")
+train_dir = Path("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain")
 train_filepaths = list(train_dir.glob(r"**/*.jpg"))
 
-test_dir = Path("D:\\naszeJedzenie\\convertedTest")
+test_dir = Path("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest")
 test_filepaths = list(test_dir.glob(r"**/*.jpg"))
 
-val_dir = Path("D:\\naszeJedzenie\\convertedValidation")
+val_dir = Path("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation")
 val_filepaths = list(val_dir.glob(r"**/*.jpg"))
 
 
@@ -59,11 +62,11 @@ print(f"Labels: {val_df.Label.unique()}")
 df_unique = train_df.copy().drop_duplicates(subset=["Label"]).reset_index()
 
 train_generator = tf.keras.preprocessing.image.ImageDataGenerator(
-    preprocessing_function=tf.keras.applications.mobilenet_v3.preprocess_input
+    preprocessing_function=tf.keras.applications.efficientnet_v2.preprocess_input
 )
 
 test_generator = tf.keras.preprocessing.image.ImageDataGenerator(
-    preprocessing_function=tf.keras.applications.mobilenet_v3.preprocess_input
+    preprocessing_function=tf.keras.applications.efficientnet_v2.preprocess_input
 )
 
 train_images = train_generator.flow_from_dataframe(
@@ -114,36 +117,35 @@ test_images = test_generator.flow_from_dataframe(
 )
 
 # Load the pretained model
-pretrained_model = tf.keras.applications.MobileNetV3Large(
+pretrained_model = tf.keras.applications.efficientnet_v2.EfficientNetV2L(
     input_shape=(400, 400, 3),
     include_top=False,
     weights="imagenet",
     input_tensor=None,
     pooling="avg",
-    classes=10,
+    classes=30,
     classifier_activation="softmax",
 )
 pretrained_model.trainable = False
 
 # Train
-
 inputs = pretrained_model.input
 
-x = tf.keras.layers.Dense(128, activation="relu")(pretrained_model.output)
-x = tf.keras.layers.Dense(128, activation="relu")(x)
-outputs = tf.keras.layers.Dense(10, activation="softmax")(x)
+model_output = tf.keras.layers.Dense(128, activation="relu")(pretrained_model.output)
+model_output = tf.keras.layers.Dense(128, activation="relu")(model_output)
+outputs = tf.keras.layers.Dense(30, activation="softmax")(model_output)
 
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
 model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
-callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=1)
+callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=8)
 
 history = model.fit(
     train_images,
     validation_data=val_images,
-    batch_size=16,  # jak to wpływa na proces uczenia?
-    epochs=30,
+    batch_size=16,
+    epochs=50,
     callbacks=[WandbCallback(), callback],
 )
 

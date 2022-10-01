@@ -1,72 +1,79 @@
 import os
 import shutil
 
+
 if __name__ == "__main__":
-    originalPath = "D:\\naszeJedzenie\\"
+    ORIGINAL_PATH = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
     try:
-        os.mkdir(originalPath + "train")
-    except:
+        os.mkdir(ORIGINAL_PATH + "train")
+    except Exception as e:
+        print(e)
         pass
     try:
-        os.mkdir(originalPath + "test")
-    except:
+        os.mkdir(ORIGINAL_PATH + "test")
+    except Exception as e:
+        print(e)
         pass
     try:
-        os.mkdir(originalPath + "validation")
-    except:
+        os.mkdir(ORIGINAL_PATH + "validation")
+    except Exception as e:
+        print(e)
         pass
 
     # train data set
 
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "train\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "train\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter == 350:
+            if counter == 700:
                 break
             else:
                 newImgPath = (
-                    originalPath + "train\\" + category + "\\" + str(counter) + ".jpg"
+                    ORIGINAL_PATH + "train\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
             counter += 1
     print("train set done")
 
     # test data set
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "test\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "test\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 349:
+            if counter > 699:
                 newImgPath = (
-                    originalPath + "test\\" + category + "\\" + str(counter) + ".jpg"
+                    ORIGINAL_PATH + "test\\" + category + "\\" + str(counter) + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 449:
+            if counter == 899:
                 break
             counter += 1
     print("test set done")
 
     # validation data set
-    for category in os.listdir("D:\\DATASET\\"):
+    for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
-            os.mkdir(originalPath + "validation\\" + category)
-        except:
+            os.mkdir(ORIGINAL_PATH + "validation\\" + category)
+        except Exception as e:
+            print(e)
             pass
         counter = 0
-        imagesPath = "D:\\DATASET\\" + category
+        imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
         for imgPath in os.listdir(imagesPath):
-            if counter > 449:
+            if counter > 899:
                 newImgPath = (
-                    originalPath
+                    ORIGINAL_PATH
                     + "validation\\"
                     + category
                     + "\\"
@@ -74,7 +81,7 @@ if __name__ == "__main__":
                     + ".jpg"
                 )
                 shutil.copyfile(imagesPath + "\\" + imgPath, newImgPath)
-            if counter == 499:
+            if counter == 999:
                 break
             counter += 1
     print("validation set done")
