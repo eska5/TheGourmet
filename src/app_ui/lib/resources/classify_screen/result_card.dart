@@ -319,9 +319,3 @@ Widget createReportCard(
     ),
   );
 }
-
-Widget reportCardContent() {
-  return Row(
-    children: [],
-  );
-}

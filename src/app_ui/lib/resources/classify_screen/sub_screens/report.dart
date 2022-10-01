@@ -1,18 +1,15 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:http/http.dart' as http;
-import 'package:new_ui/resources/add_screen/sub_screens/label_meal.dart';
 import 'package:new_ui/resources/common/button.dart';
-import 'package:new_ui/resources/common/snack_bars.dart';
 
-import '../resources/add_screen/sub_screens/load_image.dart';
-import '../resources/common/suggestions.dart';
+import '../../../screens/classify.dart';
+import '../../common/suggestions.dart';
+import '../classify_methods.dart';
+import '../result_card.dart';
+import 'load_image.dart';
 
 String responseTitle = "";
 String responseText1 = "";
@@ -34,8 +31,8 @@ class _Screen2State2 extends State<ReportBadResult> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Zgłoś potrawę'),
-        backgroundColor: Colors.green[600],
+        title: const Text('Podaj poprawny wynik'),
+        backgroundColor: const Color(0xFFFE9901),
         leading: GestureDetector(
           child: Icon(
             Icons.arrow_back_rounded,
@@ -96,67 +93,80 @@ class _Screen2State2 extends State<ReportBadResult> {
           ),
         ),
         const SizedBox(
-          height: 400,
+          height: 300,
+        ),
+        Center(
+          child: SizedBox(
+            height: 45,
+            width: 220,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                elevation: 5,
+                primary: Colors.deepPurpleAccent,
+                onPrimary: Colors.white,
+                textStyle: const TextStyle(fontSize: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0)),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(Icons.info_outline_rounded, size: 28),
+                  SizedBox(width: 10),
+                  Text("Czemu to służy?"),
+                ],
+              ),
+              onPressed: () => displayDialog(context),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 50,
         ),
         Align(
-          alignment: Alignment.bottomCenter,
-          child: generalButton(
+            alignment: Alignment.bottomCenter,
+            child: generalButton(
               title: "Wyslij",
               width: 245,
               height: 60,
               icon: Icons.send_rounded,
-              color: Colors.deepPurpleAccent,
+              color: Colors.green.shade600,
               textColor: Colors.white,
-              onClicked: () => sendReport(
-                  context,
-                  AddLoadImageScreen.pickedImage,
-                  LabelMealScreen.mealLabel,
-                  inputText.text)),
-        ),
+              onClicked: () => sendBadResultRequest(
+                context,
+                ClassifyLoadImageScreen.pickedImage,
+                inputText.text,
+                ClassifyImage.isClassificationSet == true
+                    ? classifyResultCards[0].mealName
+                    : detectionResultCards[0].mealName,
+              ),
+            )),
       ]),
     );
   }
 }
 
-Future sendReport(BuildContext context, Uint8List? image, String goodLabel,
-    String badLabel) async {
-  final uri = Uri.parse("https://gourmetapp.net/api/v1/badresult");
-  final headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
-  };
-
-  String base64Image = base64Encode(image!);
-  Map<String, dynamic> body = {
-    'modeloutput': badLabel,
-    'useroutput': goodLabel,
-    'mealPhoto': base64Image
-  };
-  String jsonBody = json.encode(body);
-  final encoding = Encoding.getByName('utf-8');
-
-  try {
-    var response = await http
-        .post(
-          uri,
-          headers: headers,
-          body: jsonBody,
-          encoding: encoding,
-        )
-        .timeout(Duration(seconds: 1));
-
-    int statusCode = response.statusCode;
-
-    if (statusCode == 500) {
-      showErrorMessage(context, "Wystąpił błąd w komunikacji z serwerem");
-    } else if (statusCode == 201) {
-      showSuccessMessage(context, "Pomyślnie wysłano zgłoszenie");
-    } else if (statusCode == 400) {
-      showErrorMessage(context, "Niepoprawne dane");
-    }
-  } on HttpException {
-    if (kDebugMode) {
-      print("error");
-    }
-  }
+Future<void> displayDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Czemu to służy?'),
+        content: const Text(
+            'Jeśli powiesz nam co tak naprawdę jest na talerzu to zapiszemy twoje zgłoszenie, a następnie użyjemy do ulepszenia modelu w przyszłych treningach'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Rozumiem'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
