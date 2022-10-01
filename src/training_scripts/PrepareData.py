@@ -79,7 +79,7 @@ for category in os.listdir(PATH_TEST):
                 "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category + "\\" + imgPath, im
             )
         except Exception as e:
-            print(e)
+            print
             pass
 
 print("DONE")

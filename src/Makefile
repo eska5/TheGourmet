@@ -17,7 +17,7 @@ style-check: prerequisites
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
-	black $(SOURCES) --check
+	black $(SOURCES)
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
