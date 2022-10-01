@@ -1,4 +1,4 @@
-SOURCES := inference_server meals_operator
+SOURCES := inference_server meals_operator training_scripts
 SEPERATOR := "------------------------------------------------------------------"
 .SILENT: prerequisites style-check
 
@@ -17,7 +17,7 @@ style-check: prerequisites
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
-	black $(SOURCES) --check
+	black $(SOURCES)
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
