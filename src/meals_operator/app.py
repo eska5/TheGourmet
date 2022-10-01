@@ -5,8 +5,8 @@ from flask_cors import CORS
 
 import meal_operator as m_operator
 
-app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app = Flask(__name__)  # pylint: disable=C0103
+CORS = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
@@ -19,8 +19,8 @@ def app_health_check():
 @app.route("/meals", methods=["POST"], strict_slashes=False)
 def meals():
     try:
-        meal_name = request.json["mealName"]
-        meal_photo = request.json["mealPhoto"]
+        meal_name: str = request.json["mealName"]
+        meal_photo: str = request.json["mealPhoto"]
     except KeyError:
         return app.response_class(status=400)
 

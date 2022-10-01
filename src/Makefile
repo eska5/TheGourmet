@@ -1,4 +1,4 @@
-SOURCES := inference_server
+SOURCES := inference_server meals_operator
 SEPERATOR := "------------------------------------------------------------------"
 .SILENT: prerequisites style-check
 
@@ -13,7 +13,7 @@ prerequisites:
 style-check: prerequisites
 	echo $(SEPERATOR)
 	echo "Running mypy type check inside: $(SOURCES)"
-	mypy $(SOURCES) --ignore-missing-imports
+	mypy $(SOURCES) --ignore-missing-imports --show-error-codes
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
@@ -21,7 +21,7 @@ style-check: prerequisites
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
-	pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603
+	pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603,C0411
 	echo "Successfully finished pylint code smells check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 
