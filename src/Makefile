@@ -1,4 +1,4 @@
-SOURCES := inference_server meals_operator DeepLearning
+SOURCES := inference_server meals_operator training_scripts
 SEPERATOR := "------------------------------------------------------------------"
 .SILENT: prerequisites style-check
 
