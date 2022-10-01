@@ -6,18 +6,15 @@ if __name__ == "__main__":
     ORIGINAL_PATH = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\"
     try:
         os.mkdir(ORIGINAL_PATH + "train")
-    except Exception as e:
-        print(e)
+    except OSError as err:
         pass
     try:
         os.mkdir(ORIGINAL_PATH + "test")
-    except Exception as e:
-        print(e)
+    except OSError as err:
         pass
     try:
         os.mkdir(ORIGINAL_PATH + "validation")
-    except Exception as e:
-        print(e)
+    except OSError as err:
         pass
 
     # train data set
@@ -25,8 +22,7 @@ if __name__ == "__main__":
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
             os.mkdir(ORIGINAL_PATH + "train\\" + category)
-        except Exception as e:
-            print(e)
+        except OSError as err:
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
@@ -45,8 +41,7 @@ if __name__ == "__main__":
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
             os.mkdir(ORIGINAL_PATH + "test\\" + category)
-        except Exception as e:
-            print(e)
+        except OSError as err:
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category
@@ -65,8 +60,7 @@ if __name__ == "__main__":
     for category in os.listdir("C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\"):
         try:
             os.mkdir(ORIGINAL_PATH + "validation\\" + category)
-        except Exception as e:
-            print(e)
+        except OSError as err:
             pass
         counter = 0
         imagesPath = "C:\\Users\\kubas\\Downloads\\Telegram Desktop\\Telegram Desktop\\DATASET\\" + category

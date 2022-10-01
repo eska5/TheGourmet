@@ -11,7 +11,7 @@ PATH_TEST = "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\test\\"
 
 try:
     os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain")
-except:
+except OSError as err:
     pass
 
 for category in os.listdir(PATH_TRAINING):
@@ -20,8 +20,7 @@ for category in os.listdir(PATH_TRAINING):
     print(imagesPath)
     try:
         os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain\\" + category)
-    except Exception as e:
-        print(e)
+    except  OSError as err:
         pass
     for imgPath in os.listdir(imagesPath):
         print(imgPath)
@@ -34,16 +33,16 @@ for category in os.listdir(PATH_TRAINING):
 
 try:
     os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation")
-except Exception as e:
-    print(e)
+except OSError as err:
+    pass
 for category in os.listdir(PATH_VALIDATION):
     CATEGORIES.append(category)
     imagesPath = os.path.join(PATH_VALIDATION, category)
     print(imagesPath)
     try:
         os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\" + category)
-    except Exception as e:
-        print(e)
+    except OSError as err:
+        pass
     for imgPath in os.listdir(imagesPath):
         print(imgPath)
         try:
@@ -54,21 +53,21 @@ for category in os.listdir(PATH_VALIDATION):
                 "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\" + category + "\\" + imgPath,
                 im,
             )
-        except Exception as e:
-            print(e)
+        except OSError as err:
+            pass
 
 try:
     os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest")
-except Exception as e:
-    print(e)
+except OSError as err:
+    pass
 for category in os.listdir(PATH_TEST):
     CATEGORIES.append(category)
     imagesPath = os.path.join(PATH_TEST, category)
     print(imagesPath)
     try:
         os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category)
-    except Exception as e:
-        print(e)
+    except OSError as err:
+        pass
     for imgPath in os.listdir(imagesPath):
         print(imgPath)
         try:
@@ -78,8 +77,7 @@ for category in os.listdir(PATH_TEST):
             cv2.imwrite(
                 "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category + "\\" + imgPath, im
             )
-        except Exception as e:
-            print
+        except OSError as err:
             pass
 
 print("DONE")
