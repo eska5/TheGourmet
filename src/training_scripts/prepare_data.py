@@ -19,8 +19,10 @@ for category in os.listdir(PATH_TRAINING):
     imagesPath = os.path.join(PATH_TRAINING, category)
     print(imagesPath)
     try:
-        os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain\\" + category)
-    except  OSError as err:
+        os.mkdir(
+            "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain\\" + category
+        )
+    except OSError as err:
         pass
     for imgPath in os.listdir(imagesPath):
         print(imgPath)
@@ -28,7 +30,11 @@ for category in os.listdir(PATH_TRAINING):
         opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
         im = cv2.resize(opencvImage, (400, 400))
         cv2.imwrite(
-            "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain\\" + category + "\\" + imgPath, im
+            "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTrain\\"
+            + category
+            + "\\"
+            + imgPath,
+            im,
         )
 
 try:
@@ -40,7 +46,10 @@ for category in os.listdir(PATH_VALIDATION):
     imagesPath = os.path.join(PATH_VALIDATION, category)
     print(imagesPath)
     try:
-        os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\" + category)
+        os.mkdir(
+            "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\"
+            + category
+        )
     except OSError as err:
         pass
     for imgPath in os.listdir(imagesPath):
@@ -50,7 +59,10 @@ for category in os.listdir(PATH_VALIDATION):
             opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
             im = cv2.resize(opencvImage, (400, 400))
             cv2.imwrite(
-                "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\" + category + "\\" + imgPath,
+                "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedValidation\\"
+                + category
+                + "\\"
+                + imgPath,
                 im,
             )
         except OSError as err:
@@ -65,7 +77,9 @@ for category in os.listdir(PATH_TEST):
     imagesPath = os.path.join(PATH_TEST, category)
     print(imagesPath)
     try:
-        os.mkdir("C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category)
+        os.mkdir(
+            "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category
+        )
     except OSError as err:
         pass
     for imgPath in os.listdir(imagesPath):
@@ -75,7 +89,11 @@ for category in os.listdir(PATH_TEST):
             opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
             im = cv2.resize(opencvImage, (400, 400))
             cv2.imwrite(
-                "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\" + category + "\\" + imgPath, im
+                "C:\\Users\\kubas\\OneDrive\\Desktop\\DATA\\convertedTest\\"
+                + category
+                + "\\"
+                + imgPath,
+                im,
             )
         except OSError as err:
             pass
