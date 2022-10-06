@@ -19,7 +19,7 @@ app = Flask(__name__)  # pylint: disable=C0103
 CORS = CORS(app, resources={r"/*": {"origins": "*"}})
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
-MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
+MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/7"
 MODEL = None
 LABELS = []
 logging.basicConfig(
