@@ -1,5 +1,4 @@
 import pytest
-import os
 from app import app
 import meal_operator as m_operator
 
@@ -9,8 +8,8 @@ def client():
     app.config["TESTING"] = True
 
     with app.app_context():
-        with app.test_client() as client:
-            yield client
+        with app.test_client() as flask_client:
+            yield flask_client
 
 
 def test_app_health_check(client):
