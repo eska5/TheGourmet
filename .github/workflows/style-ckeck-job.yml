@@ -27,4 +27,4 @@ jobs:
         with:
           ref: ${{ env.BRANCH_NAME }}
       - name: run style checks
-        run: cd $GITHUB_WORKSPACE/src; make style-check
+        run: cd $GITHUB_WORKSPACE/src; make style-check; make test
