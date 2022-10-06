@@ -43,10 +43,13 @@ def suggestions():
 
 @app.route("/badresult", methods=["POST"], strict_slashes=False)
 def bad_result():
-    bad_result_name = f"{request.json['modeloutput']}_{request.json['useroutput']}"
-    bad_result_photo = request.json["mealPhoto"]
+    try:
+        bad_result_name = f"{request.json['modeloutput']}_{request.json['useroutput']}"
+        bad_result_photo = request.json["mealPhoto"]
+    except KeyError:
+        return app.response_class(status=400)
 
-    if bad_result_name == "" or bad_result_photo == "":
+    if bad_result_name == "_" or bad_result_photo == "":
         return app.response_class(status=400)
 
     m_operator.save_image(
