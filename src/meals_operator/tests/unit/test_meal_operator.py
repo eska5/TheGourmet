@@ -5,9 +5,11 @@ from meal_operator import get_suggestions, add_labels, save_image
 
 def test_get_suggestions(mocker):
     example_list = ["tomato", "banana", "apple"]
-    example_suggestions = {'suggestions': example_list}
+    example_suggestions = {"suggestions": example_list}
     open_mock = mocker.patch("builtins.open")
-    yaml_safe_load_mock = mocker.patch("meal_operator.yaml.safe_load", return_value=example_suggestions)
+    yaml_safe_load_mock = mocker.patch(
+        "meal_operator.yaml.safe_load", return_value=example_suggestions
+    )
     assert get_suggestions() == sorted(example_list)
     open_mock.assert_called_once()
     yaml_safe_load_mock.assert_called_once()
@@ -36,7 +38,9 @@ def test_save_image_newdir(mocker):
     save_image(path=example_path, coded_image=example_image, title=example_title)
     isdir_mock.assert_called_once_with(f"{example_path}/{example_title}")
     mkdir_mock.assert_called_once_with(f"{example_path}/{example_title}")
-    add_labels_mock.assert_called_once_with(value=example_title, path=f"{example_path}/labels.yaml")
+    add_labels_mock.assert_called_once_with(
+        value=example_title, path=f"{example_path}/labels.yaml"
+    )
     image_open_mock.assert_called_once()
     base_decode_mock.assert_called_once()
     bytes_io_mock.assrrt_called_once()
