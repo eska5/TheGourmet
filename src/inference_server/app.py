@@ -28,12 +28,12 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-with open("descriptions.yaml", "r", encoding="utf8") as stream:
-    DESCRIPTIONS = yaml.safe_load(stream)["descriptions"]
-
-
-for key in DESCRIPTIONS.keys():
-    LABELS.append(key)
+# with open("descriptions.yaml", "r", encoding="utf8") as stream:
+#     DESCRIPTIONS = yaml.safe_load(stream)["descriptions"]
+#
+#
+# for key in DESCRIPTIONS.keys():
+#     LABELS.append(key)
 
 
 @app.before_first_request
