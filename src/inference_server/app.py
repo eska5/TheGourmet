@@ -24,13 +24,6 @@ logging.basicConfig(
 )
 
 
-@app.before_first_request
-def before_first_request():
-    app.logger.info("Server is preparing for inference...")
-    # load_model_to_memory()
-    app.logger.info("Done.")
-
-
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
     model_status = "not loaded"
@@ -38,7 +31,7 @@ def app_health_check():
         model_status = "loaded"
     return app.response_class(
         status=200,
-        response=f"App is running. Model status is {model_status}.",
+        response=f"App is running. Model is {model_status}.",
         content_type="application/json",
     )
 
