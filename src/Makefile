@@ -9,11 +9,13 @@ style_prerequisites:
 	sudo apt-get -y install black
 	sudo apt-get -y install mypy
 	sudo apt-get -y install pylint
+	pip install --upgrade click==8.0.
 
 test_prerequisites:
 	sudo apt install python3-pip
 	pip install --upgrade pip
 	pip install -r meals_operator/requirements.txt
+	pip install -r inference_server/requirements.txt
 	pip install pytest pytest-mock pytest-cov
 
 
