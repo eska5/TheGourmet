@@ -1,7 +1,6 @@
 import json
 import logging
 
-import tensorflow
 from flask import Flask, request
 from flask_cors import CORS
 
@@ -11,13 +10,13 @@ from inference_operator import (
     load_image_for_detection,
     detection_inference,
     draw_result_image,
+    MODEL,
 )
 from meals_data import MealsData
 
 app = Flask(__name__)  # pylint: disable=C0103
 CORS = CORS(app, resources={r"/*": {"origins": "*"}})
 
-MODEL = None
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
     level=logging.INFO,
@@ -28,10 +27,7 @@ logging.basicConfig(
 @app.before_first_request
 def before_first_request():
     app.logger.info("Server is preparing for inference...")
-
-    global MODEL
-    MODEL = tensorflow.keras.models.load_model("model.h5")
-
+    # load_model_to_memory()
     app.logger.info("Done.")
 
 

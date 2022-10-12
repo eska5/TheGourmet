@@ -2,9 +2,9 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 import requests
-from app import MODEL
 import base64
 import cv2
+import tensorflow
 
 from meals_data import MealsData
 from response_type import Meal
@@ -12,6 +12,8 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
 MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
+
+MODEL = tensorflow.keras.models.load_model("model.h5")
 
 
 def classification_inference(image: str):
