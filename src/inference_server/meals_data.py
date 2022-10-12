@@ -11,7 +11,7 @@ class MealsData:
 
     @classmethod
     def get_labels(cls) -> list:
-        return MealsData.descriptions.keys()
+        return list(MealsData.descriptions.keys())
 
     @classmethod
     def get_catalog(cls) -> list:

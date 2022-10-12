@@ -33,10 +33,9 @@ def before_first_request():
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
-    if MODEL is None:
-        model_status = "Not loaded"
-    else:
-        model_status = "Loaded"
+    model_status = "not loaded"
+    if MODEL is not None:
+        model_status = "loaded"
     return app.response_class(
         status=200,
         response=f"App is running. Model status is {model_status}.",
@@ -86,7 +85,7 @@ def detect_meal():  # pylint: disable=R0914
 
     app.logger.info("Drawing result on the new image")
     predictions = draw_result_image(
-        inference_result=inference_result,
+        inference_result=inference_result["predictions"],
         image_for_drawing=loaded_image["image_for_drawing"],
         detected_meals=detected_meals,
     )
