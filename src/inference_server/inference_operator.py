@@ -106,4 +106,4 @@ def draw_result_image(
                 ).decode()
             }
             predictions.insert(0, yolo_image)
-            return predictions
+    return predictions

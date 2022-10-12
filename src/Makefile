@@ -5,10 +5,9 @@ SEPERATOR := "------------------------------------------------------------------
 
 
 style_prerequisites:
-	sudo apt-get update -y
-	sudo apt-get -y install black
-	sudo apt-get -y install mypy
-	sudo apt-get -y install pylint
+	pip install install black
+	pip install install mypy
+	pip install install pylint
 	pip install --upgrade click==8.0.
 
 test_prerequisites:
@@ -22,15 +21,15 @@ test_prerequisites:
 style-check: style_prerequisites
 	echo $(SEPERATOR)
 	echo "Running mypy type check inside: $(SOURCES)"
-	mypy $(SOURCES) --ignore-missing-imports --show-error-codes
+	# python3 -m mypy $(SOURCES) --ignore-missing-imports --show-error-codes
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
-	black $(SOURCES)
+	python3 -m black $(SOURCES)
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
-	pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603,C0411
+	python3 -m pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603,C0411
 	echo "Successfully finished pylint code smells check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 
