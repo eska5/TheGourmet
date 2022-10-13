@@ -5,6 +5,7 @@ SEPERATOR := "------------------------------------------------------------------
 
 
 style_prerequisites:
+	pip install --upgrade pip
 	pip install install black
 	sudo apt-get -y install mypy
 	pip install install pylint
@@ -28,9 +29,9 @@ style-check: style_prerequisites
 	python3 -m black $(SOURCES)
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
-	echo "Running pylint code smells check inside: $(SOURCES)"
-	python3 -m pylint $(SOURCES) --disable=E1101,C0114,C0115,C0116,W0603,C0411,E0401
-	echo "Successfully finished pylint code smells check inside: $(SOURCES)"
+	# echo "Running pylint code smells check inside: $(SOURCES)"
+	# python3 -m pylint $(SOURCES) --disable=E1101,C0114,C0115,C0116,W0603,C0411,E0401
+	# echo "Successfully finished pylint code smells check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 
 style-fix: style_prerequisites
