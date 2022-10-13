@@ -243,7 +243,7 @@ class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
             Center(
               child: SizedBox(
                 height: 45,
-                width: 160,
+                width: 164,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 5,

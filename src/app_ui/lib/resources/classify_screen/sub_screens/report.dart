@@ -98,7 +98,7 @@ class _Screen2State2 extends State<ReportBadResult> {
         Center(
           child: SizedBox(
             height: 45,
-            width: 220,
+            width: 226,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 5,
