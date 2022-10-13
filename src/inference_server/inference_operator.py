@@ -28,7 +28,7 @@ def classification_inference(image: str) -> np.ndarray:
         np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR
     )
     img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
-    predict = MODEL.predict(img)
+    predict = MODEL.predict(img)  # type: ignore[attr-defined]
     return predict
 
 
