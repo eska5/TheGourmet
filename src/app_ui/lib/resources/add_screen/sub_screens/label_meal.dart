@@ -34,8 +34,7 @@ class _LabelMealScreen extends State<LabelMealScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.add_box_rounded, size: 29),
-        title: const Text('Teraz nazwij swoją potrawę',
-            style: TextStyle(fontSize: 22)),
+        title: const Text('Nazwij potrawę', style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],

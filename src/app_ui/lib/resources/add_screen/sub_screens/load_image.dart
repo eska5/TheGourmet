@@ -36,8 +36,7 @@ class _LoadImageScreen extends State<AddLoadImageScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: const Icon(Icons.add_box_rounded, size: 29),
-        title: const Text('Dodaj zdjęcie nowej potrawy!',
-            style: TextStyle(fontSize: 22)),
+        title: const Text('Dodaj zdjęcie', style: TextStyle(fontSize: 22)),
         backgroundColor: Colors.indigo,
       ),
       backgroundColor: Colors.indigo[50],
