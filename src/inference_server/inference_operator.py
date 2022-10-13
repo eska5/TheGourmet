@@ -14,6 +14,12 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
 MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
 MODEL_PATH = "model.h5"
+MODEL = ...
+
+
+def load_model_to_memory():
+    global MODEL
+    MODEL = tensorflow.keras.models.load_model(MODEL_PATH)
 
 
 def classification_inference(image: str) -> np.ndarray:
@@ -22,9 +28,7 @@ def classification_inference(image: str) -> np.ndarray:
         np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR
     )
     img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
-    model = tensorflow.keras.models.load_model(MODEL_PATH)
-    predict = model.predict(img)
-    print(type(predict))
+    predict = MODEL.predict(img)
     return predict
 
 

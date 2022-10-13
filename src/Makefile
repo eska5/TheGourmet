@@ -21,7 +21,7 @@ test_prerequisites:
 style-check: style_prerequisites
 	echo $(SEPERATOR)
 	echo "Running mypy type check inside: $(SOURCES)"
-	# python3 -m mypy $(SOURCES) --ignore-missing-imports --show-error-codes
+	python3 -m mypy $(SOURCES) --ignore-missing-imports --show-error-codes
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
@@ -29,7 +29,7 @@ style-check: style_prerequisites
 	echo "Successfully finished black format check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running pylint code smells check inside: $(SOURCES)"
-	python3 -m pylint $(SOURCES) --disable=E0401,C0114,C0115,C0116,W0603,C0411
+	python3 -m pylint $(SOURCES) --disable=E1101,C0114,C0115,C0116,W0603,C0411,E0401
 	echo "Successfully finished pylint code smells check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 

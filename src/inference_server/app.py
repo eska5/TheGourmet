@@ -10,11 +10,18 @@ from inference_operator import (
     load_image_for_detection,
     detection_inference,
     draw_result_image,
+    load_model_to_memory,
 )
 from meals_data import MealsData
 
 app = Flask(__name__)  # pylint: disable=C0103
 CORS = CORS(app, resources={r"/*": {"origins": "*"}})
+
+
+@app.before_first_request
+def on_startup():
+    load_model_to_memory()
+
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
@@ -42,7 +49,7 @@ def meals_catalog():
 @app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify_photo():
     app.logger.info("Running classification on the image...")
-    classification_model = classification_inference(str(request.json["image"]))
+    classification_model = classification_inference(image=str(request.json["image"]))
     app.logger.info("Model inference completed")
 
     app.logger.info("Creating predictions")
