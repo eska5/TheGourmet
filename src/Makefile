@@ -6,7 +6,7 @@ SEPERATOR := "------------------------------------------------------------------
 
 style_prerequisites:
 	pip install install black
-	pip install install mypy
+	sudo apt-get -y install mypy
 	pip install install pylint
 	pip install --upgrade click==8.0.
 
@@ -21,7 +21,7 @@ test_prerequisites:
 style-check: style_prerequisites
 	echo $(SEPERATOR)
 	echo "Running mypy type check inside: $(SOURCES)"
-	python3 -m mypy $(SOURCES) --ignore-missing-imports --show-error-codes
+	mypy --ignore-missing-imports --show-error-codes $(SOURCES)
 	echo "Successfully finished mypy type check inside: $(SOURCES)"
 	echo $(SEPERATOR)
 	echo "Running black format check inside: $(SOURCES)"
