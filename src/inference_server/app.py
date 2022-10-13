@@ -10,7 +10,6 @@ from inference_operator import (
     load_image_for_detection,
     detection_inference,
     draw_result_image,
-    MODEL,
 )
 from meals_data import MealsData
 
@@ -26,13 +25,8 @@ logging.basicConfig(
 
 @app.route("/ping", methods=["GET"], strict_slashes=False)
 def app_health_check():
-    model_status = "not loaded"
-    if MODEL is not None:
-        model_status = "loaded"
     return app.response_class(
-        status=200,
-        response=f"App is running. Model is {model_status}.",
-        content_type="application/json",
+        status=200, response=f"App is running.", content_type="application/json"
     )
 
 
@@ -49,7 +43,7 @@ def meals_catalog():
 def classify_photo():
     app.logger.info("Running classification on the image...")
     classification_model = classification_inference(str(request.json["image"]))
-    app.logger.info("Model loaded")
+    app.logger.info("Model inference completed")
 
     app.logger.info("Creating predictions")
     predictions = create_classification_predictions(model=classification_model)

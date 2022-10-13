@@ -1,3 +1,4 @@
+# pylint: disable=C0330
 from PIL import Image
 import numpy as np
 from io import BytesIO
@@ -12,17 +13,17 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 MY_KEY = "lWO8hVwoyNSPIZhEjKCU"
 MODEL_URL = "https://detect.roboflow.com/dataset-te7wt/4"
+MODEL_PATH = "model.h5"
 
-MODEL = tensorflow.keras.models.load_model("model.h5")
 
-
-def classification_inference(image: str):
+def classification_inference(image: str) -> np.ndarray:
     decoded_image = Image.open(BytesIO(base64.b64decode(image)))
     opencv_image = cv2.cvtColor(
         np.array(decoded_image.convert("RGB")), cv2.COLOR_RGB2BGR
     )
     img = np.expand_dims(cv2.resize(opencv_image, (400, 400)), 0)
-    predict = MODEL.predict(img)
+    model = tensorflow.keras.models.load_model(MODEL_PATH)
+    predict = model.predict(img)
     print(type(predict))
     return predict
 

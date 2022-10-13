@@ -1,5 +1,4 @@
-from unittest.mock import MagicMock, patch
-
+# pylint: disable=W0621
 import pytest
 from app import app
 
@@ -24,11 +23,7 @@ def test_catalog(test_client, mocker):
     meals_data_mock.assert_called_once()
 
 
-@pytest.mark.parametrize(
-    "test_input,expected", [(None, "not loaded"), (MagicMock(), "loaded")]
-)
-def test_ping(test_client, mocker, test_input, expected):
-    mocker.patch("app.MODEL", test_input)
+def test_ping(test_client):
     resp = test_client.get("/ping")
     assert resp.status_code == 200
-    assert resp.text == f"App is running. Model is {expected}."
+    assert resp.text == f"App is running."
