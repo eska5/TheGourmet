@@ -62,6 +62,7 @@ def detection_inference(image: bytes) -> dict:
         f"{MODEL_URL}?api_key={MY_KEY}",
         data=multipart_form,
         headers={"Content-Type": multipart_form.content_type},
+        timeout=15
     ).json()
     return roboflow_response
 
@@ -92,7 +93,7 @@ def draw_result_image(
             )
             color = [int(c) for c in colors[detected_meals.index(prediction["class"])]]
             cv2.rectangle(image_for_drawing, (x_1, y_1), (x_2, y_2), color, 2)
-            text = "{}: {:.4f}".format(prediction["class"], prediction["confidence"])
+            text = f"{prediction['class']}: {prediction['confidence']}"
             cv2.putText(
                 image_for_drawing,
                 text,

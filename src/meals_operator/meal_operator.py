@@ -67,5 +67,5 @@ def get_meal(meal_name: str) -> dict:
         "Access-Control-Request-Headers": "*",
         "api-key": "4wyTSiqX9oBUrS8o3X9WnSAwifMFmXfa1DdO39ElkY3WuxjAkOQcUExbDtSXzWJ7",
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload, timeout=15)
     return json.loads(response.text)["document"]

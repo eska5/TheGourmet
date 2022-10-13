@@ -1,4 +1,5 @@
-from unittest.mock import MagicMock, patch
+# pylint: disable=W0621
+from unittest.mock import MagicMock
 
 import pytest
 from app import app
@@ -28,4 +29,3 @@ def test_ping(test_client, mocker, test_input, expected):
     resp = test_client.get("/ping")
     assert resp.status_code == 200
     assert resp.text == f"App is running. Model is {expected}."
-
