@@ -41,7 +41,7 @@ def get_suggestions() -> list:
 
 
 def add_labels(value: str, path: str):
-    with open(path, "a") as yaml_file:
+    with open(path, "a", encoding="utf-8") as yaml_file:
         yaml_file.write(f' - "{value}"\n')
 
 

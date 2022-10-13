@@ -1,4 +1,4 @@
-# pylint: disable=C0330
+# pylint: disable=C0103
 import os
 import shutil
 
