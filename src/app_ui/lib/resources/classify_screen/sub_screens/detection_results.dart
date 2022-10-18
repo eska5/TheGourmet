@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:new_ui/resources/classify_screen/sub_screens/load_image.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../common/load_image_dialog.dart';
@@ -101,19 +102,40 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
                   curve: Curves.easeInOutCirc,
                   direction: Direction.vertical,
                   offset: 0.5,
-                  child: Column(
-                    children: [
-                      for (var card in detectionResultCards)
-                        createResultCard(card, false),
-                      const SizedBox(height: 40),
-                      createReportCard(
-                          CardDetails(
-                              mealName: "Złe wyniki?",
-                              color: const Color(0xFFFE9901),
-                              cardNumber: 4),
-                          context,
-                          callSetState)
-                    ],
+                  child: ValueListenableBuilder<bool>(
+                    builder: (BuildContext context, bool value, Widget? child) {
+                      return value == true
+                          ? Column(
+                              children: [
+                                for (var card in detectionResultCards)
+                                  createResultCard(card, false),
+                                const SizedBox(height: 40),
+                                createReportCard(
+                                    CardDetails(
+                                        mealName: "Złe wyniki?",
+                                        color: const Color(0xFFFE9901),
+                                        cardNumber: 4),
+                                    context,
+                                    callSetState)
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                for (var card in detectionResultCards)
+                                  createResultCard(card, false),
+                                const SizedBox(height: 40),
+                                createReportCard(
+                                    CardDetails(
+                                        mealName: "Złe wyniki?",
+                                        color: const Color(0xFFFE9901),
+                                        cardNumber: 4),
+                                    context,
+                                    callSetState)
+                              ],
+                            );
+                    },
+                    valueListenable: ResultScreen.isDetected,
+                    child: const SizedBox.shrink(),
                   ),
                 ),
               ),
@@ -147,19 +169,26 @@ class _DetectionResultScreen extends State<DetectionResultScreen> {
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
-                child: isDetected == true
+                child: DetectionResultScreen.detectedImage != null
                     ? Image.memory(
                         DetectionResultScreen.detectedImage!,
                         width: 300,
                         height: 300,
                         fit: BoxFit.scaleDown,
                       )
-                    : Image.asset(
-                        'assets/diet.png',
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      )),
+                    : isDetected == true
+                        ? Image.memory(
+                            ClassifyLoadImageScreen.pickedImage!,
+                            width: 300,
+                            height: 300,
+                            fit: BoxFit.scaleDown,
+                          )
+                        : Image.asset(
+                            'assets/diet.png',
+                            width: 300,
+                            height: 300,
+                            fit: BoxFit.cover,
+                          )),
           ),
         ),
         Center(
