@@ -89,13 +89,15 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         )
         .timeout(const Duration(seconds: 30));
     ResultScreen.isDetected.value = true;
-    int detectedMeals = json.decode(response.body).length - 1;
+    int detectedMeals = json.decode(response.body).length / 2;
     for (int i = 1; i < detectedMeals; i++) {
       detectionResultCards
           .add(CardDetails(color: Colors.blue.shade300, cardNumber: i + 1));
     }
-    DetectionResultScreen.detectedImage =
-        base64Decode(Map.from(json.decode(response.body)[0])["result_image"]);
+    if (json.decode(response.body).length > 0) {
+      DetectionResultScreen.detectedImage =
+          base64Decode(Map.from(json.decode(response.body)[0])["result_image"]);
+    }
     setDataInCards(detectedMeals, false, response.body);
     if (kDebugMode) {
       print("detection performed");
@@ -130,11 +132,12 @@ void setDataInCards(int amount, bool classification, String data) {
     }
     for (int i = 0; i < amount; i++) {
       detectionResultCards[i].mealName =
-          Map.from(json.decode(data)[i + 1])["name"];
+          Map.from(json.decode(data)[amount + i])["name"];
       detectionResultCards[i].mealProbability =
-          double.parse(Map.from(json.decode(data)[i + 1])["certainty"]) * 100;
-      var mealCalories = Map.from(json.decode(data)[i + 1])["calories"];
-      var mealAllergens = Map.from(json.decode(data)[i + 1])["allergens"];
+          double.parse(Map.from(json.decode(data)[amount + i])["certainty"]) *
+              100;
+      var mealCalories = Map.from(json.decode(data)[amount + i])["calories"];
+      var mealAllergens = Map.from(json.decode(data)[amount + i])["allergens"];
       detectionResultCards[i].mealDescription =
           "Szacowane kalorie na 100g: ${mealCalories} kcal\nMożliwe alergeny: ${mealAllergens.toString().replaceAll(RegExp(r'[\[\]]'), '')}";
     }
