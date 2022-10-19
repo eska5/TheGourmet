@@ -89,7 +89,7 @@ void sendDetectionRequest(BuildContext context, Uint8List? bytes) async {
         )
         .timeout(const Duration(seconds: 30));
     ResultScreen.isDetected.value = true;
-    int detectedMeals = json.decode(response.body).length / 2;
+    int detectedMeals = (json.decode(response.body).length / 2).round();
     for (int i = 1; i < detectedMeals; i++) {
       detectionResultCards
           .add(CardDetails(color: Colors.blue.shade300, cardNumber: i + 1));

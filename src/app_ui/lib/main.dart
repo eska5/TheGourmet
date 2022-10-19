@@ -23,6 +23,7 @@ class MainScreen extends StatelessWidget {
     fetchCatalog();
     FlutterNativeSplash.remove();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(

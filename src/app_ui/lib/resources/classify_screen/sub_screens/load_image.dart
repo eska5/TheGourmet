@@ -265,7 +265,10 @@ class _LoadImageScreen extends State<ClassifyLoadImageScreen> {
                   onPressed: () => displayDialog(context),
                 ),
               ),
-            )
+            ),
+            const SizedBox(
+              height: 220,
+            ),
           ],
         ),
       ),
